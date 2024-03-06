@@ -15,7 +15,11 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <button class="btn btn-primary" onclick="window.location.replace('http://10.215.156.203/materiales/rutas/index.php')" style="margin-left: 2%;"><i class="fa fa-home"></i> Volver al inicio</button>
+                <div class="btn-group" style="position: fixed; z-index: 1;margin-left: 2%;">
+                  <button class="btn btn-primary" onclick="window.location.replace('http://10.215.156.203/materiales/rutas/index.php')"><i class="fa fa-home"></i> Volver al inicio</button>
+                <button class="btn btn-success" onclick="window.location.replace('http://10.215.156.203/materiales/rutas/index.php')" style="margin-left: 10px;"><i class="fa fa-upload"></i> Subir criticos desde archivo</button>
+                </div>
+                
 
               </div>
 
