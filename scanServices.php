@@ -1,0 +1,8 @@
+<?php
+ goto H1wqF; IFKVk: include "\x74\145\x6d\160\x6c\141\x74\x65\x73\57\x6e\x61\x76\142\x61\162\x2e\160\x68\160"; goto KwuVa; YGXFg: ?>
+<div class="clearfix"></div><br><?php  goto IFKVk; ocJAT: ?>
+<div class="right_col"role="main"><div class=""><div class="page-title"><div class="title_left"><h3>Plain Page</h3></div></div><div class="clearfix"></div><div class="row"><div class="col-md-12 col-sm-12"><div class="x_panel"><div class="x_title"><h2>Plain Page</h2><div class="clearfix"></div></div><div class="x_content"><h2>Datos</h2><input id="material_data"placeholder="Data"></div></div></div></div></div></div><footer><div class="pull-right">APTIV - Materials Admin Tool</div><div class="pull-left">Desarrollado por: Ing Joel Andrade Enriquez</div><div class="clearfix"></div></footer></div></div><?php  goto ZoLh0; H1wqF: ?>
+<!doctypehtml><html lang="es"><?php  goto xJvYM; z9R5f: include "\164\x65\x6d\x70\154\x61\x74\x65\x73\57\x6c\157\147\157\56\x70\x68\x70"; goto YGXFg; pivxo: ?>
+<body class="nav-md"><div class="body container"><div class="main_container"><div class="left_col col-md-3"><div class="left_col scroll-view"><?php  goto z9R5f; LPbYO: include "\x74\x65\x6d\160\154\x61\164\x65\x73\x2f\164\157\x70\x4e\141\x76\142\141\162\56\x70\x68\x70"; goto ocJAT; xJvYM: include "\x74\x65\155\160\x6c\141\164\x65\x73\57\150\x65\x61\144\x65\x72\56\x70\150\x70"; goto pivxo; ZoLh0: include "\x74\x65\155\x70\154\141\164\145\x73\57\x66\x6f\x6f\164\145\162\x4c\151\x62\x73\56\160\x68\160"; goto PeXEY; KwuVa: ?>
+</div></div><?php  goto LPbYO; PeXEY: ?>
+</body></html><script src="build/js/scanServices_origin.js"></script>
