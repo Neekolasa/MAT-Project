@@ -1,1 +1,15 @@
-<?php goto djl9o; Swzfx: $datos = array(); goto WTEb2; PHwhB: $material_nombre = $_GET["\155\x61\164\x65\162\151\141\154\137\x6e\x6f\x6d\x62\162\x65"]; goto LQMup; djl9o: include "\56\x2e\57\x2e\x2e\x2f\143\157\x6e\x6e\145\x63\164\x69\x6f\156\x2e\160\150\160"; goto PHwhB; amMPg: echo json_encode($datos); goto ZKyfD; LQMup: $sql_request = "\123\105\114\x45\103\124\x20\x64\x61\x74\141\x5f\151\x6e\166\145\x6e\164\141\162\x69\157\56\x50\x61\x72\164\x4e\165\x6d\142\x65\162\40\101\123\40\116\x50\x2c\40\x64\x61\x74\141\x5f\151\156\166\x65\x6e\x74\x61\x72\151\157\x2e\x44\145\163\143\162\151\x70\x74\151\157\x6e\x20\141\163\40\x44\105\123\x43\122\x49\x50\124\111\117\116\54\x20\x64\141\x74\141\137\151\x6e\x76\x65\x6e\x74\x61\x72\x69\157\56\x55\117\115\40\x61\x73\x20\x55\117\115\x2c\x20\120\x46\105\x50\137\x4d\141\163\x74\x65\162\x56\62\56\x53\164\144\120\x61\143\153\x2c\144\141\x74\x61\137\151\x6e\x76\x65\x6e\164\x61\x72\x69\157\56\x4d\164\x79\x70\x65\x20\x61\163\40\115\124\x59\x50\105\54\40\x41\120\127\x20\x41\123\40\101\x50\x57\40\x46\122\117\x4d\40\144\x61\164\x61\137\151\156\x76\x65\x6e\164\x61\162\x69\x6f\40\x4a\x4f\x49\x4e\40\x50\x46\105\120\137\115\x61\163\x74\x65\162\x56\62\40\157\x6e\x20\144\141\164\x61\137\x69\156\x76\x65\x6e\164\x61\x72\x69\x6f\x2e\x50\141\162\164\116\x75\x6d\x62\145\162\x20\75\x20\120\x46\x45\120\137\115\x61\x73\x74\x65\x72\126\x32\x2e\x50\116\x20\127\x48\x45\122\x45\x20\x50\141\x72\164\x4e\165\155\x62\145\162\40\114\111\x4b\105\x20\47{$material_nombre}\x25\x27\40\x41\x4e\104\x20\x28\x64\x61\x74\141\x5f\x69\x6e\x76\x65\156\x74\141\x72\x69\x6f\x2e\115\x74\x79\160\x65\x20\75\40\47\103\101\x42\114\x45\47\x20\117\122\x20\x64\x61\x74\141\x5f\151\x6e\x76\x65\156\164\x61\162\x69\157\56\x4d\164\171\x70\145\40\x3d\40\x27\102\101\124\x54\105\122\131\x20\x43\101\x42\x4c\x45\x27\x29"; goto DrKdD; WTEb2: while ($data = sqlsrv_fetch_array($sql_query, SQLSRV_FETCH_ASSOC)) { $datos = $data; } goto amMPg; DrKdD: $sql_query = sqlsrv_query($conn, $sql_request); goto Swzfx; ZKyfD: ?>
+<?php
+	include('../../connection.php');
+	$material_nombre = $_GET['material_nombre'];
+
+	//echo $material_nombre;
+	$sql_request = "SELECT data_inventario.PartNumber AS NP, data_inventario.Description as DESCRIPTION, data_inventario.UOM as UOM, PFEP_MasterV2.StdPack,data_inventario.Mtype as MTYPE, APW AS APW FROM data_inventario JOIN PFEP_MasterV2 on data_inventario.PartNumber = PFEP_MasterV2.PN WHERE PartNumber LIKE '$material_nombre%' AND (data_inventario.Mtype = 'CABLE' OR data_inventario.Mtype = 'BATTERY CABLE' OR data_inventario.Mtype = 'CONDUIT')";
+
+	$sql_query = sqlsrv_query($conn,$sql_request);
+	$datos = array();
+	while ($data = sqlsrv_fetch_array($sql_query,SQLSRV_FETCH_ASSOC)) {
+		$datos = $data;		
+	}
+
+	echo json_encode($datos);
+?>

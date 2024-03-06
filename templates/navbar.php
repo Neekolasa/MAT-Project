@@ -54,6 +54,12 @@
                     </a>
                     
                   </li>
+                  <li>
+                    <a href="criticos.php"><i class="fa fa-bullhorn"></i> Material critico
+                      <span class="fa fa-chevron"></span>
+                    </a>
+                    
+                  </li>
                   
                   <!--<li>
                     <a href="master.php" class="pc hideMaster"><i class="fa"><img src="src/images/iconMaster.png" class='fa'></i> Master 
