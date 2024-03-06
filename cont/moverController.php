@@ -755,7 +755,7 @@ elseif ($request == 'processMasiveData')
 		    if ($data['UoM'] == 'FT') {
 		        $uom = 'M';
 		    } else {
-		        $uom = $data['UoM'];
+		        $uom = $data['UoM']; 
 		    }
 
 		    $componente = $key['Componente'];
