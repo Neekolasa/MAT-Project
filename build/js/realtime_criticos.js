@@ -1,7 +1,9 @@
 $(document).ready(function(){
-	pageScroll();
+	//pageScroll();
+    
+    getCriticalNumbers();
 	$('#titleCriticos').text('Llegadas de material critico FV55 '+ moment().format('DD/MM/YYYY'));
-	getCriticalNumbers();
+	
 	setInterval(getCriticalNumbers, 60 * 1000);
 
     $('#newUpload-info').on('click', function(event) {
@@ -43,31 +45,39 @@ $(document).ready(function(){
 
 });
 
-function pageScroll() {
-    // Desplaza la página hacia abajo
-    window.scrollBy(0, 1);
+// Función para detener el scroll
+function stopScroll() {
+    clearTimeout(scrolldelay); // Limpia el temporizador actual
+    scrollEnabled = false; // Deshabilita el scroll
+}
 
-    // Verifica si hemos llegado al final de la página
-    if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
-        // Si hemos llegado al final de la página, desplaza suavemente hacia arriba
-        scrollToTop();
-    } else {
-        // Establece un retraso para el próximo scroll hacia abajo
-        scrolldelay = setTimeout(pageScroll, 10); // Reducir el valor para una animación más rápida
+// Función para reanudar el scroll después de 2 minutos de inactividad
+function resumeScroll() {
+    scrollEnabled = true; // Habilita el scroll
+    pageScroll(); // Reinicia el scroll
+}
+
+function pageScroll() {
+    if (scrollEnabled) {
+        window.scrollBy(0, 1); // Desplaza la página hacia abajo
+        if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+            scrollToTop();
+        } else {
+            scrolldelay = setTimeout(pageScroll, 20); // Establece un retraso para el próximo scroll hacia abajo
+        }
     }
 }
 
+// Función para animar el scroll hacia arriba
 function scrollToTop() {
-    // Obtiene la posición actual de desplazamiento vertical
-    var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
-
-    // Si no hemos alcanzado el tope, sigue desplazándote hacia arriba
-    if (currentScroll > 0) {
-        window.scrollTo(0, currentScroll - 5); // Modifica el valor para un desplazamiento más suave
-        setTimeout(scrollToTop, 10); // Reducir el valor para una animación más rápida
-    } else {
-        // Cuando llegamos al tope, vuelve a llamar a pageScroll para bajar de nuevo
-        setTimeout(pageScroll, 10); // Reducir el valor para una animación más rápida
+    if (scrollEnabled) {
+        var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+        if (currentScroll > 0) {
+            window.scrollTo(0, currentScroll - 20); // Modifica el valor para un desplazamiento más suave
+            setTimeout(scrollToTop, 20); // Establece un retraso para el próximo scroll hacia arriba
+        } else {
+            setTimeout(pageScroll, 20); // Cuando llegamos al tope, vuelve a llamar a pageScroll para bajar de nuevo
+        }
     }
 }
 

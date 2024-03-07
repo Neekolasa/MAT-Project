@@ -3,7 +3,7 @@
   <?php 
     include 'templates/header.php';
   ?>
-
+  <title>Numeros criticos - APTIV</title>
   <body class="nav-md-12">
     <div class="container body">
       <div class="main_container">
@@ -62,12 +62,13 @@
                     <div>
                       
                       <div class="col-md-12">
-                        <img  class="col-md-1" style="-moz-transform: scaleX(-1);
+                        <div class="col-md-1"></div>
+                       <!-- <img  class="col-md-1" style="-moz-transform: scaleX(-1);
                                                                       -webkit-transform: scaleX(-1);
                                                                       -o-transform: scaleX(-1);
                                                                       transform: scaleX(-1);
                                                                       -ms-filter: fliph; /*IE*/
-                                                                      filter: fliph; /*IE*/"  src="src/lol.png">
+                                                                      filter: fliph; /*IE*/"  src="src/lol.png">-->
                         <div class="col-md-10"><h1 style="color: black; text-align: center;" id="titleCriticos"></h1></div>
                          <img class="col-md-1" style="display: flex; margin-top: 2%;" src="src/Aptiv_logo.png">
                       </div>
