@@ -2,9 +2,47 @@ $(document).ready(function(){
 	pageScroll();
 	$('#titleCriticos').text('Llegadas de material critico FV55 '+ moment().format('DD/MM/YYYY'));
 	getCriticalNumbers();
-	setInterval(getCriticalNumbers, 60 * 1000)
+	setInterval(getCriticalNumbers, 60 * 1000);
+
+    $('#newUpload-info').on('click', function(event) {
+        event.preventDefault();
+        var fileInput = $('#file-upload')[0];
+        if (fileInput.files.length>0) {
+            var file = fileInput.files[0];
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                var data = new Uint8Array(e.target.result);
+                var workbook = XLSX.read(data, { type: 'array' });
+
+                var columnData = [];
+
+               
+                [workbook.Sheets[workbook.SheetNames[1]], workbook.Sheets[workbook.SheetNames[2]]].forEach(function(worksheet) {
+                    var range = XLSX.utils.decode_range(worksheet['!ref']);
+                    for (var i = 2; i <= range.e.r; ++i) {
+                        var cellAddress = 'D' + (i + 1);
+                        var cell = worksheet[cellAddress];
+                        if (cell && cell.v) {
+                          
+                            
+                            columnData.push(cell.v.toString());
+                            
+                            
+                        }
+                    }
+                });
+                sendResults(columnData);
+            };
+
+            reader.readAsArrayBuffer(file);
+        }
+    });
+
+
 
 });
+
 function pageScroll() {
     // Desplaza la página hacia abajo
     window.scrollBy(0, 1);
@@ -32,8 +70,6 @@ function scrollToTop() {
         setTimeout(pageScroll, 10); // Reducir el valor para una animación más rápida
     }
 }
-
-
 
 function getCriticalNumbers(){
 	new PNotify({
@@ -90,4 +126,45 @@ function getCriticalNumbers(){
 		console.log("error");
 	});
 	
+}
+
+function sendResults(results) {
+    $.ajax({
+        url: 'cont/updateCriticals.php',
+        type: 'POST', 
+        dataType: 'json',
+        data: {
+                    results: JSON.stringify(results),
+                    request: 'update',
+                   },
+    })
+    .done(function(response) {
+        
+        if (response['response']=='success') {
+            new PNotify({
+                title: 'Exito',
+                text: 'Informacion de criticos actualizada',
+                type: 'success',
+                styling: 'bootstrap3'
+            });
+            getCriticalNumbers();
+        }
+        else{
+            new PNotify({
+                title: 'Error',
+                text: response['message'],
+                type: 'error',
+                styling: 'bootstrap3'
+            });
+        }     
+        //console.log(response['response']);
+     
+    }).fail(function(){
+      new PNotify({
+              title: 'Error',
+              text: 'Ah ocurrido un error, verifique la informacion',
+              type: 'error',
+              styling: 'bootstrap3'
+          });
+    });    
 }
