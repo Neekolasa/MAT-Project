@@ -249,7 +249,7 @@ elseif ($request == 'addMoverData') {
 
 	    $params = array(
 	        $plantaDestino,
-	        $usuarioAutoriza,
+	        utf8_encode($usuarioAutoriza),
 	       utf8_encode($instruccionesEnvio),
 	        $telefonoOrigen,
 	        $plantaOrigen,
@@ -476,7 +476,7 @@ elseif($request == 'getCreatedMoverInfo'){
 		while ($info = sqlsrv_fetch_array($sql_query,SQLSRV_FETCH_ASSOC)) {
 			 $formattedDate = $info['CreatedDate']->format('d-m-Y H:i');
 			array_push($datos, array(	"ID"=>$info['ID'],
-														"RequestUser"=>$info['AuthorizedUser'],
+														"RequestUser"=>utf8_decode($info['AuthorizedUser']),
 														"ShipPlant"=>$info['ShipPlant'],
 														"ShipInstructions"=>utf8_decode($info['ShipInstructions']),
 														"AdditionalComments"=>utf8_decode($info['AdditionalComments']),
@@ -519,7 +519,7 @@ elseif($request == 'getCreatedMoverInfo'){
 			  $formattedDate = $info['CreatedDate']->format('d-m-Y H:i');
 			array_push($datos, array(	
 														"ID"=>$info['ID'],
-														"RequestUser"=>$info['AuthorizedUser'],
+														"RequestUser"=>utf8_decode($info['AuthorizedUser']),
 														"ShipPlant"=>$info['ShipPlant'],
 														"ShipInstructions"=>utf8_decode($info['ShipInstructions']),
 														"AdditionalComments"=>utf8_decode($info['AdditionalComments']),
@@ -562,7 +562,7 @@ elseif($request == 'getCreatedMoverInfo'){
 			  $formattedDate = $info['CreatedDate']->format('d-m-Y H:i');
 			array_push($datos, array(
 														"ID"=>$info['ID'],
-														"RequestUser"=>$info['AuthorizedUser'],
+														"RequestUser"=>utf8_decode($info['AuthorizedUser']),
 														"ShipPlant"=>$info['ShipPlant'],
 														"ShipInstructions"=>utf8_decode($info['ShipInstructions']),
 														"AdditionalComments"=>utf8_decode($info['AdditionalComments']),
@@ -618,7 +618,7 @@ elseif($request == 'getCreatedMoverInfo'){
 			  $formattedDate = $info['CreatedDate']->format('d-m-Y H:i');
 			array_push($datos, array(
 														"ID"=>$info['ID'],
-														"RequestUser"=>$info['AuthorizedUser'],
+														"RequestUser"=>utf8_decode($info['AuthorizedUser']),
 														"ShipPlant"=>$info['ShipPlant'],
 														"ShipInstructions"=>utf8_decode($info['ShipInstructions']),
 														"AdditionalComments"=>utf8_decode($info['AdditionalComments']),
@@ -675,7 +675,7 @@ elseif($request == 'updateStatus'){
 	}
 }
 elseif ($request == 'addExtraComment') {
-	$commentAdded = $_REQUEST['commentAdded'];
+	$commentAdded = utf8_encode($_REQUEST['commentAdded']);
 	$moverUniqueID = $_REQUEST['moverUniqueID'];
 	$permission = $_REQUEST['permission'];
 	$userLogged = $_REQUEST['userLogged'];
@@ -869,7 +869,7 @@ elseif ($request == 'getMoverByPN'){
 			  $formattedDate = $info['CreatedDate']->format('d-m-Y H:i');
 			array_push($datos, array(
 														"ID"=>$info['ID'],
-														"RequestUser"=>$info['AuthorizedUser'],
+														"RequestUser"=>utf8_decode($info['AuthorizedUser']),
 														"ShipPlant"=>$info['ShipPlant'],
 														"ShipInstructions"=>utf8_decode($info['ShipInstructions']),
 														"AdditionalComments"=>utf8_decode($info['AdditionalComments']),
