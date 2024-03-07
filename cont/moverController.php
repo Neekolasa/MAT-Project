@@ -885,6 +885,19 @@ elseif ($request == 'getMoverByPN'){
 
 		echo json_encode($datos);
 }
+elseif ($request == 'deleteTempMoverNumbers'){
+	$userLogged = $_REQUEST['userLogged'];
+	$param = array($userLogged);
+	$sql_statement = "DELETE FROM TempMaterialMover WHERE CreatedBy = ?";
+	$sql_query = sqlsrv_query($conn,$sql_statement,$param);
+
+	if ($sql_query === false) {
+		        $response = array('response' => 'fail');
+		    } else {
+		        $response = array('response' => 'success');
+		    }
+	echo json_encode($response);
+}
 
 function limpiarString($cadena) {
 
