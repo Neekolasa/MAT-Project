@@ -309,12 +309,39 @@ $(document).ready(function () {
       $("#mov_type").val("");
       $("#sap_document").val("");
 
-      new PNotify({
+      var userLogged = sessionStorage.getItem("userLogged");
+      
+      $.ajax({
+        url: 'cont/moverController.php',
+        type: 'GET',
+        data: {userLogged: userLogged,
+                  request: "deleteTempMoverNumbers"
+      },
+
+      })
+      .done(function(info) {
+        var Data = JSON.parse(info);
+        if (Data['response']=='success') {
+          new PNotify({
                       title: 'Exito',
                        text: 'Formulario establecido a campos predeterminados',
                       type: 'success',
                       styling: 'bootstrap3'
                   });
+          generateTable(userLogged);
+        }
+        else{
+          new PNotify({
+                      title: 'Error',
+                       text: 'Ha ocurrido un error innesperado',
+                      type: 'error',
+                      styling: 'bootstrap3'
+                  });
+        }
+
+        
+      })
+      
     });
 
 
