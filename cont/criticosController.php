@@ -7,10 +7,14 @@
 			    SELECT 
 			        NC.PN,
 			        COALESCE(RS.Serial, RSNH.Serial) AS Serial,
-			        COALESCE(CASE 
-			            WHEN RSNH.Located = 'Ramp' THEN 'Ramp'
-			            ELSE RSNH.Located
-			        END, 'NA') AS Locacion,
+					Map.R + Map.S + Map.L + Map.P AS Locacion,
+			        --COALESCE(CASE 
+			            --WHEN RSNH.Located = 'Ramp' THEN 'Ramp'
+			            --ELSE RSNH.Located
+			        --END, 'NA') AS Locacion,
+					NC.DOH as DOH,
+					NC.ETA as ETA,
+					M.Mtype as Mtype,
 			        CASE 
 						WHEN RS.PN IS NOT NULL AND RSNH.PN IS NULL THEN 'Sin liberar en recibos'
 			            WHEN RSNH.Located = 'Ramp' THEN 'Listo para almacenar'
@@ -36,15 +40,20 @@
 			    LEFT JOIN Rcv_SNH RSNH ON NC.PN = RSNH.PN AND CONVERT(DATE, RSNH.ScanDate) = CONVERT(DATE, GETDATE())
 			    LEFT JOIN Rcv_Scan RS ON NC.PN = RS.PN AND CONVERT(DATE, RS.ScanDate) = CONVERT(DATE, GETDATE())
 			    LEFT JOIN Smk_InvDet S ON S.SN = CONVERT(varchar, RSNH.SN) AND S.Action IN ('PARTIAL', 'EMPTY', 'OPEN')
+				LEFT JOIN PFEP_MasterV2 M ON NC.PN = M.PN
+				LEFT JOIN PFEP_Map Map ON NC.PN = Map.PN
 			)
 			SELECT 
-			    PN, 
+			    PN,
+				DOH,
+				ETA,
+				Mtype,
 			    Locacion,
 			    Estatus,
 			    MAX(Fecha) AS Fecha
 			FROM NumeroSerieConRownum
-			WHERE RowNum = 1
-			GROUP BY PN, Locacion, Estatus
+			WHERE RowNum = 1 AND DOH<'1.0'
+			GROUP BY PN, DOH,ETA,Mtype,Locacion, Estatus
 			ORDER BY Fecha ASC;
 		";
 
@@ -70,10 +79,21 @@
 					$fecha = $dat['Fecha'];
 				}
 				array_push($datos, 
-					array(	'PN'=>"<div style='background-color:$color; color:$textColor;'>".$dat['PN']."</div>",
+					/*array(	'PN'=>"<div style='background-color:$color; color:$textColor;'>".$dat['PN']."</div>",
 								'Location'=>"<div style = 'background-color:$color; color:$textColor;'>".$dat['Locacion']."</div>",
 								'Status'=>"<div style = 'background-color:$color; color:$textColor;'>".$dat['Estatus']."</div>",
-								'FechaLlegada'=>"<div style = 'background-color:$color; color:$textColor;'>".$fecha."</div>"
+								'FechaLlegada'=>"<div style = 'background-color:$color; color:$textColor;'>".$fecha."</div>",
+								'DOH'=>"<div style = 'background-color:$color; color:$textColor;'>".$dat['DOH']."</div>",
+								'ETA'=>"<div style = 'background-color:$color; color:$textColor;'>".$dat['ETA']."</div>",
+								'Mtype'=>"<div style = 'background-color:$color; color:$textColor;'>".$dat['Mtype']."</div>"
+					));*/
+					array(	'PN'=>$dat['PN'],
+								'Location'=>$dat['Locacion'],
+								'Status'=>$dat['Estatus'],
+								'FechaLlegada'=>$fecha,
+								'DOH'=>$dat['DOH'],
+								'ETA'=>$dat['ETA'],
+								'Mtype'=>$dat['Mtype']
 					));
 			}
 			if (empty($datos)) {

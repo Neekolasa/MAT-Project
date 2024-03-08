@@ -62,15 +62,11 @@
                     <div>
                       
                       <div class="col-md-12">
-                        <div class="col-md-1"></div>
-                       <!-- <img  class="col-md-1" style="-moz-transform: scaleX(-1);
-                                                                      -webkit-transform: scaleX(-1);
-                                                                      -o-transform: scaleX(-1);
-                                                                      transform: scaleX(-1);
-                                                                      -ms-filter: fliph; /*IE*/
-                                                                      filter: fliph; /*IE*/"  src="src/lol.png">-->
-                        <div class="col-md-10"><h1 style="color: black; text-align: center;" id="titleCriticos"></h1></div>
-                         <img class="col-md-1" style="display: flex; margin-top: 2%;" src="src/Aptiv_logo.png">
+                        
+                        <img class="col-md-2" style="display: flex; margin-top: 2%; "  src="src/Aptiv_logo.png">
+                        <div class="col-md-8"><h1 style="color: black; text-align: center;" id="titleCriticos"></h1></div>
+                        <div class="col-md-2"></div>
+                        
                       </div>
                       <div class="col-md-12" style=" font-size: 21px;color: black; text-align: center;">Desarrollado por: Ing Joel Andrade Enriquez</div>
                    
@@ -85,10 +81,13 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                     <table id="table_criticos" class="table table-striped table-bordered .progress" style="width:100%">
+                     <table id="table_criticos" class="table table-sm table-striped table-bordered table-hover">
                         <thead>
                           <tr>
                             <th>Numero de parte</th>
+                            <th>DOH</th>
+                            <th>ETA</th>
+                            <th>Mtype</th>
                             <th>Locacion</th>
                             <th>Estatus</th>
                             <th>Fecha</th>
@@ -98,7 +97,7 @@
                         </thead>
 
 
-                        <tbody style="font-size: 18px !important;">
+                        <tbody style="font-size: 12px !important; font-weight: bold;">
                                         
                         </tbody>
                     </table>
@@ -128,3 +127,6 @@
   </body>
 </html>
 <script src="build/js/realtime_criticos.js"></script>
+<style type="text/css">
+ 
+</style>
