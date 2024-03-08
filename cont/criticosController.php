@@ -89,7 +89,7 @@
 					));*/
 					array(	'PN'=>$dat['PN'],
 								'Location'=>$dat['Locacion'],
-								'Status'=>$dat['Estatus'],
+								'Status'=>$color.$dat['Estatus'],
 								'FechaLlegada'=>$fecha,
 								'DOH'=>$dat['DOH'],
 								'ETA'=>$dat['ETA'],
@@ -108,19 +108,19 @@
 	function getColors($status){
 		$stat = $status;
 		if ($stat == 'Sin llegada a planta') {
-			return '#CA23B5';
+			return "<span style='opacity:0'>5. </span>";
 		}
 		elseif ($stat == 'Sin liberar en recibos') {
-			return '#F6384A';
+			return "<span style='opacity:0'>3. </span>";
 		}
 		elseif ($stat == 'Listo para almacenar') {
-			return '#F59533';
+			return "<span style='opacity:0'>2. </span>";
 		}
 		elseif ($stat == 'Material en punto de uso / Sin surtir') {
-			return '#FAF667';
+			return "<span style='opacity:0'>1. </span>";
 		}
 		elseif ($stat == 'Surtido') {
-			return '#35E231';
+			return "<span style='opacity:0'>4. </span>";
 		}
 	}
 

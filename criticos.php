@@ -64,8 +64,16 @@
                       <div class="col-md-12">
                         
                         <img class="col-md-2" style="display: flex; margin-top: 2%; "  src="src/Aptiv_logo.png">
-                        <div class="col-md-8"><h1 style="color: black; text-align: center;" id="titleCriticos"></h1></div>
-                        <div class="col-md-2"></div>
+                        <div class="col-md-10">
+                          <div class="col-md-1" style="margin-top: 1%;">
+                            <img class="pull-right alert-icon" style="width: 41%;" src="src/alert.png">
+                          </div>
+                          <h1 class="col-md-7" style="color: black; text-align: center;" id="titleCriticos"></h1>
+                          <div class="col-md-2" style="margin-top: 1%;">
+                            <img class="pull-left alert-icon" style="width: 18%;" src="src/alert.png">
+                          </div>
+                        </div>
+                      
                         
                       </div>
                       <div class="col-md-12" style=" font-size: 21px;color: black; text-align: center;">Desarrollado por: Ing Joel Andrade Enriquez</div>
@@ -128,5 +136,24 @@
 </html>
 <script src="build/js/realtime_criticos.js"></script>
 <style type="text/css">
- 
+  @keyframes blink {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(3.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.blinking {
+    animation: blink 1s infinite;
+    color: #ff5722; /* Cambiar el color */
+    text-shadow: 0 0 5px #ff5722; /* Agregar sombra */
+}
 </style>

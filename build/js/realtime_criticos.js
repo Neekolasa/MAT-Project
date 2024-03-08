@@ -46,6 +46,8 @@ setTimeout(resumeScroll, 120000); // 2 minutos = 120,000 milisegundos
 $(document).ready(function(){
 	//pageScroll();
     
+    $(".alert-icon").addClass("blinking");
+
     getCriticalNumbers();
 	$('#titleCriticos').text('Llegadas de material critico FV55 '+ moment().format('DD/MM/YYYY'));
 	
@@ -325,19 +327,19 @@ function getColorByStatus(status) {
     var textColor = '#000000'; // color de texto predeterminado
 
     switch (status) {
-        case 'Sin llegada a planta':
+        case "<span style='opacity:0'>5. </span>Sin llegada a planta":
             color = '#CA23B5';
             break;
-        case 'Sin liberar en recibos':
+        case "<span style='opacity:0'>3. </span>Sin liberar en recibos":
             color = '#F6384A';
             break;
-        case 'Listo para almacenar':
+        case "<span style='opacity:0'>2. </span>Listo para almacenar":
             color = '#F59533';
             break;
-        case 'Material en punto de uso / Sin surtir':
+        case "<span style='opacity:0'>1. </span>Material en punto de uso / Sin surtir":
             color = '#FAF667';
             break;
-        case 'Surtido':
+        case "<span style='opacity:0'>4. </span>Surtido":
             color = '#35E231';
             break;
         default:
@@ -345,7 +347,7 @@ function getColorByStatus(status) {
     }
 
     // Si el estado es uno de los especificados, cambia el color de texto a blanco
-    if (status === 'Sin llegada a planta' || status === 'Sin liberar en recibos' || status === 'Listo para almacenar') {
+    if (status === "<span style='opacity:0'>5. </span>Sin llegada a planta" || status === "<span style='opacity:0'>3. </span>Sin liberar en recibos" || status === "<span style='opacity:0'>2. </span>Listo para almacenar") {
         textColor = '#FFFFFF'; // color de texto blanco
     }
 
