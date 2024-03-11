@@ -72,11 +72,27 @@
                           <div class="col-md-2" style="margin-top: 1%;">
                             <img class="pull-left alert-icon" style="width: 18%;" src="src/alert.png">
                           </div>
+                          <div class="col-md-2">
+                            <span id="time" class="pull-right" style="font-size: x-large; display: flex; margin-top: 13%; color:black;"></span>
+                          </div>
                         </div>
                       
                         
                       </div>
                       <div class="col-md-12" style=" font-size: 21px;color: black; text-align: center;">Desarrollado por: Ing Joel Andrade Enriquez</div>
+                      
+                      <div class="col-md-3" style="text-align: center !important; "></div>
+                      <div class="col-md-6" style="text-align: center !important; ">
+                        <ul class="legend">
+                          <li><span class="sinLlegada"></span> Sin llegada a planta </li>
+                          <li><span class="sinLiberar"></span> Sin liberar en recibos</li>
+                          <li><span class="ListoAlmacena"></span> Listo para almacenar</li>
+                          <li><span class="MaterialPU"></span> Material en punto de uso / Sin surtir</li>
+                          <li><span class="Surtido"></span> Surtido</li>
+                        </ul>
+
+                      </div>
+                      <div class="col-md-3" style="text-align: center !important; "></div>
                    
                         
                     </div>
@@ -135,7 +151,17 @@
   </body>
 </html>
 <script src="build/js/realtime_criticos.js"></script>
+<script src="build/js/relojTiempoReal_origin.js"></script>
 <style type="text/css">
+  .legend { list-style: none; }
+  .legend li { float: left; margin-right: 10px; }
+  .legend span { border: 1px solid #ccc; float: left; width: 12px; height: 12px; margin: 2px; }
+  /* your colors */
+  .legend .sinLlegada { background-color: #CA23B5; }
+  .legend .sinLiberar { background-color: #F6384A; }
+  .legend .ListoAlmacena { background-color: #F59533; }
+  .legend .MaterialPU { background-color: #FAF667; }
+  .legend .Surtido { background-color: #35E231; }
   @keyframes blink {
     0% {
         transform: scale(1);

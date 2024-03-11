@@ -127,6 +127,8 @@ $(document).ready(function(){
 });
 
 
+var currentColors = {}; // Arreglo para almacenar los colores actuales
+
 function getCriticalNumbers() {
     new PNotify({
         title: 'Criticos actualizados',
@@ -197,17 +199,32 @@ function getCriticalNumbers() {
 
             if (colors.backgroundColor) {
                 this.nodes().to$().css('background-color', colors.backgroundColor);
-
             }
             if (colors.textColor) {
                 this.nodes().to$().css('color', colors.textColor);
             }
+            currentColors[data.PN] = colors; // Almacenar los colores actuales
         });
+
+        // Comparar los colores actuales con los nuevos
+        //console.log(currentColors);
+        
+        for (var key in currentColors) {
+            if (currentColors.hasOwnProperty(key)) {
+                var newData = Data.data.find(obj => obj.PN === key);
+                if (newData) {
+                    var newColors = getColorByStatus(newData.Status);
+                    if (currentColors[key].backgroundColor !== newColors.backgroundColor ||
+                        currentColors[key].textColor !== newColors.textColor) {
+                        playSound();
+                        break; // Detener la iteración si se encuentra un cambio
+                    }
+                }
+            }
+        }
 
         // Ordenar por color
         tabla.order([5, 'asc']).draw();
-        playSound();
-        
 
     }).fail(function() {
         console.log("error");
@@ -236,7 +253,7 @@ function getColorByStatus(status) {
             color = '#35E231';
             break;
         default:
-            color = ''; // color de fondo predeterminado
+            color = '#35E231'; // color de fondo predeterminado
     }
 
     // Si el estado es uno de los especificados, cambia el color de texto a blanco

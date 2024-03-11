@@ -20,7 +20,7 @@
 			            WHEN RSNH.Located = 'Ramp' THEN 'Listo para almacenar'
 			            WHEN RSNH.Located <> 'Ramp' THEN
 			                CASE 
-			                    WHEN S.ID IS NOT NULL THEN 'Surtido'
+			                    WHEN S.ID IS NOT NULL THEN 'Surtido '+RIGHT(CONVERT(varchar, S.ActionDate, 100), 7)
 			                    ELSE 'Material en punto de uso / Sin surtir'
 			                END
 			            ELSE 'Sin llegada a planta'
@@ -65,6 +65,41 @@
 			$datos = array();
 
 			while ($dat = sqlsrv_fetch_array($sql_query, SQLSRV_FETCH_ASSOC)) {
+
+				/*$sqlCheckReserved = "SELECT COUNT(DISTINCT Smk_InvDet.SN) AS Total FROM Smk_InvDet JOIN Smk_Inv ON Smk_InvDet.PN = Smk_Inv.PN WHERE Smk_Inv.PN = ? AND Smk_InvDet.ActionDate >= CONVERT(Date, GETDATE()) AND Smk_InvDet.Action='PUT AWAY';";
+			    $params = array($dat['PN']);
+			    $stmt = sqlsrv_query($conn, $sqlCheckReserved, $params);
+
+			    if ($stmt !== false) {
+			        $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+			        if ($row['Total'] > 0) {
+			            $estatus = 'Material en punto de uso / Sin surtir';
+			        } else {
+			            $estatus = $dat['Estatus'];
+			        }
+			    } else {
+			       
+			    }*/
+			    if ($dat['Estatus']=='Listo para almacenar') {
+			    	$sqlCheckReserved = "SELECT COUNT(DISTINCT Smk_InvDet.SN) AS Total FROM Smk_InvDet JOIN Smk_Inv ON Smk_InvDet.PN = Smk_Inv.PN WHERE Smk_Inv.PN = ? AND Smk_InvDet.ActionDate >= CONVERT(Date, GETDATE()) AND Smk_InvDet.Action='PUT AWAY';";
+				    $params = array($dat['PN']);
+				    $stmt = sqlsrv_query($conn, $sqlCheckReserved, $params);
+
+				    if ($stmt !== false) {
+				        $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+				        if ($row['Total'] > 0) {
+				            $dat['Estatus'] = 'Material en punto de uso / Sin surtir';
+				        } else {
+				            $dat['Estatus'] = $dat['Estatus'];
+				        }
+				    } else {
+				       
+				    }
+			    }
+			    else{
+			    	$estatus = $dat['Estatus'];
+			    }
+
 				$color = getColors($dat['Estatus']);
 				if ($dat['Estatus']=='Sin llegada a planta' || $dat['Estatus'] == 'Sin liberar en recibos' || $dat['Estatus'] == 'Listo para almacenar') {
 					$textColor = '#FFFFFF';
@@ -79,14 +114,6 @@
 					$fecha = $dat['Fecha'];
 				}
 				array_push($datos, 
-					/*array(	'PN'=>"<div style='background-color:$color; color:$textColor;'>".$dat['PN']."</div>",
-								'Location'=>"<div style = 'background-color:$color; color:$textColor;'>".$dat['Locacion']."</div>",
-								'Status'=>"<div style = 'background-color:$color; color:$textColor;'>".$dat['Estatus']."</div>",
-								'FechaLlegada'=>"<div style = 'background-color:$color; color:$textColor;'>".$fecha."</div>",
-								'DOH'=>"<div style = 'background-color:$color; color:$textColor;'>".$dat['DOH']."</div>",
-								'ETA'=>"<div style = 'background-color:$color; color:$textColor;'>".$dat['ETA']."</div>",
-								'Mtype'=>"<div style = 'background-color:$color; color:$textColor;'>".$dat['Mtype']."</div>"
-					));*/
 					array(	'PN'=>$dat['PN'],
 								'Location'=>$dat['Locacion'],
 								'Status'=>$color.$dat['Estatus'],
@@ -120,6 +147,9 @@
 			return "<span style='opacity:0'>1. </span>";
 		}
 		elseif ($stat == 'Surtido') {
+			return "<span style='opacity:0'>4. </span>";
+		}
+		else{
 			return "<span style='opacity:0'>4. </span>";
 		}
 	}
