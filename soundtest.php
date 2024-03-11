@@ -66,10 +66,13 @@
                     <button onclick="playSound()">Reproducir Sonido</button>
 
                     <script>
-                        function playSound() {
-                            var sound = new Audio('src/notify.wav');
-                            sound.play();
-                        }
+                     // setTimeout(playSound, 1000);
+
+                      function playSound() {
+                          var sound = new Audio('src/notify.wav');
+                          sound.play();
+                          
+                      }
                     </script>
                   </div>
                 </div>
