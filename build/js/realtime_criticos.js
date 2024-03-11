@@ -126,11 +126,11 @@ $(document).ready(function(){
 
 });
 
-var currentColor = null;
+
 function getCriticalNumbers() {
     new PNotify({
-        title: 'Críticos actualizados',
-        text: 'Se ha actualizado el estatus de los críticos',
+        title: 'Criticos actualizados',
+        text: 'Se ha actualizado el estatus de los criticos',
         type: 'success',
         styling: 'bootstrap3'
     });
@@ -154,7 +154,7 @@ function getCriticalNumbers() {
                 [6, 'asc']
             ],
             responsive: true,
-
+           
             language: {
                 url: 'http://10.215.156.203/materiales/rutas/build/traduccion.json',
             },
@@ -189,7 +189,7 @@ function getCriticalNumbers() {
         tabla.rows.add(Data.data).draw();
         tabla.columns.adjust().draw();
 
-        // Aplicar colores y reproducir sonido si es diferente al color actual
+        // Aplicar colores
         tabla.rows().every(function() {
             var data = this.data();
             var status = data.Status;
@@ -197,10 +197,7 @@ function getCriticalNumbers() {
 
             if (colors.backgroundColor) {
                 this.nodes().to$().css('background-color', colors.backgroundColor);
-                if (currentColor !== colors.backgroundColor) { // Si el color es diferente al actual
-                    playSound(); // Reproducir sonido
-                    currentColor = colors.backgroundColor; // Actualizar el color actual
-                }
+
             }
             if (colors.textColor) {
                 this.nodes().to$().css('color', colors.textColor);
@@ -209,6 +206,8 @@ function getCriticalNumbers() {
 
         // Ordenar por color
         tabla.order([5, 'asc']).draw();
+        playSound();
+        
 
     }).fail(function() {
         console.log("error");
