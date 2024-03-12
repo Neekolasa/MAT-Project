@@ -42,7 +42,7 @@ $(document).ready(function(){
 	
 	setInterval(getCriticalNumbers, 60 * 1000);
 
-    setInterval(playSound, 30 * 60 * 1000);
+    setInterval(playSound, 10 * 60 * 1000);
 
     $('#newUpload-info').on('click', function(event) {
         event.preventDefault();
