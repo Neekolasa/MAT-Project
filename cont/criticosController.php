@@ -57,6 +57,59 @@
 			ORDER BY Fecha ASC;
 		";
 
+		/*$sql_statement="
+			WITH NumeroSerieConRownum AS (
+		    SELECT 
+		        NC.PN,
+		        COALESCE(RS.Serial, RSNH.Serial) AS Serial,
+		        Map.R + Map.S + Map.L + Map.P AS Locacion,
+		        NC.DOH AS DOH,
+		        NC.ETA AS ETA,
+		        M.Mtype AS Mtype,
+		        CASE 
+		            WHEN RS.PN IS NOT NULL AND RSNH.PN IS NULL THEN 'Sin liberar en recibos'
+		            WHEN RSNH.Located = 'Ramp' THEN 'Listo para almacenar'
+		            WHEN RSNH.Located <> 'Ramp' THEN
+		                CASE 
+		                    WHEN S.ID IS NOT NULL THEN 'Surtido '+RIGHT(CONVERT(varchar, S.ActionDate, 100), 7)
+		                    ELSE 'Material en punto de uso / Sin surtir'
+		                END
+		            ELSE 'Sin llegada a planta'
+		        END AS Estatus,
+		        ISNULL(CONVERT(varchar, RSNH.ScanDate, 1) + ' ' + RIGHT(CONVERT(varchar, RSNH.ScanDate, 100), 7), CONVERT(varchar, Rs.ScanDate, 1) + ' ' + RIGHT(CONVERT(varchar, Rs.ScanDate, 100), 7)) AS Fecha,
+		        ROW_NUMBER() OVER (PARTITION BY NC.PN ORDER BY CASE 
+		            WHEN CASE 
+		                WHEN RSNH.Located = 'Ramp' THEN 'Listo para almacenar'
+		                WHEN RSNH.Located <> 'Ramp' THEN
+		                    CASE 
+		                        WHEN S.ID IS NOT NULL THEN 'Surtido'
+		                        ELSE 'Material en punto de uso / Sin surtir'
+		                    END
+		                ELSE 'Sin llegada a planta'
+		            END = 'Surtido' THEN 0 ELSE 1 END, ISNULL(CONVERT(varchar, RSNH.ScanDate, 1) + ' ' + RIGHT(CONVERT(varchar, RSNH.ScanDate, 100), 7), 'NA') DESC) AS RowNum
+		    FROM numerosCriticos NC
+		    LEFT JOIN Rcv_SNH RSNH ON NC.PN = RSNH.PN AND CONVERT(DATE, RSNH.ScanDate) >= CONVERT(DATE, DATEADD(DAY, -1, GETDATE())) AND CONVERT(DATE, RSNH.ScanDate) <= CONVERT(DATE, GETDATE())
+		    LEFT JOIN Rcv_Scan RS ON NC.PN = RS.PN AND CONVERT(DATE, RS.ScanDate) >= CONVERT(DATE, DATEADD(DAY, -1, GETDATE())) AND CONVERT(DATE, RS.ScanDate) <= CONVERT(DATE, GETDATE())
+		    LEFT JOIN Smk_InvDet S ON S.SN = CONVERT(varchar, RSNH.SN) AND S.Action IN ('PARTIAL', 'EMPTY', 'OPEN')
+		    LEFT JOIN PFEP_MasterV2 M ON NC.PN = M.PN
+		    LEFT JOIN PFEP_Map Map ON NC.PN = Map.PN
+		)
+		SELECT 
+		    PN,
+		    DOH,
+		    ETA,
+		    Mtype,
+		    Locacion,
+		    Estatus,
+		    MAX(Fecha) AS Fecha
+		FROM NumeroSerieConRownum
+		WHERE RowNum = 1 AND DOH < '1.0'
+		GROUP BY PN, DOH, ETA, Mtype, Locacion, Estatus
+		ORDER BY Fecha ASC;
+
+
+		";*/
+
 		$sql_query = sqlsrv_query($conn, $sql_statement);
 		if ($sql_query === false) {
 			$response = array('response' => 'fail');

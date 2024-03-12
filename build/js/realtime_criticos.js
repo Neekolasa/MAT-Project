@@ -1,47 +1,36 @@
-var scrollEnabled = true; // Variable para controlar si el scroll está habilitado
+/*var scrollEnabled = true; 
 var scrolldelay;
-// Función para detener el scroll
 function stopScroll() {
-    clearTimeout(scrolldelay); // Limpia el temporizador actual
-    scrollEnabled = false; // Deshabilita el scroll
+    clearTimeout(scrolldelay);
+    scrollEnabled = false;
 }
-
-// Función para reanudar el scroll después de 2 minutos de inactividad
 function resumeScroll() {
-    scrollEnabled = true; // Habilita el scroll
-    pageScroll(); // Reinicia el scroll
+    scrollEnabled = true;
+    pageScroll();
 }
-
-// Función para animar el scroll hacia abajo
 function pageScroll() {
     if (scrollEnabled) {
-        window.scrollBy(0, 1); // Desplaza la página hacia abajo
+        window.scrollBy(0, 1);
         if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
             scrollToTop();
         } else {
-            scrolldelay = setTimeout(pageScroll, 20); // Establece un retraso para el próximo scroll hacia abajo
+            scrolldelay = setTimeout(pageScroll, 20);
         }
     }
 }
-
-// Función para animar el scroll hacia arriba
 function scrollToTop() {
     if (scrollEnabled) {
         var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
         if (currentScroll > 0) {
-            window.scrollTo(0, currentScroll - 20); // Modifica el valor para un desplazamiento más suave
-            setTimeout(scrollToTop, 20); // Establece un retraso para el próximo scroll hacia arriba
+            window.scrollTo(0, currentScroll - 20);
+            setTimeout(scrollToTop, 20); 
         } else {
-            setTimeout(pageScroll, 20); // Cuando llegamos al tope, vuelve a llamar a pageScroll para bajar de nuevo
+            setTimeout(pageScroll, 20); 
         }
     }
 }
-
-// Detener el scroll cuando el usuario interactúa con la página
 window.addEventListener('scroll', stopScroll);
-
-// Reanudar el scroll después de 2 minutos de inactividad
-setTimeout(resumeScroll, 120000); // 2 minutos = 120,000 milisegundos
+setTimeout(resumeScroll, 120000);*/
 
 $(document).ready(function(){
 	//pageScroll();
@@ -52,6 +41,8 @@ $(document).ready(function(){
 	$('#titleCriticos').text('Llegadas de material critico FV55 '+ moment().format('DD/MM/YYYY'));
 	
 	setInterval(getCriticalNumbers, 60 * 1000);
+
+    setInterval(playSound, 30 * 60 * 1000);
 
     $('#newUpload-info').on('click', function(event) {
         event.preventDefault();
@@ -127,7 +118,6 @@ $(document).ready(function(){
 });
 
 
-var currentColors = {}; // Arreglo para almacenar los colores actuales
 
 function getCriticalNumbers() {
     new PNotify({
@@ -191,7 +181,6 @@ function getCriticalNumbers() {
         tabla.rows.add(Data.data).draw();
         tabla.columns.adjust().draw();
 
-        // Aplicar colores
         tabla.rows().every(function() {
             var data = this.data();
             var status = data.Status;
@@ -199,30 +188,15 @@ function getCriticalNumbers() {
 
             if (colors.backgroundColor) {
                 this.nodes().to$().css('background-color', colors.backgroundColor);
+                
             }
             if (colors.textColor) {
                 this.nodes().to$().css('color', colors.textColor);
             }
-            currentColors[data.PN] = colors; // Almacenar los colores actuales
+          
         });
 
-        // Comparar los colores actuales con los nuevos
-        //console.log(currentColors);
         
-        for (var key in currentColors) {
-            if (currentColors.hasOwnProperty(key)) {
-                var newData = Data.data.find(obj => obj.PN === key);
-                if (newData) {
-                    var newColors = getColorByStatus(newData.Status);
-                    if (currentColors[key].backgroundColor !== newColors.backgroundColor ||
-                        currentColors[key].textColor !== newColors.textColor) {
-                        playSound();
-                        break; // Detener la iteración si se encuentra un cambio
-                    }
-                }
-            }
-        }
-
         // Ordenar por color
         tabla.order([5, 'asc']).draw();
 
@@ -231,6 +205,41 @@ function getCriticalNumbers() {
     });
 }
 
+
+function getColoredStatus(status) {
+    var color = '';
+    var textColor = '#000000'; // color de texto predeterminado
+
+    switch (status) {
+        case "5. Sin llegada a planta":
+            color = '#CA23B5';
+            break;
+        case "3. Sin liberar en recibos":
+            color = '#F6384A';
+            break;
+        case "2. Listo para almacenar":
+            color = '#F59533';
+            break;
+        case "1. Material en punto de uso / Sin surtir":
+            color = '#FAF667';
+            break;
+        case "4. Surtido":
+            color = '#35E231';
+            break;
+        default:
+            color = '#35E231'; // color de fondo predeterminado
+    }
+
+    // Si el estado es uno de los especificados, cambia el color de texto a blanco
+    if (status === "<span style='opacity:0'>5. </span>Sin llegada a planta" || status === "<span style='opacity:0'>3. </span>Sin liberar en recibos" || status === "<span style='opacity:0'>2. </span>Listo para almacenar") {
+        textColor = '#FFFFFF'; // color de texto blanco
+    }
+
+    return {
+        backgroundColor: color,
+        textColor: textColor
+    };
+}
 
 function getColorByStatus(status) {
     var color = '';

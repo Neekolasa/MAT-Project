@@ -105,7 +105,7 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                     <table id="table_criticos" class="table table-sm table-striped table-bordered table-hover">
+                     <table id="table_criticos" class="table table-sm table-bordered">
                         <thead>
                           <tr>
                             <th>Numero de parte</th>
@@ -121,7 +121,7 @@
                         </thead>
 
 
-                        <tbody style="font-size: 12px !important; font-weight: bold;">
+                        <tbody style="font-size: 12px !important; font-weight: bold;" id="trTable">
                                         
                         </tbody>
                     </table>
