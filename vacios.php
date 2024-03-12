@@ -57,16 +57,117 @@
               <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Material vacio por usuario</h2>
-                    
-
-                    <!--*************ADD CONTENT HERE*****************-->
-
-
+                    <h2>Bajas del dia</h2>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                     add content here
+                      <div class="col-md-12 well" style="overflow:auto">
+                        <fieldset class="col-md-4">
+                          <div class="control-group">
+                            <div class="controls">
+                              <div class="col-md-12 form-group has-feedback row xdisplay_inputx">
+                                <input aria-describedby="inputSuccess2Status" class="form-control has-feedback-left" id="single_cal1" placeholder=""> 
+                                <i class="fa fa-calendar form-control-feedback left" aria-hidden="true" style="color:#000"></i> 
+                                <span class="sr-only" id="inputSuccess2Status">(success)</span>
+                              </div>
+                            </div>
+                          </div>
+                        </fieldset>
+                        <div>
+                          <div class="col-sm-2">
+                            <select class="form-control" id="turno">
+                              <option value="A">A</option>
+                              <option value="B">B</option>
+                            </select>
+                          </div>
+                          <span class="col-sm-2 col-md-2 control-label" style="color:#000;margin:10px auto">Turno</span>
+                        </div>
+                        <div class="col-sm-2 col-sm-2">
+                          <button class="btn btn-success" id="searchEmpty_Button">Buscar</button>
+                        </div>
+                      </div>
+                      <table id="tableBajas" class="table table-bordered table-striped">
+                        <thead>
+                          <tr>
+                            <th>Numero de parte</th>
+                            <th>Numero de serie</th>
+                            <th>No Empleado</th>
+                            <th>Nombre</th>
+                            <th>Accion</th>
+                            <th>Fecha</th>
+                         
+                                      
+                                          
+                          </tr>
+                        </thead>
+
+
+                        <tbody style="font-size: 12px !important;">
+                                        
+                        </tbody>
+                    </table>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 col-sm-12  ">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Bajas por usuario</h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                      <table id="emptyUsers" class="table table-bordered table-striped">
+                        <thead>
+                          <tr>
+                            <th>No Empleado</th>
+                            <th>Nombre</th>
+                            <th>Apellidos</th>
+                            <th>Series dadas de baja</th>
+                            <th>Fecha</th>
+                         
+                                         
+                          </tr>
+                        </thead>
+
+
+                        <tbody style="font-size: 12px !important;">
+                                        
+                        </tbody>
+                    </table>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 col-sm-12  ">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Bajas por numero de parte</h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                      <table id="emptyNumbers" class="table table-bordered table-striped">
+                        <thead>
+                          <tr>
+                            <th>Numero de parte</th>
+                            <th>Series vaciadas</th>
+                            <th>No Empleado</th>
+                            <th>Nombre</th>
+                            <th>Fecha</th>
+                         
+                                         
+                          </tr>
+                        </thead>
+
+
+                        <tbody style="font-size: 12px !important;">
+                                        
+                        </tbody>
+                    </table>
                   </div>
 
                 </div>
@@ -93,3 +194,4 @@
     <?php include 'templates/footerLibs.php' ?>  
   </body>
 </html>
+<script src="build/js/emptyModel.js"></script>
