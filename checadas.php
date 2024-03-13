@@ -175,6 +175,17 @@
 
                            
                         </div>-->
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6" style="text-align: center !important; ">
+                          <ul class="legend">
+                            <li><span class="sinLlegada"></span> No checó </li>
+                            <li><span class="sinLiberar"></span> Checó a tiempo</li>
+                            <li><span class="ListoAlmacena"></span> Checó antes de su hora</li>
+                            <li><span class="MaterialPU"></span> Checó despues de su hora</li>
+                          </ul>
+                        </div>
+                        <div class="col-md-3"></div>
+                        
                         <table id="data_salidas" class="table table-striped table-bordered" style="width:100%; margin-bottom: 10%;">
                         <thead>
                           <tr>
@@ -439,6 +450,15 @@
 <script src="build/js/table_checadas_origin.js"></script>
 
 <style type="text/css">
+  .legend { list-style: none; }
+  .legend li { float: left; margin-right: 10px; }
+  .legend span { border: 1px solid #ccc; float: left; width: 12px; height: 12px; margin: 2px; }
+  /* your colors */
+  .legend .sinLlegada { background-color: #ffffff; }
+  .legend .sinLiberar { background-color: #008000; }
+  .legend .ListoAlmacena { background-color: #af2ccb; }
+  .legend .MaterialPU { background-color: #ff0000; }
+  .legend .Surtido { background-color: #35E231; }
    #data_salidas_length{
     text-align: left !important;
   }
@@ -452,3 +472,4 @@
 <script type="text/javascript">
   $('body').materialScrollTop();
 </script>
+
