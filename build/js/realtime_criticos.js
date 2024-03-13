@@ -44,7 +44,7 @@ $(document).ready(function(){
 
     setInterval(playSound, 10 * 60 * 1000);
 
-    $('#newUpload-info').on('click', function(event) {
+    /*$('#newUpload-info').on('click', function(event) {
         event.preventDefault();
         var fileInput = $('#file-upload')[0];
        
@@ -111,12 +111,86 @@ $(document).ready(function(){
                     styling: 'bootstrap3'
                 });
         }
+    });*/
+    $('#newUpload-info').on('click', function(event) {
+        event.preventDefault();
+        var fileInput = $('#file-upload')[0];
+
+        if (fileInput.files.length > 0) {
+            var fileName = fileInput.files[0].name;
+            if (/paros|criticos/i.test(fileName)) {
+                var file = fileInput.files[0];
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    var data = new Uint8Array(e.target.result);
+                    var workbook = XLSX.read(data, { type: 'array' });
+
+                    var columnData = [];
+
+                    // Iterar sobre la primera pestaña
+                    var sheet1 = workbook.Sheets[workbook.SheetNames[1]];
+                    if (sheet1) {
+                        columnData = processSheet(sheet1);
+                    }
+
+                    // Iterar sobre la segunda pestaña si existe
+                    var sheet2 = workbook.Sheets[workbook.SheetNames[2]];
+                    if (sheet2) {
+                        columnData = columnData.concat(processSheet(sheet2));
+                    }
+
+                    //console.log(columnData);
+                    sendResults(columnData);
+                };
+
+                reader.readAsArrayBuffer(file);
+            } else {
+                new PNotify({
+                    title: 'Error',
+                    text: 'Seleccione el archivo de paros potenciales',
+                    type: 'error',
+                    styling: 'bootstrap3'
+                });
+            }
+        } else {
+            new PNotify({
+                title: 'Error',
+                text: 'Seleccione un archivo',
+                type: 'error',
+                styling: 'bootstrap3'
+            });
+        }
     });
 
 
 
 });
+function processSheet(sheet) {
+    var columnData = [];
+    var range = XLSX.utils.decode_range(sheet['!ref']);
+    for (var i = 2; i <= range.e.r; ++i) {
+        var cellAddress = 'D' + (i + 1);
+        var cell = sheet[cellAddress];
 
+        var cellDOHAddress = 'I' + (i + 1);
+        var cellDOH = sheet[cellDOHAddress];
+        var DOHValue = (typeof cellDOH === 'undefined' || cellDOH.v === undefined) ? '0.0' : cellDOH.v.toFixed(2);
+
+        var cellETAAddress = 'L' + (i + 1);
+        var cellETA = sheet[cellETAAddress];
+        var ETAValue = (typeof cellETA === 'undefined' || cellETA.v === undefined) ? 'TBD' : cellETA.v;
+
+        if (cell && cell.v) {
+            columnData.push({
+                "PN": cell.v.toString(),
+                "DOH": DOHValue.toString(),
+                "ETA": ETAValue.toString()
+            });
+        }
+    }
+    return columnData;
+}
 
 
 function getCriticalNumbers() {
