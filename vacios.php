@@ -8,6 +8,7 @@
   background: #415f7c !important;
 }
 </style>
+<title>Control del material vacio - APTIV</title>
   <body class="nav-md">
     <div class="container body">
       <div class="main_container">
@@ -52,7 +53,53 @@
             </div>
 
             <div class="clearfix"></div>
+            <div class="modal fade bs-example-modal-xl" tabindex="-1" role="dialog" aria-hidden="true" id="linksModal">
+              <div class="modal-dialog modal-xl">
+                <div class="modal-content">
 
+                  <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Enlaces a tolva para la serie <span style="color: black" id="linkedSerie"></span></h4>
+                    <button type="button" class="close closeModal" data-dismiss="modal"><span aria-hidden="true">×</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div>
+                      <span>Numero de parte <span id="printPN" style="color: black;"></span></span><br>
+                      <span>Total de cantidades enlazadas <span id="linkedQty" style="color: black;"></span></span><br>
+                      <span>STD Pack de la caja <span id="stdPackLinked" style="color: black;"></span></span>
+                    </div>
+                    <table id="linksTable" style="width: 100%;" class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th>ID Kanban</th>
+                          <th>Contenedor</th>
+                          <th>Cantidad</th>
+                          <th>UoM</th>
+                          <th>Ruta</th>
+                          <th>No Empleado</th>
+                          <th>Nombre</th>
+                          <th>Status</th>
+                          <th>Fecha</th>
+                                 
+                                              
+                                                  
+                        </tr>
+                      </thead>
+
+
+                      <tbody style="font-size: 12px !important;">
+                                                
+                      </tbody>
+                  </table>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary closeModal" data-dismiss="modal">Cerrar</button>
+                    
+                  </div>
+
+                </div>
+              </div>
+            </div>
             <div class="row">
               <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel">
@@ -61,6 +108,7 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
+
                       <div class="col-md-12 well" style="overflow:auto">
                         <fieldset class="col-md-4">
                           <div class="control-group">
@@ -86,6 +134,13 @@
                           <button class="btn btn-success" id="searchEmpty_Button">Buscar</button>
                         </div>
                       </div>
+                      <div class="botones-container" style="text-align: center;">
+                        <button class="btn btn-primary text-light boton-margen boton-responsivo" onclick="$('#tableBajas').DataTable().button('.buttons-copy').trigger('click')">Copiar al portapapeles</button>
+                        <button class="btn btn-primary text-light boton-margen boton-responsivo" onclick="$('#tableBajas').DataTable().button('.buttons-excel').trigger('click')">Generar excel</button>
+                        <button class="btn btn-primary text-light boton-margen boton-responsivo" onclick="$('#tableBajas').DataTable().button('.buttons-pdf').trigger('click')">Generar PDF</button>
+                    
+                        <button class="btn btn-primary text-light boton-margen boton-responsivo" onclick="$('#tableBajas').DataTable().button('.buttons-print').trigger('click')">Imprimir documento</button>
+                      </div>
                       <table id="tableBajas" class="table table-bordered table-striped">
                         <thead>
                           <tr>
@@ -95,6 +150,7 @@
                             <th>Nombre</th>
                             <th>Accion</th>
                             <th>Fecha</th>
+                            <th>Acciones</th>  
                          
                                       
                                           
@@ -119,6 +175,13 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
+                    <div class="botones-container" style="text-align: center;">
+                        <button class="btn btn-primary text-light boton-margen boton-responsivo" onclick="$('#emptyUsers').DataTable().button('.buttons-copy').trigger('click')">Copiar al portapapeles</button>
+                        <button class="btn btn-primary text-light boton-margen boton-responsivo" onclick="$('#emptyUsers').DataTable().button('.buttons-excel').trigger('click')">Generar excel</button>
+                        <button class="btn btn-primary text-light boton-margen boton-responsivo" onclick="$('#emptyUsers').DataTable().button('.buttons-pdf').trigger('click')">Generar PDF</button>
+                    
+                        <button class="btn btn-primary text-light boton-margen boton-responsivo" onclick="$('#emptyUsers').DataTable().button('.buttons-print').trigger('click')">Imprimir documento</button>
+                      </div>
                       <table id="emptyUsers" class="table table-bordered table-striped">
                         <thead>
                           <tr>
@@ -150,6 +213,13 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
+                    <div class="botones-container" style="text-align: center;">
+                        <button class="btn btn-primary text-light boton-margen boton-responsivo" onclick="$('#emptyNumbers').DataTable().button('.buttons-copy').trigger('click')">Copiar al portapapeles</button>
+                        <button class="btn btn-primary text-light boton-margen boton-responsivo" onclick="$('#emptyNumbers').DataTable().button('.buttons-excel').trigger('click')">Generar excel</button>
+                        <button class="btn btn-primary text-light boton-margen boton-responsivo" onclick="$('#emptyNumbers').DataTable().button('.buttons-pdf').trigger('click')">Generar PDF</button>
+                    
+                        <button class="btn btn-primary text-light boton-margen boton-responsivo" onclick="$('#emptyNumbers').DataTable().button('.buttons-print').trigger('click')">Imprimir documento</button>
+                      </div>
                       <table id="emptyNumbers" class="table table-bordered table-striped">
                         <thead>
                           <tr>
@@ -159,6 +229,54 @@
                             <th>Nombre</th>
                             <th>Fecha</th>
                          
+                                         
+                          </tr>
+                        </thead>
+
+
+                        <tbody style="font-size: 12px !important;">
+                                        
+                        </tbody>
+                    </table>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 col-sm-12  ">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Consultar bajas de material</h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <div class="well col-md-12">
+                      <div class="col-md-4"></div>
+                      <div class="col-md-3" style="display: flex;">
+                        <input type="text" id="partNumberSeach" class="form-control" style="text-align: center;" placeholder="Ingrese numero de parte">
+                 
+                        <button class="btn btn-success" id="searchButton">Buscar</button>
+                      </div>
+                    </div>
+                    <div class="botones-container" style="text-align: center;">
+                        <button class="btn btn-primary text-light boton-margen boton-responsivo" onclick="$('#emptySearchNumber').DataTable().button('.buttons-copy').trigger('click')">Copiar al portapapeles</button>
+                        <button class="btn btn-primary text-light boton-margen boton-responsivo" onclick="$('#emptySearchNumber').DataTable().button('.buttons-excel').trigger('click')">Generar excel</button>
+                        <button class="btn btn-primary text-light boton-margen boton-responsivo" onclick="$('#emptySearchNumber').DataTable().button('.buttons-pdf').trigger('click')">Generar PDF</button>
+                    
+                        <button class="btn btn-primary text-light boton-margen boton-responsivo" onclick="$('#emptySearchNumber').DataTable().button('.buttons-print').trigger('click')">Imprimir documento</button>
+                      </div>
+                      <table id="emptySearchNumber" class="table table-bordered table-striped">
+                        <thead>
+                          <tr>
+                            <th>Numero de parte</th>
+                            <th>Numero de serie</th>
+                            <th>No Empleado</th>
+                            <th>Nombre</th>
+                            <th>Accion</th>
+                            <th>Fecha</th>
+                            <th>Acciones</th>
+
                                          
                           </tr>
                         </thead>
