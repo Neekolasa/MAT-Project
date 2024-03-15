@@ -47,7 +47,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Ingenieria en materiales</h3>
+                <h3>Control de cantidades</h3>
               </div>
 
       
