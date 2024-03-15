@@ -18,6 +18,7 @@
                         <li><a href="rutas.php" class="pc hideRutas">Rutas</a></li>
                         <li><a href="tiempomuerto.php" class="pc hideRutas">Tiempo muerto</a></li>
                         <li><a href="calculo_componente.php" class="pc hideRutas">Calculo tolva</a></li>
+                        <li><a href="vacios.php">Control de vacios</a></li>
                         
                       </ul>
                     
@@ -56,6 +57,20 @@
                   </li>
                   <li>
                     <a href="criticos.php"><i class="fa fa-bullhorn"></i> Material critico
+                      <span class="fa fa-chevron"></span>
+                    </a>
+                    
+                  </li>
+                  <li>
+                    <a href="notify.php"><i class="fa fa-list"></i> Detalle Llegadas
+                      <span class="fa fa-chevron"></span>
+                    </a>
+                    
+                  </li>
+                  
+
+                  <li>
+                    <a href="mipindex.php"><i class="fa fa-truck"></i> MIP (Movers)
                       <span class="fa fa-chevron"></span>
                     </a>
                     
