@@ -1,1 +1,49 @@
-<?php goto sEWqp; wK_Hr: if ($_GET["\x72\145\161\x75\145\x73\x74"] == "\147\x65\x74\x42\141\x64\147\145") { if (isset($_SESSION["\x62\x61\144\147\145"])) { echo $_SESSION["\142\x61\144\x67\x65"]; } else { echo "\x65\162\162\x6f\162"; } } elseif ($_GET["\162\145\161\x75\145\163\164"] == "\x73\x65\164\102\141\144\147\x65") { if (isset($_GET["\142\x61\x64\x67\x65"])) { $badge = $_GET["\142\141\144\x67\145"]; $sql_statement = "\123\105\x4c\105\x43\x54\x20\x43\x4f\x55\x4e\x54\50\x2a\51\x20\101\x53\40\143\x6f\x75\156\x74\x20\x46\122\x4f\x4d\40\x53\x79\x5f\125\163\x65\162\x73\x20\127\x48\x45\x52\x45\40\102\x61\144\x67\145\40\75\40\47{$badge}\x27"; $sql_query = sqlsrv_query($conn, $sql_statement); if ($sql_query !== false) { $row = sqlsrv_fetch_array($sql_query); $row_count = $row["\143\x6f\165\156\x74"]; if ($row_count > 0) { $_SESSION["\x62\141\144\147\x65"] = $badge; echo json_encode(array("\x72\x65\163\160\157\156\163\145" => "\163\x75\143\143\145\163\x73")); } else { echo json_encode(array("\162\145\x73\160\157\156\x73\x65" => "\x66\141\151\154")); } } else { echo json_encode(array("\x72\145\163\160\157\x6e\x73\x65" => "\146\x61\x69\154")); } } else { echo "\x65\162\162\x6f\x72"; } } elseif ($_GET["\162\x65\x71\x75\x65\x73\164"] == "\144\x65\154\x42\141\144\147\145") { session_unset(); session_destroy(); echo json_encode(array("\x72\145\163\x70\x6f\x6e\163\145" => "\x73\x75\x63\x63\x65\x73\x73")); } else { echo "\111\156\x76\x61\154\151\x64\40\162\x65\x71\165\x65\163\x74"; } goto TvX31; sEWqp: session_start(); goto mEmZH; mEmZH: include "\x2e\56\57\x2e\56\57\143\x6f\156\156\x65\143\164\151\x6f\156\56\x70\x68\x70"; goto wK_Hr; TvX31: ?>
+<?php
+	session_start();
+	include '../../connection.php';
+
+	if ($_GET['request'] == 'getBadge') {
+		if (isset($_SESSION['badge'])) {
+			echo ($_SESSION['badge']);
+		} else {
+			echo "error";
+		}
+	} elseif ($_GET['request'] == 'setBadge') {
+		if (isset($_GET['badge'])) {
+			$badge = $_GET['badge'];
+
+			$sql_statement = "SELECT COUNT(*) AS count FROM Sy_Users WHERE Badge = '$badge'";
+			$sql_query = sqlsrv_query($conn, $sql_statement);
+
+			if ($sql_query !== false) {
+			    $row = sqlsrv_fetch_array($sql_query);
+			    $row_count = $row['count'];
+			    
+			    if ($row_count > 0) {
+			    	$_SESSION['badge'] = $badge;
+			        echo json_encode(array('response' => 'success'));
+			    } else {
+			        echo json_encode(array('response' => 'fail'));
+			    }
+			} else {
+			    echo json_encode(array('response' => 'fail'));
+			}
+
+
+			
+			
+		} else {
+			echo "error";
+		}
+	}
+	 elseif ($_GET['request']=='delBadge'){
+	 	session_unset(); 
+	 	session_destroy();
+	 	echo json_encode(array('response' => 'success'));
+	 }
+	 else {
+		echo "Invalid request";
+	}
+
+	
+?>

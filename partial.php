@@ -1,8 +1,224 @@
-<?php
- goto IY2Gt; FC_2h: include "\164\x65\x6d\160\154\141\x74\145\x73\x2f\164\x6f\x70\116\141\166\x62\141\162\x2e\x70\x68\160"; goto lkftK; ueZPD: ?>
-</div></div><?php  goto FC_2h; wl16R: ?>
-<div class="clearfix"></div><br><?php  goto LmZlq; izMfn: include "\x74\145\155\160\x6c\141\x74\x65\163\x2f\x66\157\157\x74\x65\162\x4c\151\x62\163\x2e\x70\150\x70"; goto RJ3Kn; CgYU5: include "\164\145\155\x70\x6c\141\164\x65\163\x2f\x68\145\x61\144\145\x72\56\x70\150\160"; goto qEqh4; ryv6U: include "\164\145\155\x70\154\x61\x74\x65\163\57\154\x6f\147\x6f\56\160\150\x70"; goto wl16R; qEqh4: ?>
-<title>APTIV - Descuento parcial</title><style type="text/css">.left_col{background:#415f7c!important}</style><body class="nav-md"><div class="body container"><div class="main_container"><div class="col-md-3 left_col"><div class="left_col scroll-view"><?php  goto ryv6U; LmZlq: include "\164\x65\x6d\x70\x6c\141\164\x65\x73\x2f\156\x61\x76\142\x61\162\x2e\160\150\x70"; goto ueZPD; lkftK: ?>
-<div class="right_col"role="main"><div class=""><div class="page-title"><div class="title_left"><h3>Control de cantidades</h3></div></div><div class="clearfix"></div><div class="row"><div class="col-md-12 col-sm-12"><div class="x_panel"><div class="x_title"><h2>Descuento parcial</h2><div class="clearfix"></div></div><div class="col-md-12 x_content"><div class="col-sm-12"><div class="col-sm-6"><button class="btn btn-danger col-md-1 pull-left"id="salir"><i class="fa fa-power-off"></i></button> <input class="form-control text-center col-md-3"id="user_logged"disabled></div><div class="col-sm-6"><span style="font-size:x-large"class="pull-right"id="time"></span></div></div><div class="col-md-3"></div><div class="col-md-6"><div class="text-center well"class="col-md-12"style="overflow:auto"><div class="text-center col-md-12"><div class="text-center"><label for="material_discount"class="col-sm-6 col-md-6 col-form-label">Cantidad a descontar</label> <input class="form-control text-center col-md-6 col-sm-6"id="material_discount"min="1"required type="number"placeholder="Cantidad a descontar"style="margin-bottom:10px;background:#fff;cursor:pointer;padding:5px 10px;border:1px solid #ccc"value="1"></div><input class="form-control text-center col-md-12"id="material_sn"required placeholder="Serie"style="background:#fff;cursor:pointer;padding:5px 10px;border:1px solid #ccc;margin-bottom:10px"><div class="text-center"><label for="material_discount"class="col-sm-6 col-md-6 col-form-label">Cantidad actual</label> <input class="form-control text-center col-md-6 col-sm-6"id="qty_actual"disabled style="margin-bottom:10px;background:#fff;cursor:pointer;padding:5px 10px;border:1px solid #ccc"></div><input class="form-control text-center col-md-12"id="material_pn"required placeholder="Numero de parte"style="background:#fff;cursor:pointer;padding:5px 10px;border:1px solid #ccc;margin-bottom:10px"disabled></div></div><div><div class="text-center well"><button class="btn btn-primary"id="qtyUpdateButton">Actualizar cantidad</button></div></div><div class="bs-example-modal-sm fade modal"role="dialog"aria-hidden="true"id="modalUpdate"tabindex="-1"><div class="modal-dialog modal-sm"><div class="modal-content"><div class="modal-header"><h4 class="modal-title"id="myModalLabel2">Actualizar cantidad de una serie</h4><button class="close"type="button"data-dismiss="modal"aria-label="Close"><span aria-hidden="true">×</span></button></div><div class="modal-body"><div class="form-group"><form autocomplete="off"><label for="material_snQty">Numero de serie <span style="color:red">*</span></label> <input class="form-control"id="material_snQty"min="0"name="material_snQty"required> <label for="actual_qty">Cantidad actual <span style="color:red"></span></label> <input class="form-control"id="actual_qty"min="0"name="actual_qty"disabled> <label for="partNumber">Numero de parte <span style="color:red"></span></label> <input class="form-control"id="partNumber"min="0"name="partNumber"disabled> <label for="new_qty">Nueva cantidad <span style="color:red">*</span></label> <input class="form-control"id="new_qty"min="0"name="new_qty"required type="number"><br><br><label><span style="color:red">*</span> Campos obligatorios</label></div></div><div class="modal-footer"><button class="btn btn-secondary"type="button"data-dismiss="modal">Cerrar</button> <button class="btn btn-primary"id="updateQtySubmit">Actualizar</button></div></div></div></div></div><div class="bs-example-modal-sm fade modal"role="dialog"aria-hidden="true"id="modal_login"tabindex="-1"><div class="modal-dialog modal-sm"><div class="modal-content"><div class="modal-header"><h4 class="modal-title"id="myModalLabel2">Validar acceso</h4></div><div class="modal-body"><div class="form-group"><form autocomplete="off"><label for="badge">Numero de empleado <span style="color:red">*</span></label> <input class="form-control"id="badge"min="0"name="badge"required><br><br><label><span style="color:red">*</span> Campos obligatorios</label></div></div><div class="modal-footer"><button class="btn btn-primary"id="ingresar_button"type="submit">Ingresar</button></div></div></div></div></div></div></div></div></div></div></div><footer><div class="pull-right">APTIV - Materials Admin Tool</div><div class="pull-left">Desarrollado por: Ing Joel Andrade Enriquez</div><div class="clearfix"></div></footer></div><?php  goto izMfn; IY2Gt: ?>
-<!doctypehtml><html lang="es"><?php  goto CgYU5; RJ3Kn: ?>
-</body></html><script src="build/js/getIP_origin.js"></script><script src="build/js/partial_discount_origin.js"></script>
+<!DOCTYPE html>
+<html lang="es">
+  <?php 
+    include 'templates/header.php';
+  ?>
+  <title>APTIV - Descuento parcial</title>
+ 
+  <style type="text/css">
+  .left_col {
+    background: #415f7c !important;
+}
+</style>
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+             <?php 
+              include 'templates/logo.php';
+            ?>
+            <div class="clearfix"></div>
+
+            <!-- menu profile quick info -->
+            
+            <!-- /menu profile quick info -->
+
+            <br />
+
+            <!-- sidebar menu -->
+            <?php 
+              include 'templates/navbar.php';
+            ?>
+            <!-- /sidebar menu -->
+
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <?php 
+
+          include 'templates/topNavbar.php';
+        ?>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Ingenieria en materiales</h3>
+              </div>
+
+      
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12  ">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Descuento parcial</h2>
+                    
+
+                    <!--*************ADD CONTENT HERE*****************-->
+
+
+                    <div class="clearfix"></div>
+                  </div>
+                 
+                  <div class="x_content col-md-12">
+                    <div class="col-sm-12">
+                      <div class="col-sm-6">
+                        <button class="btn btn-danger pull-left col-md-1" id="salir" ><i class="fa fa-power-off"></i> </button>
+                        <input type="text" class="form-control text-center  col-md-3"  id="user_logged" disabled>
+                      </div>
+
+                      <div class="col-sm-6 ">
+                        <span id="time" class="pull-right" style="font-size: x-large;"></span>
+                      </div>
+                    </div>
+                     <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                      <div class="well text-center" style="overflow: auto" class="col-md-12">
+                          <div class="col-md-12 text-center">
+                            <div class="text-center">
+                              <label class="col-form-label col-md-6 col-sm-6" for="material_discount">Cantidad a descontar</label>
+                              <input id="material_discount" min="1" required value="1" type="number" class="form-control text-center col-md-6 col-sm-6" style="margin-bottom: 10px; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc" placeholder="Cantidad a descontar">
+                              </input>
+                            </div>
+
+                            <input id="material_sn" type="text" required class="form-control text-center col-md-12" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; margin-bottom: 10px;" placeholder="Serie">
+                            </input>
+                            <div class="text-center">
+                              <label class="col-form-label col-md-6 col-sm-6" for="material_discount">Cantidad actual</label>
+                              <input id="qty_actual" readonly type="text" class="form-control text-center col-md-6 col-sm-6" style="margin-bottom: 10px; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc" disabled>
+                              </input>
+                            </div>
+                           
+
+                            <input id="material_pn" type="text" readonly  required class="form-control text-center col-md-12" style=" cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; margin-bottom: 10px;" disabled placeholder="Numero de parte">
+                            </input>
+
+
+
+                            
+                           
+                            <!--<div class="col-md-12">
+                              <br>
+                              <button class="btn btn-success" id="dataSearch">Buscar</button>
+                            </div>
+                          </div>-->
+                          
+
+                      </div>
+
+                      
+
+                    </div>
+                    <div>
+                      <div class="well text-center">
+                        <button class="btn btn-primary" id="qtyUpdateButton">Actualizar cantidad</button>
+                      </div>
+                    </div>
+                     
+                    <div class="modal fade bs-example-modal-sm" id="modalUpdate" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog modal-sm">
+                          <div class="modal-content">
+
+                            <div class="modal-header">
+                              <h4 class="modal-title" id="myModalLabel2">Actualizar cantidad de una serie</h4>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <div class="form-group">
+                            
+                             	
+                             
+                                <label for="material_snQty">Numero de serie <span style="color: red;">*</span></label>
+                                <input type="text"  id="material_snQty" class="form-control" required>
+                                <label for="actual_qty">Cantidad actual <span style="color: red;"></span></label>
+                                <input type="text"  disabled min="0" name="actual_qty" id="actual_qty" class="form-control">
+                                <label for="partNumber">Numero de parte <span style="color: red;"></span></label>
+                                <input type="text" disabled min="0" name="partNumber" id="partNumber" class="form-control">
+                                <label for="new_qty">Nueva cantidad <span style="color: red;">*</span></label>
+                                <input type="number" min="0" name="new_qty" id="new_qty" class="form-control" required>
+                                <br>
+                                <br>
+                                <label><span style="color: red;">*</span> Campos obligatorios</label>
+
+                              </div>
+                              
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                              <button id="updateQtySubmit" class="btn btn-primary">Actualizar</button>
+                            </div>
+                          
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                     <div class="modal fade bs-example-modal-sm" id="modal_login" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog modal-sm">
+                          <div class="modal-content">
+
+                            <div class="modal-header">
+                              <h4 class="modal-title" id="myModalLabel2">Validar acceso</h4>
+                              <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                              </button>-->
+                            </div>
+                            <div class="modal-body">
+                              <div class="form-group">
+                                <form autocomplete="off">
+                                <label for="badge">Numero de empleado <span style="color: red;">*</span></label>
+                                <input type="text" min="0" name="badge" id="badge" class="form-control" required>
+                                <br>
+                                <br>
+                                <label><span style="color: red;">*</span> Campos obligatorios</label>
+
+                              </div>
+                              
+                            </div>
+                            <div class="modal-footer">
+                              <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>-->
+                              <button type="submit" id="ingresar_button" class="btn btn-primary">Ingresar</button>
+                            </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">
+                APTIV - Materials Admin Tool 
+            </div>
+            <div class="pull-left"> 
+                Desarrollado por: Ing Joel Andrade Enriquez  
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+
+    <?php include 'templates/footerLibs.php' ?>  
+  </body>
+</html>
+
+<script src="build/js/getIP.js"></script>
+<script src="build/js/partial_discount.js"></script>
+
+
+

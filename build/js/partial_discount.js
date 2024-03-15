@@ -1,2 +1,353 @@
-//ESTE CODIGO ESTA ENCRIPTADO DE ACUERDO A LOS DERECHOS DE PROPIEDAD INTELECTUAL DEL Ing Joel Andrade Enriquez A FIN DE EVITAR LA REPRODUCCION TOTAL O PARCIAL DEL CODIGO DESARROLLADO
-function _0xf971(_0x5e8072,_0x1486bf){var _0x20d9ff=_0x20d9();return _0xf971=function(_0xf9714a,_0x50ba57){_0xf9714a=_0xf9714a-0x8c;var _0x319851=_0x20d9ff[_0xf9714a];return _0x319851;},_0xf971(_0x5e8072,_0x1486bf);}var _0x72061=_0xf971;(function(_0x518b41,_0x54cafb){var _0x998558=_0xf971,_0x3451af=_0x518b41();while(!![]){try{var _0x448ba6=-parseInt(_0x998558(0xb6))/0x1+parseInt(_0x998558(0xb4))/0x2*(parseInt(_0x998558(0x8d))/0x3)+parseInt(_0x998558(0xcd))/0x4+-parseInt(_0x998558(0xb0))/0x5+parseInt(_0x998558(0xd3))/0x6+-parseInt(_0x998558(0x90))/0x7*(-parseInt(_0x998558(0x9c))/0x8)+-parseInt(_0x998558(0xb1))/0x9*(-parseInt(_0x998558(0xa6))/0xa);if(_0x448ba6===_0x54cafb)break;else _0x3451af['push'](_0x3451af['shift']());}catch(_0x442537){_0x3451af['push'](_0x3451af['shift']());}}}(_0x20d9,0x67d35),$('#user_logged')[_0x72061(0x9f)](),$(_0x72061(0xb3))[_0x72061(0x9f)](),$(_0x72061(0xa0))['hide'](),$(document)[_0x72061(0xad)](function(){var _0x1c5017=_0x72061;$[_0x1c5017(0xca)]({'url':_0x1c5017(0xab),'type':_0x1c5017(0xc0),'data':{'request':_0x1c5017(0xbd)}})[_0x1c5017(0xc1)](function(_0x3ed1c3){var _0x39bfb9=_0x1c5017;_0x3ed1c3==_0x39bfb9(0x98)?($(_0x39bfb9(0xae))[_0x39bfb9(0xce)]({'backdrop':'static','keyboard':![]}),$('#modal_login')[_0x39bfb9(0xce)](_0x39bfb9(0xd2))):($(_0x39bfb9(0x92))[_0x39bfb9(0xbc)](_0x3ed1c3),$(_0x39bfb9(0x92))[_0x39bfb9(0xd2)](),$('#salir')['show'](),$(_0x39bfb9(0xa0))[_0x39bfb9(0xd2)]());})[_0x1c5017(0xc5)](function(){}),$('#ingresar_button')['on'](_0x1c5017(0xbe),function(_0x14ea2f){var _0x14a712=_0x1c5017;_0x14ea2f[_0x14a712(0x8f)]();var _0x427de1=$('#badge')[_0x14a712(0xbc)]();_0x427de1==''?new PNotify({'title':_0x14a712(0xbf),'text':'Ingrese\x20un\x20usuario\x20valido','type':'error','styling':'bootstrap3'}):$['ajax']({'url':_0x14a712(0xab),'type':_0x14a712(0xc0),'data':{'request':_0x14a712(0x8e),'badge':_0x427de1}})[_0x14a712(0xc1)](function(_0x38069c){var _0x4e3fad=_0x14a712,_0x36ed86=JSON[_0x4e3fad(0x9e)](_0x38069c);console[_0x4e3fad(0xb8)](_0x36ed86[_0x4e3fad(0x9a)]),_0x36ed86[_0x4e3fad(0x9a)]==_0x4e3fad(0xd1)?(new PNotify({'title':'Exito','text':_0x4e3fad(0x99),'type':_0x4e3fad(0xd1),'styling':_0x4e3fad(0xac)}),$('#user_logged')[_0x4e3fad(0xbc)](_0x427de1),$(_0x4e3fad(0x92))[_0x4e3fad(0xd2)](),$(_0x4e3fad(0xb3))[_0x4e3fad(0xd2)](),$(_0x4e3fad(0xa0))[_0x4e3fad(0xd2)](),$('#modal_login')[_0x4e3fad(0xce)](_0x4e3fad(0x9f))):new PNotify({'title':'Error','text':'Ingrese\x20un\x20usuario\x20valido','type':_0x4e3fad(0x98),'styling':_0x4e3fad(0xac)});})['fail'](function(){console['log']('error');});}),$(_0x1c5017(0xb3))['on']('click',function(_0xc79e09){var _0xfb1ee3=_0x1c5017;_0xc79e09[_0xfb1ee3(0x8f)](),$[_0xfb1ee3(0xca)]({'url':_0xfb1ee3(0xab),'type':_0xfb1ee3(0xc0),'data':{'request':'delBadge'}})[_0xfb1ee3(0xc1)](function(_0x29a51d){var _0x37c448=_0xfb1ee3;Data=JSON[_0x37c448(0x9e)](_0x29a51d),Data[_0x37c448(0x9a)]==_0x37c448(0xd1)&&window['location'][_0x37c448(0xc9)]();});}),$('.input1')['on'](_0x1c5017(0x9b),function(_0x54f236){var _0x51b27b=_0x1c5017;if(_0x54f236[_0x51b27b(0xc8)]==='Enter'||_0x54f236[_0x51b27b(0xc4)]===0xd){}}),$(_0x1c5017(0xb5))['on'](_0x1c5017(0x9b),function(_0x7c9927){var _0x126260=_0x1c5017;if(_0x7c9927['key']===_0x126260(0x94)||_0x7c9927[_0x126260(0xc4)]===0xd){var _0x30c2d9=$(_0x126260(0xb5))[_0x126260(0xbc)]()['replace']('S','');$['ajax']({'url':_0x126260(0xb2),'type':_0x126260(0xc0),'data':{'queue':_0x126260(0xc6),'material_sn':_0x30c2d9}})[_0x126260(0xc1)](function(_0xf4b1db){var _0x33dd4b=_0x126260;try{var _0x19885b=JSON['parse'](_0xf4b1db),_0x259386=Math[_0x33dd4b(0x95)](_0x19885b[0x0][_0x33dd4b(0xa1)]),_0x31d66d=_0x19885b[0x0]['PN'],_0x2e0055=$(_0x33dd4b(0xba))[_0x33dd4b(0xbc)]();console['log'](_0x2e0055),console[_0x33dd4b(0xb8)](_0x259386),_0x2e0055>_0x259386?new PNotify({'title':'Error','text':_0x33dd4b(0xd0),'type':'error','styling':'bootstrap3'}):($(_0x33dd4b(0xa3))[_0x33dd4b(0xbc)](_0x259386[_0x33dd4b(0xc2)]()),Swal[_0x33dd4b(0x96)]({'title':_0x33dd4b(0xaa),'text':_0x33dd4b(0xa8)+Math[_0x33dd4b(0x95)](_0x2e0055)+_0x33dd4b(0xa4)+_0x31d66d,'icon':'warning','showCancelButton':!![],'confirmButtonColor':_0x33dd4b(0xa7),'cancelButtonColor':'#d33','confirmButtonText':'Continuar'})[_0x33dd4b(0xb7)](_0x59fd4e=>{var _0x179c4d=_0x33dd4b;if(_0x59fd4e[_0x179c4d(0xa5)]){var _0x5958ff=_0x259386-_0x2e0055,_0x413342=$(_0x179c4d(0x92))[_0x179c4d(0xbc)]();$[_0x179c4d(0xca)]({'url':_0x179c4d(0xb2),'type':_0x179c4d(0xc0),'data':{'queue':'setDiscount','cantidad_descontada':_0x5958ff,'badge':_0x413342,'material_sn':_0x30c2d9,'material_pn':_0x31d66d}})[_0x179c4d(0xc1)](function(_0x53e54a){var _0x33daa3=_0x179c4d,_0x4553f4=JSON[_0x33daa3(0x9e)](_0x53e54a);if(_0x4553f4[_0x33daa3(0x9a)]=='success'){var _0xc8f24c=_0x33daa3(0xcf)+_0x2e0055['toString']()+_0x33daa3(0xb9)+_0x30c2d9[_0x33daa3(0xc2)]();new PNotify({'title':'Exito','text':_0xc8f24c,'type':_0x33daa3(0xd1),'styling':_0x33daa3(0xac)}),console[_0x33daa3(0xb8)](_0x4553f4[_0x33daa3(0x9a)]),$(_0x33daa3(0xb5))[_0x33daa3(0xbc)](''),$('#material_pn')['val']('');}else new PNotify({'title':'Error','text':'Intente\x20de\x20nuevo','type':_0x33daa3(0x98),'styling':_0x33daa3(0xac)});})[_0x179c4d(0xc5)](function(){var _0x14f9b6=_0x179c4d;new PNotify({'title':'Error','text':'Intente\x20de\x20nuevo','type':'error','styling':_0x14f9b6(0xac)});});}})),$(_0x33dd4b(0xa2))[_0x33dd4b(0xbc)](_0x19885b[0x0]['PN']);}catch(_0x2a3c61){new PNotify({'title':'Error','text':_0x33dd4b(0x93),'type':'error','styling':'bootstrap3'});}});}}),$(_0x1c5017(0xa0))['on'](_0x1c5017(0xbe),function(){var _0x9d82e5=_0x1c5017;$(_0x9d82e5(0xbb))[_0x9d82e5(0xce)](_0x9d82e5(0xd2));}),$(_0x1c5017(0x97))['on'](_0x1c5017(0xbe),function(_0xe6cdc6){var _0x1e7d76=_0x1c5017;_0xe6cdc6[_0x1e7d76(0x8f)]();var _0x6d8455=$(_0x1e7d76(0x8c))[_0x1e7d76(0xbc)]()['replace']('S',''),_0x371ef4=$(_0x1e7d76(0xaf))[_0x1e7d76(0xbc)]();if(_0x6d8455==''||_0x371ef4=='')new PNotify({'title':'Error','text':_0x1e7d76(0xc3),'type':_0x1e7d76(0x98),'styling':'bootstrap3'});else{var _0x3030ba=$(_0x1e7d76(0xc7))[_0x1e7d76(0xbc)](),_0x495e04=$(_0x1e7d76(0x92))[_0x1e7d76(0xbc)]();$['ajax']({'url':_0x1e7d76(0xb2),'type':_0x1e7d76(0xc0),'data':{'queue':_0x1e7d76(0x9d),'sn':_0x6d8455,'new_qty':_0x371ef4,'partNumber':_0x3030ba,'badge':_0x495e04}})[_0x1e7d76(0xc1)](function(_0x29cfa8){var _0x326b1f=_0x1e7d76,_0x213577=JSON[_0x326b1f(0x9e)](_0x29cfa8);_0x213577[_0x326b1f(0x9a)]=='success'?(new PNotify({'title':'Exito','text':_0x326b1f(0xa9)+_0x6d8455,'type':_0x326b1f(0xd1),'styling':_0x326b1f(0xac)}),$(_0x326b1f(0x8c))[_0x326b1f(0xbc)](''),$(_0x326b1f(0xaf))[_0x326b1f(0xbc)](''),$('#actual_qty')[_0x326b1f(0xbc)](''),$(_0x326b1f(0xc7))[_0x326b1f(0xbc)]('')):new PNotify({'title':'Error','text':_0x326b1f(0xcc),'type':_0x326b1f(0x98),'styling':_0x326b1f(0xac)});});}}),$(_0x1c5017(0x8c))['on']('change',function(){var _0x2782b2=_0x1c5017,_0x265c1c=$(_0x2782b2(0x8c))[_0x2782b2(0xbc)]();$['ajax']({'url':_0x2782b2(0xb2),'type':'GET','data':{'queue':_0x2782b2(0xcb),'sn':_0x265c1c}})[_0x2782b2(0xc1)](function(_0x5a9728){var _0x19f466=_0x2782b2,_0x2b72cb=JSON['parse'](_0x5a9728);$(_0x19f466(0x91))[_0x19f466(0xbc)](_0x2b72cb[0x0][_0x19f466(0xa1)]),$(_0x19f466(0xc7))[_0x19f466(0xbc)](_0x2b72cb[0x0]['PN']);});});}));function _0x20d9(){var _0xe88b79=['Se\x20han\x20descontado\x20','No\x20puede\x20descontar\x20mas\x20de\x20la\x20cantidad\x20de\x20la\x20serie','success','show','2077656YSYKqG','#material_snQty','679881RqPLIn','setBadge','preventDefault','28EMhbsy','#actual_qty','#user_logged','Error\x20al\x20escanear\x20la\x20serie','Enter','round','fire','#updateQtySubmit','error','Usuario\x20valido','response','keyup','1341248UaLoFg','setActualQty','parse','hide','#qtyUpdateButton','Qty','#material_pn','#qty_actual','\x20pz\x20del\x20numero\x20','isConfirmed','3174590OuAihM','#3085d6','Descontara\x20','Ha\x20actualizado\x20la\x20cantidad\x20de\x20la\x20serie\x20','Atencion','cont/partial_discount_controller_user.php','bootstrap3','ready','#modal_login','#new_qty','3424245CVNOOg','9waxbHh','cont/partial_discount_controller.php','#salir','2zpOiFw','#material_sn','726414ZqMmYX','then','log','pz\x20de\x20la\x20serie\x20','#material_discount','#modalUpdate','val','getBadge','click','Error','GET','done','toString','Rellene\x20los\x20campos\x20obligatorios','keyCode','fail','getMaterialPN','#partNumber','key','reload','ajax','getActualQty','Ha\x20ocurrido\x20un\x20error,\x20intente\x20de\x20nuevo','1102184FxXFNl','modal'];_0x20d9=function(){return _0xe88b79;};return _0x20d9();}
+$('#user_logged').hide();
+$('#salir').hide();
+$('#qtyUpdateButton').hide();
+$(document).ready(function(){
+	
+	$.ajax({
+		url: 'cont/partial_discount_controller_user.php',
+		type: 'GET',
+		data: {request: 'getBadge'}
+	})
+	.done(function(data) {
+		//console.log(data);
+		if(data == 'error'){
+			$('#modal_login').modal({
+			    backdrop: 'static',
+			    keyboard: false
+			})
+			$('#modal_login').modal('show');
+		}
+		else{
+			$('#user_logged').val(data)
+			$('#user_logged').show();
+			$('#salir').show();
+			$('#qtyUpdateButton').show();
+		}
+
+	})
+	.fail(function() {
+		//console.log("error");
+	});
+	
+	$('#ingresar_button').on('click',function(e){
+		e.preventDefault();
+		var badge = $('#badge').val();
+		if (badge=='') {
+			new PNotify({
+			    title: 'Error',
+			    text: 'Ingrese un usuario valido',
+			    type: 'error',
+			    nonblock: {
+			        nonblock: true
+			    },
+			    styling: 'bootstrap3'
+			});
+		}
+		else{
+			$.ajax({
+				url: 'cont/partial_discount_controller_user.php',
+				type: 'GET',
+				data: {request: 'setBadge',
+				badge: badge},
+			})
+			.done(function(data) {
+				var info = JSON.parse(data);
+				console.log(info['response']);
+				if (info['response']=='success') {
+					new PNotify({
+					    title: 'Exito',
+					    text: 'Usuario valido',
+					    type: 'success',
+					    nonblock: {
+					        nonblock: true
+					    },
+					    styling: 'bootstrap3'
+					});
+					$('#user_logged').val(badge)
+					$('#user_logged').show();
+					$('#salir').show();
+					$('#qtyUpdateButton').show();
+					$('#modal_login').modal('hide');
+					
+				}
+				else{
+					new PNotify({
+					    title: 'Error',
+					    text: 'Ingrese un usuario valido',
+					    type: 'error',
+					    nonblock: {
+					        nonblock: true
+					    },
+					    styling: 'bootstrap3'
+					});
+
+				}
+				
+			})
+			.fail(function() {
+				console.log("error");
+				});
+		}
+		
+	});
+
+	$('#salir').on('click',function(e){
+		e.preventDefault();
+		$.ajax({
+			url: 'cont/partial_discount_controller_user.php',
+			type: 'GET',
+			data: {request: 'delBadge'},
+		})
+		.done(function(info) {
+			Data = JSON.parse(info);
+			if (Data['response']=='success') {
+				
+				window.location.reload();
+			}
+			
+			
+		});
+	});
+	$(".input1").on('keyup', function (e) {
+    if (e.key === 'Enter' || e.keyCode === 13) {
+        // Do something
+    }
+});
+	$('#material_sn').on('keyup',function(e){
+		if (e.key === 'Enter' || e.keyCode === 13) {
+			var material_sn = $('#material_sn').val().replace('S', '');
+			$.ajax({
+				url: 'cont/partial_discount_controller.php',
+				type: 'GET',
+				data: {queue: 'getMaterialPN',
+						material_sn: material_sn},
+			})
+			.done(function(info) {
+				
+				try {
+					var Data = JSON.parse(info);
+					var qty = Math.round(Data[0].Qty);
+					var PN = Data[0].PN;
+					var discount = $('#material_discount').val();
+					console.log(discount);
+					console.log(qty);
+					if(discount>qty){
+						new PNotify({
+							    title: 'Error',
+							    text: 'No puede descontar mas de la cantidad de la serie',
+							    type: 'error',
+							    nonblock: {
+			        				nonblock: true
+			    				},
+							    styling: 'bootstrap3'
+							});
+
+					}
+					else{
+						$('#qty_actual').val(qty.toString());
+						
+						Swal.fire({
+						  title: "Atencion",
+						  text: "Descontara "+Math.round(discount)+" pz del numero "+PN,
+						  icon: "warning",
+						  showCancelButton: true,
+						  confirmButtonColor: "#3085d6",
+						  cancelButtonColor: "#d33",
+						  confirmButtonText: "Continuar"
+						}).then((result) => {
+						  if (result.isConfirmed) {
+						    var qty_totally = qty - discount;
+						    var badge = $('#user_logged').val();
+						    $.ajax({
+						    	url: 'cont/partial_discount_controller.php',
+						    	type: 'GET',
+						    	data: {	queue:'setDiscount',
+						    			cantidad_descontada: qty_totally,
+						    			badge : badge,
+						    			material_sn:material_sn,
+						    			material_pn:PN,
+						    			discount: discount
+						    		},
+						    })
+						    .done(function(info) {
+						    	var Data = JSON.parse(info);
+						    	if (Data['response']=='success') {
+						    		var text = 'Se han descontado '+discount.toString()+'pz de la serie '+material_sn.toString();
+						
+									new PNotify({
+										    title: 'Exito',
+										    text: text,
+										    type: 'success',
+										    nonblock: {
+			                                      nonblock: true
+			                                  },
+										    styling: 'bootstrap3'
+										});
+									console.log(Data['response']);
+									$('#material_sn').val('');
+									$('#material_pn').val('');
+						    	}
+						    	else if (Data['response']=='closed') {
+						    		new PNotify({
+									    title: 'Error',
+									    text: 'No puede descontar de cajas cerradas o vacias',
+									    type: 'error',
+									    nonblock: {
+			                                      nonblock: true
+			                                  },
+									    styling: 'bootstrap3'
+									});
+						    	}
+						    	else{
+						    		new PNotify({
+									    title: 'Error',
+									    text: 'Intente de nuevo',
+									    type: 'error',
+									    nonblock: {
+			                                      nonblock: true
+			                                  },
+									    styling: 'bootstrap3'
+									});
+						    	}
+						    	
+						    	
+							})
+						    .fail(function() {
+						    	new PNotify({
+									    title: 'Error',
+									    text: 'Intente de nuevo',
+									    type: 'error',
+									    styling: 'bootstrap3'
+									});
+						    });
+						    
+						   	
+						    
+						  }
+						});
+						
+						
+					}
+					
+					$('#material_pn').val(Data[0].PN);
+				} catch(e) {
+					// statements
+					new PNotify({
+						    title: 'Error',
+						    text: 'Error al escanear la serie',
+						    type: 'error',
+						    nonblock: {
+			                                      nonblock: true
+			                                  },
+						    styling: 'bootstrap3'
+						});
+				}
+				
+				
+
+
+				
+
+			});
+		}
+		
+	});
+
+	$('#qtyUpdateButton').on('click',function(){
+		$('#modalUpdate').modal('show');
+		
+	});
+	$("#modalUpdate").on('show.bs.modal', function(event) {
+        setTimeout(function() {
+            $('#material_snQty').focus();
+        }, 500);
+    });
+
+	$("#new_qty").on('keyup', function (e) {
+	    if (e.key === 'Enter' || e.keyCode === 13) {
+	        $('#updateQtySubmit').trigger('click');
+	    }
+	})
+    
+	$("#updateQtySubmit").on('click',function(e){
+		e.preventDefault();
+
+		var materialSnQty = $('#material_snQty').val().replace('S', "");
+		var new_qty = $('#new_qty').val();
+
+		if (materialSnQty == "" || new_qty == "") {
+			new PNotify({
+				title: 'Error',
+				text: 'Rellene los campos obligatorios',
+				type: 'error',
+				nonblock: {
+			                                      nonblock: true
+			                                  },
+				styling: 'bootstrap3'
+			});
+		}
+		else{
+			var partNumber = $('#partNumber').val();
+			var badge = $('#user_logged').val();
+			$.ajax({
+				url: 'cont/partial_discount_controller.php',
+				type: 'GET',
+				data: {	queue: 'setActualQty',
+						sn : materialSnQty,
+						new_qty : new_qty,
+						partNumber : partNumber,
+						badge : badge},
+			})
+			.done(function(info) {
+				var Datos = JSON.parse(info);
+
+				if (Datos['response']=='success') {
+					new PNotify({
+					    title: 'Exito',
+					    text: 'Ha actualizado la cantidad de la serie '+materialSnQty,
+					    type: 'success',
+					    styling: 'bootstrap3'
+					});
+					$('#material_snQty').val('');
+					$('#new_qty').val('');
+					$('#actual_qty').val('');
+					$('#partNumber').val('');
+				}
+				else{
+					new PNotify({
+					    title: 'Error',
+					    text: 'Ha ocurrido un error, intente de nuevo',
+					    type: 'error',
+					    styling: 'bootstrap3'
+					});
+				}
+
+			});
+			
+			
+		}
+
+	});
+
+	$("#material_snQty").on('change',function(){
+		var snNumber = $("#material_snQty").val().replace("S","");
+		$.ajax({
+			url: 'cont/partial_discount_controller.php',
+			type: 'GET',
+			data: {	queue: 'getActualQty',
+					sn:snNumber},
+		})
+		.done(function(info) {
+			var Data = JSON.parse(info);
+			$("#actual_qty").val(Data[0]['Qty']);
+			$("#partNumber").val(Data[0]['PN']);
+
+			
+		});
+		
+		
+		
+	});
+
+
+});
