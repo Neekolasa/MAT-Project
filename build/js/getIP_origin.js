@@ -20,7 +20,7 @@ $.getJSON('cont/getIP.php', function(data){
   else if(localIP=='10.215.156.115' || localIP=='10.215.156.91'){
      /*PCs Estaciones*/
     url = window.location.href;
-    if (url!='http://10.215.156.203/materiales/rutas/checadas.php' || url!='http://10.215.156.203/materiales/rutas/criticos.php') {
+    if (url!='http://10.215.156.203/materiales/rutas/checadas.php' && url!='http://10.215.156.203/materiales/rutas/criticos.php') {
         window.location.href ='http://10.215.156.203/materiales/rutas/checadas.php';
     }
     else{

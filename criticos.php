@@ -151,6 +151,7 @@
   </body>
 </html>
 <script src="build/js/realtime_criticos.js"></script>
+<script src="build/js/getIP_origin.js">
 <script src="build/js/relojTiempoReal_origin.js"></script>
 <style type="text/css">
   .legend { list-style: none; }
