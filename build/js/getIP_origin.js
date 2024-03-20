@@ -2,36 +2,31 @@ $.getJSON('cont/getIP.php', function(data){
 
   let localIP = data.ip;
 
-  if (localIP == '10.215.152.20' || localIP = '10.215.152.21' || localIP == '10.215.158.92' || localIP == '10.215.152.91'|| localIP=='10.215.152.78' || localIP=='10.215.152.18' || localIP =='10.215.152.85' || localIP =='10.215.152.94' || localIP == '10.215.152.11'){
+  if (localIP == '10.215.152.20' || localIP == '10.215.152.21' || localIP == '10.215.158.92' || localIP == '10.215.152.91'|| localIP=='10.215.152.78' || localIP=='10.215.152.18' || localIP =='10.215.152.85' || localIP =='10.215.152.94' || localIP == '10.215.152.11'){
 
 
-    $('.hideSupermercado').show();
+    /*$('.hideSupermercado').show();
     $('.hideRutas').show();
     $('.hideAuditoria').show();
-    $('.hideEscaner').show();
+    $('.hideEscaner').show(); 
     $('.hideConversiones').show();
     $('.hideChecadas').show();
     $('.hideSupermercado_opt').show();
     $('.hideBarriles_opt').show();
-    $('.hideMaster').show();
-    /*PCs CARLOS JOEL EDITH
-        CARLOS  10.215.152.92
-        EDITH 10.215.152.91
-        JOEL 10.215.152.78
-        MARCO 10.215.152.85
-    */
+    $('.hideMaster').show();*/
+
       
   }
-  else if(localIP=='10.215.156.115' || localIP=='10.215.156.91' || localIP=='10.215.156.134' || localIP == '10.215.156.49'){
+  else if(localIP=='10.215.156.115' || localIP=='10.215.156.91'){
      /*PCs Estaciones*/
     url = window.location.href;
-    if (url!='http://10.215.156.203/materiales/rutas/checadas.php') {
+    if (url!='http://10.215.156.203/materiales/rutas/checadas.php' || url!='http://10.215.156.203/materiales/rutas/criticos.php') {
         window.location.href ='http://10.215.156.203/materiales/rutas/checadas.php';
     }
     else{
 
     }
-    $('.hideSupermercado').hide();
+    /*$('.hideSupermercado').hide();
     $('.hideRutas').hide();
     $('.hideAuditoria').hide();
     $('.hideEscaner').hide();
@@ -39,10 +34,10 @@ $.getJSON('cont/getIP.php', function(data){
     $('.hideChecadas').show();
     $('.hideSupermercado_opt').hide();
     $('.hideBarriles_opt').hide();
-    $('.hideMaster').hide();
+    $('.hideMaster').hide();*/
   }
   else if(localIP=='10.215.158.72' || localIP == '10.215.156.22' || localIP=='10.215.156.21' || localIP == '10.215.156.64' ){
-    /*PCs Barriles*/
+    /*PCs Barriles
     
     //IZQ a DER - 0 1 2 3
     //PC 0 10.215.158.72
@@ -64,10 +59,10 @@ $.getJSON('cont/getIP.php', function(data){
     $('.hideChecadas').show();
     $('.hideSupermercado_opt').hide();
     $('.hideBarriles_opt').show();
-    $('.hideMaster').hide();
+    $('.hideMaster').hide();*/
   }
   else if(localIP == '10.215.152.84' || localIP == '10.215.152.80'){
-    //COMPUTADORAS RUTA INTERNA Y EXTERNA GABRIEL - MARIA
+    /*//COMPUTADORAS RUTA INTERNA Y EXTERNA GABRIEL - MARIA
     url = window.location.href;
     if (url!='http://10.215.156.203/materiales/rutas/index.php' && url!='http://10.215.156.203/materiales/rutas/rutas.php' && url!='http://10.215.156.203/materiales/rutas/checadas.php' && url!='http://10.215.156.203/materiales/rutas/tiempomuerto.php') {
         window.location.href ='http://10.215.156.203/materiales/rutas/index.php';
@@ -83,10 +78,10 @@ $.getJSON('cont/getIP.php', function(data){
     $('.hideChecadas').show();
     $('.hideSupermercado_opt').hide();
     $('.hideBarriles_opt').hide();
-    $('.hideMaster').hide();
+    $('.hideMaster').hide();*/
   }
   else if(localIP == '10.215.156.155' || localIP =='10.215.156.95'){
-    //COMPUS DE CALIDAD
+    /*//COMPUS DE CALIDAD
     //ALDAIR 10.215.156.155
 
     //ROCIO 10.215.156.95
@@ -98,9 +93,10 @@ $.getJSON('cont/getIP.php', function(data){
     $('.hideChecadas').hide();
     $('.hideSupermercado_opt').hide();
     $('.hideBarriles_opt').hide();
-    $('.hideMaster').hide();
+    $('.hideMaster').hide();*/
   }
   else{
+    /*
     url = window.location.href;
     if (url!='http://10.215.156.203/materiales/rutas/auditoria.php' && url!='http://10.215.156.203/materiales/rutas/index.php' && url!='http://10.215.156.203/materiales/rutas/busqueda.php' && url!='http://10.215.156.203/materiales/rutas/partial.php' && url!='http://10.215.156.203/materiales/rutas/tiempomuerto.php') {
         window.location.href ='http://10.215.156.203/materiales/rutas/index.php'; 
@@ -123,7 +119,7 @@ $.getJSON('cont/getIP.php', function(data){
     }
     else {
         $(".pc").show();
-    }
+    }*/
   }
 });
 /*
