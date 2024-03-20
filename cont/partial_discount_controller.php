@@ -87,8 +87,7 @@ include '../../connection.php';
 		}
 
 	}
-	elseif($_GET['queue']=='getActualQty')
-	{	
+	elseif($_GET['queue']=='getActualQty'){	
 		$serialNumber = $_GET['sn'];
 		$sql_statement = "SELECT Qty,PN FROM Smk_Inv WHERE SN = '$serialNumber'";
 
@@ -109,10 +108,10 @@ include '../../connection.php';
 		$fecha = date('Y-m-d H:i:s');
 		$badge = $_GET['badge'];
 
-		$sql_statement="UPDATE Smk_Inv SET Qty = '$new_qty' AND Status = 'O' WHERE SN = '$serialNumber'";
+		$sql_statement="UPDATE Smk_Inv SET Qty = '$new_qty' WHERE SN = '$serialNumber'";
 		$sql_statement2= "INSERT INTO Smk_InvDet VALUES ('$serialNumber','CHANGE','$fecha','$badge','$partNumber')";
 
-		//echo "$sql_statement";
+		//echo "$sql_statement\n";
 		//echo "$sql_statement2";
 		$sql_query = sqlsrv_query($conn,$sql_statement);
 		$sql_query2 = sqlsrv_query($conn,$sql_statement2);

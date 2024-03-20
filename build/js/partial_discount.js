@@ -289,16 +289,21 @@ $(document).ready(function(){
 		else{
 			var partNumber = $('#partNumber').val();
 			var badge = $('#user_logged').val();
+			var dato = {
+				
+			}
+			console.log(dato)
 			$.ajax({
 				url: 'cont/partial_discount_controller.php',
 				type: 'GET',
-				data: {	queue: 'setActualQty',
+				data: {queue: 'setActualQty',
 						sn : materialSnQty,
 						new_qty : new_qty,
 						partNumber : partNumber,
 						badge : badge},
 			})
 			.done(function(info) {
+				//console.log(info)
 				var Datos = JSON.parse(info);
 
 				if (Datos['response']=='success') {
