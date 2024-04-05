@@ -390,8 +390,8 @@
                                   <option value="Supermercado">Supermercado</option>
                                 </select>
 
-                                <label for="turno_checada">Turno <span style="color: red;">*</span></label>
-                                <select id="turno_checada" name="turno_checada" class="form-control">
+                                <label for="turno_checada_edit">Turno <span style="color: red;">*</span></label>
+                                <select id="turno_checada_edit" name="turno_checada_edit" class="form-control">
                                   <option value="A">A</option>
                                   <option value="B">B</option>
                                 
