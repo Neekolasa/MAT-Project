@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+<title>APTIV - Tolvas por ruta</title>
   <?php 
     include 'templates/header.php';
   ?>
@@ -201,8 +202,14 @@
                           </div>
                           <div class="well">
                             <button class="btn btn-success" id="routeOwner"><i class="fa fa-shopping-cart"></i> Definir dueños de ruta</button>
-                            <span id="review"></span>
-                            <button class="btn btn-primary pull-right" style="display: none;" id="checkLogin"><i class="fa fa-edit"></i> Registrar visita </button>
+                            
+                            <button class="btn btn-primary pull-right" style="display: none;" id="checkLogin"><i class="fa fa-edit"></i> Revision diaria </button>
+                          </div>
+                          <div class="well">
+                            <span id="review" style="font-weight: bold;"></span>
+                            <ul id="review_list">
+                              
+                            </ul>
                           </div>
                           <div class="col-md-12 well" style="overflow:auto">
                             <fieldset class="col-md-4">

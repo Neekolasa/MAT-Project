@@ -3,6 +3,7 @@ $(document).ready(function(){
     getGraphic(getTurn(), moment().format('YYYY-MM-DD'));
     getReview(getTurn(),moment(new Date($("#single_cal1").val())).format('YYYY-MM-DD'));
 
+
     var hora = moment().format('HH:mm');
     if (hora>='14:30' && hora<='15:30') {
         $("#checkLogin").show();
@@ -30,7 +31,17 @@ $(document).ready(function(){
         }
         lastInputTime = currentTime;
 
+
+
     });
+
+    $("#empNumScanned").keypress(function(event) {
+      // Verificar si la tecla presionada es "Enter"
+      if (event.which === 13) {
+        $("#saveVisitedUser").click();
+      }
+    });
+    
 
     $("#empNumScanned").on("contextmenu",function(){
         return false;
@@ -41,34 +52,86 @@ $(document).ready(function(){
 
     $("#saveVisitedUser").on('click', function(event) {
         event.preventDefault();
-        console.log(scan);
+        
         if (!scan) {
-            console.log("No escaneado")
+            new PNotify({
+                title: 'Error',
+                text: 'Debe escanear el numero de empleado',
+                type: 'error',
+                styling: 'bootstrap3'
+            });
         }
         else{
-            console.log("Escaneado")
+            //console.log("Escaneado")
+            var name = $("#userConfirm").val();
+            var empNum = $("#empNumScanned").val();
+            if ((name == "Ramon Martinez" && empNum == "C854474270") || (name == "Gabriel Aldana" && empNum == "C854473664")) {
+                //console.log("Usuario valido");
+                fecha = moment().format('YYYY-MM-DD HH:mm');
+               $.ajax({
+                    url: 'cont/tolvas_counter.php',
+                    type: 'POST',
+                    data: {
+                            request: 'setLoggon',
+                            name: name,
+                            date: fecha,
+                            turno: getTurn()
+                    },
+                })
+                .done(function(data) {
+                    //console.log(data);
+                    //window.location.reload();
+                    var Datos = JSON.parse(data);
+                    //console.log(Datos);
+                    if (Datos['response']=='success') {
+                        getReview(getTurn(),fecha);
+                        $("#empNumScanned").val("");
+                        $("#modalRegistroVisita").modal('hide');
+                        new PNotify({
+                            title: 'Exito',
+                            text: 'Revision diaria realizada',
+                            type: 'success',
+                            styling: 'bootstrap3'
+                        });
+                    }
+                    else{
+                        $("#empNumScanned").val("");
+                        $("#modalRegistroVisita").modal('hide');
+                        new PNotify({
+                            title: 'Error',
+                            text: 'Ya ha registrado la revision diaria',
+                            type: 'error',
+                            styling: 'bootstrap3'
+                        });
+                    }
+                    
+                })
+                .fail(function() {
+                    //console.log("error");
+                })
+            }
+            else  {
+                if ($("#empNumScanned").val()=="") {
+                    new PNotify({
+                        title: 'Error',
+                        text: 'Ingrese el numero de empleado',
+                        type: 'error',
+                        styling: 'bootstrap3'
+                    });
+                }
+               else{
+                    new PNotify({
+                        title: 'Error',
+                        text: 'Usuario no valido',
+                        type: 'error',
+                        styling: 'bootstrap3'
+                    });
+               }
+            }
+            
         }
         /*var name = $("#userConfirm").val();
-        fecha = moment().format('YYYY-MM-DD');
-       $.ajax({
-            url: 'cont/tolvas_counter.php',
-            type: 'POST',
-            data: {
-                    request: 'setLoggon',
-                    name: name,
-                    date: fecha,
-                    turno: getTurn()
-            },
-        })
-        .done(function(data) {
-            console.log(data);
-        })
-        .fail(function() {
-            console.log("error");
-        })
-        .always(function() {
-            console.log("complete");
-        });*/
+        */
         
 
     });
@@ -85,8 +148,18 @@ $(document).ready(function(){
         var date = moment(new Date($("#single_cal1").val())).format('YYYY-MM-DD');
         var turno = $("#turnoSearch").val();
 
+        $("#review_list").html("");
         getGraphic(turno, date);
+        getReview(turno, date);
 
+        var currentDate = moment().format('YYYY-MM-DD');
+        if (date!=currentDate) {
+            $("#checkLogin").hide()
+        }
+        else{
+            $("#checkLogin").show();
+        }
+        
 
     });
 
@@ -194,10 +267,10 @@ $(document).ready(function(){
             })
             .done(function(info) {
                 var data = JSON.parse(info);
-                console.log(data);
+                //console.log(data);
             })
             .fail(function() {
-                console.log("error");
+                //console.log("error");
             })
             .always(function() {
                 getGraphic(getTurn(), moment().format('YYYY-MM-DD'));
@@ -219,20 +292,27 @@ function getReview(turno,fecha){
     })
     .done(function(info) {
         var Data = JSON.parse(info);
-        
+        //console.log(Data);
         if (Data.length === 0 || Data[0]['Nombre'] === "") {
-            console.log("No Data");
+            $("#review").text("No se ha realizada la revision diaria - "+moment(fecha).format('DD/MM/YYYY'));
         } 
         else {
-            $("#review").text("Revision diaria realizada por: "+Data[0]["Nombre"]);
+           $("#review").text(
+                "Revision diaria realizada por " + Data[0]["Nombre"] +":"
+                
+            );
+         
+           $("#review_list").html("");
+           $.each(Data, function(index, val) {
+                $("#review_list").append("<li>" + "Revision " + (index + 1) + ": " + moment(val.Fecha.date).format('HH:mm') + "</li>");
+                
+            });
+           //"Dia: " + moment(Data[0]['Fecha']['date']).format('DD/MM/YYYY HH:mm')
         }
     })
     .fail(function() {
-        console.log("error");
+        //console.log("error");
     })
-    .always(function() {
-        console.log("complete");
-    });
     
 }
 
@@ -286,7 +366,7 @@ function getRouteOwners(turno){
             
     })
     .fail(function() {
-        console.log("error");
+        //console.log("error");
     })
 }
 
@@ -326,7 +406,12 @@ function getGraphic(turno,fecha){
         getTable(Datos);
     })
     .fail(function() {
-        console.log("Error al obtener los datos");
+        new PNotify({
+                        title: 'Error',
+                        text: 'Error al obtener los datos',
+                        type: 'error',
+                        styling: 'bootstrap3'
+                    });
     })
 }
 function getTable(datos){

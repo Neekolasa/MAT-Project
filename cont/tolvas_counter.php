@@ -292,10 +292,11 @@
     elseif ($request == 'setLoggon') {
     	$name = $_REQUEST['name'];
     	$turno = $_REQUEST['turno'];
-		$date = date('Y-m-d', strtotime($_REQUEST['date']));
+		$date = date('Y-m-d H:i', strtotime($_REQUEST['date']));
+		$dateOne = date('Y-m-d', strtotime($_REQUEST['date']));
 
 		/*CHECK IF LOGIN EXIST*/
-		$sqlStatement_Check = "SELECT COUNT(*) AS Visita FROM ChkComp_Checklist WHERE Fecha = '$date' AND Nombre = '$name'";
+		$sqlStatement_Check = "SELECT COUNT(*) AS Visita FROM ChkComp_Checklist WHERE (CONVERT(date, Fecha) = '$dateOne') AND Nombre = '$name'";
 
 		$query_result = sqlsrv_query($conn, $sqlStatement_Check);
 
@@ -306,8 +307,8 @@
 		$row = sqlsrv_fetch_array($query_result, SQLSRV_FETCH_ASSOC);
 
 		$count = $row['Visita'];
-
-		if ($count >= 1) {
+		//if ($count >= 1) {
+		if (false) {
 		    $response_array = array('response' => 'fail');
 		} else {
 			$sqlStatement_Insert = "INSERT INTO ChkComp_Checklist(Nombre, Fecha,Turno) VALUES ('$name','$date','$turno')";
@@ -324,16 +325,16 @@
     }
     elseif ($request == 'getReview') {
     	$turno = $_REQUEST['turno'];
-    	$fecha = $_REQUEST['fecha'];
-
-    	$sqlStatement = "SELECT * FROM ChkComp_Checklist WHERE Turno = '$turno' AND Fecha = '$fecha'";
+    	//$fecha = $_REQUEST['fecha'];
+    	$dateOne = date('Y-m-d', strtotime($_REQUEST['fecha']));
+    	$sqlStatement = "SELECT * FROM ChkComp_Checklist WHERE Turno = '$turno' AND (CONVERT(date, Fecha)  = '$dateOne')";
     	
     	$query_result = sqlsrv_query($conn,$sqlStatement);
     	$data = array();
     	while ($datos = sqlsrv_fetch_array($query_result,SQLSRV_FETCH_ASSOC)) {
     		array_push($data, array(
-    			"Nombre" => $datos['Nombre']
-
+    			"Nombre" => $datos['Nombre'],
+    			"Fecha" => $datos['Fecha']
     		));
     	}
 
