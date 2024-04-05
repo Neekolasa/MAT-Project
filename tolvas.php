@@ -67,21 +67,62 @@
                   </div>
                   <div class="x_content">
                      
-                   
+                          
                           <!--<div id="weekGraphic"></div>
                           <div id="weekGraphicComparativo"></div>-->
-                          <div class="modal fade bs-example-modal-sm" id="modalRouteOwner" style="overflow-y: auto" tabindex="-1" role="dialog" aria-hidden="true">
+                          <div class="modal fade bs-example-modal-sm" id="modalRegistroVisita" style="overflow-y: auto" tabindex="-1" role="dialog" aria-hidden="true">
                             <div class="modal-dialog modal-sm">
                               <div class="modal-content">
 
                                 <div class="modal-header">
-                                  <h4 class="modal-title" id="myModalLabel">Asignar duenos de ruta</h4>
+                                  <h4 class="modal-title" id="myModalLabel">Registro de visita</h4>
                                   
                                   <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
                                   </button>
                                 </div>
                                 <div class="modal-body">
                                   <div class="form-group">
+                                    <label for="num_material">Usuario que registra la visita </label>
+                                    <select id="userConfirm" class="form-control">
+                                        <option value="Ramon Martinez">Ramon Martinez</option>
+                                        <option value="Gabriel Aldana">Gabriel Aldana</option>
+                                    </select>
+
+                                    <label for="num_material">Escaneo del numero de empleado </label>
+                                    <input type="password" id="empNumScanned" class="form-control">
+                                    
+
+                                  </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-primary" id="saveVisitedUser">Guardar</button>
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            
+                                </div>
+
+                              </div>
+                            </div>
+                          </div>
+                          <div class="modal fade bs-example-modal-sm" id="modalRouteOwner" style="overflow-y: auto" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-sm">
+                              <div class="modal-content">
+
+                                <div class="modal-header">
+                                  <h4 class="modal-title" id="myModalLabel">Asignar dueños de ruta</h4>
+                                  
+                                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="form-group">
+                                    <label for="num_material">Seleccione el turno </label>
+                                    <select id="turno" class="form-control">
+                                      
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                      
+
+                                    </select>
                                     <label for="num_material">Ruta 11 <span style="color: red;">*</span></label>
                                     <input type="text" id="RUTA11_Name" class="form-control" placeholder="Dueno de ruta">
                                     <br>
@@ -159,7 +200,34 @@
                             </div>
                           </div>
                           <div class="well">
-                            <button class="btn btn-success" id="routeOwner">Definir duenos de ruta</button>
+                            <button class="btn btn-success" id="routeOwner"><i class="fa fa-shopping-cart"></i> Definir dueños de ruta</button>
+                            <span id="review"></span>
+                            <button class="btn btn-primary pull-right" style="display: none;" id="checkLogin"><i class="fa fa-edit"></i> Registrar visita </button>
+                          </div>
+                          <div class="col-md-12 well" style="overflow:auto">
+                            <fieldset class="col-md-4">
+                              <div class="control-group">
+                                <div class="controls">
+                                  <div class="col-md-12 form-group has-feedback row xdisplay_inputx">
+                                    <input aria-describedby="inputSuccess2Status" class="form-control has-feedback-left" id="single_cal1" placeholder=""> 
+                                    <i class="fa fa-calendar form-control-feedback left" aria-hidden="true" style="color:#000"></i> 
+                                    <span class="sr-only" id="inputSuccess2Status">(success)</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </fieldset>
+                            <div>
+                              <div class="col-sm-2">
+                                <select class="form-control" id="turnoSearch">
+                                  <option value="A">A</option>
+                                  <option value="B">B</option>
+                                </select>
+                              </div>
+                              <span class="col-sm-2 col-md-2 control-label" style="color:#000;margin:10px auto">Turno</span>
+                            </div>
+                            <div class="col-sm-2 col-sm-2">
+                              <button class="btn btn-success" id="searchTolvaButton"><i class="fa fa-search"></i> Buscar</button>
+                            </div>
                           </div>
                           <div class="well col-md-12">
                              <div id="tolvaGraphic" style="width: 100%;"></div>

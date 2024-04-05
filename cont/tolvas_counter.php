@@ -2,51 +2,109 @@
     include '../../connection.php';
     $request = $_REQUEST['request'];
     if ($request=='getTolvasInfo') {
-    	$sqlStatement = "
-	        WITH Entradas AS (
-	            SELECT 
-	                Route,
-	                ActionDate AS Entrada,
-	                ROW_NUMBER() OVER (PARTITION BY Route ORDER BY ActionDate) AS EntradaNumero
-	            FROM 
-	                ChkComp_RoutesLog 
-	            WHERE 
-	                Action = 'IN'
-	                AND CONVERT(DATE, ActionDate) = CONVERT(DATE, GETDATE())
-	        ),
-	        Salidas AS (
-	            SELECT 
-	                Route,
-	                DATEADD(SECOND, 10, ActionDate) AS Salida,
+    	$turno = $_REQUEST['turno'];
+    	$fecha_inicial = $_REQUEST['fecha'];
+    	$fecha_inicial = date('Y-m-d', strtotime($fecha_inicial));
+    	if ($turno == "A") {
+    		$sqlStatement = "
+		        WITH Entradas AS (
+		            SELECT 
+		                Route,
+		                ActionDate AS Entrada,
+		                ROW_NUMBER() OVER (PARTITION BY Route ORDER BY ActionDate) AS EntradaNumero
+		            FROM 
+		                ChkComp_RoutesLog 
+		            WHERE 
+		                Action = 'IN'
+		                AND CONVERT(DATE, ActionDate) = CONVERT(DATE, '$fecha_inicial')
+		        ),
+		        Salidas AS (
+		            SELECT 
+		                Route,
+		                DATEADD(SECOND, 10, ActionDate) AS Salida,
 
-	                ROW_NUMBER() OVER (PARTITION BY Route ORDER BY ActionDate) AS SalidaNumero
-	            FROM 
-	                ChkComp_RoutesLog 
-	            WHERE 
-	                Action = 'OUT'
-	                AND CONVERT(DATE, ActionDate) = CONVERT(DATE, GETDATE())
-	        )
-	        SELECT 
-	            E.Route,
-	            E.Entrada,
-	            S.Salida,
-	            ROW_NUMBER() OVER (PARTITION BY E.Route ORDER BY E.Entrada) AS Vueltas,
-	            COUNT(ChkComp_MainMov.SN) AS TolvasEnlazadas,
-	            ChkComp_RouteOwner.Name +' - '+ChkComp_RouteOwner.ProductionLine  as RouteOwner
-	        FROM 
-	            Entradas E
-	            JOIN Salidas S ON E.Route = S.Route AND E.EntradaNumero = S.SalidaNumero
-	            JOIN ChkComp_MainMov ON E.Route = ChkComp_MainMov.Route
-	            JOIN ChkComp_RouteOwner ON E.Route = ChkComp_RouteOwner.Route
-	        WHERE
-	         	--S.Salida IS NOT NULL AND
-	            (ChkComp_MainMov.ScanDate>=E.Entrada AND ChkComp_MainMov.ScanDate<=S.Salida)
-	            AND ChkComp_MainMov.SN IS NOT NULL
-	            AND E.Route NOT LIKE '%CRITICO%'
-	            --AND E.Route = 'RUTA22'
-	        GROUP BY E.Route, E.Entrada, S.Salida,ChkComp_RouteOwner.Name,ChkComp_RouteOwner.ProductionLine
-	        ORDER BY E.Route ASC
-	    ";
+		                ROW_NUMBER() OVER (PARTITION BY Route ORDER BY ActionDate) AS SalidaNumero
+		            FROM 
+		                ChkComp_RoutesLog 
+		            WHERE 
+		                Action = 'OUT'
+		                AND CONVERT(DATE, ActionDate) = CONVERT(DATE, '$fecha_inicial')
+		        )
+		        SELECT 
+		            E.Route,
+		            E.Entrada,
+		            S.Salida,
+		            ROW_NUMBER() OVER (PARTITION BY E.Route ORDER BY E.Entrada) AS Vueltas,
+		            COUNT(ChkComp_MainMov.SN) AS TolvasEnlazadas,
+		            ChkComp_RouteOwner.Name +' - '+ChkComp_RouteOwner.ProductionLine  as RouteOwner
+		        FROM 
+		            Entradas E
+		            JOIN Salidas S ON E.Route = S.Route AND E.EntradaNumero = S.SalidaNumero
+		            JOIN ChkComp_MainMov ON E.Route = ChkComp_MainMov.Route
+		            JOIN ChkComp_RouteOwner ON E.Route = ChkComp_RouteOwner.Route
+		        WHERE
+		         	
+		            (ChkComp_MainMov.ScanDate>=E.Entrada AND ChkComp_MainMov.ScanDate<=S.Salida)
+		            AND ChkComp_MainMov.SN IS NOT NULL
+		            AND E.Route NOT LIKE '%CRITICO%'
+		           	AND (S.Salida>='$fecha_inicial 06:00' AND S.Salida<='$fecha_inicial 15:36')
+		            AND ChkComp_RouteOwner.Turno = 'A'
+		        GROUP BY E.Route, E.Entrada, S.Salida,ChkComp_RouteOwner.Name,ChkComp_RouteOwner.ProductionLine
+		        ORDER BY E.Route ASC
+		    ";
+		    //echo "$sqlStatement";
+    	}
+    	else{
+    		$fecha_final = date('Y-m-d', strtotime($fecha_inicial . ' +1 day'));
+    		$sqlStatement = "
+		        WITH Entradas AS (
+		            SELECT 
+		                Route,
+		                ActionDate AS Entrada,
+		                ROW_NUMBER() OVER (PARTITION BY Route ORDER BY ActionDate) AS EntradaNumero
+		            FROM 
+		                ChkComp_RoutesLog 
+		            WHERE 
+		                Action = 'IN'
+		                AND CONVERT(DATE, ActionDate) = CONVERT(DATE, '$fecha_inicial')
+		        ),
+		        Salidas AS (
+		            SELECT 
+		                Route,
+		                DATEADD(SECOND, 10, ActionDate) AS Salida,
+
+		                ROW_NUMBER() OVER (PARTITION BY Route ORDER BY ActionDate) AS SalidaNumero
+		            FROM 
+		                ChkComp_RoutesLog 
+		            WHERE 
+		                Action = 'OUT'
+		                AND CONVERT(DATE, ActionDate) = CONVERT(DATE, '$fecha_inicial')
+		        )
+		        SELECT 
+		            E.Route,
+		            E.Entrada,
+		            S.Salida,
+		            ROW_NUMBER() OVER (PARTITION BY E.Route ORDER BY E.Entrada) AS Vueltas,
+		            COUNT(ChkComp_MainMov.SN) AS TolvasEnlazadas,
+		            ChkComp_RouteOwner.Name +' - '+ChkComp_RouteOwner.ProductionLine  as RouteOwner
+		        FROM 
+		            Entradas E
+		            JOIN Salidas S ON E.Route = S.Route AND E.EntradaNumero = S.SalidaNumero
+		            JOIN ChkComp_MainMov ON E.Route = ChkComp_MainMov.Route
+		            JOIN ChkComp_RouteOwner ON E.Route = ChkComp_RouteOwner.Route
+		        WHERE
+		         	
+		            (ChkComp_MainMov.ScanDate>=E.Entrada AND ChkComp_MainMov.ScanDate<=S.Salida)
+		            AND ChkComp_MainMov.SN IS NOT NULL
+		            AND E.Route NOT LIKE '%CRITICO%'
+		           	AND (S.Salida>='$fecha_inicial 15:36' AND S.Salida<='$fecha_final 0:30')
+		            AND ChkComp_RouteOwner.Turno = 'B'
+		        GROUP BY E.Route, E.Entrada, S.Salida,ChkComp_RouteOwner.Name,ChkComp_RouteOwner.ProductionLine
+		        ORDER BY E.Route ASC
+		    ";
+
+    	}
+
 	    $sqlQuery = sqlsrv_query($conn, $sqlStatement);
 
 	    $datos = array();
@@ -135,7 +193,8 @@
     	
     }
     elseif ($request == 'getRoutesOwners') {
-    	$sqlStatement = "SELECT * FROM ChkComp_RouteOwner ORDER BY Route ASC";
+    	$turno = $_REQUEST['turno'];
+    	$sqlStatement = "SELECT * FROM ChkComp_RouteOwner WHERE Turno = '$turno' ORDER BY Route ASC";
     	$sqlQuery = sqlsrv_query($conn, $sqlStatement);
 
     	$datos = array();
@@ -154,6 +213,7 @@
 
     	// Arreglo de respuesta
 		$response = array();
+		$turno = $_REQUEST['turno'];
 
 		// Obtener los valores enviados por el formulario
 		$Ruta11_Name = $_REQUEST['Ruta11_Name'];
@@ -197,19 +257,19 @@
 
 		// Consultas SQL para actualizar cada campo
 		$sqlStatements = array(
-		    "RUTA11" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta11_Name', ProductionLine='$Ruta11_PL' WHERE Route='RUTA11'",
-		    "RUTA12" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta12_Name', ProductionLine='$Ruta12_PL' WHERE Route='RUTA12'",
-		    "RUTA13" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta13_Name', ProductionLine='$Ruta13_PL' WHERE Route='RUTA13'",
-		    "RUTA14" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta14_Name', ProductionLine='$Ruta14_PL' WHERE Route='RUTA14'",
-		    "RUTA15" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta15_Name', ProductionLine='$Ruta15_PL' WHERE Route='RUTA15'",
-		    "RUTA16" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta16_Name', ProductionLine='$Ruta16_PL' WHERE Route='RUTA16'",
-		    "RUTA17" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta17_Name', ProductionLine='$Ruta17_PL' WHERE Route='RUTA17'",
-		    "RUTA18" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta18_Name', ProductionLine='$Ruta18_PL' WHERE Route='RUTA18'",
-		    "RUTA19" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta19_Name', ProductionLine='$Ruta19_PL' WHERE Route='RUTA19'",
-		    "RUTA20" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta20_Name', ProductionLine='$Ruta20_PL' WHERE Route='RUTA20'",
-		    "RUTA21" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta21_Name', ProductionLine='$Ruta21_PL' WHERE Route='RUTA21'",
-		    "RUTA22" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta22_Name', ProductionLine='$Ruta22_PL' WHERE Route='RUTA22'",
-		    "RUTA23" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta23_Name', ProductionLine='$Ruta23_PL' WHERE Route='RUTA23'"
+		    "RUTA11" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta11_Name', ProductionLine='$Ruta11_PL' WHERE Route='RUTA11' AND Turno='$turno'",
+		    "RUTA12" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta12_Name', ProductionLine='$Ruta12_PL' WHERE Route='RUTA12' AND Turno='$turno'",
+		    "RUTA13" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta13_Name', ProductionLine='$Ruta13_PL' WHERE Route='RUTA13' AND Turno='$turno'",
+		    "RUTA14" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta14_Name', ProductionLine='$Ruta14_PL' WHERE Route='RUTA14' AND Turno='$turno'",
+		    "RUTA15" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta15_Name', ProductionLine='$Ruta15_PL' WHERE Route='RUTA15' AND Turno='$turno'",
+		    "RUTA16" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta16_Name', ProductionLine='$Ruta16_PL' WHERE Route='RUTA16' AND Turno='$turno'",
+		    "RUTA17" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta17_Name', ProductionLine='$Ruta17_PL' WHERE Route='RUTA17' AND Turno='$turno'",
+		    "RUTA18" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta18_Name', ProductionLine='$Ruta18_PL' WHERE Route='RUTA18' AND Turno='$turno'",
+		    "RUTA19" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta19_Name', ProductionLine='$Ruta19_PL' WHERE Route='RUTA19' AND Turno='$turno'",
+		    "RUTA20" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta20_Name', ProductionLine='$Ruta20_PL' WHERE Route='RUTA20' AND Turno='$turno'",
+		    "RUTA21" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta21_Name', ProductionLine='$Ruta21_PL' WHERE Route='RUTA21' AND Turno='$turno'",
+		    "RUTA22" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta22_Name', ProductionLine='$Ruta22_PL' WHERE Route='RUTA22' AND Turno='$turno'",
+		    "RUTA23" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta23_Name', ProductionLine='$Ruta23_PL' WHERE Route='RUTA23' AND Turno='$turno'"
 		);
 
 		// Ejecutar las consultas SQL y actualizar el arreglo de respuesta
@@ -228,7 +288,56 @@
 		// Imprimir el arreglo de respuesta como JSON
 		echo json_encode($response);
 
+    }
+    elseif ($request == 'setLoggon') {
+    	$name = $_REQUEST['name'];
+    	$turno = $_REQUEST['turno'];
+		$date = date('Y-m-d', strtotime($_REQUEST['date']));
+
+		/*CHECK IF LOGIN EXIST*/
+		$sqlStatement_Check = "SELECT COUNT(*) AS Visita FROM ChkComp_Checklist WHERE Fecha = '$date' AND Nombre = '$name'";
+
+		$query_result = sqlsrv_query($conn, $sqlStatement_Check);
+
+		if($query_result === false) {
+		    die( print_r( sqlsrv_errors(), true));
+		}
+
+		$row = sqlsrv_fetch_array($query_result, SQLSRV_FETCH_ASSOC);
+
+		$count = $row['Visita'];
+
+		if ($count >= 1) {
+		    $response_array = array('response' => 'fail');
+		} else {
+			$sqlStatement_Insert = "INSERT INTO ChkComp_Checklist(Nombre, Fecha,Turno) VALUES ('$name','$date','$turno')";
+			$query_result = sqlsrv_query($conn, $sqlStatement_Insert);
+			if ($query_result) {
+				$response_array = array('response' => 'success');
+			}
+			else{
+				$response_array = array('response' => 'error');
+			}
+		}
+
+		echo json_encode($response_array);
+    }
+    elseif ($request == 'getReview') {
+    	$turno = $_REQUEST['turno'];
+    	$fecha = $_REQUEST['fecha'];
+
+    	$sqlStatement = "SELECT * FROM ChkComp_Checklist WHERE Turno = '$turno' AND Fecha = '$fecha'";
     	
+    	$query_result = sqlsrv_query($conn,$sqlStatement);
+    	$data = array();
+    	while ($datos = sqlsrv_fetch_array($query_result,SQLSRV_FETCH_ASSOC)) {
+    		array_push($data, array(
+    			"Nombre" => $datos['Nombre']
+
+    		));
+    	}
+
+    	echo json_encode($data);
     }
     
 ?>

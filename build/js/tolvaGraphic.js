@@ -1,64 +1,110 @@
 $(document).ready(function(){
-    getGraphic();
+
+    getGraphic(getTurn(), moment().format('YYYY-MM-DD'));
+    getReview(getTurn(),moment(new Date($("#single_cal1").val())).format('YYYY-MM-DD'));
+
+    var hora = moment().format('HH:mm');
+    if (hora>='14:30' && hora<='15:30') {
+        $("#checkLogin").show();
+    }
+    else if (hora>='22:59' && hora<='23:59') {
+        $("#checkLogin").show();
+    }
+    else{
+        $("#checkLogin").hide();
+        $("#checkLogin").show();
+    }
+
+    var lastInputTime = 0;
+    var typingDelay = 50;
+    scan = false;
+    
+    $("#empNumScanned").on('input',function(e){
+        var currentTime = new Date().getTime();
+        if (currentTime - lastInputTime < typingDelay) {
+            scan = true;
+
+        } else {
+            scan = false;
+
+        }
+        lastInputTime = currentTime;
+
+    });
+
+    $("#empNumScanned").on("contextmenu",function(){
+        return false;
+    });
+    $('#empNumScanned').on("cut copy paste",function(e) {
+        e.preventDefault();
+    });
+
+    $("#saveVisitedUser").on('click', function(event) {
+        event.preventDefault();
+        console.log(scan);
+        if (!scan) {
+            console.log("No escaneado")
+        }
+        else{
+            console.log("Escaneado")
+        }
+        /*var name = $("#userConfirm").val();
+        fecha = moment().format('YYYY-MM-DD');
+       $.ajax({
+            url: 'cont/tolvas_counter.php',
+            type: 'POST',
+            data: {
+                    request: 'setLoggon',
+                    name: name,
+                    date: fecha,
+                    turno: getTurn()
+            },
+        })
+        .done(function(data) {
+            console.log(data);
+        })
+        .fail(function() {
+            console.log("error");
+        })
+        .always(function() {
+            console.log("complete");
+        });*/
+        
+
+    });
+
+    $("#checkLogin").on('click', function(event) {
+        event.preventDefault();
+        
+        $("#modalRegistroVisita").modal('show');
+    });
+
+    //console.log(getTurn())
+    $("#searchTolvaButton").on('click', function(event) {
+        event.preventDefault();
+        var date = moment(new Date($("#single_cal1").val())).format('YYYY-MM-DD');
+        var turno = $("#turnoSearch").val();
+
+        getGraphic(turno, date);
+
+
+    });
+
+    $("#turno").on('change',  function(event) {
+        event.preventDefault();
+        getRouteOwners($("#turno").val());
+    });
 
     $("#routeOwner").on('click', function(event) {
         event.preventDefault();
 
         $("#modalRouteOwner").modal('show');
-        $.ajax({
-            url: 'cont/tolvas_counter.php',
-            type: 'POST',
-            data: {request: 'getRoutesOwners'},
-        })
-        .done(function(info) {
-            var datos = JSON.parse(info);
-            $("#RUTA11_Name").val(datos[0]['Name']);
-            $("#RUTA11_PL").val(datos[0]['ProductionLine'])
-
-            $("#RUTA12_Name").val(datos[1]['Name']);
-            $("#RUTA12_PL").val(datos[1]['ProductionLine'])
-
-            $("#RUTA13_Name").val(datos[2]['Name']);
-            $("#RUTA13_PL").val(datos[2]['ProductionLine'])
-
-            $("#RUTA14_Name").val(datos[3]['Name']);
-            $("#RUTA14_PL").val(datos[3]['ProductionLine'])
-
-            $("#RUTA15_Name").val(datos[4]['Name']);
-            $("#RUTA15_PL").val(datos[4]['ProductionLine'])
-
-            $("#RUTA16_Name").val(datos[5]['Name']);
-            $("#RUTA16_PL").val(datos[5]['ProductionLine'])
-
-            $("#RUTA17_Name").val(datos[6]['Name']);
-            $("#RUTA17_PL").val(datos[6]['ProductionLine'])
-
-            $("#RUTA18_Name").val(datos[7]['Name']);
-            $("#RUTA18_PL").val(datos[7]['ProductionLine'])
-
-            $("#RUTA19_Name").val(datos[8]['Name']);
-            $("#RUTA19_PL").val(datos[8]['ProductionLine'])
-
-            $("#RUTA20_Name").val(datos[9]['Name']);
-            $("#RUTA20_PL").val(datos[9]['ProductionLine'])
-
-            $("#RUTA21_Name").val(datos[10]['Name']);
-            $("#RUTA21_PL").val(datos[10]['ProductionLine'])
-
-            $("#RUTA22_Name").val(datos[11]['Name']);
-            $("#RUTA22_PL").val(datos[11]['ProductionLine'])
-
-            $("#RUTA23_Name").val(datos[12]['Name']);
-            $("#RUTA23_PL").val(datos[12]['ProductionLine']);
-            
-        })
-        .fail(function() {
-            console.log("error");
-        })
+        getRouteOwners($("#turno").val());
        
     });
     $("#saveRoutes").on('click', function(event) {
         event.preventDefault();
+            var turno = $("#turno").val();
             var Ruta11_Name = $("#RUTA11_Name").val();
             var Ruta11_PL = $("#RUTA11_PL").val()
 
@@ -100,6 +146,7 @@ $(document).ready(function(){
 
             var datos = {
                 request           : 'setRoutesOwners',
+                turno               : turno,
                 Ruta11_Name  : Ruta11_Name,
                 Ruta11_PL       : Ruta11_PL,
 
@@ -142,7 +189,7 @@ $(document).ready(function(){
             
             $.ajax({
                 url: 'cont/tolvas_counter.php',
-                type: 'GET',
+                type: 'POST',
                 data: datos,
             })
             .done(function(info) {
@@ -153,16 +200,108 @@ $(document).ready(function(){
                 console.log("error");
             })
             .always(function() {
-                getGraphic();
+                getGraphic(getTurn(), moment().format('YYYY-MM-DD'));
             });
             
-
-
     });
     //setInterval(getGraphic, 60 * 1000);
 });
 
-function getGraphic(){
+function getReview(turno,fecha){
+    $.ajax({
+        url: 'cont/tolvas_counter.php',
+        type: 'POST',
+        data: {
+            request: 'getReview',
+            turno: turno,
+            fecha: fecha
+    },
+    })
+    .done(function(info) {
+        var Data = JSON.parse(info);
+        
+        if (Data.length === 0 || Data[0]['Nombre'] === "") {
+            console.log("No Data");
+        } 
+        else {
+            $("#review").text("Revision diaria realizada por: "+Data[0]["Nombre"]);
+        }
+    })
+    .fail(function() {
+        console.log("error");
+    })
+    .always(function() {
+        console.log("complete");
+    });
+    
+}
+
+function getRouteOwners(turno){
+    $.ajax({
+        url: 'cont/tolvas_counter.php',
+        type: 'POST',
+        data: {  request: 'getRoutesOwners',
+                    turno: turno},
+    })
+    .done(function(info) {
+        var datos = JSON.parse(info);
+        $("#RUTA11_Name").val(datos[0]['Name']);
+        $("#RUTA11_PL").val(datos[0]['ProductionLine'])
+
+        $("#RUTA12_Name").val(datos[1]['Name']);
+        $("#RUTA12_PL").val(datos[1]['ProductionLine'])
+
+        $("#RUTA13_Name").val(datos[2]['Name']);
+        $("#RUTA13_PL").val(datos[2]['ProductionLine'])
+
+        $("#RUTA14_Name").val(datos[3]['Name']);
+        $("#RUTA14_PL").val(datos[3]['ProductionLine'])
+
+        $("#RUTA15_Name").val(datos[4]['Name']);
+        $("#RUTA15_PL").val(datos[4]['ProductionLine'])
+
+        $("#RUTA16_Name").val(datos[5]['Name']);
+        $("#RUTA16_PL").val(datos[5]['ProductionLine'])
+
+        $("#RUTA17_Name").val(datos[6]['Name']);
+        $("#RUTA17_PL").val(datos[6]['ProductionLine'])
+
+        $("#RUTA18_Name").val(datos[7]['Name']);
+        $("#RUTA18_PL").val(datos[7]['ProductionLine'])
+
+        $("#RUTA19_Name").val(datos[8]['Name']);
+        $("#RUTA19_PL").val(datos[8]['ProductionLine'])
+
+        $("#RUTA20_Name").val(datos[9]['Name']);
+        $("#RUTA20_PL").val(datos[9]['ProductionLine'])
+
+        $("#RUTA21_Name").val(datos[10]['Name']);
+        $("#RUTA21_PL").val(datos[10]['ProductionLine'])
+
+        $("#RUTA22_Name").val(datos[11]['Name']);
+        $("#RUTA22_PL").val(datos[11]['ProductionLine'])
+
+        $("#RUTA23_Name").val(datos[12]['Name']);
+        $("#RUTA23_PL").val(datos[12]['ProductionLine']);
+            
+    })
+    .fail(function() {
+        console.log("error");
+    })
+}
+
+function getTurn(){
+    var horaActual =  moment().format('HH:mm');
+    if (horaActual >= '06:00' && horaActual<='15:36') {
+        return 'A'
+    }
+    else
+    {
+        return 'B'
+    }
+}
+
+function getGraphic(turno,fecha){
     new PNotify({
         title: 'Rutas actualizadas',
         text: 'Se ha actualizado el estatus de las rutas',
@@ -171,8 +310,10 @@ function getGraphic(){
     });
     $.ajax({
         url: 'cont/tolvas_counter.php',
-        type: 'GET',
-        data: {request: 'getTolvasInfo'},
+        type: 'POST',
+        data: {request: 'getTolvasInfo',
+                turno:turno,
+                fecha:fecha},
     })
     .done(function(data) {
         var Datos = JSON.parse(data);
@@ -189,8 +330,9 @@ function getGraphic(){
     })
 }
 function getTable(datos){
+    //console.log(datos);
     var tabla = $('#tableTolvas').DataTable({
-         dom: 'frtlp',
+         dom: 'frtlip',
          destroy: true,
          order:[[0, 'asc']],
          responsive: true,
@@ -279,7 +421,7 @@ function drawChart(data) {
                 fontSize: 12
             },
             minValue: 1,
-            maxValue: 100,
+            maxValue: 255,
             gridlines: {
                 count: 10
             }
