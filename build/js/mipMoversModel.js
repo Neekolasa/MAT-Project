@@ -69,7 +69,7 @@ $(document).ready(function(){
             var Data = JSON.parse(information);
             //console.log(Data);
             var tabla = $('#tableMoverCreated').DataTable({
-                    dom: 'frtlp',
+                    dom: 'frtlip',
                     destroy: true,
                     order:[[6, 'asc']],
                     responsive: true,
@@ -128,7 +128,7 @@ $(document).ready(function(){
     		var Data = JSON.parse(information);
     		//console.log(Data);
     		var tabla = $('#tableMoverCreated').DataTable({
-                    dom: 'frtlp',
+                    dom: 'frtlip',
                     destroy: true,
                     order:[[6, 'asc']],
                     responsive: true,
@@ -182,7 +182,7 @@ $(document).ready(function(){
             var Data = JSON.parse(information);
             //console.log(Data);
             var tabla = $('#tableMoverCreated').DataTable({
-                    dom: 'frtlp',
+                    dom: 'frtlip',
                     destroy: true,
                     order:[[6, 'asc']],
                     responsive: true,
@@ -233,7 +233,7 @@ $(document).ready(function(){
             var Data = JSON.parse(information);
             //console.log(Data);
             var tabla = $('#tableMoverCreated').DataTable({
-                    dom: 'frtlp',
+                    dom: 'frtlip',
                     destroy: true,
                     order:[[0, 'desc']],
                     responsive: true,
@@ -284,7 +284,7 @@ $(document).ready(function(){
             var Data = JSON.parse(information);
             //console.log(Data);
             var tabla = $('#tableMoverCreated').DataTable({
-                    dom: 'frtlp',
+                    dom: 'frtlip',
                     destroy: true,
                     order:[[0, 'desc']],
                     responsive: true,
