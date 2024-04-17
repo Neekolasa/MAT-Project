@@ -52,7 +52,7 @@
 			    Estatus,
 			    MAX(Fecha) AS Fecha
 			FROM NumeroSerieConRownum
-			WHERE RowNum = 1 AND DOH<'1.0'
+			WHERE RowNum = 1 AND DOH<='1.0'
 			GROUP BY PN, DOH,ETA,Mtype,Locacion, Estatus
 			ORDER BY Fecha ASC;
 		";
