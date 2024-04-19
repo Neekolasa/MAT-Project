@@ -47,6 +47,7 @@ include '../../connection.php';
 			";
 			
 			$sql_statement="UPDATE Smk_Inv SET Qty = '$cantidad_descontada' WHERE SN = '$material_sn'";
+			$sqlSNLO = "UPDATE ChkP_SNLO SET leftOver = '$cantidad_descontada' WHERE SN = '$material_sn'";
 
 			$sql_statement3= "INSERT INTO Smk_InvDet VALUES ('$material_sn','PARTIAL','$fecha','$badge','$material_pn')";
 			$sqlStatement_SAP = "
@@ -72,6 +73,7 @@ include '../../connection.php';
 				$sql_query1 = sqlsrv_query($conn,$sql_statement);
 				$sql_querySap = sqlsrv_query($conn,$sqlStatement_SAP);
 				$sql_query3 = sqlsrv_query($conn,$sql_statement3);
+				$sqlQuerySnlo = sqlsrv_query($conn,$sqlSNLO);
 				if ($sql_query1 == true AND $sql_query3== true) {
 					echo json_encode(array('response' => 'success'));
 				}
