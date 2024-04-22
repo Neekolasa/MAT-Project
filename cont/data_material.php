@@ -69,7 +69,7 @@
 				        ROW_NUMBER() OVER (PARTITION BY Smk_Inv.SN ORDER BY Smk_InvDet.ActionDate DESC) AS RowNum
 				    FROM 
 				        Smk_Inv 
-				    JOIN 
+				    JOIN  
 				        Smk_InvDet ON Smk_Inv.SN = Smk_InvDet.SN
 				    WHERE 
 				        Smk_Inv.PN='$data_material' 
