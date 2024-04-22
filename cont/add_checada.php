@@ -8,19 +8,21 @@
 	
 	$num_empleado = $_GET['num_empleado'];
 	if ($_GET['request']	 == 'register') {
-		$nombre_empleado = $_GET['nombre_empleado'];
+		$nombre_empleado = $_REQUEST['nombre_empleado'];
 		$salida_almuerzo = $_GET['salida_almuerzo'];
 		$salida_comida 	 = $_GET['salida_comida'];
 		$area_emp		 = $_GET['area_emp'];
+		$turno              = $_REQUEST['turno_checada'];
 
 		$sql_statement = "INSERT INTO SalidasPersonal 
-							VALUES('$num_empleado','$nombre_empleado','$area_emp',$salida_almuerzo,$salida_comida)";
+							VALUES('$num_empleado','$nombre_empleado','$area_emp',$salida_almuerzo,$salida_comida,'$turno')";
 		$sql_query = sqlsrv_query($conn,$sql_statement);
 		if ($sql_query == true) {
 			echo json_encode(array('response' => 'success'));
 		}
 		else{
-			echo json_encode(array('response' => 'fail'));
+			echo $sql_statement;
+			//echo json_encode(array('response' => 'fail'));
 		}
 	}
 	else if($_GET['request'] == 'delete'){

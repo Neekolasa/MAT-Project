@@ -77,7 +77,7 @@
 
 function obtenerTurno() {
     date_default_timezone_set('America/Monterrey');
-    $hora_actual = date("H:i");
+    $hora_actual = date("H:i",strtotime('-1 hour'));
 
     list($hora, $minuto) = explode(':', $hora_actual);
     $minutos_desde_medianoche = $hora * 60 + $minuto;
