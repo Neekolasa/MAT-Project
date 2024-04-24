@@ -1,1 +1,161 @@
-<?php goto yU4qB; R5t1S: if ($request == "\107\105\x54") { echo json_encode(getData("\62\x30\62\x33\55\x30\x38\x2d\61\x30")); } elseif ($request == "\103\x6c\x65\141\156") { cleanData(Date("\x59\55\155\55\144")); } goto aroGS; aroGS: function cleanData($date) { $serverName = "\x31\x30\x2e\x32\61\65\56\x31\x35\x36\x2e\62\x30\x33\x5c\x49\x46\x56\65\65"; $connectionInfo = array("\x44\x61\x74\141\x62\x61\163\x65" => "\123\115\123", "\125\111\104" => "\x73\x61", "\x50\127\x44" => "\x53\171\x73\164\x65\x6d\100\x64\155\61\156"); $conn = sqlsrv_connect($serverName, $connectionInfo); if ($conn === false) { die(print_r(sqlsrv_errors(), true)); } $sql_statement = "\x44\105\114\105\124\105\40\106\122\x4f\x4d\40\x41\x75\x64\x69\164\x6f\162\151\x61\123\154\x6f\143\x37\40\127\x48\x45\122\105\x20\123\x63\x61\156\x44\141\164\145\x20\x3c\x20\47{$date}\47"; $sql_query = sqlsrv_query($conn, $sql_statement); if ($sql_query == true) { echo json_encode(array("\x72\145\x73\x70\x6f\156\163\x65" => "\x73\x75\x63\143\x65\x73\163")); } else { echo json_encode(array("\162\x65\x73\160\157\156\x73\145" => "\146\x61\x69\154")); } } goto Fvdw5; XRTjk: function formatearString($string) { return $string; } goto fBf49; v0V2A: function isBlank($index, $data) { if (!isset($index)) { if ($data == "\x53\x4d\113") { return "\74\142\76\116\157\x20\123\164\157\162\145\144\x3c\57\142\76"; } else { return "\74\142\x3e\x4e\x6f\40\x44\141\x74\x61\74\x2f\x62\x3e"; } } else { if ($index === "\x41") { return "\x3c\x62\40\163\x74\171\x6c\x65\75\47\143\157\154\157\x72\x3a\147\x72\x65\x65\x6e\x3b\x27\x3e\x41\74\57\142\76"; } elseif ($index === "\x4f") { return "\x3c\142\40\163\x74\171\154\145\x3d\x27\143\157\154\157\x72\72\x6f\x72\x61\x6e\147\145\x3b\47\76\117\x3c\x2f\x62\x3e"; } elseif ($index === "\105") { return "\74\x62\40\163\164\171\x6c\145\x3d\47\x63\157\154\x6f\162\72\162\145\x64\x3b\x27\x3e\105\74\57\142\76"; } elseif ($index == '') { return "\74\142\x3e\x4e\157\40\x44\141\x74\x61\x3c\x2f\x62\x3e"; } else { return $index; } } } goto XRTjk; yU4qB: include "\56\x2e\x2f\x2e\x2e\x2f\143\x6f\x6e\156\x65\x63\x74\151\157\156\56\x70\x68\160"; goto v6GtN; v6GtN: $request = $_GET["\162\145\161\165\x65\x73\x74"]; goto R5t1S; fBf49: function formatBytes($bytes) { $units = array("\102", "\113\102", "\115\x42", "\107\x42", "\x54\x42"); $i = floor(log($bytes, 1024)); return round($bytes / pow(1024, $i), 2) . "\40" . $units[$i]; } goto qjahH; Fvdw5: function getData($date) { $serverName = "\61\x30\x2e\62\61\65\56\x31\65\x36\x2e\62\x30\63\x5c\111\106\126\65\65"; $connectionInfo = array("\104\x61\164\141\x62\x61\163\x65" => "\123\x4d\123", "\125\x49\x44" => "\163\141", "\120\127\104" => "\x53\x79\163\164\x65\x6d\100\x64\x6d\x31\156"); $conn = sqlsrv_connect($serverName, $connectionInfo); if ($conn === false) { die(print_r(sqlsrv_errors(), true)); } $fechaActual = new DateTime(); $fechaActual->sub(new DateInterval("\x50\61\x35\104")); $fechaAnterior = $fechaActual->format("\x59\55\x6d\x2d\144"); $sql_statement = "\x53\105\114\105\103\x54\x20\103\117\101\x4c\105\123\x43\105\x28\110\x79\x2e\121\164\171\x2c\x30\x29\x20\101\x73\x20\x51\164\x79\54\x20\103\x4f\101\x4c\105\123\103\x45\50\x48\171\56\x50\x4e\54\47\60\x27\51\x20\141\163\x20\115\x61\164\x65\162\x69\x61\x6c\54\x41\x75\56\123\145\162\x69\141\154\x4e\165\155\142\x65\162\x20\x41\x73\x20\x53\x65\162\151\145\x2c\40\101\165\x2e\x53\143\141\x6e\104\141\164\145\x2c\103\x4f\101\x4c\105\x53\103\105\50\101\165\x2e\133\x4c\157\143\141\x74\151\157\156\135\x2c\x27\116\157\40\144\141\164\x61\x27\51\x20\x61\x73\x20\x4c\x6f\x63\141\154\151\172\x61\x63\x69\x6f\x6e\x2c\x20\x63\x6f\x6e\x76\145\162\164\50\x56\x41\x52\103\110\101\122\x2c\40\101\165\x2e\123\143\141\156\x44\141\x74\145\51\40\141\163\40\x46\x65\x63\150\141\x2c\x43\x4f\101\x4c\105\123\103\x45\50\111\x6e\166\56\133\123\x74\141\164\x75\x73\135\54\x27\116\117\40\x53\x54\x4f\122\x45\x44\x27\x29\40\101\x73\x20\123\115\x4b\x5f\x53\164\x61\164\x75\x73\x20\x46\x52\x4f\115\40\101\165\x64\151\164\157\x72\x69\141\x53\154\x6f\143\x37\x20\x41\165\x20\x4c\x45\106\x54\x20\112\x4f\x49\x4e\x20\x52\x63\166\x5f\x53\116\x48\40\x48\171\40\117\x4e\40\x28\x41\x75\56\123\145\x72\x69\141\x6c\x4e\165\155\142\x65\x72\40\75\x20\110\x79\x2e\123\x4e\51\x20\114\x45\106\x54\x20\x4a\x4f\111\116\40\x53\x6d\x6b\x5f\111\156\166\40\111\x6e\166\40\x4f\116\x20\x28\101\165\x2e\x53\x65\x72\151\x61\x6c\116\165\155\142\145\x72\x20\75\x20\111\156\x76\56\123\x4e\51\40\x57\110\105\122\105\x20\x41\x75\56\x53\x63\141\x6e\104\141\x74\145\x20\76\x20\x27{$fechaAnterior}\47\x20\x4f\122\104\x45\122\40\x42\x59\40\x53\143\x61\156\104\141\x74\145\40\104\x45\123\x43"; $sql_query = sqlsrv_query($conn, $sql_statement); $dataAuditoria = array(); while ($data = sqlsrv_fetch_array($sql_query, SQLSRV_FETCH_ASSOC)) { $encodedData = array("\123\x65\x72\151\x65" => $data["\123\145\x72\x69\145"], "\x4d\x61\164\145\162\x69\141\154" => isBlank($data["\115\141\164\145\x72\x69\x61\154"], ''), "\x43\x61\x6e\x74\151\144\x61\x64" => round(isBlank($data["\121\164\171"], '')), "\x4c\x6f\143\x61\154\x69\x7a\141\143\151\157\156" => formatearString(isBlank($data["\114\157\143\141\154\x69\172\141\x63\x69\157\x6e"], '')), "\123\x4d\113\137\123\164\x61\164\x75\x73" => isBlank($data["\x53\x4d\x4b\137\123\x74\x61\x74\165\163"], "\x53\x4d\113"), "\x46\x65\x63\x68\x61" => isBlank($data["\106\145\143\x68\x61"], '')); $encodedData = array_map("\165\x74\x66\x38\x5f\145\156\x63\x6f\x64\145", $encodedData); array_push($dataAuditoria, $encodedData); } return $dataAuditoria; } goto v0V2A; qjahH: ?>
+<?php 
+//ini_set('memory_limit','-1');
+	include '../../connection.php';
+
+	$request = $_GET['request'];
+
+	if ($request == 'GET') {
+		
+		echo json_encode(getData('2023-08-10'));
+		//echo json_encode("dsdsdsdsd");
+		//getData('2023-08-10');
+	
+
+	}
+
+	elseif($request == 'Clean'){
+		cleanData(Date('Y-m-d'));
+	}
+
+	function cleanData($date){
+		$serverName = "10.215.156.203\IFV55";
+		$connectionInfo = array( 	"Database"=>"SMS",
+									"UID"=>"sa", 
+									"PWD"=>"System@dm1n"
+								);
+		$conn = sqlsrv_connect( $serverName, $connectionInfo);
+		if( $conn === false ) {
+		     die( print_r( sqlsrv_errors(), true));
+		}
+
+		//$sql_statement = "SELECT * FROM AuditoriaSloc7 WHERE ScanDate < '$date'";
+		$sql_statement = "DELETE FROM AuditoriaSloc7 WHERE ScanDate < '$date'";
+		
+		$sql_query = sqlsrv_query($conn,$sql_statement);
+
+		if ($sql_query == true) {
+
+			echo json_encode(['response' => 'success']);
+		}
+		else {
+			echo json_encode(['response' => 'fail']);
+		}
+	}
+
+	function getData($date){
+		$serverName = "10.215.156.203\IFV55";
+		$connectionInfo = array( 	"Database"=>"SMS",
+									"UID"=>"sa", 
+									"PWD"=>"System@dm1n"
+								);
+		$conn = sqlsrv_connect( $serverName, $connectionInfo);
+		if( $conn === false ) {
+		     die( print_r( sqlsrv_errors(), true));
+		}
+		$fechaActual = new DateTime();
+
+		// Restar 15 días
+		$fechaActual->sub(new DateInterval('P15D'));
+
+		// Obtener la nueva fecha en formato 'Y-m-d'
+		$fechaAnterior = $fechaActual->format('Y-m-d');
+
+		//$sql_statement = "SELECT SerialNumber as Serie,Smk_Inv.PN as Material,Smk_Inv.Qty,Location as Localizacion,Smk_Inv.Status as SMK_Status, convert(VARCHAR, ScanDate) as Fecha  FROM AuditoriaSloc7 LEFT JOIN Smk_Inv ON AuditoriaSloc7.SerialNumber = Smk_Inv.SN WHERE ScanDate = '$date'";
+		$sql_statement = "SELECT COALESCE(Hy.Qty,0) As Qty, COALESCE(Hy.PN,'0') as Material,Au.SerialNumber As Serie, Au.ScanDate,COALESCE(Au.[Location],'No data') as Localizacion, convert(VARCHAR, Au.ScanDate) as Fecha,COALESCE(Inv.[Status],'NO STORED') As SMK_Status FROM AuditoriaSloc7 Au LEFT JOIN Rcv_SNH Hy ON (Au.SerialNumber = Hy.SN) LEFT JOIN Smk_Inv Inv ON (Au.SerialNumber = Inv.SN) WHERE Au.ScanDate > '$fechaAnterior' ORDER BY ScanDate DESC";
+		
+		$sql_query = sqlsrv_query($conn,$sql_statement);
+		
+		$dataAuditoria = array();
+		
+		while ($data = sqlsrv_fetch_array($sql_query, SQLSRV_FETCH_ASSOC)) {
+		    $encodedData = array(
+		        "Serie" => $data['Serie'],
+		        "Material" => isBlank($data['Material'], ''),
+		        "Cantidad" => round(isBlank($data['Qty'], '')),
+		        "Localizacion" => (formatearString((isBlank($data['Localizacion'],'')))),
+		        "SMK_Status" => isBlank($data['SMK_Status'], 'SMK'),
+		        "Fecha" => isBlank($data['Fecha'], '')
+		    );
+
+		    // Codificar los caracteres en UTF-8 si es necesario
+		    $encodedData = array_map('utf8_encode', $encodedData);
+
+		    array_push($dataAuditoria, $encodedData);
+		}
+		
+		return ($dataAuditoria);
+	
+
+
+
+		
+
+	}
+
+	function isBlank($index,$data){
+		if (!isset($index)){
+			
+			if ($data == 'SMK')
+			{
+				return '<b>No Stored</b>';
+			}
+
+			else{
+				return "<b>No Data</b>";
+			}
+			
+		}
+		else{
+			if ($index === 'A')
+			{
+				return "<b style='color:green;'>A</b>";
+			}
+			elseif ($index === 'O')
+			{
+				return "<b style='color:orange;'>O</b>";
+			}
+			elseif ($index === 'E')
+			{
+				return "<b style='color:red;'>E</b>";
+			}
+			elseif ($index == "")
+			{
+				return "<b>No Data</b>";
+			}
+			else{
+				return $index;
+			}
+			
+		}
+
+	}
+	function formatearString($string){
+		return $string;
+	}
+	/*function formatearString($cadena) {
+    // Verificar si el string contiene solo números
+    if (ctype_digit($cadena)) {
+        // Añadir ceros a la izquierda y los guiones en las posiciones adecuadas
+        $parte1 = str_pad(substr($cadena, 0, 2), 2, '0', STR_PAD_LEFT);
+        $parte2 = str_pad(substr($cadena, 2, 2), 2, '0', STR_PAD_LEFT);
+        $parte3 = str_pad(substr($cadena, 4, 2), 2, '0', STR_PAD_LEFT);
+        $parte4 = str_pad(substr($cadena, 6, 2), 2, '0', STR_PAD_LEFT);
+        $cadenaFormateada = $parte1 . '-' . $parte2 . '-' . $parte3 . '-' . $parte4;
+        return $cadenaFormateada;
+    } else {
+        // Si el string no contiene solo números, devolverlo sin cambios
+        return $cadena;
+    }
+}*/
+function formatBytes($bytes) {
+    $units = array('B', 'KB', 'MB', 'GB', 'TB');
+    $i = floor(log($bytes, 1024));
+    return round($bytes / pow(1024, $i), 2) . ' ' . $units[$i];
+}
+
+// Obtener la memoria utilizada al inicio
+
+
+
+
+?>
