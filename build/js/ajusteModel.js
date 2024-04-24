@@ -1,31 +1,88 @@
 $(document).ready(function(){
 	getAdjustTable();
+	getAvailableAdjustTable();
+	getDifferentAdjustTable();
+	
+	timeout=setInterval(startAdjust, 60000);
 
-
+	$("#autoAdjustButton").on('click', function(event) {
+		event.preventDefault();
+		startAdjust();
+	});
+	
 });
+function clearAutoAdjust(val) {
+	if (val!=true) {
 
-function getAdjustTable(){
+	}
+    clearTimeout(timeout);
+    new PNotify({
+		        title: 'Exito',
+		        text: 'Se han detenido los ajustes automaticos',
+		        type: 'warning',
+		        styling: 'bootstrap3'
+		    });
+}
+function startAdjust(){
 	$.ajax({
 		url: 'cont/ajusteController.php',
 		type: 'POST',
-		data: {request: 'getAdjust'},
+		data: {request: 'setAdjust'},
 	})
 	.done(function(info) {
 		var Data = JSON.parse(info);
-		console.log(Data)
 		if (Data['response']=='success') {
 			new PNotify({
+		        title: 'Exito',
+		        text: 'Se han realizado los descuentos disponibles',
+		        type: 'success',
+		        styling: 'bootstrap3'
+		    });
+		    getAdjustTable();
+			getAvailableAdjustTable();
+			getDifferentAdjustTable();
+
+		}
+		else{
+			new PNotify({
+		        title: 'Error',
+		        text: 'Ha ocurrido un error en la consulta',
+		        type: 'error',
+		        styling: 'bootstrap3'
+		    });
+		}
+	})
+	.fail(function() {
+		new PNotify({
+		        title: 'Error',
+		        text: 'Ha ocurrido un error en la consulta',
+		        type: 'error',
+		        styling: 'bootstrap3'
+		    });
+	})
+}
+
+function getDifferentAdjustTable(){
+	$.ajax({
+		url: 'cont/ajusteController.php',
+		type: 'POST',
+		data: {request: 'getStdOver'},
+	})
+	.done(function(info) {
+		var Data = JSON.parse(info);
+		//console.log(Data)
+		if (Data['response']=='success') {
+			/*new PNotify({
 		        title: 'Rutas actualizadas',
 		        text: 'Se ha actualizado el estatus de las rutas',
 		        type: 'success',
 		        styling: 'bootstrap3'
-		    });
-		   // console.log(Data['data'][0]['ScanDate'].date)
-
-		    var tabla = $('#table_ajuste').DataTable({
+		    });*/
+		
+				var tabla = $('#table_diferencia').DataTable({
                     dom: 'frtlip',
                     destroy: true,
-                    order:[[5, 'asc']],
+                    order:[[4, 'desc']],
                     responsive: true,
                     buttons: [
                         {extend :'copy', text: 'Copiar al portapapeles',className:"btn btn-primary boton-margen",
@@ -40,8 +97,68 @@ function getAdjustTable(){
                         url: 'http://10.215.156.203/materiales/rutas/build/traduccion.json',
                     },
                     className: "center-block",
+                    columnDefs: [
+			            { className: "text-center", targets: "_all" } // Esto centrará todo el texto en las celdas
+			        ],
                     columns: [
                       {data: "PN"},
+                      { data:"SN"},
+                      { data: "StdPack" },
+                      { data: "QtyActual" },
+                      { data: "QtyDescuento" },
+                      { data: "Diferencia"}
+                     
+                    ]
+                });
+                tabla.rows().remove();
+                  
+               
+                tabla.rows.add(Data['data']);
+            }
+     })
+}
+function getAdjustTable(){
+	$.ajax({
+		url: 'cont/ajusteController.php',
+		type: 'POST',
+		data: {request: 'getAdjust'},
+	})
+	.done(function(info) {
+		var Data = JSON.parse(info);
+		//console.log(Data)
+		if (Data['response']=='success') {
+			new PNotify({
+		        title: 'Rutas actualizadas',
+		        text: 'Se ha actualizado el estatus de las rutas',
+		        type: 'success',
+		        styling: 'bootstrap3'
+		    });
+		   // console.log(Data['data'][0]['ScanDate'].date)
+
+		    var tabla = $('#table_ajuste').DataTable({
+                    dom: 'frtlip',
+                    destroy: true,
+                    order:[[3, 'desc']],
+                    responsive: true,
+                    buttons: [
+                        {extend :'copy', text: 'Copiar al portapapeles',className:"btn btn-primary boton-margen",
+                        attr:  {
+                                id: 'jkjk'
+                            }},
+                        {extend :'excel', text: 'Generar excel',className:"btn btn-primary text-light boton-margen"},
+                        {extend :'print', text: 'Imprimir documento',className:"btn btn-primary text-light boton-margen"},
+                        {extend :'pdf', text: 'Generar PDF',className:"btn btn-primary text-light boton-margen"}
+                    ],
+                    language: {
+                        url: 'http://10.215.156.203/materiales/rutas/build/traduccion.json',
+                    },
+                    className: "center-block",
+                    columnDefs: [
+			            { className: "text-center", targets: "_all" } // Esto centrará todo el texto en las celdas
+			        ],
+                    columns: [
+                      {data: "PN"},
+                      { data:"Locacion"},
                       { data: "ContType" },
                       { data: "TotalSinDescuento" },
                       { data: "UoM" },
@@ -63,4 +180,66 @@ function getAdjustTable(){
 		console.log("error");
 	})
 	
+}
+
+function getAvailableAdjustTable(){
+	$.ajax({
+		url: 'cont/ajusteController.php',
+		type: 'POST',
+		data: {request: 'getAvailableAdjust'},
+	})
+	.done(function(info) {
+		var Data = JSON.parse(info);
+		//console.log(Data)
+		if (Data['response']=='success') {
+			/*new PNotify({
+		        title: 'Rutas actualizadas',
+		        text: 'Se ha actualizado el estatus de las rutas',
+		        type: 'success',
+		        styling: 'bootstrap3'
+		    });*/
+		
+				var tabla = $('#table_disponible').DataTable({
+                    dom: 'frtlip',
+                    destroy: true,
+                    order:[[4, 'desc']],
+                    responsive: true,
+                    buttons: [
+                        {extend :'copy', text: 'Copiar al portapapeles',className:"btn btn-primary boton-margen",
+                        attr:  {
+                                id: 'jkjk'
+                            }},
+                        {extend :'excel', text: 'Generar excel',className:"btn btn-primary text-light boton-margen"},
+                        {extend :'print', text: 'Imprimir documento',className:"btn btn-primary text-light boton-margen"},
+                        {extend :'pdf', text: 'Generar PDF',className:"btn btn-primary text-light boton-margen"}
+                    ],
+                    language: {
+                        url: 'http://10.215.156.203/materiales/rutas/build/traduccion.json',
+                    },
+                    className: "center-block",
+                    columnDefs: [
+			            { className: "text-center", targets: "_all" } // Esto centrará todo el texto en las celdas
+			        ],
+                    columns: [
+                      {data: "PN"},
+                      { data:"SN"},
+                      { data: "stdPack" },
+                      { data: "QtyActual" },
+                      { data: "QtyDescuento" }
+                     
+                    ]
+                });
+                tabla.rows().remove();
+                  
+               
+                tabla.rows.add(Data['data']);
+			
+		}
+		else{
+
+		}
+	})
+	.fail(function() {
+		console.log("error");
+	})
 }
