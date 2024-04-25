@@ -455,7 +455,7 @@ function getTable(datos){
 function drawChart(data) {
     var options = {
         title: "Tolvas por Ruta y Vuelta",
-        height: 900,
+        height: 1500,
         //width:1600,
         annotations: {
             textStyle: {
@@ -488,8 +488,8 @@ function drawChart(data) {
         tooltip: { trigger: 'both' },
         hAxis: {
             title: 'Ruta',
-            slantedText: false, // Mostrar texto en ángulo
-            slantedTextAngle: 90,
+            slantedText: true, // Mostrar texto en ángulo
+            slantedTextAngle: -90,
             titleTextStyle: {
                 fontSize: 14
             },
