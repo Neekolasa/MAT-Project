@@ -1,1 +1,59 @@
-<?php goto rmHQD; ouD_H: while ($data = sqlsrv_fetch_array($sqlQuery, SQLSRV_FETCH_ASSOC)) { $id++; $description = preg_replace("\57\133\136\x61\x2d\172\x41\x2d\132\x30\55\71\x20\135\x2f", '', $data["\104\x65\163\143\162\151\160\164\151\157\156"]); array_push($data_info, array("\120\141\x72\164\116\x75\155\142\x65\x72" => $data["\x50\141\x72\164\116\165\155\142\x65\162"], "\120\141\162\x74\x4e\165\x6d\142\145\x72\x32" => $data["\x50\141\x72\x74\116\165\155\x62\x65\162"], "\x44\x65\163\x63\x72\151\160\164\x69\x6f\156" => $description, "\115\x74\x79\160\x65" => $data["\115\164\x79\x70\x65"], "\125\117\115" => $data["\x55\117\x4d"], "\101\120\x57" => $data["\x41\120\127"], "\x52" => $data["\122"], "\x53" => $data["\123"], "\114" => $data["\114"], "\x50" => $data["\120"], "\x4c\x6f\143\141\x74\151\157\156" => $data["\x4c\157\143\141\164\x69\157\156"])); } goto sYYST; sYYST: echo json_encode($data_info); goto t2kar; OZ2Kd: $sql = "\xa\11\123\105\x4c\105\x43\x54\x20\144\141\x74\141\137\151\x6e\x76\x65\156\164\x61\162\151\x6f\56\x50\141\x72\x74\116\165\x6d\x62\x65\x72\54\40\12\40\40\40\40\40\40\x20\40\x64\x61\x74\141\137\151\x6e\x76\x65\x6e\x74\141\x72\151\157\56\x50\x61\162\164\x4e\165\x6d\x62\x65\x72\x32\54\12\11\x9\x64\141\x74\x61\x5f\151\156\166\145\x6e\164\141\x72\151\x6f\x2e\104\145\x73\143\x72\x69\160\x74\151\x6f\156\x2c\xa\40\40\40\x20\x20\x20\x20\40\x64\x61\x74\x61\137\x69\156\x76\x65\x6e\x74\x61\x72\x69\x6f\x2e\115\164\171\160\145\54\12\x20\x20\40\40\40\40\40\x20\x64\x61\164\x61\137\x69\x6e\x76\x65\x6e\x74\x61\162\x69\157\56\x55\x4f\x4d\x2c\12\40\40\x20\40\x20\40\x20\x20\144\141\164\141\137\x69\x6e\x76\145\x6e\164\x61\162\x69\x6f\56\101\120\x57\54\xa\40\40\x20\x20\x20\40\40\40\x49\123\116\125\114\x4c\x28\x50\106\x45\x50\137\x4d\x61\x70\x2e\x52\x2c\x20\60\51\40\x41\123\x20\x52\54\xa\40\x20\x20\x20\40\x20\40\40\x49\x53\116\125\x4c\x4c\50\x50\106\x45\120\x5f\x4d\x61\160\56\123\x2c\40\60\51\x20\x41\x53\x20\x53\54\12\x20\x20\40\40\40\x20\40\x20\111\x53\x4e\x55\114\114\50\x50\x46\x45\120\x5f\x4d\141\x70\x2e\114\54\40\60\51\x20\101\123\40\x4c\54\xa\40\x20\x20\x20\40\40\40\x20\x49\123\x4e\x55\114\114\x28\120\106\105\120\x5f\x4d\x61\x70\56\x50\x2c\x20\x30\51\40\x41\123\x20\x50\x2c\12\x20\40\40\x20\x20\40\x20\x20\x49\123\116\x55\x4c\114\50\120\106\105\x50\137\115\141\x70\56\x52\x2c\40\60\x29\x20\x2b\40\x49\x53\x4e\125\114\114\50\x50\x46\x45\x50\137\115\141\x70\x2e\x53\54\x20\60\51\x20\53\40\111\x53\116\125\x4c\114\50\x50\x46\x45\x50\137\115\141\160\x2e\114\54\x20\x30\51\40\x2b\40\x49\x53\116\x55\x4c\x4c\50\x50\106\x45\120\x5f\115\141\160\x2e\x50\54\x20\x30\x29\x20\x41\123\x20\x4c\157\143\141\164\151\157\156\xa\x46\x52\117\115\x20\x64\141\164\x61\x5f\151\156\x76\145\x6e\164\x61\162\151\x6f\12\114\105\106\124\40\112\x4f\111\x4e\40\x50\106\x45\x50\137\115\141\160\40\117\116\x20\x64\141\164\x61\137\151\x6e\166\145\156\x74\x61\x72\x69\157\56\120\x61\162\x74\116\165\155\x62\x65\x72\62\40\75\40\120\x46\105\120\x5f\115\141\160\x2e\x50\x4e"; goto r662k; X82Mg: $data_info = array(); goto wefR3; rmHQD: include "\56\x2e\x2f\x2e\x2e\x2f\x63\x6f\x6e\x6e\145\143\x74\x69\157\156\56\160\x68\x70"; goto OZ2Kd; r662k: $sqlQuery = sqlsrv_query($conn, $sql); goto X82Mg; wefR3: $id = 0; goto ouD_H; t2kar: ?>
+<?php
+	include '../../connection.php';
+	
+
+	$sql = "
+	SELECT data_inventario.PartNumber, 
+        data_inventario.PartNumber2,
+		data_inventario.Description,
+        data_inventario.Mtype,
+        data_inventario.UOM,
+        data_inventario.APW,
+        ISNULL(PFEP_Map.R, 0) AS R,
+        ISNULL(PFEP_Map.S, 0) AS S,
+        ISNULL(PFEP_Map.L, 0) AS L,
+        ISNULL(PFEP_Map.P, 0) AS P,
+        ISNULL(PFEP_Map.R, 0) + ISNULL(PFEP_Map.S, 0) + ISNULL(PFEP_Map.L, 0) + ISNULL(PFEP_Map.P, 0) AS Location
+FROM data_inventario
+LEFT JOIN PFEP_Map ON data_inventario.PartNumber2 = PFEP_Map.PN";
+
+/*COMPLETE SQL FILLED BY DATA IN PFEP_MasterV2
+$sql = "	SELECT data_inventario.PartNumber, 
+        data_inventario.PartNumber2,
+		PFEP_MasterV2.Descrip as Description,
+        PFEP_MasterV2.MType,
+        PFEP_MasterV2.UOM,
+        data_inventario.APW,
+        ISNULL(PFEP_Map.R, 0) AS R,
+        ISNULL(PFEP_Map.S, 0) AS S,
+        ISNULL(PFEP_Map.L, 0) AS L,
+        ISNULL(PFEP_Map.P, 0) AS P,
+        ISNULL(PFEP_Map.R, 0) + ISNULL(PFEP_Map.S, 0) + ISNULL(PFEP_Map.L, 0) + ISNULL(PFEP_Map.P, 0) AS Location
+FROM data_inventario
+LEFT JOIN PFEP_Map ON data_inventario.PartNumber2 = PFEP_Map.PN JOIN PFEP_MasterV2 ON data_inventario.PartNumber = PFEP_MasterV2.PN";*/
+
+	$sqlQuery = sqlsrv_query($conn, $sql);
+
+	$data_info = array(); // Inicializamos un arreglo para almacenar los datos
+	$id = 0;
+	while ($data = sqlsrv_fetch_array($sqlQuery, SQLSRV_FETCH_ASSOC)) {
+		$id++;
+		$description = preg_replace('/[^a-zA-Z0-9 ]/', '', $data['Description']);
+		array_push($data_info,array(//'ID'=>$id,
+									'PartNumber'=>$data['PartNumber'],
+									'PartNumber2'=>$data['PartNumber'],
+									'Description'=>$description,
+									'Mtype'=>($data['Mtype']),
+									'UOM'=>$data['UOM'],
+									'APW'=>$data['APW'],
+									'R'=>$data['R'],
+									'S'=>$data['S'],
+									'L'=>$data['L'],
+									'P'=>$data['P'],
+									'Location'=>$data['Location']));
+	    //$data_info[] = $data; // Agregamos cada conjunto de datos al arreglo
+	}
+
+	echo json_encode($data_info);
+	
+?>

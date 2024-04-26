@@ -1,1 +1,38 @@
-<?php goto mPUSd; xMYgz: $num_material = strtoupper($_GET["\x6e\x75\155\x5f\x6d\141\x74\145\162\151\x61\154"]); goto scQZ5; t67XE: $sql_request = "\xa\x9\111\x46\40\116\117\x54\40\x45\x58\x49\123\124\x53\x20\x28\x53\105\x4c\105\103\x54\40\61\x20\x46\122\117\x4d\40\143\141\x6c\143\x75\x6c\x6f\137\143\141\142\x6c\x65\x20\127\x48\x45\x52\x45\x20\x4e\x50\x20\75\40\x27{$num_material}\47\x29\40\xa\x9\102\105\107\x49\116\12\x20\x20\x20\x20\111\x4e\x53\x45\122\x54\40\x49\116\x54\x4f\40\x63\141\x6c\143\165\154\x6f\x5f\143\x61\142\x6c\145\50\x4e\x50\x2c\104\x45\123\103\x52\x49\x50\124\111\117\116\x2c\x55\x4f\115\x2c\x53\124\104\x50\101\103\x4b\x2c\115\124\x59\x50\105\x2c\101\120\127\51\x20\126\x41\x4c\125\x45\123\x20\x28\xa\11\11\x9\x9\47{$num_material}\47\54\xa\11\11\x9\x9\x27{$descripcion_material}\47\54\12\x9\11\11\11\x27{$medida_material}\x27\x2c\xa\11\x9\x9\x9\x27{$std_pack}\x27\54\12\x9\x9\x9\x9\x27{$mtype_material}\x27\54\12\11\x9\11\x9\x27{$awp_material}\x27\x29\x3b\xa\x9\x45\x4e\104\12\x9\105\x4c\123\x45\xa\11\102\105\107\111\x4e\12\11\40\x20\40\x20\x50\122\x49\116\124\40\x27\x66\141\154\x73\145\47\x3b\12\x9\105\116\x44"; goto H5yo8; nRpvG: $mtype_material = strtoupper($_GET["\155\164\x79\160\145\137\155\141\164\x65\162\151\x61\x6c"]); goto q86it; gvnKS: $medida_material = $_GET["\x6d\x65\144\x69\144\x61\137\155\141\164\x65\162\151\x61\154"]; goto haTdt; Xysdw: if ($sql_query) { echo true; } else { echo false; } goto x5_Gp; mPUSd: include "\56\x2e\x2f\x2e\x2e\57\143\x6f\x6e\156\x65\x63\x74\151\157\x6e\56\160\150\160"; goto xMYgz; haTdt: $std_pack = $_GET["\x73\164\x64\x5f\x70\141\143\153"]; goto nRpvG; H5yo8: $sql_query = sqlsrv_query($conn, $sql_request); goto Xysdw; q86it: $descripcion_material = strtoupper($_GET["\x64\145\163\x63\162\151\x70\x63\x69\157\156\137\x6d\x61\x74\x65\x72\151\141\154"]); goto t67XE; scQZ5: $awp_material = $_GET["\141\167\160\x5f\x6d\141\x74\145\162\x69\x61\154"]; goto gvnKS; x5_Gp: ?>
+<?php 
+	include '../../connection.php';
+	$num_material 		= strtoupper($_GET['num_material']);
+	$awp_material 		= $_GET['awp_material'];
+	$medida_material 	= $_GET['medida_material'];
+	$std_pack 			= $_GET['std_pack'];
+	$mtype_material 	= strtoupper($_GET['mtype_material']);
+	$descripcion_material = strtoupper($_GET['descripcion_material']);
+
+	$sql_request = "
+	IF NOT EXISTS (SELECT 1 FROM calculo_cable WHERE NP = '$num_material') 
+	BEGIN
+    INSERT INTO calculo_cable(NP,DESCRIPTION,UOM,STDPACK,MTYPE,APW) VALUES (
+				'$num_material',
+				'$descripcion_material',
+				'$medida_material',
+				'$std_pack',
+				'$mtype_material',
+				'$awp_material');
+	END
+	ELSE
+	BEGIN
+	    PRINT 'false';
+	END";
+
+
+	$sql_query = sqlsrv_query($conn,$sql_request);
+
+	if ($sql_query) {
+		echo true;
+	}
+	else {
+		echo false;
+	}
+	
+
+
+?>

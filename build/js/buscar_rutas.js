@@ -1,2 +1,39 @@
-//ESTE CODIGO ESTA ENCRIPTADO DE ACUERDO A LOS DERECHOS DE PROPIEDAD INTELECTUAL DEL Ing Joel Andrade Enriquez A FIN DE EVITAR LA REPRODUCCION TOTAL O PARCIAL DEL CODIGO DESARROLLADO
-function _0x5547(_0x2d3567,_0x310a59){var _0x330163=_0x3301();return _0x5547=function(_0x55473c,_0x53dd11){_0x55473c=_0x55473c-0x18a;var _0x452e4b=_0x330163[_0x55473c];return _0x452e4b;},_0x5547(_0x2d3567,_0x310a59);}function _0x3301(){var _0x2fe198=['8711792INASRd','YYYY-MM-DD','8806994hTqkFV','138zBdMUA','#turno','963wpgdwL','click','val','startDate','00:10','format','173630EgSOrf','1382327clWCFv','daterangepicker','10440ngizpx','log','endDate','GET','06:00','#buscar_ruta','ready','6738705EZihbe','ajax','2087374nJKVOf','done','preventDefault','15:36'];_0x3301=function(){return _0x2fe198;};return _0x3301();}var _0x25ffe1=_0x5547;(function(_0x38db6c,_0x2f9367){var _0x54b086=_0x5547,_0x205556=_0x38db6c();while(!![]){try{var _0x2738de=-parseInt(_0x54b086(0x19e))/0x1+-parseInt(_0x54b086(0x18e))/0x2+parseInt(_0x54b086(0x197))/0x3*(parseInt(_0x54b086(0x1a0))/0x4)+-parseInt(_0x54b086(0x19d))/0x5*(-parseInt(_0x54b086(0x195))/0x6)+parseInt(_0x54b086(0x194))/0x7+parseInt(_0x54b086(0x192))/0x8+-parseInt(_0x54b086(0x18c))/0x9;if(_0x2738de===_0x2f9367)break;else _0x205556['push'](_0x205556['shift']());}catch(_0x22a501){_0x205556['push'](_0x205556['shift']());}}}(_0x3301,0xc57a1),$(document)[_0x25ffe1(0x18b)](function(){var _0x56428f=_0x25ffe1;$(_0x56428f(0x18a))['on'](_0x56428f(0x198),function(_0x4db33f){var _0x202c77=_0x56428f;_0x4db33f[_0x202c77(0x190)]();var _0x1fed3c='',_0x33cfb9='';if($(_0x202c77(0x196))[_0x202c77(0x199)]()=='A')_0x1fed3c=_0x202c77(0x1a4),_0x33cfb9=_0x202c77(0x191);else $(_0x202c77(0x196))[_0x202c77(0x199)]()=='B'?(_0x1fed3c='15:36',_0x33cfb9=_0x202c77(0x19b)):(_0x1fed3c='06:00',_0x33cfb9=_0x202c77(0x191));var _0x4f9f37={'fecha_inicio':$('#reportrange_right')['data'](_0x202c77(0x19f))[_0x202c77(0x19a)]['format'](_0x202c77(0x193)),'fecha_fin':$('#reportrange_right')['data'](_0x202c77(0x19f))[_0x202c77(0x1a2)][_0x202c77(0x19c)](_0x202c77(0x193)),'turno_inicio':_0x1fed3c,'turno_fin':_0x33cfb9};$[_0x202c77(0x18d)]({'url':'cont/ver_mercado.php','type':_0x202c77(0x1a3),'data':_0x4f9f37})[_0x202c77(0x18f)](function(_0x2fe4c2){}),console[_0x202c77(0x1a1)](_0x4f9f37);});}));
+$(document).ready(function(){
+	$('#buscar_ruta').on('click',function(e){
+		e.preventDefault();
+		
+		var turno_inicio = "";
+		var turno_fin = "";
+		if ($('#turno').val() == "A") {
+			turno_inicio = "06:00";
+			turno_fin = "15:36";
+		}
+		else if ($('#turno').val() == "B") {
+			turno_inicio = "15:36";
+			turno_fin = "00:10";
+		}
+		else
+		{
+			turno_inicio = "06:00";
+			turno_fin = "15:36";
+		}
+		var datos = {
+			fecha_inicio: $('#reportrange_right').data('daterangepicker').startDate.format('YYYY-MM-DD'),
+			fecha_fin: $('#reportrange_right').data('daterangepicker').endDate.format('YYYY-MM-DD'),
+			turno_inicio: turno_inicio,
+			turno_fin: turno_fin
+
+		}
+
+		$.ajax({
+			url: 'cont/ver_mercado.php',
+			type: 'GET',
+			data: datos,
+		}).done(function(datos){
+
+
+		});
+		console.log(datos);
+
+	});
+});

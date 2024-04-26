@@ -1,1 +1,22 @@
-<?php goto xLp0y; X4UEH: echo json_encode(array("\x69\x70" => $ip, "\x75\x72\154" => $url)); goto ZoLfO; D6YPp: header("\x43\157\156\x74\x65\x6e\164\55\x74\171\x70\145\72\40\141\160\x70\x6c\151\143\x61\x74\x69\x6f\x6e\57\x6a\x73\157\x6e"); goto KmYRA; xLp0y: header("\x43\x61\x63\x68\x65\x2d\103\x6f\x6e\164\x72\x6f\x6c\72\40\x6e\x6f\x2d\x63\141\x63\150\x65\54\x20\x6d\x75\163\164\55\162\x65\x76\141\x6c\151\144\x61\x74\145"); goto y8K_n; xNcFy: $url = $_SERVER["\x48\x54\x54\120\x5f\x48\117\x53\124"] . $_SERVER["\122\x45\121\x55\105\x53\x54\137\125\x52\111"]; goto X4UEH; y8K_n: header("\105\170\x70\x69\162\x65\x73\72\x20\x4d\x6f\156\x2c\x20\x32\x36\x20\x4a\165\154\x20\61\71\x39\x37\40\60\65\72\60\60\x3a\x30\x30\x20\x47\115\124"); goto D6YPp; KmYRA: if (!empty($_SERVER["\x48\x54\x54\x50\x5f\103\114\111\105\116\x54\137\111\x50"])) { $ip = $_SERVER["\110\x54\x54\x50\x5f\x43\114\111\x45\x4e\124\137\111\x50"]; } elseif (!empty($_SERVER["\x48\124\x54\120\x5f\x58\137\x46\117\x52\127\101\x52\104\105\104\x5f\x46\117\x52"])) { $ip = $_SERVER["\110\124\x54\120\137\130\x5f\x46\117\122\x57\x41\x52\104\105\x44\x5f\x46\x4f\122"]; } else { $ip = $_SERVER["\122\105\115\117\x54\x45\137\101\x44\x44\122"]; } goto xNcFy; ZoLfO: ?>
+<?php
+/* getip.php */
+header('Cache-Control: no-cache, must-revalidate');
+header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+header('Content-type: application/json');
+
+if (!empty($_SERVER['HTTP_CLIENT_IP']))
+{
+  $ip=$_SERVER['HTTP_CLIENT_IP'];
+}
+elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
+{
+  $ip=$_SERVER['HTTP_X_FORWARDED_FOR'];
+}
+else
+{
+  $ip=$_SERVER['REMOTE_ADDR'];
+}
+$url = $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
+echo json_encode(array('ip' => $ip,
+                        'url' => $url));
+?>

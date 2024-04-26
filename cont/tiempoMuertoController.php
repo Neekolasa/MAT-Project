@@ -1,1 +1,522 @@
-<?php goto RqFXd; RqFXd: include "\56\56\x2f\56\x2e\x2f\x63\157\x6e\x6e\x65\143\x74\x69\x6f\x6e\x2e\160\x68\160"; goto IReqw; lIWyb: if (isset($_GET["\147\x65\x74\x54\165\x72\156\157"])) { echo determinarTurno(); } goto RSHHL; bNB59: if ($request == "\x61\144\144\124\x4d") { $codigo = $_REQUEST["\x63\x6f\x64\151\147\157"]; $minutoTM = $_REQUEST["\x6d\151\x6e\165\x74\157\124\x4d"]; $motivo = $_REQUEST["\155\x6f\x74\151\166\157"]; $personasAfectadas = $_REQUEST["\160\x65\x72\x73\x6f\156\x61\x73\x41\x66\x65\143\164\141\144\141\x73"]; $comentarios = $_REQUEST["\x63\157\155\145\156\x74\x61\162\x69\x6f\x73"]; $fecha = $_REQUEST["\146\x65\x63\150\x61"]; $turno = $_REQUEST["\x74\165\x72\x6e\157"]; if ($turno == "\x41") { $fecha = date("\131\55\155\55\144\40\60\67\72\60\x30\x3a\60\x30\x2e\60\x30\60", strtotime($fecha)); } else { $fecha = date("\x59\55\155\x2d\x64\x20\61\x36\x3a\x30\60\x3a\x30\60\56\x30\x30\60", strtotime($fecha)); } $sql_request = "\x49\116\x53\105\x52\124\40\x49\x4e\124\117\x20\162\165\164\141\163\124\151\145\x6d\x70\157\115\165\145\x72\164\157\x20\50\x63\x6f\144\151\x67\x6f\x2c\x20\x6d\x69\156\165\164\157\x54\x4d\x2c\x20\x6d\157\164\x69\x76\157\x2c\40\x70\x65\x72\x73\x6f\156\x61\x73\x41\x66\x65\x63\x74\141\x64\x61\x73\x2c\x20\x63\157\x6d\145\x6e\164\141\162\x69\157\x73\x2c\40\x66\x65\143\150\x61\54\40\x74\x75\162\156\x6f\51\xa\x9\x9\126\101\x4c\125\105\x53\40\x28\x27{$codigo}\47\x2c\x20\47{$minutoTM}\x27\x2c\x20\x27{$motivo}\x27\x2c\x20\x27{$personasAfectadas}\47\54\x20\47{$comentarios}\47\54\x20\47{$fecha}\47\x2c\40\47{$turno}\47\x29"; $sql_query = sqlsrv_query($conn, $sql_request); if ($sql_query == true) { echo json_encode(array("\162\x65\x73\160\157\x6e\x73\x65" => "\163\x75\143\143\x65\x73\163")); } else { echo json_encode(array("\162\x65\163\x70\157\x6e\163\145" => "\146\141\151\x6c")); } } elseif ($request == "\x67\x65\x74\124\115") { $turno = determinarTurno(); if ($turno = "\x41") { $fecha = date("\x59\55\155\55\x64"); $sql_request = "\x53\x45\114\105\x43\124\40\x2a\40\x46\122\x4f\x4d\x20\162\165\164\141\163\x54\151\145\x6d\x70\x6f\x4d\x75\145\162\164\157\x20\127\x48\105\x52\105\40\x74\x75\x72\156\x6f\x20\x3d\40\x27\x41\x27\40\x2d\x2d\x20\101\x4e\104\40\146\145\x63\x68\x61\40\102\x45\124\x57\x45\105\x4e\40\x27{$fecha}\x20\60\66\72\x30\x30\x27\x20\101\116\x44\40\47{$fecha}\x20\x31\65\x3a\63\66\47"; } else { $fecha = date("\131\x2d\155\x2d\144", strtotime($fecha . "\x20\x2b\x31\x20\x64\141\171")); $sql_request = "\x53\105\x4c\x45\x43\124\40\x2a\40\x46\x52\117\x4d\x20\162\165\x74\x61\163\x54\x69\x65\155\160\157\x4d\165\x65\x72\164\x6f\x20\x57\110\x45\x52\105\x20\164\165\162\x6e\x6f\x20\x3d\40\x27\102\47\40\55\x2d\40\x41\x4e\x44\x20\146\145\x63\x68\141\40\102\x45\x54\127\105\x45\116\40\47{$fecha}\x20\x31\65\x3a\63\x37\47\40\101\116\x44\40\x27{$fecha}\x20\x30\72\x31\x35\x27"; } $sql_query = sqlsrv_query($conn, $sql_request); $data = array(); while ($dato = sqlsrv_fetch_array($sql_query, SQLSRV_FETCH_ASSOC)) { $fechaFormateada = $dato["\146\x65\x63\150\141"]->format("\x59\55\x6d\55\144"); array_push($data, array("\x63\157\x64\x69\x67\x6f" => $dato["\x63\x6f\144\x69\x67\157"], "\155\x69\156\x75\164\x6f\124\115" => $dato["\x6d\x69\x6e\165\164\157\124\x4d"], "\x6d\x6f\x74\x69\x76\x6f" => str_replace("\x5f", "\x20", $dato["\155\x6f\164\x69\166\157"]), "\x70\x65\x72\x73\x6f\x6e\x61\163\x41\146\x65\143\164\x61\144\141\x73" => $dato["\160\x65\x72\163\x6f\156\141\x73\101\146\145\143\164\141\x64\141\163"], "\143\x6f\155\x65\156\164\141\x72\x69\x6f\x73" => $dato["\x63\x6f\x6d\145\156\x74\x61\x72\x69\157\x73"], "\146\x65\x63\x68\141" => $fechaFormateada)); } echo json_encode($data); } elseif ($request == "\147\145\x74\115\157\x6e\x74\150") { $sql_request = "\x53\105\114\105\103\x54\12\11\11\x9\11\11\x9\x20\x20\40\40\x59\x45\101\x52\50\x66\x65\143\150\x61\51\40\101\123\40\101\x6e\151\157\54\xa\x9\x9\x9\11\11\x9\40\x20\40\x20\115\x4f\x4e\124\x48\x28\x66\145\x63\150\141\x29\40\x41\x53\x20\x4d\x65\x73\54\xa\x9\x9\x9\x9\x9\x9\40\x20\x20\40\x44\101\124\x45\116\x41\115\x45\50\x4d\x4f\116\x54\x48\54\x20\x66\x65\x63\x68\x61\51\x20\101\x53\40\116\157\155\142\162\145\x4d\x65\x73\54\12\11\x9\11\11\11\11\x20\40\40\x20\123\x55\x4d\50\x43\x41\123\124\50\x6d\x69\156\165\164\157\x54\115\x20\x41\x53\x20\111\116\124\51\51\40\x41\x53\40\x53\x75\155\x61\x74\x6f\x72\x69\x61\x4d\x69\156\x75\x74\x6f\163\12\x9\x9\11\11\11\11\x46\122\x4f\115\12\x9\11\x9\11\x9\11\40\40\40\x20\162\165\x74\141\x73\x54\x69\x65\x6d\x70\x6f\x4d\x75\x65\x72\164\157\x20\127\x48\x45\122\105\xa\x9\x9\x9\11\11\x9\x20\40\40\40\131\105\x41\x52\x28\146\x65\x63\150\141\x29\40\75\x20\131\x45\101\x52\50\107\105\124\x44\x41\x54\x45\x28\51\51\12\11\x9\x9\x9\11\x9\x47\122\117\x55\x50\x20\102\x59\12\x9\x9\x9\11\x9\11\40\40\x20\40\131\x45\x41\x52\x28\146\x65\x63\150\141\51\54\12\x9\11\11\11\11\x9\x20\40\40\x20\x4d\x4f\x4e\x54\x48\x28\146\x65\143\150\141\51\54\12\x9\11\11\11\11\x9\x20\x20\x20\40\x44\101\124\x45\116\x41\115\105\50\115\x4f\x4e\124\x48\54\40\146\145\143\150\x61\x29\xa\11\11\11\11\11\x9\x4f\122\104\105\x52\40\102\x59\40\115\x4f\x4e\x54\x48\50\146\145\x63\x68\x61\51\12\11\11\x9\11\x9\11"; $sql_query = sqlsrv_query($conn, $sql_request); $datos = array(); while ($data = sqlsrv_fetch_array($sql_query, SQLSRV_FETCH_ASSOC)) { array_push($datos, array("\115\x65\163" => obtenerMes($data["\116\x6f\x6d\142\162\x65\x4d\145\163"]), "\115\x69\x6e\165\164\157\163" => $data["\123\x75\155\141\164\157\162\x69\141\115\x69\156\x75\164\x6f\163"])); } echo json_encode($datos); } elseif ($request == "\x67\145\164\131\145\141\x72") { $sql_request = "\x53\x45\x4c\x45\x43\124\xa\11\x9\x9\x9\11\x9\x20\x20\x20\x20\x59\105\x41\x52\50\146\x65\143\150\141\x29\40\101\x53\40\x41\x6e\151\157\x2c\xa\11\11\x9\x9\x9\x9\40\x20\40\40\123\125\x4d\x28\103\x41\x53\x54\x28\x6d\x69\156\x75\x74\157\x54\x4d\x20\101\123\x20\x49\116\124\x29\x29\x20\x41\x53\40\123\165\155\x61\164\157\162\151\141\115\151\x6e\165\164\157\163\xa\x9\x9\x9\11\x9\x9\106\122\x4f\x4d\12\x9\x9\11\x9\x9\11\40\x20\x20\40\162\x75\x74\x61\163\124\151\145\155\160\x6f\x4d\165\x65\162\x74\x6f\x20\127\x48\x45\x52\x45\12\x9\x9\11\11\x9\x9\x20\x20\40\40\x59\x45\101\122\x28\146\x65\143\x68\x61\51\40\75\40\x59\x45\x41\122\x28\x47\x45\x54\104\101\x54\x45\50\51\x29\xa\x9\x9\11\x9\x9\x9\107\x52\117\125\x50\40\102\131\12\x9\x9\11\x9\11\11\40\40\x20\40\131\x45\101\122\50\146\x65\x63\x68\141\x29\xa\xa\11\x9\x9\11\x9\x9\117\x52\104\105\122\40\102\131\40\131\105\101\122\50\146\145\x63\150\x61\51"; $sql_query = sqlsrv_query($conn, $sql_request); $datos = array(); while ($data = sqlsrv_fetch_array($sql_query, SQLSRV_FETCH_ASSOC)) { array_push($datos, array("\131\145\141\162" => $data["\101\x6e\151\157"], "\115\151\156\165\164\157\163" => $data["\123\165\x6d\x61\x74\157\x72\x69\141\115\x69\156\x75\x74\157\163"])); } echo json_encode($datos); } elseif ($request == "\x67\145\164\127\145\x65\x6b") { $sql_request = "\x53\105\114\105\103\124\xa\x9\11\11\11\11\11\x20\40\40\x20\131\105\101\x52\50\146\x65\x63\150\x61\x29\40\101\123\x20\x41\x6e\x69\157\54\12\11\11\11\x9\x9\x9\x20\40\x20\40\x28\x44\x41\x54\105\120\101\122\x54\x28\x57\x45\105\x4b\x44\101\131\54\x20\x66\x65\x63\150\141\x29\40\53\40\x40\100\x44\x41\x54\105\106\x49\122\123\124\40\x2d\x20\62\51\40\x25\x20\x37\x20\x2b\x20\x31\40\x41\x53\40\x44\x69\141\123\145\155\141\156\141\x2c\12\x9\x9\x9\x9\x9\11\x20\40\x20\40\x44\101\x54\105\x4e\101\115\105\x28\x57\105\105\113\x44\101\x59\x2c\x20\146\145\x63\150\x61\x29\x20\101\x53\x20\116\157\x6d\142\162\145\x44\151\x61\x53\x65\155\141\x6e\141\x2c\12\x9\x9\x9\11\x9\x9\40\x20\x20\x20\x53\125\x4d\50\103\x41\x53\124\x28\x6d\x69\156\x75\164\157\124\115\x20\x41\x53\x20\x49\x4e\x54\51\51\40\101\123\x20\x53\165\x6d\x61\164\x6f\162\x69\141\x4d\151\x6e\x75\164\x6f\163\xa\x9\11\x9\x9\11\11\x46\x52\x4f\x4d\xa\11\x9\x9\x9\x9\11\40\40\x20\x20\x72\x75\x74\x61\x73\124\x69\x65\155\x70\157\x4d\x75\145\x72\164\157\xa\11\11\x9\11\11\11\127\110\x45\122\105\xa\11\x9\x9\x9\x9\x9\x20\x20\x20\x20\131\x45\x41\x52\x28\146\x65\x63\x68\x61\x29\40\x3d\x20\x59\x45\101\x52\x28\107\x45\x54\104\x41\124\105\x28\51\51\12\x9\x9\x9\11\x9\11\x47\122\117\x55\120\40\102\131\xa\x9\11\11\x9\x9\11\40\40\40\40\x59\105\x41\x52\50\146\x65\143\x68\141\x29\54\12\11\11\11\11\x9\11\x20\40\40\x20\50\x44\x41\124\105\x50\x41\x52\x54\x28\127\105\105\x4b\x44\x41\x59\54\x20\x66\145\x63\x68\141\51\40\53\40\100\x40\x44\x41\124\x45\106\x49\x52\123\124\40\55\x20\62\51\40\x25\40\x37\x20\53\40\61\54\12\x9\x9\x9\x9\11\11\x20\x20\40\40\x44\x41\124\x45\116\101\115\105\x28\x57\x45\105\x4b\x44\x41\131\x2c\40\146\x65\x63\x68\x61\51\xa\11\11\11\x9\x9\x9\x20\x20\x20\40\xa\11\x9\11\11\x9\11\117\x52\x44\105\122\40\x42\131\xa\11\x9\x9\x9\11\11\40\x20\40\x20\x59\105\x41\x52\x28\x66\145\143\x68\x61\x29\x2c\xa\11\11\11\11\x9\x9\40\x20\x20\x20\104\151\141\x53\x65\155\141\156\x61\xa\x9\11\11\11\11\x9\40\x20\40\40\73\xa\11\x9\x9\x9\x9\x9"; $sql_query = sqlsrv_query($conn, $sql_request); $datos = array(); while ($data = sqlsrv_fetch_array($sql_query, SQLSRV_FETCH_ASSOC)) { array_push($datos, array("\x4e\157\155\142\162\145\x44\x69\x61" => obtenerDia($data["\116\157\155\142\162\145\104\x69\141\x53\145\x6d\141\156\141"]), "\x4d\x69\156\x75\164\157\x73" => $data["\123\165\155\x61\x74\157\162\151\x61\x4d\x69\156\165\x74\x6f\x73"])); } echo json_encode($datos); } elseif ($request == "\147\145\164\x47\162\141\x70\150\151\143") { $fechaInicial = $_GET["\x66\x65\x63\150\x61\111\156\151\x63\x69\x61\154"]; $fechaFinal = $_GET["\x66\x65\143\x68\141\x46\x69\156\x61\154"]; $turno = $_GET["\x74\x75\x72\x6e\x6f"]; $fechaInicialFormatted = date("\x59\55\x6d\x2d\144", strtotime($fechaInicial)); $fechaFinalFormatted = date("\x59\x2d\155\55\144", strtotime($fechaFinal)); $datos = array(); $currentDate = strtotime($fechaInicialFormatted); while ($currentDate <= strtotime($fechaFinalFormatted)) { $currentDateString = date("\131\55\155\55\x64", $currentDate); $fechaTurnoAInicio = $currentDateString . "\x20\x30\x36\72\x30\x30\72\x30\60"; $fechaTurnoAFin = $currentDateString . "\40\x31\65\72\63\66\72\x30\60"; $fechaTurnoBInicio = $currentDateString . "\x20\x31\65\72\x33\67\72\60\60"; $fechaTurnoBFin = date("\x59\55\x6d\55\x64", strtotime($currentDateString . "\x20\53\x20\61\40\144\141\x79")) . "\40\60\x30\x3a\x31\65\72\x30\x30"; if ($turno == "\101") { $sql_request = "\12\x9\11\40\40\40\40\40\x20\40\40\40\x20\x20\40\123\x45\x4c\105\103\x54\xa\11\11\40\40\x20\x20\40\x20\x20\x20\40\x20\40\40\40\40\40\40\x53\125\115\x28\x43\x41\123\124\50\155\151\156\x75\164\157\x54\115\x20\x41\x53\x20\x49\116\x54\x29\x29\x20\101\x53\40\x53\165\x6d\141\x74\157\x72\x69\141\x4d\151\156\165\164\157\163\x2c\12\x9\11\40\40\x20\40\x20\40\x20\40\x20\40\x20\40\x20\40\40\40\x43\x4f\116\126\x45\x52\x54\50\x43\x48\101\122\50\x31\x30\x29\54\40\x66\145\143\x68\141\54\40\x31\x32\60\51\40\141\163\x20\106\145\143\x68\x61\12\x9\x9\x20\x20\x20\x20\x20\40\40\40\40\40\40\x20\106\122\117\x4d\12\11\11\x20\x20\x20\40\x20\x20\40\40\x20\x20\x20\40\40\40\40\40\x72\x75\164\x61\163\124\x69\x65\155\160\157\x4d\165\x65\162\164\x6f\12\x9\x9\x20\40\40\x20\x20\x20\40\x20\40\40\x20\x20\127\x48\105\x52\x45\xa\11\11\40\40\x20\x20\40\x20\x20\x20\40\40\x20\40\40\40\x20\x9\x74\x75\162\156\157\x20\75\40\x27\x41\x27\x20\101\x4e\104\40\40\146\145\143\150\141\x20\x42\x45\124\127\105\105\x4e\40\47{$fechaTurnoAInicio}\47\x20\101\x4e\104\40\x27{$fechaTurnoAFin}\x27\12\x9\x9\x20\x20\x20\40\40\40\x20\x20\40\x20\40\40\107\x52\x4f\x55\120\x20\102\x59\xa\11\x9\40\x20\x20\40\x20\x20\x20\40\x20\x20\40\40\40\x20\x20\x20\x59\105\x41\122\50\146\x65\143\x68\x61\51\54\12\x9\11\40\x20\x20\40\40\40\x20\40\40\x20\40\40\40\x20\40\40\50\104\101\124\x45\x50\x41\122\x54\x28\x57\x45\x45\x4b\x44\x41\131\x2c\40\146\145\x63\x68\x61\51\x20\53\40\100\100\x44\101\x54\x45\x46\111\x52\123\x54\x20\55\40\x32\x29\x20\x25\40\x37\x20\x2b\40\x31\x2c\12\x9\11\x20\40\40\x20\40\40\x20\x20\40\40\x20\40\x20\40\40\40\x44\101\124\105\116\x41\x4d\x45\50\x57\x45\x45\113\104\x41\131\x2c\x20\146\x65\143\150\x61\51\54\12\x9\11\40\40\40\40\40\x20\40\40\x20\x20\40\40\40\x20\40\x20\x43\x4f\116\126\x45\122\x54\x28\x43\x48\x41\122\50\61\60\x29\x2c\x20\146\145\143\x68\141\54\40\61\62\60\x29\12\11\11\x20\x20\x20\x20\40\x20\x20\40\x20\40\x20\x20\x4f\x52\x44\x45\x52\x20\102\x59\xa\11\x9\x20\x20\x20\x20\40\40\40\x20\x20\40\40\40\x20\40\40\40\103\x4f\116\x56\x45\122\x54\50\x43\x48\101\122\50\61\60\x29\x2c\40\146\145\x63\x68\141\54\40\61\x32\x30\51\xa\x9\11\x20\x20\x20\x20\40\40\40\x20"; } elseif ($turno == "\x42") { $sql_request = "\xa\x9\x9\40\x20\40\40\40\40\x20\40\x20\40\40\x20\123\x45\114\105\x43\124\12\x9\x9\40\x20\x20\x20\x20\40\x20\40\40\x20\40\x20\40\x20\40\x20\x53\x55\x4d\50\103\x41\123\x54\x28\x6d\151\156\x75\164\157\124\115\40\x41\123\40\111\116\x54\51\x29\40\x41\x53\40\123\x75\x6d\141\x74\x6f\162\151\141\115\x69\156\165\164\x6f\163\54\xa\x9\11\40\x20\x20\40\x20\x20\x20\x20\x20\x20\x20\40\x20\x20\x20\40\x43\117\116\x56\x45\122\124\50\x43\x48\101\x52\x28\61\60\x29\x2c\40\x66\145\x63\150\x61\x2c\40\61\62\x30\x29\40\x61\163\x20\x46\x65\143\x68\141\xa\x9\x9\40\40\40\x20\x20\40\x20\40\x20\40\x20\x20\106\x52\117\x4d\12\x9\11\40\40\40\x20\40\x20\x20\40\40\40\x20\x20\x20\x20\40\x20\x72\165\164\141\x73\124\151\x65\x6d\x70\157\x4d\x75\x65\x72\164\x6f\12\11\x9\40\x20\40\x20\x20\x20\40\x20\40\x20\40\40\127\110\x45\122\105\xa\11\x9\40\40\40\x20\x20\x20\40\x20\x20\x20\40\x20\40\x20\40\x9\x74\x75\162\156\157\40\75\x20\x27\102\x27\40\x41\x4e\104\x20\146\145\143\150\141\40\102\105\x54\127\x45\x45\x4e\40\x27{$fechaTurnoBInicio}\x27\x20\x41\x4e\104\40\x27{$fechaTurnoBFin}\x27\xa\x9\11\40\x20\x20\40\40\40\40\x20\x20\x20\40\40\x47\122\x4f\125\120\40\102\x59\xa\x9\11\x20\40\40\x20\40\x20\40\x20\x20\40\40\x20\x20\40\40\40\131\105\101\x52\x28\146\145\143\150\x61\x29\54\xa\11\11\40\40\40\x20\x20\40\40\x20\40\x20\40\40\x20\x20\x20\40\50\104\101\124\x45\x50\x41\122\124\x28\x57\x45\105\113\x44\x41\131\x2c\40\146\x65\x63\150\141\51\x20\53\40\100\x40\x44\101\x54\x45\106\111\x52\x53\x54\x20\55\x20\62\51\40\x25\x20\x37\40\x2b\x20\61\x2c\12\11\x9\40\40\40\40\40\x20\40\x20\x20\40\40\40\x20\x20\40\40\x44\101\x54\105\x4e\x41\x4d\105\x28\x57\x45\x45\113\104\x41\x59\x2c\40\x66\x65\x63\x68\141\51\x2c\xa\x9\x9\x20\40\40\x20\x20\x20\x20\x20\x20\40\40\40\40\x20\40\x20\x43\x4f\116\126\105\122\124\50\103\x48\101\x52\50\x31\x30\51\x2c\40\x66\145\x63\150\x61\54\40\x31\x32\x30\51\12\11\11\40\40\x20\40\x20\x20\x20\x20\x20\40\40\40\117\122\x44\105\x52\x20\x42\x59\xa\11\x9\x20\x20\40\40\40\x20\x20\x20\40\x20\40\x20\40\x20\40\x20\x43\x4f\x4e\126\105\x52\x54\x28\x43\x48\101\122\x28\61\60\x29\x2c\x20\x66\145\143\x68\x61\54\x20\61\62\60\x29\xa\x9\x9\40\x20\x20\40\40\x20\x20\x20"; } if (!empty($sql_request)) { $sql_query = sqlsrv_query($conn, $sql_request); while ($data = sqlsrv_fetch_array($sql_query, SQLSRV_FETCH_ASSOC)) { array_push($datos, array("\106\145\x63\150\x61" => obtenerDia($data["\x46\x65\143\x68\141"]), "\x4d\151\156\165\164\x6f\x73" => $data["\x53\x75\x6d\141\x74\x6f\x72\151\x61\x4d\x69\x6e\x75\x74\157\x73"])); } } $currentDate = strtotime($currentDateString . "\x20\53\x20\x31\40\144\x61\x79"); } echo json_encode($datos); } elseif ($request == "\147\x65\164\x52\141\156\147\x65\124\x4d") { $fechaInicial = $_GET["\x66\145\x63\150\141\111\156\151\143\x69\x61\154"]; $fechaFinal = $_GET["\146\x65\x63\150\141\x46\x69\156\x61\x6c"]; $turno = $_GET["\164\165\162\x6e\x6f"]; $fechaInicialFormatted = date("\x59\x2d\155\55\144", strtotime($fechaInicial)); $fechaFinalFormatted = date("\x59\x2d\x6d\55\144", strtotime($fechaFinal)); $data = array(); $currentDate = strtotime($fechaInicialFormatted); while ($currentDate <= strtotime($fechaFinalFormatted)) { $currentDateString = date("\131\x2d\x6d\55\144", $currentDate); $fechaTurnoAInicio = $currentDateString . "\x20\60\x36\x3a\60\x30\72\60\60"; $fechaTurnoAFin = $currentDateString . "\x20\61\65\72\63\x36\x3a\60\x30"; $fechaTurnoBInicio = $currentDateString . "\x20\x31\x35\72\x33\67\72\60\60"; $fechaTurnoFinalB = date("\131\55\x6d\55\144", strtotime($currentDateString . "\x20\53\40\61\40\144\141\171")); if ($turno == "\101") { $sql_request = "\x53\x45\x4c\105\103\x54\x20\x49\104\54\40\143\157\144\x69\x67\157\54\40\x6d\151\156\165\x74\157\x54\x4d\x2c\40\155\157\x74\151\166\x6f\54\40\x70\145\162\x73\x6f\x6e\x61\x73\x41\x66\145\143\164\141\144\x61\x73\x2c\40\143\x6f\x6d\145\156\164\141\162\x69\x6f\x73\54\x20\x43\117\116\x56\105\x52\124\50\x76\141\x72\x63\150\141\x72\54\40\x66\x65\143\x68\x61\54\x20\x32\x33\51\x20\x41\123\40\146\x65\143\150\141\x2c\x20\x74\x75\x72\x6e\x6f\xa\11\x9\x9\11\x9\40\106\x52\117\115\x20\162\x75\164\141\163\x54\x69\x65\155\160\157\115\165\145\x72\x74\x6f\40\x57\x48\105\x52\x45\40\164\165\x72\x6e\157\40\x3d\40\47\101\x27\40\x41\116\x44\x20\x66\145\x63\x68\x61\x20\102\x45\124\x57\x45\105\116\40\47{$fechaInicial}\x20\x30\x3a\x30\x30\x27\x20\x41\116\x44\x20\47{$fechaFinal}\x20\x32\x33\x3a\65\71\47"; } elseif ($turno == "\102") { $sql_request = "\123\105\x4c\105\x43\124\40\x49\x44\54\40\x63\x6f\x64\151\x67\x6f\x2c\x20\x6d\x69\156\165\x74\x6f\124\x4d\x2c\40\155\157\164\x69\166\x6f\x2c\40\160\145\x72\x73\x6f\156\141\x73\101\x66\145\x63\x74\x61\x64\x61\163\x2c\40\x63\157\x6d\x65\156\x74\x61\x72\151\x6f\163\54\40\x43\x4f\x4e\x56\x45\x52\x54\50\166\x61\162\143\150\141\x72\x2c\x20\x66\145\143\x68\141\x2c\40\62\x33\x29\40\x41\123\x20\146\x65\x63\x68\141\54\x20\x74\165\162\156\x6f\xa\11\11\x9\x9\x20\x46\x52\117\x4d\x20\162\x75\x74\x61\163\124\x69\145\155\160\x6f\x4d\x75\145\162\164\x6f\x20\x57\x48\105\122\105\x20\x74\x75\162\156\x6f\x20\75\40\47\102\47\40\x41\116\x44\x20\146\x65\143\x68\x61\x20\102\x45\124\x57\x45\105\x4e\40\47{$fechaInicial}\x20\60\72\60\60\x27\x20\x41\x4e\104\40\47{$fechaTurnoFinalB}\40\62\x33\72\65\71\x27"; } else { $sql_request = ''; } if (!empty($sql_request)) { $sql_query = sqlsrv_query($conn, $sql_request); while ($dato = sqlsrv_fetch_array($sql_query, SQLSRV_FETCH_ASSOC)) { $exists = false; foreach ($data as $existingData) { if ($existingData["\111\104"] == $dato["\111\104"]) { $exists = true; break; } } if (!$exists) { $data[] = array("\x49\104" => $dato["\111\104"], "\x63\x6f\x64\x69\x67\157" => $dato["\x63\157\144\151\x67\157"], "\x6d\x69\x6e\165\164\x6f\x54\x4d" => $dato["\155\x69\156\x75\x74\x6f\x54\x4d"], "\x6d\157\164\151\166\x6f" => str_replace("\x5f", "\40", $dato["\155\x6f\x74\x69\166\157"]), "\160\145\162\x73\157\156\141\163\101\146\145\x63\x74\141\144\x61\x73" => $dato["\x70\x65\162\163\157\156\141\163\101\146\x65\x63\164\141\x64\x61\163"], "\x63\157\x6d\145\x6e\164\x61\162\151\x6f\x73" => $dato["\143\157\155\145\x6e\x74\x61\x72\151\157\x73"], "\146\145\143\150\x61" => $dato["\146\x65\143\x68\141"]); } } } $currentDate = strtotime($currentDateString . "\40\x2b\40\x31\x20\144\x61\x79"); } echo json_encode($data); } elseif ($request == "\x67\145\164\x47\162\x61\x70\x68\x69\143\x43\157\x6d\160\x61\162\x61\164\x69\166\x6f") { $fechaInicial = $_GET["\x66\145\143\150\141\111\156\x69\143\x69\141\x6c"]; $fechaFinal = $_GET["\x66\x65\x63\x68\141\106\x69\x6e\141\x6c"]; $turno = "\102"; $fechaInicialFormatted = date("\131\x2d\x6d\55\144", strtotime($fechaInicial)); $fechaFinalFormatted = date("\131\55\x6d\x2d\144", strtotime($fechaFinal)); $datos = array(); $currentDate = strtotime($fechaInicialFormatted); while ($currentDate <= strtotime($fechaFinalFormatted)) { $currentDateString = date("\x59\x2d\x6d\55\144", $currentDate); $fechaTurnoAInicio = $currentDateString . "\40\x30\x36\x3a\60\60\x3a\60\60"; $fechaTurnoAFin = $currentDateString . "\40\61\x35\72\x33\66\x3a\x30\60"; $fechaTurnoBInicio = $currentDateString . "\40\x31\65\x3a\x33\x37\72\60\x30"; $fechaTurnoBFin = date("\x59\55\155\55\144", strtotime($currentDateString . "\x20\53\40\x31\40\x64\x61\171")) . "\40\60\60\72\61\65\x3a\60\60"; if ($turno == "\101") { $sql_request = "\12\11\x9\40\40\x20\40\40\40\40\x20\40\x20\x20\x20\123\105\114\105\x43\x54\12\x9\11\40\x20\40\x20\x20\x20\x20\x20\40\40\40\x20\x20\40\40\40\123\125\115\50\x43\101\x53\124\x28\x6d\151\156\165\x74\157\x54\x4d\40\101\123\40\x49\116\124\x29\x29\x20\101\123\40\123\165\x6d\141\x74\157\x72\x69\141\x4d\151\x6e\165\164\157\163\x2c\12\11\x9\x20\40\40\40\x20\40\x20\40\40\40\x20\x20\x20\x20\x20\x20\103\117\x4e\126\x45\122\x54\50\x43\110\x41\x52\50\x31\x30\51\x2c\40\146\x65\143\150\141\54\x20\61\62\60\x29\x20\x61\163\40\106\145\x63\x68\x61\12\11\x9\x20\40\x20\x20\40\40\40\x20\x20\x20\40\40\x46\x52\x4f\115\xa\x9\x9\x20\x20\40\40\40\x20\x20\x20\x20\40\x20\x20\x20\40\40\40\x72\x75\164\141\x73\x54\151\x65\155\x70\157\x4d\165\x65\x72\x74\x6f\12\11\x9\x20\x20\40\x20\x20\x20\x20\40\40\40\x20\x20\127\x48\x45\x52\x45\xa\11\11\x20\x20\x20\x20\x20\x20\40\40\x20\x20\40\40\40\40\40\40\x66\x65\x63\x68\141\x20\x42\x45\124\x57\105\x45\116\40\47{$fechaTurnoAInicio}\47\40\x41\116\x44\x20\47{$fechaTurnoAFin}\x27\12\11\11\40\x20\40\40\x20\x20\40\40\40\40\x20\40\107\122\117\125\120\40\x42\x59\12\11\x9\x20\x20\40\40\x20\40\40\x20\40\40\40\x20\x20\40\x20\40\x59\105\x41\x52\50\146\145\x63\x68\x61\51\54\12\x9\11\40\40\40\40\40\40\40\40\40\x20\40\40\40\40\40\x20\50\x44\x41\x54\105\x50\101\122\124\x28\x57\105\x45\x4b\104\101\131\54\x20\x66\145\x63\x68\141\x29\x20\x2b\40\x40\100\x44\101\x54\105\106\111\x52\x53\124\x20\55\40\62\x29\x20\45\x20\x37\40\x2b\x20\x31\54\12\11\x9\40\40\40\x20\40\x20\40\x20\x20\40\x20\40\40\40\x20\40\x44\101\124\105\116\101\115\105\x28\x57\x45\105\113\104\x41\x59\54\x20\146\x65\143\x68\x61\51\x2c\12\11\11\40\x20\x20\40\x20\x20\x20\x20\40\x20\x20\x20\40\40\x20\40\x43\x4f\116\126\x45\x52\x54\50\103\110\101\122\x28\x31\60\51\54\x20\146\x65\143\150\x61\x2c\x20\x31\62\60\x29\xa\x9\11\40\40\x20\x20\40\40\x20\40\x20\40\40\40\x4f\x52\104\x45\x52\x20\x42\x59\12\x9\x9\40\x20\40\x20\40\x20\x20\x20\x20\x20\x20\40\x20\x20\x20\40\103\117\116\x56\x45\122\124\x28\103\x48\x41\122\50\x31\60\51\54\x20\x66\145\x63\150\141\54\40\61\x32\x30\x29\12\11\11\40\x20\40\x20\x20\40\x20\x20"; } elseif ($turno == "\102") { $sql_request = "\12\11\x9\40\x20\40\x20\40\40\x20\x20\x20\40\40\40\123\105\x4c\105\103\x54\xa\11\11\x20\x20\40\x20\x20\40\x20\40\40\x20\40\40\x20\x20\40\40\123\125\x4d\50\x43\101\x53\x54\50\155\151\x6e\165\164\x6f\x54\x4d\40\x41\123\x20\111\116\x54\x29\51\40\x41\x53\40\x53\x75\155\x61\164\x6f\162\x69\x61\x4d\151\156\x75\164\157\x73\54\12\x9\x9\x20\x20\x20\x20\x20\x20\40\40\40\40\40\x20\x20\x20\x20\x20\x43\x4f\x4e\x56\x45\122\x54\x28\103\x48\x41\122\x28\61\x30\x29\54\40\146\145\x63\x68\141\x2c\40\x31\62\60\51\x20\x61\163\40\x46\x65\143\x68\141\xa\11\x9\x20\x20\40\x20\x20\x20\40\x20\x20\x20\40\x20\106\122\x4f\115\xa\11\x9\40\x20\40\x20\x20\x20\x20\x20\40\40\x20\40\x20\x20\x20\40\162\x75\164\141\163\124\151\145\155\x70\157\x4d\165\x65\162\x74\157\xa\11\11\40\40\40\x20\40\x20\x20\x20\40\x20\x20\40\127\x48\x45\x52\x45\xa\11\x9\40\40\40\40\x20\40\40\40\40\x20\x20\x20\40\x20\40\40\x66\x65\x63\150\141\40\x42\x45\x54\127\105\105\116\40\x27{$fechaTurnoBInicio}\47\40\101\116\x44\40\x27{$fechaTurnoBFin}\x27\12\x9\11\40\40\40\x20\x20\40\40\40\40\40\40\40\x47\x52\x4f\x55\120\40\x42\x59\12\11\11\40\40\40\x20\x20\40\x20\40\x20\40\40\x20\x20\x20\x20\x20\x59\x45\101\x52\50\x66\x65\x63\150\x61\x29\54\12\x9\x9\x20\x20\x20\x20\x20\40\40\x20\40\x20\40\40\x20\x20\x20\40\x28\104\x41\124\x45\x50\x41\122\124\x28\x57\x45\x45\113\x44\x41\x59\x2c\x20\x66\x65\x63\x68\141\x29\40\53\x20\100\x40\104\x41\x54\105\x46\111\122\x53\x54\40\x2d\40\62\x29\x20\45\x20\67\40\53\40\61\54\xa\11\11\40\x20\40\x20\40\40\40\x20\40\40\x20\x20\40\x20\x20\x20\104\x41\x54\x45\116\101\115\x45\x28\x57\105\105\113\x44\101\131\54\40\146\x65\x63\x68\x61\51\x2c\xa\x9\x9\40\40\x20\x20\40\x20\40\40\x20\40\40\40\40\x20\40\x20\x43\x4f\116\126\105\122\124\50\x43\110\101\122\50\x31\60\x29\x2c\40\146\145\143\150\141\54\40\x31\62\x30\x29\12\x9\x9\40\x20\x20\x20\x20\40\x20\x20\40\x20\x20\40\117\x52\x44\105\x52\40\102\x59\xa\11\x9\40\x20\x20\x20\40\x20\x20\x20\40\40\40\40\x20\x20\40\40\x43\117\116\126\x45\122\124\x28\103\110\101\122\50\x31\x30\51\54\40\x66\145\x63\150\141\54\x20\61\62\60\51\xa\11\x9\x20\x20\40\40\40\40\x20\40"; } if (!empty($sql_request)) { $sql_query = sqlsrv_query($conn, $sql_request); while ($data = sqlsrv_fetch_array($sql_query, SQLSRV_FETCH_ASSOC)) { array_push($datos, array("\106\145\143\150\141" => obtenerDia($data["\106\x65\143\x68\141"]), "\115\151\x6e\165\164\x6f\163" => $data["\x53\x75\155\x61\164\157\x72\151\141\x4d\x69\x6e\165\164\157\163"])); } } $currentDate = strtotime($currentDateString . "\x20\x2b\40\61\40\144\x61\171"); } echo json_encode($datos); } goto R62EG; R62EG: function obtenerMes($mes) { if ($mes == "\112\x61\156\165\x61\162\x79") { return "\x45\156\145\x72\157"; } elseif ($mes == "\x46\x65\142\x72\x75\x61\162\171") { return "\x46\x65\142\x72\x65\x72\157"; } elseif ($mes == "\x4d\x61\x72\x63\x68") { return "\x4d\x61\x72\x7a\157"; } elseif ($mes == "\101\160\x72\x69\154") { return "\x41\x62\162\151\x6c"; } elseif ($mes == "\115\141\171") { return "\x4d\x61\x79\x6f"; } elseif ($mes == "\112\x75\x6e\x65") { return "\x4a\x75\156\151\157"; } elseif ($mes == "\x4a\x75\154\171") { return "\x4a\x75\x6c\x69\x6f"; } elseif ($mes == "\x41\165\147\x75\163\164") { return "\x41\x67\157\163\x74\x6f"; } elseif ($mes == "\x53\145\x70\x74\145\155\x62\x65\x72") { return "\123\145\x70\164\x69\x65\x6d\142\162\x65"; } elseif ($mes == "\x4f\x63\x74\x6f\142\x65\x72") { return "\117\143\164\x75\x62\x72\145"; } elseif ($mes == "\116\157\166\145\x6d\x62\145\x72") { return "\x4e\x6f\x76\151\145\x6d\142\x72\145"; } elseif ($mes == "\104\x65\143\x65\x6d\142\145\162") { return "\104\151\143\151\x65\x6d\x62\x72\145"; } else { return $mes; } } goto VK6Sx; IReqw: $request = $_REQUEST["\x72\145\161\165\145\x73\x74"]; goto bNB59; VK6Sx: function obtenerDia($dia) { if ($dia == "\115\x6f\156\144\x61\x79") { return "\114\x75\156\145\x73"; } elseif ($dia == "\x54\165\145\163\144\141\x79") { return "\115\141\x72\164\145\163"; } elseif ($dia == "\x57\x65\x64\x6e\145\163\x64\141\x79") { return "\115\x69\145\x72\x63\x6f\154\145\x73"; } elseif ($dia == "\124\150\x75\162\x73\144\x61\x79") { return "\x4a\165\x65\x76\145\163"; } elseif ($dia == "\106\162\x69\144\x61\x79") { return "\126\x69\x65\x72\x6e\145\163"; } elseif ($dia == "\123\141\164\x75\162\144\x61\171") { return "\123\x61\142\x61\x64\157"; } elseif ($dia == "\x53\165\x6e\144\141\171") { return "\x44\157\155\151\x6e\x67\x6f"; } else { return $dia; } } goto lIWyb; RSHHL: function determinarTurno() { date_default_timezone_set("\101\155\x65\162\x69\143\141\x2f\115\x6f\x6e\x74\145\x72\162\x65\x79"); $horaActual = date("\x48\72\151"); $horaInicioTurnoA = "\60\x36\x3a\x30\60"; $horaFinTurnoA = "\x31\x35\x3a\x33\66"; $horaInicioTurnoB = "\x31\x35\x3a\63\x37"; $horaFinTurnoB = "\x30\60\x3a\x31\60"; if ($horaActual >= $horaInicioTurnoA && $horaActual <= $horaFinTurnoA) { return "\x41"; } elseif ($horaActual >= $horaInicioTurnoB && $horaActual <= "\x32\x33\x3a\65\x39" || $horaActual >= "\60\60\x3a\60\x30" && $horaActual <= $horaFinTurnoB) { return "\x42"; } else { return "\106\x75\145\x72\x61\x20\x64\x65\40\164\165\x72\x6e\157"; } } goto XBmBx; XBmBx: ?>
+<?php
+	include '../../connection.php';
+	$request                = $_REQUEST['request'];
+	if ($request == 'addTM') {
+		$codigo 				= $_REQUEST['codigo'];
+		$minutoTM   			= $_REQUEST['minutoTM'];
+		$motivo  				= $_REQUEST['motivo'];
+		$personasAfectadas  	= $_REQUEST['personasAfectadas'];
+		$comentarios  			= $_REQUEST['comentarios'];
+		$fecha  				= $_REQUEST['fecha'];
+		$turno 					= $_REQUEST['turno'];
+
+		//$fechaActual = date('Y-m-d H:i:s.u');
+
+		// Verifica el turno y ajusta la hora
+		if ($turno == 'A') {
+		    // Si es turno A, ajusta la hora a las 07:00:00.000
+		    $fecha = date('Y-m-d 07:00:00.000', strtotime($fecha));
+		} else {
+		    // Si es turno B, ajusta la hora a las 16:00:00.000
+		    $fecha = date('Y-m-d 16:00:00.000', strtotime($fecha));
+		}
+
+		// Construye la consulta SQL
+		$sql_request = "INSERT INTO rutasTiempoMuerto (codigo, minutoTM, motivo, personasAfectadas, comentarios, fecha, turno)
+		VALUES ('$codigo', '$minutoTM', '$motivo', '$personasAfectadas', '$comentarios', '$fecha', '$turno')";
+		
+		//echo "$sql_request";
+
+		$sql_query = sqlsrv_query($conn,$sql_request);
+		if ($sql_query == true) {
+			echo json_encode(array('response' => 'success'));
+		}
+		else{
+			echo json_encode(array('response' => 'fail'));
+		}
+
+	}
+	elseif ($request == 'getTM') {
+		$turno = determinarTurno();
+		
+		if ($turno = 'A') {
+			$fecha = date('Y-m-d');
+			//$sql_request = "SELECT * FROM rutasTiempoMuerto WHERE fecha BETWEEN '$fecha 06:00' AND '$fecha 15:36'";
+			$sql_request = "SELECT * FROM rutasTiempoMuerto WHERE turno = 'A' -- AND fecha BETWEEN '$fecha 06:00' AND '$fecha 15:36'";
+		}
+		else{
+			$fecha = date('Y-m-d', strtotime($fecha . ' +1 day'));
+			$sql_request = "SELECT * FROM rutasTiempoMuerto WHERE turno = 'B' -- AND fecha BETWEEN '$fecha 15:37' AND '$fecha 0:15'";
+			//$sql_request = "SELECT * FROM rutasTiempoMuerto WHERE fecha BETWEEN '$fecha 15:37' AND '$fecha 0:15'";
+		}
+
+		$sql_query = sqlsrv_query($conn,$sql_request);
+
+		$data = array();
+
+		while ($dato = sqlsrv_fetch_array($sql_query,SQLSRV_FETCH_ASSOC)) {
+			$fechaFormateada = $dato['fecha']->format('Y-m-d');
+			array_push($data, array(
+				"codigo" => $dato['codigo'],
+				"minutoTM" => $dato['minutoTM'],
+				"motivo" => str_replace("_", " ", $dato['motivo']),
+				"personasAfectadas" => $dato['personasAfectadas'],
+				"comentarios" => $dato['comentarios'],
+				"fecha" => $fechaFormateada
+
+			));
+		}
+		echo json_encode($data);
+
+	}
+	elseif ($request == 'getMonth'){
+		$sql_request = 'SELECT
+						    YEAR(fecha) AS Anio,
+						    MONTH(fecha) AS Mes,
+						    DATENAME(MONTH, fecha) AS NombreMes,
+						    SUM(CAST(minutoTM AS INT)) AS SumatoriaMinutos
+						FROM
+						    rutasTiempoMuerto WHERE
+						    YEAR(fecha) = YEAR(GETDATE())
+						GROUP BY
+						    YEAR(fecha),
+						    MONTH(fecha),
+						    DATENAME(MONTH, fecha)
+						ORDER BY MONTH(fecha)
+						';
+		$sql_query = sqlsrv_query($conn,$sql_request);
+		$datos =  [];
+		while ($data = sqlsrv_fetch_array($sql_query,SQLSRV_FETCH_ASSOC)) {
+			array_push($datos, array(	'Mes' => obtenerMes($data['NombreMes']),
+										'Minutos' => $data['SumatoriaMinutos']));
+		}
+
+		echo json_encode($datos);
+
+	}
+	elseif ($request == 'getYear'){
+		$sql_request = 'SELECT
+						    YEAR(fecha) AS Anio,
+						    SUM(CAST(minutoTM AS INT)) AS SumatoriaMinutos
+						FROM
+						    rutasTiempoMuerto WHERE
+						    YEAR(fecha) = YEAR(GETDATE())
+						GROUP BY
+						    YEAR(fecha)
+
+						ORDER BY YEAR(fecha)';
+		$sql_query = sqlsrv_query($conn,$sql_request);
+		$datos =  [];
+		while ($data = sqlsrv_fetch_array($sql_query,SQLSRV_FETCH_ASSOC)) {
+			array_push($datos, array(	'Year' => $data['Anio'],
+										'Minutos' => $data['SumatoriaMinutos']));
+		}
+
+		echo json_encode($datos);
+
+	}
+	elseif ($request == 'getWeek'){
+		$sql_request = 'SELECT
+						    YEAR(fecha) AS Anio,
+						    (DATEPART(WEEKDAY, fecha) + @@DATEFIRST - 2) % 7 + 1 AS DiaSemana,
+						    DATENAME(WEEKDAY, fecha) AS NombreDiaSemana,
+						    SUM(CAST(minutoTM AS INT)) AS SumatoriaMinutos
+						FROM
+						    rutasTiempoMuerto
+						WHERE
+						    YEAR(fecha) = YEAR(GETDATE())
+						GROUP BY
+						    YEAR(fecha),
+						    (DATEPART(WEEKDAY, fecha) + @@DATEFIRST - 2) % 7 + 1,
+						    DATENAME(WEEKDAY, fecha)
+						    
+						ORDER BY
+						    YEAR(fecha),
+						    DiaSemana
+						    ;
+						';
+		$sql_query = sqlsrv_query($conn,$sql_request);
+
+		$datos =  [];
+		while ($data = sqlsrv_fetch_array($sql_query,SQLSRV_FETCH_ASSOC)) {
+			array_push($datos, array(	'NombreDia' => obtenerDia($data['NombreDiaSemana']),
+										'Minutos' => $data['SumatoriaMinutos']));
+		}
+
+		echo json_encode($datos);
+
+	}
+	elseif ($request == 'getGraphic'){
+		$fechaInicial = $_GET['fechaInicial'];
+		$fechaFinal = $_GET['fechaFinal'];
+		$turno = $_GET['turno'];
+
+		// Formatear las fechas para el uso en la consulta SQL
+		$fechaInicialFormatted = date('Y-m-d', strtotime($fechaInicial));
+		$fechaFinalFormatted = date('Y-m-d', strtotime($fechaFinal));
+
+		// Inicializar array para almacenar los resultados
+		$datos = array();
+
+		// Obtener registros para cada día en el rango de fechas
+		$currentDate = strtotime($fechaInicialFormatted);
+
+		while ($currentDate <= strtotime($fechaFinalFormatted)) {
+		    $currentDateString = date('Y-m-d', $currentDate);
+
+		    // Construir las fechas y horas para el turno A y B
+		    $fechaTurnoAInicio = $currentDateString . ' 06:00:00';
+		    $fechaTurnoAFin = $currentDateString . ' 15:36:00';
+		    $fechaTurnoBInicio = $currentDateString . ' 15:37:00';
+		    $fechaTurnoBFin = date('Y-m-d', strtotime($currentDateString . ' + 1 day')) . ' 00:15:00';
+
+		    // Seleccionar la consulta adecuada según el turno
+		    if ($turno == 'A') {
+		        /*$sql_request = "
+		            SELECT
+		                SUM(CAST(minutoTM AS INT)) AS SumatoriaMinutos,
+		                CONVERT(CHAR(10), fecha, 120) as Fecha
+		            FROM
+		                rutasTiempoMuerto
+		            WHERE
+		                fecha BETWEEN '$fechaTurnoAInicio' AND '$fechaTurnoAFin'
+		            GROUP BY
+		                YEAR(fecha),
+		                (DATEPART(WEEKDAY, fecha) + @@DATEFIRST - 2) % 7 + 1,
+		                DATENAME(WEEKDAY, fecha),
+		                CONVERT(CHAR(10), fecha, 120)
+		            ORDER BY
+		                CONVERT(CHAR(10), fecha, 120)
+		        ";*/
+		        $sql_request = "
+		            SELECT
+		                SUM(CAST(minutoTM AS INT)) AS SumatoriaMinutos,
+		                CONVERT(CHAR(10), fecha, 120) as Fecha
+		            FROM
+		                rutasTiempoMuerto
+		            WHERE
+		               	turno = 'A' AND  fecha BETWEEN '$fechaTurnoAInicio' AND '$fechaTurnoAFin'
+		            GROUP BY
+		                YEAR(fecha),
+		                (DATEPART(WEEKDAY, fecha) + @@DATEFIRST - 2) % 7 + 1,
+		                DATENAME(WEEKDAY, fecha),
+		                CONVERT(CHAR(10), fecha, 120)
+		            ORDER BY
+		                CONVERT(CHAR(10), fecha, 120)
+		        ";
+		    } elseif ($turno == 'B') {
+		        /*$sql_request = "
+		            SELECT
+		                SUM(CAST(minutoTM AS INT)) AS SumatoriaMinutos,
+		                CONVERT(CHAR(10), fecha, 120) as Fecha
+		            FROM
+		                rutasTiempoMuerto
+		            WHERE
+		                fecha BETWEEN '$fechaTurnoBInicio' AND '$fechaTurnoBFin'
+		            GROUP BY
+		                YEAR(fecha),
+		                (DATEPART(WEEKDAY, fecha) + @@DATEFIRST - 2) % 7 + 1,
+		                DATENAME(WEEKDAY, fecha),
+		                CONVERT(CHAR(10), fecha, 120)
+		            ORDER BY
+		                CONVERT(CHAR(10), fecha, 120)
+		        ";*/
+		        $sql_request = "
+		            SELECT
+		                SUM(CAST(minutoTM AS INT)) AS SumatoriaMinutos,
+		                CONVERT(CHAR(10), fecha, 120) as Fecha
+		            FROM
+		                rutasTiempoMuerto
+		            WHERE
+		               	turno = 'B' AND fecha BETWEEN '$fechaTurnoBInicio' AND '$fechaTurnoBFin'
+		            GROUP BY
+		                YEAR(fecha),
+		                (DATEPART(WEEKDAY, fecha) + @@DATEFIRST - 2) % 7 + 1,
+		                DATENAME(WEEKDAY, fecha),
+		                CONVERT(CHAR(10), fecha, 120)
+		            ORDER BY
+		                CONVERT(CHAR(10), fecha, 120)
+		        ";
+		    }
+
+		    // Ejecutar la consulta y procesar los resultados
+		    if (!empty($sql_request)) {
+		        $sql_query = sqlsrv_query($conn, $sql_request);
+
+		        while ($data = sqlsrv_fetch_array($sql_query, SQLSRV_FETCH_ASSOC)) {
+		            array_push($datos, array(
+		                'Fecha' => obtenerDia($data['Fecha']),
+		                'Minutos' => $data['SumatoriaMinutos']
+		            ));
+		        }
+		    }
+
+		    // Avanzar al siguiente día
+		    $currentDate = strtotime($currentDateString . ' + 1 day');
+		}
+
+		// Convertir el array a formato JSON y enviarlo como respuesta
+		echo json_encode($datos);
+
+
+	}
+	elseif ($request == 'getRangeTM'){
+		$fechaInicial = $_GET['fechaInicial'];
+		$fechaFinal = $_GET['fechaFinal'];
+		$turno = $_GET['turno'];
+
+		// Formatear las fechas para el uso en la consulta SQL
+		$fechaInicialFormatted = date('Y-m-d', strtotime($fechaInicial));
+		$fechaFinalFormatted = date('Y-m-d', strtotime($fechaFinal));
+
+		// Inicializar array para almacenar los resultados
+		$data = array();
+
+		// Obtener registros para cada día en el rango de fechas
+		$currentDate = strtotime($fechaInicialFormatted);
+
+		while ($currentDate <= strtotime($fechaFinalFormatted)) {
+		    $currentDateString = date('Y-m-d', $currentDate);
+
+		    // Construir las fechas y horas para el turno A y B
+		    $fechaTurnoAInicio = $currentDateString . ' 06:00:00';
+		    $fechaTurnoAFin = $currentDateString . ' 15:36:00';
+		    $fechaTurnoBInicio = $currentDateString . ' 15:37:00';
+		    $fechaTurnoFinalB = date('Y-m-d', strtotime($currentDateString . ' + 1 day'));
+
+		    // Seleccionar la consulta adecuada según el turno
+		    if ($turno == 'A') {
+		        //$sql_request = "SELECT * FROM rutasTiempoMuerto WHERE fecha BETWEEN '$fechaTurnoAInicio' AND '$fechaTurnoAFin'";
+		        $sql_request = "SELECT ID, codigo, minutoTM, motivo, personasAfectadas, comentarios, CONVERT(varchar, fecha, 23) AS fecha, turno
+					 FROM rutasTiempoMuerto WHERE turno = 'A' AND fecha BETWEEN '$fechaInicial 0:00' AND '$fechaFinal 23:59'";
+				
+
+		    } elseif ($turno == 'B') {
+		        //$sql_request = "SELECT * FROM rutasTiempoMuerto WHERE fecha BETWEEN '$fechaTurnoBInicio' AND '$fechaTurnoBFin'";
+		        $sql_request = "SELECT ID, codigo, minutoTM, motivo, personasAfectadas, comentarios, CONVERT(varchar, fecha, 23) AS fecha, turno
+				 FROM rutasTiempoMuerto WHERE turno = 'B' AND fecha BETWEEN '$fechaInicial 0:00' AND '$fechaTurnoFinalB 23:59'";
+		    } else {
+		        // Manejar otro caso o dejar la consulta en blanco según tus necesidades
+		        $sql_request = "";
+		    }
+
+		  
+		 	//echo "$sql_request";
+		    // Ejecutar la consulta y procesar los resultados
+		    if (!empty($sql_request)) {
+		        $sql_query = sqlsrv_query($conn, $sql_request);
+
+		        while ($dato = sqlsrv_fetch_array($sql_query, SQLSRV_FETCH_ASSOC)) {
+		            // Verificar si el registro ya está en el array basándote en la ID
+		            $exists = false;
+		            foreach ($data as $existingData) {
+		                if ($existingData['ID'] == $dato['ID']) {
+		                    $exists = true;
+		                    break;
+		                }
+		            }
+
+		            // Agregar el registro solo si no existe
+		            if (!$exists) {
+		                $data[] = array(
+		                    "ID" => $dato['ID'],
+		                    "codigo" => $dato['codigo'],
+		                    "minutoTM" => $dato['minutoTM'],
+		                    "motivo" => str_replace("_", " ", $dato['motivo']),
+		                    "personasAfectadas" => $dato['personasAfectadas'],
+		                    "comentarios" => $dato['comentarios'],
+		                    "fecha" => $dato['fecha']
+		                );
+		            }
+		        }
+		    }
+
+		    // Avanzar al siguiente día
+		    $currentDate = strtotime($currentDateString . ' + 1 day');
+		}
+
+		// Convertir el array a formato JSON y enviarlo como respuesta
+		echo json_encode($data);
+
+
+
+	}
+	elseif($request =='getGraphicComparativo'){
+		$fechaInicial = $_GET['fechaInicial'];
+		$fechaFinal = $_GET['fechaFinal'];
+		$turno = 'B';
+
+		// Formatear las fechas para el uso en la consulta SQL
+		$fechaInicialFormatted = date('Y-m-d', strtotime($fechaInicial));
+		$fechaFinalFormatted = date('Y-m-d', strtotime($fechaFinal));
+
+		// Inicializar array para almacenar los resultados
+		$datos = array();
+
+		// Obtener registros para cada día en el rango de fechas
+		$currentDate = strtotime($fechaInicialFormatted);
+
+		while ($currentDate <= strtotime($fechaFinalFormatted)) {
+		    $currentDateString = date('Y-m-d', $currentDate);
+
+		    // Construir las fechas y horas para el turno A y B
+		    $fechaTurnoAInicio = $currentDateString . ' 06:00:00';
+		    $fechaTurnoAFin = $currentDateString . ' 15:36:00';
+		    $fechaTurnoBInicio = $currentDateString . ' 15:37:00';
+		    $fechaTurnoBFin = date('Y-m-d', strtotime($currentDateString . ' + 1 day')) . ' 00:15:00';
+
+		    // Seleccionar la consulta adecuada según el turno
+		    if ($turno == 'A') {
+		        $sql_request = "
+		            SELECT
+		                SUM(CAST(minutoTM AS INT)) AS SumatoriaMinutos,
+		                CONVERT(CHAR(10), fecha, 120) as Fecha
+		            FROM
+		                rutasTiempoMuerto
+		            WHERE
+		                fecha BETWEEN '$fechaTurnoAInicio' AND '$fechaTurnoAFin'
+		            GROUP BY
+		                YEAR(fecha),
+		                (DATEPART(WEEKDAY, fecha) + @@DATEFIRST - 2) % 7 + 1,
+		                DATENAME(WEEKDAY, fecha),
+		                CONVERT(CHAR(10), fecha, 120)
+		            ORDER BY
+		                CONVERT(CHAR(10), fecha, 120)
+		        ";
+		    } elseif ($turno == 'B') {
+		        $sql_request = "
+		            SELECT
+		                SUM(CAST(minutoTM AS INT)) AS SumatoriaMinutos,
+		                CONVERT(CHAR(10), fecha, 120) as Fecha
+		            FROM
+		                rutasTiempoMuerto
+		            WHERE
+		                fecha BETWEEN '$fechaTurnoBInicio' AND '$fechaTurnoBFin'
+		            GROUP BY
+		                YEAR(fecha),
+		                (DATEPART(WEEKDAY, fecha) + @@DATEFIRST - 2) % 7 + 1,
+		                DATENAME(WEEKDAY, fecha),
+		                CONVERT(CHAR(10), fecha, 120)
+		            ORDER BY
+		                CONVERT(CHAR(10), fecha, 120)
+		        ";
+		    }
+
+		    // Ejecutar la consulta y procesar los resultados
+		    if (!empty($sql_request)) {
+		        $sql_query = sqlsrv_query($conn, $sql_request);
+
+		        while ($data = sqlsrv_fetch_array($sql_query, SQLSRV_FETCH_ASSOC)) {
+		            array_push($datos, array(
+		                'Fecha' => obtenerDia($data['Fecha']),
+		                'Minutos' => $data['SumatoriaMinutos']
+		            ));
+		        }
+		    }
+
+		    // Avanzar al siguiente día
+		    $currentDate = strtotime($currentDateString . ' + 1 day');
+		}
+
+		// Convertir el array a formato JSON y enviarlo como respuesta
+		echo json_encode($datos);
+	}
+	function obtenerMes($mes){
+		if ($mes =='January') {
+			return 'Enero';
+		}
+		elseif($mes =='February'){
+			return 'Febrero';
+		}
+		elseif($mes =='March'){
+			return 'Marzo';
+		}
+		elseif($mes =='April'){
+			return 'Abril';
+		}
+		elseif($mes =='May'){
+			return 'Mayo';
+		}
+		elseif($mes =='June'){
+			return 'Junio';
+		}
+		elseif($mes =='July'){
+			return 'Julio';
+		}
+		elseif($mes =='August'){
+			return 'Agosto';
+		}
+		elseif($mes =='September'){
+			return 'Septiembre';
+		}
+		elseif($mes =='October'){
+			return 'Octubre';
+		}
+		elseif($mes =='November'){
+			return 'Noviembre';
+		}
+		elseif($mes =='December'){
+			return 'Diciembre';
+		}
+		else{
+			return $mes;
+		}
+
+	}
+	function obtenerDia($dia){
+		if ($dia == 'Monday') {
+			return 'Lunes';
+		}
+		elseif ($dia == 'Tuesday') {
+			return 'Martes';
+		}
+		elseif ($dia == 'Wednesday') {
+			return 'Miercoles';
+		}
+		elseif ($dia == 'Thursday') {
+			return 'Jueves';
+		}
+		elseif ($dia == 'Friday') {
+			return 'Viernes';
+		}
+		elseif ($dia == 'Saturday') {
+			return 'Sabado';
+		}
+		elseif ($dia == 'Sunday') {
+			return 'Domingo';
+		}
+		else{
+			return $dia;
+		}
+	}
+
+	if (isset($_GET['getTurno'])) {
+		echo determinarTurno();
+	}
+
+	function determinarTurno() {
+    // Obtiene la hora actual en formato de 24 horas
+		date_default_timezone_set('America/Monterrey');
+	    $horaActual = date('H:i');
+
+	    // Define los límites de los turnos
+	    $horaInicioTurnoA = '06:00';
+	    $horaFinTurnoA = '15:36';
+	    $horaInicioTurnoB = '15:37';
+	    $horaFinTurnoB = '00:10';
+
+	    // Compara la hora actual con los límites de los turnos
+	    if ($horaActual >= $horaInicioTurnoA && $horaActual <= $horaFinTurnoA) {
+	        return 'A';
+	    } elseif (($horaActual >= $horaInicioTurnoB && $horaActual <= '23:59') || ($horaActual >= '00:00' && $horaActual <= $horaFinTurnoB)) {
+	        return 'B';
+	    } else {
+	        return 'Fuera de turno';
+	    }
+	}
+
+
+
+	
+
+?>

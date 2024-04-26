@@ -1,1 +1,123 @@
-<?php goto K_Uvl; pBvwj: $request = $_GET["\162\x65\161\165\x65\x73\164"]; goto I7P2M; I7P2M: if ($request == "\x64\x61\164\x61\x45\x73\x63\141\x6e\x65\x72") { $badge = $_GET["\142\141\x64\147\145"]; $fecha = Date("\x59\55\155\55\x64"); $sql_request = "\x53\x45\x4c\105\103\x54\12\x9\x9\40\x20\40\40\102\141\x64\x67\x65\54\12\x9\11\40\x20\x20\x20\x4e\141\x6d\145\x2c\xa\x9\11\x20\x20\x20\x20\x4c\141\x73\x74\x4e\x61\155\145\x2c\12\11\x9\x20\x20\40\x20\x53\x55\115\x28\103\x41\123\x45\x20\x57\x48\105\116\40\x41\143\x74\151\157\x6e\x20\75\x20\47\103\110\101\116\107\x45\47\40\x54\x48\105\116\40\61\x20\x45\x4c\x53\105\40\60\40\105\116\104\51\40\101\x53\x20\103\x4f\x4e\x54\111\116\107\105\116\103\x49\101\x2c\xa\x9\x9\40\40\x20\x20\x53\x55\115\50\x43\x41\x53\x45\x20\127\110\x45\x4e\x20\101\x63\x74\151\x6f\156\40\75\x20\x27\120\x55\124\x20\x41\x57\x41\x59\47\x20\124\110\x45\x4e\x20\x31\x20\x45\x4c\x53\105\40\60\40\x45\116\104\51\40\x41\x53\40\122\101\x43\113\105\x4f\54\xa\x9\x9\40\40\40\40\123\x55\x4d\x28\103\101\123\105\40\127\x48\x45\116\x20\x41\x63\164\x69\x6f\x6e\40\75\x20\x27\103\x48\101\x4e\107\105\47\x20\124\110\105\x4e\x20\61\40\105\114\x53\105\40\x30\40\x45\116\104\51\x20\53\40\123\x55\115\50\x43\x41\123\105\x20\127\110\x45\x4e\40\101\x63\x74\151\157\156\40\x3d\40\x27\x50\x55\124\x20\101\127\x41\x59\47\x20\x54\110\x45\116\40\61\x20\105\114\123\105\40\60\40\105\x4e\104\x29\40\x41\123\x20\x54\157\164\x61\154\x41\x63\x63\151\157\156\145\163\xa\11\11\106\x52\x4f\115\40\x28\xa\11\11\x20\40\x20\40\123\x45\114\x45\x43\x54\12\11\x9\x20\x20\x20\x20\40\x20\40\x20\x53\x75\x2e\x42\141\x64\x67\145\54\xa\11\11\40\40\40\40\x20\x20\40\40\x53\x75\56\x4e\x61\155\145\54\xa\x9\x9\x20\40\x20\x20\x20\x20\x20\40\x53\x75\x2e\x4c\141\163\164\x4e\x61\155\145\x2c\xa\x9\11\x20\40\40\x20\40\x20\40\40\123\x69\x64\56\x41\143\x74\151\157\156\54\12\x9\11\x20\40\x20\x20\x20\x20\40\40\123\151\x64\x2e\101\x63\x74\x69\157\156\104\141\x74\x65\xa\x9\x9\40\40\x20\40\106\x52\117\x4d\40\123\x79\x5f\125\x73\x65\x72\163\x20\x53\x75\xa\x9\11\40\40\x20\x20\114\x45\x46\124\40\112\117\111\116\x20\123\155\x6b\137\111\156\166\x44\145\164\x20\x53\151\x64\x20\117\116\40\123\151\144\x2e\102\141\x64\x67\x65\40\75\40\x53\165\x2e\102\x61\144\x67\145\12\11\x9\40\x20\40\x20\x57\110\x45\x52\105\x20\123\165\x2e\x42\141\144\x67\x65\40\75\x20\x27{$badge}\47\x20\101\116\x44\x20\x53\151\x64\x2e\101\x63\164\151\x6f\x6e\x44\141\164\145\x20\x3e\75\x20\x27{$fecha}\x20\60\60\72\x30\60\x27\51\40\12\x9\11\x9\x53\165\142\161\165\145\x72\x79\xa\x9\11\x9\x47\x52\x4f\125\120\x20\x42\x59\x20\x42\x61\x64\147\x65\x2c\x20\x4e\141\x6d\145\54\40\114\141\163\x74\116\x61\155\x65\xa\x9\11\11\117\122\104\105\x52\40\x42\131\40\124\157\164\x61\x6c\x41\143\x63\x69\x6f\x6e\x65\163"; $sql_request_tolva = "\xa\11\11\123\105\x4c\x45\x43\x54\12\11\11\40\40\x20\x20\x53\x79\137\x55\x73\145\x72\163\56\116\x61\x6d\145\40\53\40\x27\x20\47\x20\x2b\x20\x53\x79\137\125\163\x65\x72\163\x2e\114\141\163\164\116\x61\155\145\x20\101\123\40\116\x6f\x6d\142\162\x65\x2c\12\x9\11\40\x20\x20\40\x53\125\115\50\x43\x41\x53\x45\x20\127\x48\105\116\40\163\x6e\40\74\x3e\40\47\60\x46\126\x35\65\x39\x30\x30\60\60\60\60\60\x30\60\x27\x20\x54\x48\105\116\x20\61\x20\105\x4c\123\x45\x20\60\40\x45\116\104\51\x20\x41\123\x20\103\x4f\115\x50\x4f\116\105\x4e\x54\105\54\xa\11\x9\40\x20\40\x20\123\125\x4d\50\103\101\x53\x45\40\127\110\105\116\x20\x73\156\x20\x3d\40\47\x30\106\126\65\65\x39\60\60\x30\60\60\x30\60\60\x30\x27\x20\124\110\x45\116\x20\61\x20\105\x4c\x53\x45\40\60\x20\105\116\x44\51\x20\101\123\40\120\117\x4c\111\x44\125\103\124\117\x2c\12\x9\x9\x20\40\x20\x20\123\125\115\50\103\x41\123\105\40\127\x48\105\116\40\163\156\x20\x3c\x3e\x20\x27\x30\x46\126\65\65\x39\60\60\60\x30\x30\x30\x30\x30\x30\x27\40\x54\110\105\x4e\40\61\40\x45\114\123\105\x20\60\x20\105\116\104\51\x20\x2b\40\123\125\115\x28\x43\101\x53\105\40\x57\110\x45\x4e\40\x73\156\x20\75\40\47\60\x46\x56\65\x35\71\x30\x30\x30\x30\60\x30\60\60\60\47\x20\x54\110\x45\x4e\x20\61\40\105\114\x53\x45\x20\x30\40\105\x4e\x44\x29\40\x41\123\40\x54\157\164\141\x6c\12\11\11\x46\122\117\115\xa\x9\x9\40\40\40\x20\123\x79\x5f\125\163\145\162\163\xa\x9\11\112\117\x49\x4e\12\x9\11\x20\40\x20\x20\103\x68\x6b\103\157\x6d\160\x5f\x4d\x61\x69\156\115\x6f\166\x20\117\116\x20\x43\150\153\x43\x6f\155\160\x5f\115\x61\x69\156\x4d\x6f\166\56\x42\141\x64\147\145\40\75\x20\x53\171\137\x55\163\145\162\x73\56\x42\141\144\x67\x65\12\x9\x9\127\110\x45\x52\105\xa\x9\11\x20\x20\x20\40\x73\143\x61\x6e\144\x61\x74\145\40\76\75\40\47{$fecha}\x20\60\x30\x3a\x30\x30\72\60\x30\47\xa\x9\11\40\x20\x20\40\101\x4e\x44\x20\x73\143\x61\156\x64\141\x74\145\40\74\40\47{$fecha}\40\x32\x33\x3a\x35\x39\x3a\65\x39\47\xa\11\x9\x20\x20\40\x20\x41\116\x44\40\x53\171\x5f\x55\x73\145\162\x73\56\x62\141\144\147\x65\x20\x3d\x20\47{$badge}\47\12\x9\x9\107\122\x4f\x55\120\x20\102\131\12\11\11\40\40\40\40\x53\171\137\125\163\145\x72\x73\x2e\x4e\x61\x6d\145\x20\x2b\x20\47\x20\47\x20\x2b\40\x53\x79\x5f\125\x73\x65\162\x73\x2e\x4c\x61\163\x74\116\x61\x6d\x65"; $sql_query = sqlsrv_query($conn, $sql_request); $sql_query_tolva = sqlsrv_query($conn, $sql_request_tolva); $arrayUserData["\x53\x4d\x4b\124"] = array(); $arrayUserData["\x52\165\164\x61\163"] = array(); while ($dataUser = sqlsrv_fetch_array($sql_query, SQLSRV_FETCH_ASSOC)) { $arrayUserData["\x53\x4d\x4b\x54"] = $dataUser; } unset($dataUser); while ($dataUser = sqlsrv_fetch_array($sql_query_tolva, SQLSRV_FETCH_ASSOC)) { $arrayUserData["\x52\x75\164\x61\x73"] = $dataUser; } echo json_encode($arrayUserData); } goto s5S0p; s5S0p: function combinarTablas($tabla_uno, $tabla_dos) { $diccionario_temporal = array(); foreach ($tabla_uno as $empleado_uno) { $badge = $empleado_uno["\102\141\144\147\x65"]; $rackeo = isset($empleado_uno["\x52\101\x43\113\x45\x4f"]) ? $empleado_uno["\122\101\x43\x4b\x45\117"] : 0; if (!isset($diccionario_temporal[$badge])) { $diccionario_temporal[$badge] = array("\102\x61\x64\x67\x65" => $badge, "\x4e\x61\155\145" => $empleado_uno["\116\x61\155\x65"], "\114\x61\163\164\116\x61\x6d\145" => $empleado_uno["\114\x61\163\164\x4e\x61\155\145"], "\122\101\103\113\105\117" => $rackeo, "\103\117\x4e\x54\x49\116\107\105\x4e\x43\111\x41" => 0); } else { $diccionario_temporal[$badge]["\x52\x41\103\113\x45\x4f"] = max($diccionario_temporal[$badge]["\122\101\103\113\x45\x4f"], $rackeo); } } foreach ($tabla_dos as $empleado_dos) { $badge = $empleado_dos["\102\x61\144\x67\145"]; $contingencia = $empleado_dos["\x43\117\116\124\x49\116\x47\x45\x4e\103\111\101"]; if (!isset($diccionario_temporal[$badge])) { $diccionario_temporal[$badge] = array("\102\x61\144\x67\x65" => $badge, "\116\x61\155\145" => $empleado_dos["\x4e\141\x6d\x65"], "\114\x61\x73\164\x4e\141\155\x65" => $empleado_dos["\x4c\141\x73\x74\116\141\155\145"], "\x52\101\103\x4b\x45\117" => 0, "\x43\x4f\116\x54\111\x4e\107\x45\116\103\x49\x41" => $contingencia); } else { $diccionario_temporal[$badge]["\103\x4f\116\124\x49\x4e\107\105\x4e\x43\111\101"] = max($diccionario_temporal[$badge]["\103\x4f\116\124\x49\116\107\105\x4e\103\x49\x41"], $contingencia); } } foreach ($diccionario_temporal as &$empleado) { $empleado["\x54\117\x54\x41\x4c"] = $empleado["\122\101\103\x4b\105\x4f"] + $empleado["\x43\117\x4e\x54\x49\x4e\107\x45\116\x43\x49\101"]; } $tabla_final = array_values($diccionario_temporal); return $tabla_final; } goto FHb2Z; K_Uvl: include "\56\56\57\x2e\56\57\x63\157\x6e\156\x65\x63\x74\x69\157\156\56\160\150\160"; goto pBvwj; FHb2Z: ?>
+<?php
+	include '../../connection.php';
+	$request = $_GET['request'];
+	if ($request == 'dataEscaner'){
+		$badge = $_GET['badge'];
+
+		$fecha = (Date('Y-m-d'));
+		
+		$sql_request = "SELECT
+		    Badge,
+		    Name,
+		    LastName,
+		    SUM(CASE WHEN Action = 'CHANGE' THEN 1 ELSE 0 END) AS CONTINGENCIA,
+		    SUM(CASE WHEN Action = 'PUT AWAY' THEN 1 ELSE 0 END) AS RACKEO,
+		    SUM(CASE WHEN Action = 'CHANGE' THEN 1 ELSE 0 END) + SUM(CASE WHEN Action = 'PUT AWAY' THEN 1 ELSE 0 END) AS TotalAcciones
+		FROM (
+		    SELECT
+		        Su.Badge,
+		        Su.Name,
+		        Su.LastName,
+		        Sid.Action,
+		        Sid.ActionDate
+		    FROM Sy_Users Su
+		    LEFT JOIN Smk_InvDet Sid ON Sid.Badge = Su.Badge
+		    WHERE Su.Badge = '$badge' AND Sid.ActionDate >= '$fecha 00:00') 
+			Subquery
+			GROUP BY Badge, Name, LastName
+			ORDER BY TotalAcciones";
+
+		$sql_request_tolva = "
+		SELECT
+		    Sy_Users.Name + ' ' + Sy_Users.LastName AS Nombre,
+		    SUM(CASE WHEN sn <> '0FV559000000000' THEN 1 ELSE 0 END) AS COMPONENTE,
+		    SUM(CASE WHEN sn = '0FV559000000000' THEN 1 ELSE 0 END) AS POLIDUCTO,
+		    SUM(CASE WHEN sn <> '0FV559000000000' THEN 1 ELSE 0 END) + SUM(CASE WHEN sn = '0FV559000000000' THEN 1 ELSE 0 END) AS Total
+		FROM
+		    Sy_Users
+		JOIN
+		    ChkComp_MainMov ON ChkComp_MainMov.Badge = Sy_Users.Badge
+		WHERE
+		    scandate >= '$fecha 00:00:00'
+		    AND scandate < '$fecha 23:59:59'
+		    AND Sy_Users.badge = '$badge'
+		GROUP BY
+		    Sy_Users.Name + ' ' + Sy_Users.LastName";
+
+		//echo $sql_request;
+		$sql_query = sqlsrv_query($conn,$sql_request);
+		$sql_query_tolva = sqlsrv_query($conn,$sql_request_tolva);
+		
+		$arrayUserData['SMKT'] = array();
+		$arrayUserData['Rutas'] = array();
+		while ($dataUser = sqlsrv_fetch_array($sql_query,SQLSRV_FETCH_ASSOC)) {
+			$arrayUserData['SMKT'] = $dataUser;
+		}
+		unset($dataUser);
+
+		while ($dataUser = sqlsrv_fetch_array($sql_query_tolva,SQLSRV_FETCH_ASSOC)) {
+			$arrayUserData['Rutas'] = $dataUser;
+		}
+
+
+		//$arrayUserData = combinarTablas($arrayContingencia,$arrayRackeo);
+
+		//echo json_encode($arrayRackeo);
+		echo json_encode($arrayUserData);
+
+  		
+
+	}
+
+	function combinarTablas($tabla_uno, $tabla_dos) {
+    // Crear un diccionario temporal para almacenar la información combinada por Badge (Código de empleado)
+    $diccionario_temporal = [];
+
+    // Combinar información de tabla_uno
+    foreach ($tabla_uno as $empleado_uno) {
+        $badge = $empleado_uno["Badge"];
+        $rackeo = isset($empleado_uno["RACKEO"]) ? $empleado_uno["RACKEO"] : 0;
+
+        if (!isset($diccionario_temporal[$badge])) {
+            $diccionario_temporal[$badge] = [
+                "Badge" => $badge,
+                "Name" => $empleado_uno["Name"],
+                "LastName" => $empleado_uno["LastName"],
+                "RACKEO" => $rackeo,
+                "CONTINGENCIA" => 0,
+
+            ];
+        } else {
+            // Si ya existe en el diccionario, actualizamos la información de RACKEO si es mayor
+            $diccionario_temporal[$badge]["RACKEO"] = max($diccionario_temporal[$badge]["RACKEO"], $rackeo);
+        }
+    }
+
+    // Combinar información de tabla_dos
+    foreach ($tabla_dos as $empleado_dos) {
+        $badge = $empleado_dos["Badge"];
+        $contingencia = $empleado_dos["CONTINGENCIA"];
+
+        if (!isset($diccionario_temporal[$badge])) {
+            $diccionario_temporal[$badge] = [
+                "Badge" => $badge,
+                "Name" => $empleado_dos["Name"],
+                "LastName" => $empleado_dos["LastName"],
+                "RACKEO" => 0,
+                "CONTINGENCIA" => $contingencia,
+            ];
+        } else {
+            // Si ya existe en el diccionario, actualizamos la información de CONTINGENCIA si es mayor
+            $diccionario_temporal[$badge]["CONTINGENCIA"] = max($diccionario_temporal[$badge]["CONTINGENCIA"], $contingencia);
+        }
+    }
+    foreach ($diccionario_temporal as &$empleado) {
+      $empleado["TOTAL"] = $empleado["RACKEO"] + $empleado["CONTINGENCIA"];
+    }
+    // Generar el arreglo final a partir del diccionario temporal
+    $tabla_final = array_values($diccionario_temporal);
+
+    return $tabla_final;
+}
+
+?>

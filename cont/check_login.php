@@ -1,1 +1,25 @@
-<?php goto D7meb; Wy9Kj: $sql_statement = "\x53\105\114\105\103\124\40\x43\x4f\125\x4e\x54\x28\x2a\51\x20\x41\123\x20\x63\x6f\165\156\164\x20\106\122\117\115\x20\x72\165\x74\x61\163\x5f\141\x64\155\x69\x6e\x20\x57\x48\105\122\x45\x20\165\x73\x65\162\156\141\x6d\x65\40\x3d\x20\47{$username}\47\40\x41\x4e\104\x20\160\x61\163\x73\x77\x6f\x72\x64\x3d\x27{$enc_password}\x27"; goto ri5x7; ixo84: if ($sql_query !== false) { $row = sqlsrv_fetch_array($sql_query); $row_count = $row["\143\157\165\156\x74"]; if ($row_count > 0) { echo json_encode(array("\162\x65\163\160\x6f\x6e\163\x65" => "\163\x75\143\x63\x65\x73\x73")); } else { echo json_encode(array("\x72\145\163\x70\157\x6e\x73\145" => "\146\141\151\x6c")); } } else { echo json_encode(array("\162\145\163\x70\x6f\x6e\163\145" => "\x66\141\151\154")); } goto waqVG; ri5x7: $sql_query = sqlsrv_query($conn, $sql_statement); goto ixo84; D7meb: include "\56\x2e\57\56\56\x2f\x63\x6f\156\156\x65\143\x74\x69\x6f\x6e\56\160\x68\x70"; goto vkl_R; UipgW: $password = $_GET["\160\141\x73\x73\167\157\x72\144"]; goto FMDBF; LGc7p: $username = $_GET["\x75\x73\x65\x72\x6e\141\x6d\145"]; goto UipgW; vkl_R: include "\x65\x6e\143\162\151\x70\x74\141\162\56\160\x68\160"; goto LGc7p; FMDBF: $enc_password = encrypt($password, "\x41\120\x54\111\x56"); goto Wy9Kj; waqVG: ?>
+<?php 
+	include '../../connection.php';
+	include 'encriptar.php';
+	$username = $_GET['username'];
+	$password = $_GET['password'];
+	$enc_password = encrypt($password,'APTIV');
+
+	$sql_statement = "SELECT COUNT(*) AS count FROM rutas_admin WHERE username = '$username' AND password='$enc_password'";
+	$sql_query = sqlsrv_query($conn, $sql_statement);
+
+	if ($sql_query !== false) {
+	    $row = sqlsrv_fetch_array($sql_query);
+	    $row_count = $row['count'];
+	    
+	    if ($row_count > 0) {
+	        echo json_encode(array('response' => 'success'));
+	    } else {
+	        echo json_encode(array('response' => 'fail'));
+	    }
+	} else {
+	    echo json_encode(array('response' => 'fail'));
+	}
+	//echo json_encode($row_count);
+
+?>

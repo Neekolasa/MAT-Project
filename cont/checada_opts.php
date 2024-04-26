@@ -1,1 +1,84 @@
-<?php goto WivV2; rzuQ2: if ($request == "\107\x45\124\117\x50\124\123") { $sql_request = "\x53\x45\x4c\105\103\x54\x20\xa\11\x9\11\x9\11\x9\x20\40\40\40\111\x44\54\xa\x9\x9\11\x9\x9\11\x20\40\x20\x20\x43\117\116\x56\105\x52\x54\50\x56\x41\x52\103\110\x41\122\x28\x35\x29\x2c\x20\x54\x69\145\x6d\x70\x6f\123\141\x6c\151\144\x61\54\40\x31\60\x38\x29\x20\x41\123\40\x54\x69\x65\x6d\160\x6f\123\141\x6c\151\x64\141\54\xa\x9\x9\x9\x9\x9\x9\x20\40\40\40\103\117\116\126\x45\122\x54\x28\126\101\x52\x43\110\x41\122\x28\65\51\x2c\x20\x54\x69\145\x6d\x70\157\x45\x6e\164\x72\141\x64\x61\x2c\x20\61\60\70\x29\x20\x41\x53\x20\124\151\x65\x6d\x70\157\105\x6e\x74\x72\x61\144\141\12\x9\x9\11\11\11\x9\x46\122\117\x4d\40\x48\157\162\x61\x72\x69\157\163\12\x9\11\11\11\11\x9\x2d\55\x57\110\x45\122\105\x20\x54\151\145\x6d\160\157\123\x61\154\151\x64\141\x3c\47\61\71\x3a\x32\x30\47\x20\12\x9\x9\x9\x9\11\x9\x4f\x52\104\x45\122\x20\x42\x59\x20\124\x69\145\x6d\160\157\x53\141\154\x69\x64\141\x3b"; $sql_request_two = "\x53\x45\x4c\x45\x43\124\40\12\11\11\11\x9\x9\11\40\x20\x20\x20\x49\x44\x2c\12\11\11\x9\x9\x9\x9\40\x20\x20\x20\103\117\x4e\x56\x45\x52\x54\50\126\x41\x52\103\110\x41\122\x28\x35\x29\54\x20\124\x69\x65\x6d\x70\x6f\x53\141\x6c\x69\x64\x61\x2c\x20\61\x30\x38\x29\40\x41\123\40\x54\151\145\155\160\157\123\141\154\x69\x64\141\x2c\12\11\11\x9\11\x9\11\x20\x20\40\40\103\117\116\x56\105\122\x54\50\126\101\122\x43\x48\x41\122\50\65\x29\54\x20\124\151\x65\x6d\160\x6f\x45\156\x74\x72\x61\144\141\x2c\x20\61\60\70\x29\x20\101\123\x20\x54\x69\145\155\x70\x6f\x45\156\x74\x72\141\144\x61\12\x9\11\11\11\x9\x9\x46\122\x4f\115\40\x48\x6f\162\x61\x72\x69\157\163\xa\11\11\11\11\11\11\55\55\x57\x48\105\x52\105\40\124\151\x65\x6d\x70\x6f\x53\x61\x6c\x69\x64\x61\x3e\x3d\x27\61\x39\72\62\60\x27\x20\12\x9\11\11\11\x9\x9\117\x52\x44\105\122\x20\x42\x59\x20\124\x69\x65\x6d\160\157\x53\141\154\x69\x64\141\73"; $sql_query = sqlsrv_query($conn, $sql_request); $sql_query_two = sqlsrv_query($conn, $sql_request_two); $arrayOptions["\104\x65\x73\x61\x79\165\156\x6f"] = array(); $arrayOptions["\103\157\155\x69\144\x61"] = array(); while ($data = sqlsrv_fetch_array($sql_query, SQLSRV_FETCH_ASSOC)) { array_push($arrayOptions["\x44\x65\x73\141\x79\165\x6e\x6f"], array("\111\104" => $data["\111\104"], "\x54\x69\x65\x6d\160\x6f\x53\141\154\151\144\x61" => $data["\x54\x69\145\x6d\x70\x6f\x53\141\x6c\151\144\141"], "\124\x69\145\155\x70\157\x45\x6e\164\162\x61\144\141" => $data["\x54\151\145\x6d\160\157\x45\x6e\164\162\141\144\x61"])); } unset($data); while ($data = sqlsrv_fetch_array($sql_query_two, SQLSRV_FETCH_ASSOC)) { array_push($arrayOptions["\103\x6f\155\151\x64\x61"], array("\x49\x44" => $data["\111\x44"], "\x54\151\145\x6d\x70\157\123\141\154\151\x64\141" => $data["\124\151\145\x6d\160\x6f\x53\x61\154\151\x64\141"], "\124\151\145\x6d\160\x6f\105\x6e\x74\162\x61\144\141" => $data["\124\151\x65\155\x70\x6f\105\156\164\x72\x61\x64\141"])); } echo json_encode($arrayOptions); } else { if ($request == "\147\x65\164\104\x61\164\141") { $num_empleado = $_GET["\156\165\155\137\145\155\160\x6c\145\x61\144\157"]; $sql_request = "\123\x45\x4c\x45\x43\124\x20\xa\x9\x9\11\11\11\x9\x20\x20\40\40\123\120\x2e\x42\141\x64\x67\145\x2c\12\11\x9\11\x9\11\x9\40\40\40\40\123\x50\x2e\116\x6f\155\142\162\145\x2c\12\11\11\11\11\11\x9\40\40\40\40\x53\x50\56\101\x72\145\141\54\xa\11\11\11\11\11\x9\x20\x20\x20\40\x48\104\145\x73\141\171\x75\156\x6f\x2e\111\104\40\101\123\40\x49\x44\x44\x65\163\x61\x79\165\156\157\x2c\12\x9\11\x9\x9\x9\11\x20\x20\x20\x20\123\x55\102\x53\x54\x52\111\116\107\x28\x43\x4f\x4e\x56\x45\x52\x54\50\x76\x61\162\x63\150\141\x72\54\x20\110\104\145\163\x61\171\x75\x6e\x6f\56\124\151\x65\155\x70\x6f\x53\x61\x6c\151\144\141\x2c\x20\x31\60\x38\51\x2c\x20\61\x2c\40\65\51\x20\x41\x53\40\x54\x69\145\155\x70\x6f\123\141\x6c\x69\x64\x61\x44\x65\x73\141\x79\x75\156\x6f\54\xa\11\x9\11\x9\x9\x9\x20\x20\40\40\x53\x55\x42\x53\124\x52\111\116\x47\x28\103\x4f\x4e\x56\105\x52\124\x28\x76\x61\162\143\150\x61\162\x2c\40\x48\104\145\x73\x61\x79\165\156\x6f\56\124\x69\145\x6d\x70\157\x45\156\164\162\141\144\x61\54\40\61\x30\70\x29\54\40\61\54\x20\65\x29\40\x41\123\40\x54\x69\x65\155\x70\x6f\105\x6e\164\x72\141\144\141\104\145\163\x61\x79\165\156\157\54\12\11\11\11\11\x9\11\40\40\40\40\x48\103\157\x6d\151\144\141\56\x49\x44\40\101\x53\x20\x49\104\103\157\155\151\144\141\x2c\xa\x9\11\x9\11\11\11\40\x20\40\40\x53\x55\102\123\x54\x52\x49\116\x47\x28\103\117\116\126\105\122\x54\50\x76\x61\162\143\150\141\162\54\x20\110\x43\157\x6d\x69\144\x61\56\124\151\145\155\160\x6f\123\141\154\x69\x64\141\54\40\x31\x30\70\x29\54\40\61\x2c\x20\x35\51\40\101\123\x20\x54\151\x65\155\160\x6f\123\x61\x6c\151\x64\x61\x43\157\155\151\144\x61\54\12\11\x9\x9\11\x9\11\x20\40\x20\x20\x53\x55\102\123\124\x52\111\x4e\x47\x28\x43\x4f\x4e\126\105\x52\124\50\x76\141\162\143\150\x61\x72\x2c\x20\x48\x43\157\x6d\x69\144\x61\56\x54\x69\145\155\160\x6f\105\156\x74\x72\141\x64\141\54\x20\x31\x30\70\51\54\x20\61\x2c\x20\x35\51\x20\101\123\40\x54\151\145\x6d\160\157\105\156\164\x72\141\144\x61\103\x6f\155\151\144\x61\12\11\11\x9\11\x9\11\x46\x52\x4f\x4d\x20\123\141\154\151\x64\x61\x73\120\x65\162\x73\x6f\x6e\141\x6c\40\x41\123\x20\x53\120\xa\x9\x9\x9\11\11\11\x4a\x4f\111\x4e\40\110\157\162\141\162\x69\157\x73\40\101\x53\x20\x48\x44\x65\x73\x61\171\x75\x6e\x6f\40\x4f\x4e\x20\123\120\x2e\x44\145\x73\141\x79\165\x6e\x6f\x20\75\40\110\x44\145\163\x61\x79\165\x6e\x6f\56\x49\x44\xa\11\x9\11\11\x9\x9\112\117\111\116\40\110\157\162\x61\162\151\157\163\x20\x41\x53\x20\110\x43\157\155\x69\144\141\40\117\x4e\40\x53\x50\56\103\157\x6d\x69\x64\x61\x20\x3d\40\110\x43\x6f\x6d\151\x64\x61\56\x49\104\12\x9\11\11\x9\x9\x9\x57\x48\105\x52\105\x20\123\120\56\102\141\144\147\x65\x20\x3d\x20\x27{$num_empleado}\47"; $sql_query = sqlsrv_query($conn, $sql_request); $arrayModify["\125\163\x65\x72"] = array(); while ($data = sqlsrv_fetch_array($sql_query, SQLSRV_FETCH_ASSOC)) { array_push($arrayModify["\x55\x73\145\x72"], array("\x4e\x6f\x6d\142\x72\145" => $data["\x4e\x6f\155\x62\162\145"], "\x41\162\x65\141" => $data["\101\x72\x65\x61"], "\124\x69\145\x6d\x70\157\x53\x61\x6c\151\x64\x61\104\x65\163\x61\x79\x75\156\157" => $data["\x54\x69\x65\155\160\x6f\x53\141\154\151\x64\141\104\x65\163\x61\x79\x75\156\157"], "\x54\151\x65\x6d\160\x6f\x45\x6e\x74\162\x61\144\x61\104\145\x73\x61\x79\165\156\157" => $data["\x54\151\145\155\160\157\x45\156\x74\x72\x61\144\x61\x44\145\x73\x61\171\x75\156\x6f"], "\x54\x69\145\x6d\160\157\123\141\x6c\151\x64\x61\x43\x6f\155\x69\144\141" => $data["\124\151\x65\155\x70\157\x53\x61\x6c\x69\144\x61\x43\157\155\151\144\x61"], "\x54\151\145\155\160\x6f\x45\x6e\164\162\141\x64\x61\x43\157\155\151\x64\x61" => $data["\124\x69\x65\x6d\x70\157\x45\x6e\164\x72\x61\x64\141\103\x6f\x6d\151\x64\141"], "\x49\104\x44\145\x73\x61\171\165\156\157" => $data["\111\104\x44\145\163\141\171\165\x6e\157"], "\111\104\103\x6f\x6d\x69\x64\x61" => $data["\111\104\103\157\155\x69\144\141"])); } echo json_encode($arrayModify); } } goto HyUtr; WivV2: include "\56\x2e\57\56\x2e\57\143\x6f\156\156\145\x63\x74\x69\157\156\56\x70\x68\x70"; goto BFc4P; BFc4P: $request = $_GET["\x72\145\x71\165\x65\x73\164"]; goto rzuQ2; HyUtr: ?>
+<?php 
+
+	include '../../connection.php';
+	$request = $_GET['request'];
+
+	if ($request == 'GETOPTS') {
+		$sql_request = "SELECT 
+						    ID,
+						    CONVERT(VARCHAR(5), TiempoSalida, 108) AS TiempoSalida,
+						    CONVERT(VARCHAR(5), TiempoEntrada, 108) AS TiempoEntrada
+						FROM Horarios
+						--WHERE TiempoSalida<'19:20' 
+						ORDER BY TiempoSalida;";
+		$sql_request_two = "SELECT 
+						    ID,
+						    CONVERT(VARCHAR(5), TiempoSalida, 108) AS TiempoSalida,
+						    CONVERT(VARCHAR(5), TiempoEntrada, 108) AS TiempoEntrada
+						FROM Horarios
+						--WHERE TiempoSalida>='19:20' 
+						ORDER BY TiempoSalida;";
+
+		$sql_query = sqlsrv_query($conn,$sql_request);
+		$sql_query_two = sqlsrv_query($conn,$sql_request_two);
+
+		$arrayOptions['Desayuno'] = array();
+		$arrayOptions['Comida'] = array();
+		while ($data = sqlsrv_fetch_array($sql_query,SQLSRV_FETCH_ASSOC)) {
+			array_push($arrayOptions['Desayuno'],array(
+				"ID" => $data['ID'],
+				"TiempoSalida" => $data['TiempoSalida'],
+				"TiempoEntrada" => $data['TiempoEntrada']
+			));
+			//$desayuno.="<option value='$data[ID]'> $data[TiempoSalida] - $data[TiempoEntrada] <option>";
+		}
+		unset($data);
+		while ($data = sqlsrv_fetch_array($sql_query_two,SQLSRV_FETCH_ASSOC)) {
+			array_push($arrayOptions['Comida'],array(
+				"ID" => $data['ID'],
+				"TiempoSalida" => $data['TiempoSalida'],
+				"TiempoEntrada" => $data['TiempoEntrada']
+			));
+		}
+
+		echo json_encode($arrayOptions);
+		//echo $desayuno;
+	}
+	else if($request=='getData'){
+		$num_empleado = $_GET['num_empleado'];
+
+
+		$sql_request = "SELECT 
+						    SP.Badge,
+						    SP.Nombre,
+						    SP.Area,
+						    HDesayuno.ID AS IDDesayuno,
+						    SUBSTRING(CONVERT(varchar, HDesayuno.TiempoSalida, 108), 1, 5) AS TiempoSalidaDesayuno,
+						    SUBSTRING(CONVERT(varchar, HDesayuno.TiempoEntrada, 108), 1, 5) AS TiempoEntradaDesayuno,
+						    HComida.ID AS IDComida,
+						    SUBSTRING(CONVERT(varchar, HComida.TiempoSalida, 108), 1, 5) AS TiempoSalidaComida,
+						    SUBSTRING(CONVERT(varchar, HComida.TiempoEntrada, 108), 1, 5) AS TiempoEntradaComida
+						FROM SalidasPersonal AS SP
+						JOIN Horarios AS HDesayuno ON SP.Desayuno = HDesayuno.ID
+						JOIN Horarios AS HComida ON SP.Comida = HComida.ID
+						WHERE SP.Badge = '$num_empleado'";
+		$sql_query = sqlsrv_query($conn,$sql_request);
+
+		$arrayModify['User'] = array();
+		while ($data = sqlsrv_fetch_array($sql_query,SQLSRV_FETCH_ASSOC)) {
+			array_push($arrayModify['User'], array(
+				'Nombre' => $data['Nombre'],
+				'Area' => $data['Area'],
+				'TiempoSalidaDesayuno' => $data['TiempoSalidaDesayuno'],
+				'TiempoEntradaDesayuno' => $data['TiempoEntradaDesayuno'],
+				'TiempoSalidaComida' => $data['TiempoSalidaComida'],
+				'TiempoEntradaComida' => $data['TiempoEntradaComida'],
+				'IDDesayuno' => $data['IDDesayuno'],
+				'IDComida' => $data['IDComida']
+			));
+		}
+
+		echo json_encode($arrayModify);
+	}
+
+?>

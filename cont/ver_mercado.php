@@ -1,1 +1,261 @@
-<?php goto Q4ErI; FAQ79: echo json_encode($datos, JSON_PRETTY_PRINT); goto UV9DP; v4MsJ: function getDates($startDate, $stopDate) { $dateArray = array(); $currentDate = date_create($startDate); $endDate = date_create($stopDate); $interval = new DateInterval("\120\x31\104"); $date_range = new DatePeriod($currentDate, $interval, $endDate); foreach ($date_range as $date) { array_push($dateArray, $date->format("\131\x2d\155\x2d\x64")); } array_push($dateArray, $stopDate); return $dateArray; } goto jymac; DZinH: $turno_fin = $_GET["\x74\x75\x72\x6e\x6f\x5f\146\151\x6e"]; goto WEA4p; tisrE: $consultas_rackeo = array(); goto yM81u; DDArl: for ($i = 0; $i < count($arrayContingencia); $i++) { array_push($datos["\x69\x6e\x66\x6f"], array("\x72\145\143\x69\142\x6f\163" => $arrayRecibos[$i], "\x72\141\143\153\145\x6f" => $arrayRackeo[$i], "\143\x6f\156\164\x69\156\147\x65\x6e\x63\x69\x61" => $arrayContingencia[$i], "\164\x6f\164\141\154" => intval($arrayRackeo[$i]) + intval($arrayContingencia[$i]), "\x66\145\143\x68\141" => $consultas[$i])); $sumRackeo += $arrayRackeo[$i]; $sumContingencia += $arrayContingencia[$i]; $sumMovimientos += intval($arrayRackeo[$i]) + intval($arrayContingencia[$i]); } goto enhyY; YmfP3: $sumRackeo = 0; goto c1TBB; hx3Q4: $reciboConsulta = array(); goto L7oQs; jymac: function lreplace($search, $replace, $subject) { $pos = strrpos($subject, $search); if ($pos !== false) { $subject = substr_replace($subject, $replace, $pos, strlen($search)); } return $subject; } goto h2nLc; yM81u: $consultas_rackeo = getDates($fecha_inicio, $fecha_fin); goto jQo09; jLGAv: $arrayRecibos = getData($consultas, '', '', "\x52\105\103\111\102\117\x53"); goto nZ05f; yEdk6: $fecha_fin = $_GET["\146\145\143\x68\x61\137\x66\x69\156"]; goto WX_aj; v1EkO: $sumMovimientos = 0; goto DDArl; Bv0hF: function getData($fechas, $turno_inicio, $turno_fin, $consulta) { $serverName = "\61\x30\x2e\62\61\x35\56\61\x35\x36\56\x32\x30\x33\134\x49\106\x56\x35\65"; $connectionInfo = array("\104\x61\x74\141\x62\141\x73\145" => "\x53\x4d\x53", "\x55\111\104" => "\163\x61", "\x50\127\104" => "\123\x79\163\x74\x65\x6d\100\x64\155\x31\156"); $conn = sqlsrv_connect($serverName, $connectionInfo); if ($consulta == "\x52\x41\x43\113\x45\x4f") { $var = array(); foreach ($fechas as $key) { $rak = sqlsrv_query($conn, "\123\105\114\105\103\124\40\x43\157\x75\x6e\x74\50\x2a\51\40\141\x73\x20\x52\x41\103\113\x45\x4f\40\106\122\x4f\115\x20\x20\x20\x53\155\x6b\x5f\111\x6e\166\x44\x65\164\x20\x57\110\x45\122\x45\40\50\x41\x63\x74\151\x6f\x6e\x20\75\x20\x27\120\x55\x54\40\x41\127\101\x59\47\51\x20\101\116\104\x20\x28\101\x63\x74\151\x6f\156\104\x61\x74\x65\76\75\x20\x27{$key}\x20{$turno_inicio}\47\x20\x20\x41\116\x44\x20\101\x63\164\x69\x6f\x6e\104\x61\x74\145\74\40\x27{$key}\x20{$turno_fin}\47\51"); while ($res = sqlsrv_fetch_array($rak, SQLSRV_FETCH_ASSOC)) { array_push($var, $res["\122\101\103\113\105\x4f"]); } } return $var; } else { if ($consulta == "\x43\x4f\x4e\x54\111\x4e\107\105\116\x43\x49\101") { $var = array(); $tt = 0; foreach ($fechas as $key) { $rak = sqlsrv_query($conn, "\123\x45\x4c\105\103\124\40\x43\157\x75\156\x74\50\x2a\51\x20\141\x73\40\103\x4f\116\124\x49\116\x47\x45\116\103\x49\101\x20\x46\x52\x4f\115\x20\x20\x20\123\155\153\x5f\111\x6e\x76\x44\x65\164\40\x57\x48\105\122\105\40\50\x41\x63\164\151\157\x6e\40\75\40\47\x43\x48\101\x4e\x47\x45\x27\x29\40\101\116\104\40\x28\101\143\x74\151\157\x6e\x44\141\x74\145\76\75\x20\47{$key}\40{$turno_inicio}\47\x20\40\x41\x4e\x44\x20\101\x63\164\151\157\156\x44\141\x74\x65\x3c\40\47{$key}\40{$turno_fin}\x27\51"); while ($res = sqlsrv_fetch_array($rak, SQLSRV_FETCH_ASSOC)) { array_push($var, $res["\103\x4f\x4e\124\111\x4e\107\105\x4e\103\111\x41"]); } } return $var; } else { $var = array(); $tt = 0; foreach ($fechas as $key) { $rak = sqlsrv_query($conn, "\x53\x45\x4c\105\x43\x54\40\143\x6f\x75\156\164\x28\x2a\x29\40\141\x73\40\x52\105\103\111\x42\x4f\x53\x20\106\x52\x4f\x4d\x20\40\122\x63\166\x5f\x53\x4e\x48\40\x57\110\105\122\x45\40\50\123\143\141\156\x44\x61\164\x65\76\x3d\x20\47{$key}\x20\60\x3a\x30\x30\x27\40\40\101\x4e\x44\x20\x53\143\x61\x6e\x44\x61\x74\x65\74\x20\x27{$key}\40\x32\x33\72\65\71\47\x20\x61\156\x64\40\x73\164\x61\164\165\163\x3c\x3e\x27\60\x27\51"); while ($res = sqlsrv_fetch_array($rak, SQLSRV_FETCH_ASSOC)) { array_push($var, $res["\122\x45\x43\111\x42\x4f\x53"]); } } return $var; } } } goto UY8rQ; DvBJJ: $fecha_inicio = $_GET["\x66\145\x63\150\141\x5f\151\x6e\x69\x63\x69\x6f"]; goto yEdk6; c1TBB: $sumContingencia = 0; goto v1EkO; nZ05f: $sum = 0; goto Q63Il; jQo09: if ($tipo_turno == "\102") { $arrayRackeo = getBData($consultas_rackeo, $turno_inicio, $turno_fin, "\x52\x41\x43\x4b\x45\x4f"); } else { $arrayRackeo = getData($consultas_rackeo, $turno_inicio, $turno_fin, "\x52\x41\x43\x4b\105\x4f"); } goto nvOcK; nvOcK: $consultas_contingencia = array(); goto kB5Ns; UY8rQ: function diasEntreFechas($fecha_inicio, $fecha_fin) { $diaInicio = strtotime($fecha_inicio); $diaFin = strtotime($fecha_fin); $numDias = $diaFin - $diaInicio; $numDiasTotal = round($numDias / (60 * 60 * 24) + 1); return $numDiasTotal; } goto v4MsJ; Q63Il: $datos["\x69\x6e\146\157"] = array(); goto YmfP3; kB5Ns: $consultas_contingencia = getDates($fecha_inicio, $fecha_fin); goto jr1CZ; UV9DP: function getBData($fechas, $turno_inicio, $turno_fin, $consulta) { $serverName = "\61\x30\x2e\x32\61\x35\56\61\x35\x36\56\x32\x30\63\x5c\x49\x46\x56\x35\x35"; $connectionInfo = array("\x44\141\x74\141\x62\141\163\145" => "\123\115\123", "\125\x49\x44" => "\x73\x61", "\x50\127\x44" => "\123\171\163\x74\x65\155\x40\x64\x6d\x31\156"); $conn = sqlsrv_connect($serverName, $connectionInfo); if ($consulta == "\122\x41\x43\x4b\x45\117") { $b = 0; $var = array(); for ($i = 0; $i < count($fechas); $i++) { $b += 1; if ($b >= count($fechas)) { break; } $rak = sqlsrv_query($conn, "\x53\x45\x4c\105\x43\124\40\103\157\x75\x6e\x74\x28\52\51\x20\141\x73\40\122\x41\103\x4b\105\x4f\x20\x46\122\x4f\x4d\40\x20\x20\x53\x6d\x6b\137\x49\156\166\x44\x65\164\x20\x57\x48\x45\x52\105\40\50\101\x63\x74\151\157\x6e\x20\x3d\x20\x27\x50\x55\124\40\x41\127\x41\x59\x27\51\x20\101\116\104\40\50\101\143\x74\151\x6f\x6e\x44\x61\x74\x65\x3e\75\40\47" . $fechas[$i] . "\40{$turno_inicio}\47\40\40\x41\116\104\x20\x41\x63\x74\151\157\156\x44\x61\164\145\x3c\40\47" . $fechas[$b] . "\x20{$turno_fin}\47\51"); while ($res = sqlsrv_fetch_array($rak, SQLSRV_FETCH_ASSOC)) { array_push($var, $res["\122\101\x43\x4b\105\117"]); } } return $var; } else { if ($consulta == "\103\117\x4e\124\x49\x4e\107\105\116\x43\x49\x41") { $b = 0; $var = array(); for ($i = 0; $i < count($fechas); $i++) { $b += 1; if ($b >= count($fechas)) { break; } $rak = sqlsrv_query($conn, "\123\x45\x4c\105\103\x54\x20\x43\x6f\165\x6e\x74\x28\52\51\40\x61\x73\40\103\117\x4e\124\x49\116\107\105\116\x43\x49\x41\40\106\x52\x4f\115\x20\40\40\123\155\x6b\137\x49\156\166\x44\145\x74\x20\127\110\x45\122\105\x20\50\x41\143\x74\x69\x6f\x6e\40\75\40\47\x43\x48\x41\116\x47\105\x27\x29\x20\x41\116\104\40\50\x41\143\164\x69\157\x6e\x44\x61\x74\145\x3e\x3d\x20\47" . $fechas[$i] . "\x20{$turno_inicio}\x27\40\x20\101\x4e\x44\40\x41\143\x74\151\x6f\156\104\141\x74\145\74\40\x27" . $fechas[$b] . "\40{$turno_fin}\x27\x29"); while ($res = sqlsrv_fetch_array($rak, SQLSRV_FETCH_ASSOC)) { array_push($var, $res["\x43\x4f\116\x54\x49\x4e\x47\105\x4e\103\111\x41"]); } } return $var; } } } goto Bv0hF; Q4ErI: include "\56\56\x2f\56\56\57\143\x6f\156\x6e\145\143\164\151\x6f\156\56\x70\150\160"; goto DvBJJ; WEA4p: $tipo_turno = $_GET["\x74\151\160\x6f\x5f\164\x75\x72\156\157"]; goto tisrE; jr1CZ: if ($tipo_turno == "\102") { $arrayContingencia = getBData($consultas_contingencia, $turno_inicio, $turno_fin, "\x43\117\116\124\x49\x4e\107\x45\116\x43\x49\101"); } else { $arrayContingencia = getData($consultas_contingencia, $turno_inicio, $turno_fin, "\x43\117\x4e\x54\111\x4e\x47\105\116\x43\111\101"); } goto hx3Q4; enhyY: if (count($arrayContingencia) == 1) { if ($tipo_turno == "\x43\x6f\x6d\160\141\x72\141\x74\x69\x76\x6f") { $arrayContingenciaTurnoA = getData($consultas_contingencia, "\x30\x36\x3a\x30\x30", "\61\x35\72\x33\x36", "\103\x4f\x4e\124\111\x4e\x47\105\116\103\111\101"); $arrayRackeoTurnoA = getData($consultas_rackeo, "\x30\66\x3a\60\60", "\x31\65\72\x33\x36", "\x52\101\x43\113\105\x4f"); $sumRackeoA = $arrayRackeoTurnoA[0]; $sumContingenciaA = $arrayContingenciaTurnoA[0]; $sumMovimientosA = intval($arrayRackeoTurnoA[0]) + intval($arrayContingenciaTurnoA[0]); array_push($datos, array($sumRackeoA)); array_push($datos, array($sumContingenciaA)); array_push($datos, array($sumMovimientosA)); $fechaAd = date("\x59\x2d\155\x2d\x64", strtotime($fecha_inicio . "\40\x2b\x20\x31\40\x64\141\x79")); $fechas = array(); array_push($fechas, $fecha_inicio); array_push($fechas, $fechaAd); $arrayContingenciaTurnoB = getBData($fechas, "\x31\65\72\x33\x36", "\60\72\60\60", "\x43\117\x4e\124\x49\x4e\x47\105\116\103\x49\101"); $arrayRackeoTurnoB = getBData($fechas, "\61\65\x3a\63\x36", "\x30\x3a\x30\x30", "\x52\x41\103\x4b\105\x4f"); $sumRackeoB = $arrayRackeoTurnoB[0]; $sumContingenciaB = $arrayContingenciaTurnoB[0]; $sumMovimientosB = intval($arrayRackeoTurnoB[0]) + intval($arrayContingenciaTurnoB[0]); array_push($datos, array($sumRackeoB)); array_push($datos, array($sumContingenciaB)); array_push($datos, array($sumMovimientosB)); } else { array_push($datos, array($sumRackeo)); array_push($datos, array($sumContingencia)); array_push($datos, array($sumMovimientos)); } } goto FAQ79; WX_aj: $turno_inicio = $_GET["\x74\x75\162\156\157\x5f\x69\156\x69\x63\x69\x6f"]; goto DZinH; L7oQs: $consultas = getDates($fecha_inicio, $fecha_fin); goto jLGAv; h2nLc: ?>
+<?php 
+	include '../../connection.php';
+
+	$fecha_inicio	= $_GET['fecha_inicio'];
+	$fecha_fin		= $_GET['fecha_fin'];
+	$turno_inicio	= $_GET['turno_inicio'];
+	$turno_fin		= $_GET['turno_fin'];
+	$tipo_turno		= $_GET['tipo_turno'];
+
+	
+	################### CONSULTA RACKEO EN RANGO DE FECHAS ###########################
+	$consultas_rackeo = array();
+	$consultas_rackeo = getDates($fecha_inicio,$fecha_fin);
+
+	if ($tipo_turno=='B') {
+		$arrayRackeo = getBData($consultas_rackeo,$turno_inicio,$turno_fin,'RACKEO');
+	}
+	else
+	{
+		$arrayRackeo = getData($consultas_rackeo,$turno_inicio,$turno_fin,'RACKEO');
+	}
+	
+
+	//echo json_encode($arrayRackeo);	
+
+	##################################################################################
+
+	################### CONSULTA CONTINGENCIA EN RANGO DE FECHAS ###########################
+	$consultas_contingencia = array();
+	$consultas_contingencia = getDates($fecha_inicio,$fecha_fin);
+
+	if ($tipo_turno=='B') {
+		$arrayContingencia = getBData($consultas_contingencia,$turno_inicio,$turno_fin,'CONTINGENCIA');
+	}
+	else{
+		$arrayContingencia = getData($consultas_contingencia,$turno_inicio,$turno_fin,'CONTINGENCIA');
+	}
+	
+
+	//echo json_encode($arrayContingencia);	
+	##################################################################################
+
+	
+	
+
+	################### CONSULTA OBTENER RECIBOS EN RANGO DE FECHAS #########################
+	$reciboConsulta = array();
+	$consultas = getDates($fecha_inicio,$fecha_fin);
+
+	$arrayRecibos = getData($consultas,'','','RECIBOS');
+
+	//echo json_encode($arrayRecibos);
+	##################################################################################
+
+	$sum = 0;
+	$datos['info'] = array();
+
+	$sumRackeo			=0;
+	$sumContingencia	=0;
+	$sumMovimientos		=0;
+
+	for ($i=0; $i <count($arrayContingencia) ; $i++) { 
+		array_push($datos['info'], array('recibos' => $arrayRecibos[$i], 
+								'rackeo'=>$arrayRackeo[$i],
+								'contingencia'=>$arrayContingencia[$i],
+								'total' => intval($arrayRackeo[$i])+intval($arrayContingencia[$i]),
+								'fecha'=> $consultas[$i]));
+
+		$sumRackeo		+=$arrayRackeo[$i];
+		$sumContingencia+=$arrayContingencia[$i];
+		$sumMovimientos	+=intval($arrayRackeo[$i])+intval($arrayContingencia[$i]);
+	}
+
+	if (count($arrayContingencia) == 1) {
+		if ($tipo_turno=="Comparativo") {
+			$arrayContingenciaTurnoA=getData($consultas_contingencia,'06:00','15:36','CONTINGENCIA');
+			$arrayRackeoTurnoA=getData($consultas_rackeo,'06:00','15:36','RACKEO');
+
+			$sumRackeoA = $arrayRackeoTurnoA[0];
+			$sumContingenciaA = $arrayContingenciaTurnoA[0];
+			$sumMovimientosA = intval($arrayRackeoTurnoA[0]) + intval($arrayContingenciaTurnoA[0]);
+
+			array_push($datos,array($sumRackeoA));
+			array_push($datos,array($sumContingenciaA));
+			array_push($datos,array($sumMovimientosA));
+#####################################################################################################
+			$fechaAd = date('Y-m-d', strtotime($fecha_inicio . ' + 1 day'));
+			$fechas = array();
+			array_push($fechas,$fecha_inicio);
+			array_push($fechas,$fechaAd);
+			$arrayContingenciaTurnoB=getBData($fechas,'15:36','0:00','CONTINGENCIA');
+			$arrayRackeoTurnoB = getBData($fechas,'15:36','0:00','RACKEO');
+
+			
+
+			
+			
+
+			$sumRackeoB = $arrayRackeoTurnoB[0];
+			$sumContingenciaB = $arrayContingenciaTurnoB[0];
+			$sumMovimientosB = intval($arrayRackeoTurnoB[0]) + intval($arrayContingenciaTurnoB[0]);
+
+			array_push($datos,array($sumRackeoB));
+			array_push($datos,array($sumContingenciaB));
+			array_push($datos,array($sumMovimientosB));	
+
+		}
+		else{
+			array_push($datos,array($sumRackeo));
+			array_push($datos,array($sumContingencia));
+			array_push($datos,array($sumMovimientos));
+		}
+
+	}
+
+
+
+	
+	echo json_encode($datos,JSON_PRETTY_PRINT);
+
+	function getBData($fechas,$turno_inicio,$turno_fin,$consulta){
+		$serverName = "10.215.156.203\IFV55";
+		$connectionInfo = array( 	"Database"=>"SMS",
+									"UID"=>"sa", 
+									"PWD"=>"System@dm1n"
+								);
+		$conn = sqlsrv_connect( $serverName, $connectionInfo);
+
+		if ($consulta=='RACKEO') {
+			$b = 0;
+			$var=array();
+			for ($i=0; $i < count($fechas) ; $i++) {
+				$b += 1;
+				if ($b>= count($fechas)) {
+					break;
+				}
+
+				$rak=sqlsrv_query($conn,"SELECT Count(*) as RACKEO FROM   Smk_InvDet WHERE (Action = 'PUT AWAY') AND (ActionDate>= '".$fechas[$i]." $turno_inicio'  AND ActionDate< '".$fechas[$b]." $turno_fin')");
+				
+				while ($res = sqlsrv_fetch_array($rak,SQLSRV_FETCH_ASSOC)) {
+					array_push($var, $res['RACKEO']);
+				}
+				
+
+			}
+
+			return $var;
+		}
+		else if($consulta=='CONTINGENCIA'){
+			$b = 0;
+			$var=array();
+			for ($i=0; $i < count($fechas) ; $i++) {
+				$b += 1;
+				if ($b>= count($fechas)) {
+					break;
+				}
+
+				$rak=sqlsrv_query($conn,"SELECT Count(*) as CONTINGENCIA FROM   Smk_InvDet WHERE (Action = 'CHANGE') AND (ActionDate>= '".$fechas[$i]." $turno_inicio'  AND ActionDate< '".$fechas[$b]." $turno_fin')");
+				while ($res = sqlsrv_fetch_array($rak,SQLSRV_FETCH_ASSOC)) {
+					array_push($var, $res['CONTINGENCIA']);
+				}
+				
+
+			}
+
+			return $var;
+		}
+	}
+
+	function getData($fechas,$turno_inicio,$turno_fin,$consulta){
+
+		$serverName = "10.215.156.203\IFV55";
+		$connectionInfo = array( 	"Database"=>"SMS",
+									"UID"=>"sa", 
+									"PWD"=>"System@dm1n"
+								);
+		$conn = sqlsrv_connect( $serverName, $connectionInfo);
+
+		if ($consulta=='RACKEO') {
+			$var=array();
+			
+			foreach ($fechas as $key) {
+				$rak=sqlsrv_query($conn,"SELECT Count(*) as RACKEO FROM   Smk_InvDet WHERE (Action = 'PUT AWAY') AND (ActionDate>= '$key $turno_inicio'  AND ActionDate< '$key $turno_fin')");
+
+				while ($res = sqlsrv_fetch_array($rak,SQLSRV_FETCH_ASSOC)) {
+					array_push($var, $res['RACKEO']);
+				}
+				
+			}
+			return $var;
+		}
+		else if($consulta=='CONTINGENCIA')
+		{
+			$var=array();
+			$tt=0;
+			foreach ($fechas as $key) {
+				$rak=sqlsrv_query($conn,"SELECT Count(*) as CONTINGENCIA FROM   Smk_InvDet WHERE (Action = 'CHANGE') AND (ActionDate>= '$key $turno_inicio'  AND ActionDate< '$key $turno_fin')");
+				while ($res = sqlsrv_fetch_array($rak,SQLSRV_FETCH_ASSOC)) {
+					array_push($var, $res['CONTINGENCIA']);
+				}
+				
+			}
+			return $var;
+		}
+		else
+		{
+			
+			$var=array();
+			$tt=0;
+			foreach ($fechas as $key) {
+				$rak=sqlsrv_query($conn,"SELECT count(*) as RECIBOS FROM  Rcv_SNH WHERE (ScanDate>= '$key 0:00'  AND ScanDate< '$key 23:59' and status<>'0')");
+				while ($res = sqlsrv_fetch_array($rak,SQLSRV_FETCH_ASSOC)) {
+					array_push($var, $res['RECIBOS']);
+				}
+				
+			}
+			return $var;
+		}
+
+		
+	}
+
+
+	function diasEntreFechas($fecha_inicio,$fecha_fin){
+		$diaInicio = strtotime($fecha_inicio);
+		$diaFin = strtotime($fecha_fin);
+		$numDias = $diaFin - $diaInicio;
+		$numDiasTotal= round(($numDias / (60 * 60 * 24))+1);
+
+		return $numDiasTotal;
+	}
+	function getDates($startDate, $stopDate) {
+    $dateArray = Array();
+    $currentDate = date_create($startDate);
+    $endDate = date_create($stopDate);
+    $interval = new DateInterval('P1D');
+    
+	$date_range = new DatePeriod($currentDate, $interval, $endDate);
+	
+	foreach ($date_range as $date) {
+		array_push($dateArray,$date->format('Y-m-d'));
+	}
+	array_push($dateArray,$stopDate);
+	
+    //2023-07-13 <= 2023-07-20
+    //echo "$currentDate - Fecha inicio: $stopDate - Fecha Fin";
+    
+    return $dateArray;
+}
+
+	function lreplace($search, $replace, $subject){
+	    $pos = strrpos($subject, $search);
+	    if($pos !== false){
+	        $subject = substr_replace($subject, $replace, $pos, strlen($search));
+	    }
+	    return $subject;
+	}
+?>
+                       
+
+                       

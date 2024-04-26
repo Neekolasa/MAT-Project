@@ -1,1 +1,99 @@
-<?php goto W6Lha; W6Lha: include "\56\56\57\56\56\x2f\x63\x6f\x6e\x6e\145\x63\164\x69\x6f\x6e\56\x70\150\160"; goto nbWV7; nbWV7: $request = $_GET["\x72\145\x71\165\145\163\x74"]; goto ZOBYn; ZOBYn: if ($request == "\x69\x6e\163\x65\162\x74") { $datos = $_GET["\x64\x61\164\157\163"]; $sql_query = sqlsrv_query($conn, "\x44\105\114\105\124\x45\x20\106\122\117\x4d\x20\156\x75\155\x65\162\157\x73\x43\x72\x69\164\x69\x63\157\x73"); for ($i = 0; $i < count($datos); $i++) { $data = strval($datos[$i]); $sql_statement = "\111\116\x53\x45\x52\x54\x20\x49\x4e\124\x4f\40\x6e\x75\155\145\x72\x6f\x73\x43\162\x69\164\151\x63\157\x73\40\x56\101\x4c\x55\105\123\x20\x28\47{$data}\x27\x2c\47\120\105\116\104\111\116\x47\x27\x29"; $sql_query = sqlsrv_query($conn, $sql_statement); } echo json_encode(array("\162\145\x73\160\157\x6e\x73\145" => "\163\x75\143\143\145\163\163")); } else { if ($request == "\x67\x65\164\x54\141\142\154\x65\x43\x72\151\164\151\143\157\x73") { $sql_statement = "\12\x9\11\x57\x49\124\110\x20\116\x75\x6d\145\x72\x6f\x73\x43\x72\x69\164\x69\x63\157\163\x53\x74\x61\x74\165\x73\40\101\x53\x20\50\12\11\11\x9\x20\x20\40\x20\x53\105\114\105\103\124\x20\120\x4e\x2c\40\x53\164\141\x74\165\163\xa\11\11\x9\x20\x20\x20\40\x46\122\117\115\x20\156\x75\155\145\x72\x6f\x73\x43\162\x69\164\x69\143\x6f\x73\xa\11\x9\x9\x29\54\12\x9\x9\11\116\165\x6d\145\162\157\123\145\x72\x69\145\x43\157\156\122\157\167\x6e\165\x6d\40\x41\123\x20\x28\12\x9\11\x9\x20\x20\40\x20\x53\x45\x4c\x45\103\x54\x20\xa\11\x9\11\40\x20\40\x20\x20\40\x20\40\x4e\103\56\x50\116\54\xa\x9\x9\11\40\x20\x20\40\40\40\40\40\103\117\x41\x4c\x45\123\103\x45\50\122\123\56\123\145\x72\151\141\x6c\54\x20\x52\x53\116\110\56\x53\x65\x72\x69\141\x6c\x29\40\101\123\40\x53\145\x72\151\141\154\x2c\12\11\11\x9\x20\40\x20\x20\x20\x20\40\x20\x43\101\x53\105\x20\12\x9\x9\x9\40\40\x20\x20\x20\x20\x20\x20\x20\40\x20\x20\127\110\105\x4e\x20\x52\x53\x4e\110\x2e\114\x6f\x63\x61\164\145\144\x20\75\40\x27\122\141\x6d\x70\x27\40\124\x48\105\x4e\x20\x27\x52\101\x4d\x50\47\xa\11\11\x9\x20\x20\x20\x20\40\40\x20\x20\x20\40\40\40\x45\x4c\x53\x45\x20\122\123\116\110\56\x4c\x6f\x63\x61\x74\145\x64\12\x9\11\11\40\x20\x20\40\40\40\x20\40\105\x4e\x44\40\x41\x53\x20\x4c\x6f\x63\141\143\151\x6f\x6e\x2c\xa\11\11\11\40\40\x20\40\40\x20\40\40\103\101\123\x45\40\12\x9\11\11\40\x20\40\x20\x20\x20\40\x20\x20\40\x20\40\127\x48\x45\116\40\x52\x53\x2e\120\116\40\111\x53\x20\x4e\x4f\x54\x20\x4e\x55\114\x4c\x20\x41\116\x44\x20\103\x4f\x4e\x56\105\x52\124\x28\104\101\124\105\54\40\x52\x53\x2e\123\143\141\156\x44\141\x74\x65\51\x20\x3d\x20\103\x4f\116\126\105\x52\124\x28\x44\x41\x54\105\x2c\x20\107\105\124\104\x41\124\x45\x28\x29\x29\x20\124\110\x45\116\40\47\123\x49\116\40\114\x49\x42\x45\122\x41\122\47\xa\11\11\11\40\40\x20\x20\x20\x20\x20\40\40\x20\40\40\x57\x48\105\x4e\x20\x52\x53\x4e\110\x2e\120\116\40\x49\x53\x20\116\x4f\x54\40\116\125\x4c\x4c\40\x41\116\x44\x20\x43\x4f\116\x56\105\x52\124\x28\104\x41\124\105\54\x20\x52\x53\116\x48\56\123\x63\x61\x6e\104\x61\164\x65\51\x20\75\x20\103\117\x4e\x56\105\x52\124\x28\x44\101\x54\x45\54\x20\107\x45\124\104\101\x54\105\50\x29\x29\x20\x41\116\x44\x20\122\123\x4e\x48\x2e\114\x6f\143\x61\164\145\x64\40\x3d\x20\x27\x52\141\x6d\x70\x27\40\124\x48\x45\116\x20\x27\x52\101\x4d\x50\x27\xa\x9\11\x9\40\40\40\x20\x20\x20\x20\40\40\x20\40\x20\x57\110\105\116\x20\x52\123\116\x48\56\120\x4e\x20\111\123\x20\116\117\124\x20\116\x55\114\x4c\x20\101\116\x44\x20\x43\x4f\x4e\126\x45\x52\x54\x28\104\101\x54\x45\54\40\122\x53\x4e\x48\56\123\x63\x61\x6e\x44\141\x74\145\x29\x20\x3d\x20\x43\x4f\x4e\126\105\122\124\x28\104\101\124\105\54\40\x44\101\x54\105\x41\x44\104\x28\x44\x41\131\54\x20\x2d\61\54\x20\107\x45\x54\104\101\124\105\x28\51\x29\51\40\101\x4e\x44\x20\122\x53\116\110\x2e\114\x6f\x63\141\164\x65\x64\x20\74\x3e\x20\47\122\141\155\x70\x27\40\124\x48\105\116\x20\x27\x52\x41\103\113\x45\x44\47\12\x9\11\x9\x20\x20\40\40\x20\x20\x20\x20\40\40\x20\x20\x45\x4c\x53\105\40\x27\x50\105\x4e\x44\x49\105\116\124\x45\x27\xa\x9\11\x9\x20\40\x20\x20\40\40\40\x20\x45\x4e\x44\40\101\123\x20\x45\163\164\141\164\x75\163\x2c\xa\x9\11\11\x20\40\40\40\40\x20\x20\x20\x52\x4f\x57\137\x4e\x55\115\102\105\122\50\51\40\117\126\105\x52\x20\x28\120\x41\122\x54\x49\x54\x49\x4f\116\x20\102\131\x20\116\x43\56\120\x4e\54\40\103\x4f\x41\x4c\x45\x53\x43\x45\50\122\123\x2e\x53\x65\x72\x69\141\x6c\x2c\40\x52\123\116\110\x2e\123\145\x72\x69\x61\x6c\51\40\x4f\122\104\x45\x52\x20\102\131\x20\x28\123\x45\114\x45\103\124\x20\116\125\x4c\x4c\51\51\40\x41\123\x20\x72\156\xa\11\11\11\40\40\40\40\x46\x52\x4f\x4d\x20\116\165\155\x65\162\x6f\x73\x43\x72\x69\164\x69\x63\157\163\x53\x74\141\x74\165\x73\40\116\x43\12\x9\x9\11\x20\x20\x20\x20\x4c\x45\106\124\x20\x4a\117\x49\116\x20\122\x63\166\x5f\123\x63\141\x6e\x20\122\x53\40\117\x4e\40\116\103\x2e\120\x4e\40\x3d\x20\122\x53\x2e\x50\116\x20\x41\x4e\x44\40\103\117\116\x56\x45\122\124\x28\104\101\x54\105\x2c\x20\x52\x53\56\123\x63\141\x6e\104\x61\x74\x65\51\x20\x49\x4e\x20\x28\103\117\116\126\x45\122\124\50\x44\x41\124\105\54\40\x47\105\x54\x44\x41\124\105\50\51\51\54\40\x43\117\116\126\x45\x52\124\x28\x44\x41\124\x45\x2c\40\104\101\124\x45\101\104\x44\x28\104\101\131\x2c\x20\x2d\61\x2c\40\x47\x45\x54\104\101\124\105\x28\x29\51\51\51\xa\x9\11\x9\40\40\40\x20\114\105\x46\x54\40\112\x4f\111\116\x20\x52\x63\166\x5f\123\x4e\x48\x20\122\x53\x4e\x48\40\117\x4e\x20\x4e\x43\56\120\x4e\40\75\40\122\123\x4e\110\56\x50\x4e\x20\101\116\x44\40\x43\x4f\116\126\x45\x52\124\x28\x44\101\x54\x45\x2c\x20\x52\x53\116\110\56\123\x63\141\156\104\141\x74\145\x29\x20\x49\116\x20\50\x43\117\116\x56\x45\122\124\x28\x44\x41\124\x45\x2c\x20\x47\x45\124\x44\x41\x54\105\50\x29\x29\x2c\x20\x43\117\x4e\126\105\x52\x54\x28\x44\101\x54\x45\x2c\x20\x44\101\x54\105\101\104\x44\x28\104\101\131\x2c\x20\55\x31\x2c\40\107\x45\x54\x44\101\x54\x45\50\x29\51\x29\x29\xa\x9\x9\x9\x29\xa\x9\11\x9\x53\x45\x4c\x45\103\x54\40\120\x4e\x2c\x20\x53\145\x72\151\141\x6c\x2c\x20\114\x6f\x63\141\143\x69\157\156\x2c\12\x9\11\11\x20\x20\40\40\103\x41\123\x45\x20\xa\11\x9\11\x20\40\40\x20\40\40\40\x20\127\110\x45\x4e\x20\114\x6f\x63\141\x63\151\x6f\156\x20\75\x20\x27\122\101\x4d\120\47\x20\124\110\x45\x4e\x20\x27\x52\x41\x4d\120\x27\40\xa\x9\11\11\40\x20\40\40\x20\x20\40\40\x45\114\x53\105\x20\105\x73\x74\x61\164\165\x73\12\x9\x9\x9\40\x20\x20\40\105\116\104\x20\x41\123\x20\x45\163\x74\141\x74\x75\x73\12\11\11\11\106\x52\117\x4d\x20\x4e\x75\x6d\145\162\x6f\123\145\162\151\145\103\x6f\156\x52\x6f\167\156\165\x6d\12\11\x9\11\127\110\105\x52\x45\x20\x72\156\40\x3d\x20\x31\x3b\xa"; $sql_query = sqlsrv_query($conn, $sql_statement); $datos = array(); while ($data = sqlsrv_fetch_array($sql_query, SQLSRV_FETCH_ASSOC)) { if ($data["\x45\x73\x74\141\164\165\163"] == "\x53\111\x4e\x20\x4c\x49\102\105\122\x41\x52") { $status = "\74\142\x20\163\x74\171\154\145\x3d\47\143\157\154\x6f\x72\72\157\162\141\156\x67\x65\47\76\x53\x69\x6e\x20\x4c\151\142\x65\x72\141\x72\74\x2f\x62\x3e"; } else { if ($data["\105\163\164\x61\164\165\163"] == "\x50\x45\x4e\104\111\105\116\x54\x45") { $status = "\x3c\x62\x20\x73\164\x79\154\145\75\47\143\x6f\154\x6f\x72\x3a\x72\145\x64\x27\76\x50\145\x6e\144\151\x65\156\164\145\x3c\x2f\142\76"; } else { if ($data["\x45\x73\164\x61\x74\165\163"] == "\x52\101\x4d\x50") { $status = "\74\142\x20\x73\x74\171\x6c\145\75\x27\x63\157\154\x6f\162\72\x4d\145\x64\151\x75\155\x53\145\x61\107\162\145\145\156\47\x3e\x52\141\155\x70\x61\74\57\x62\76"; } else { if ($data["\105\x73\x74\141\164\165\163"] == "\122\101\103\x4b\x45\104") { $status = "\x3c\142\40\x73\164\171\154\145\x3d\x27\143\x6f\x6c\157\162\x3a\x67\x72\145\x65\x6e\47\x3e\122\x61\x63\x6b\x65\144\74\x2f\x62\x3e"; } else { $status = ''; } } } } if ($data["\x53\145\162\151\x61\154"] != '') { $serial = "\60\x46\x56\x35\65\x39\x30\60" . strval($data["\x53\145\162\151\141\x6c"]); } else { $serial = strval($data["\123\145\162\x69\141\x6c"]); } array_push($datos, array("\120\116" => $data["\120\x4e"], "\x53\145\162\x69\141\154" => $serial, "\x45\x73\164\x61\x74\x75\163" => $status)); } echo json_encode($datos); } } goto GYj5H; GYj5H: ?>
+<?php
+	include '../../connection.php';
+
+	
+	$request = $_GET['request'];
+	if ($request == 'insert') {
+		$datos = $_GET['datos'];
+		$sql_query = sqlsrv_query($conn,"DELETE FROM numerosCriticos");
+
+		for ($i=0; $i < count($datos); $i++) { 
+			$data = strval($datos[$i]);
+			$sql_statement= "INSERT INTO numerosCriticos VALUES ('$data','PENDING')";
+			$sql_query = sqlsrv_query($conn,$sql_statement);
+			//echo "$sql_statement";
+		}
+		
+
+		echo json_encode(array('response' => 'success'));
+
+
+	}
+	else if ($request == 'getTableCriticos'){
+		$sql_statement = "
+		WITH NumerosCriticosStatus AS (
+			    SELECT PN, Status
+			    FROM numerosCriticos
+			),
+			NumeroSerieConRownum AS (
+			    SELECT 
+			        NC.PN,
+			        COALESCE(RS.Serial, RSNH.Serial) AS Serial,
+			        CASE 
+			            WHEN RSNH.Located = 'Ramp' THEN 'RAMP'
+			            ELSE RSNH.Located
+			        END AS Locacion,
+			        CASE 
+			            WHEN RS.PN IS NOT NULL AND CONVERT(DATE, RS.ScanDate) = CONVERT(DATE, GETDATE()) THEN 'SIN LIBERAR'
+			            WHEN RSNH.PN IS NOT NULL AND CONVERT(DATE, RSNH.ScanDate) = CONVERT(DATE, GETDATE()) AND RSNH.Located = 'Ramp' THEN 'RAMP'
+			            WHEN RSNH.PN IS NOT NULL AND CONVERT(DATE, RSNH.ScanDate) = CONVERT(DATE, DATEADD(DAY, -1, GETDATE())) AND RSNH.Located <> 'Ramp' THEN 'RACKED'
+			            ELSE 'PENDIENTE'
+			        END AS Estatus,
+			        ROW_NUMBER() OVER (PARTITION BY NC.PN, COALESCE(RS.Serial, RSNH.Serial) ORDER BY (SELECT NULL)) AS rn
+			    FROM NumerosCriticosStatus NC
+			    LEFT JOIN Rcv_Scan RS ON NC.PN = RS.PN AND CONVERT(DATE, RS.ScanDate) IN (CONVERT(DATE, GETDATE()), CONVERT(DATE, DATEADD(DAY, -1, GETDATE())))
+			    LEFT JOIN Rcv_SNH RSNH ON NC.PN = RSNH.PN AND CONVERT(DATE, RSNH.ScanDate) IN (CONVERT(DATE, GETDATE()), CONVERT(DATE, DATEADD(DAY, -1, GETDATE())))
+			)
+			SELECT PN, Serial, Locacion,
+			    CASE 
+			        WHEN Locacion = 'RAMP' THEN 'RAMP' 
+			        ELSE Estatus
+			    END AS Estatus
+			FROM NumeroSerieConRownum
+			WHERE rn = 1;
+";
+
+		$sql_query = sqlsrv_query($conn,$sql_statement);
+		$datos = array();
+		while ($data = sqlsrv_fetch_array($sql_query,SQLSRV_FETCH_ASSOC)) {
+			if ($data['Estatus']=="SIN LIBERAR") {
+				$status = "<b style='color:orange'>Sin Liberar</b>";
+			}
+			else if($data['Estatus']=="PENDIENTE")
+			{
+				$status = "<b style='color:red'>Pendiente</b>";
+			}
+			else if($data['Estatus']=="RAMP")
+			{
+				$status = "<b style='color:MediumSeaGreen'>Rampa</b>";
+			}
+			else if($data['Estatus']=="RACKED")
+			{
+				$status = "<b style='color:green'>Racked</b>";
+			}
+			else{
+				$status = "";
+			}
+			if ($data['Serial']!="") {
+				$serial = '0FV55900'.strval($data['Serial']);
+			}
+			else{
+				
+				$serial = strval($data['Serial']);
+			}
+			array_push($datos, array(
+										'PN' => $data['PN'],
+										'Serial' => $serial,
+										'Estatus'=> $status ));
+		}
+
+
+
+		echo json_encode($datos);
+		
+	}
+
+
+	
+
+?>
