@@ -179,6 +179,176 @@
 		}
 		echo json_encode($response);
 	}
+	elseif ($request == 'setUpdate') {
+		$badge = $_REQUEST['badge'];
+		$order = $_REQUEST['order']; //empty,revive
+		$serialNumber = $_REQUEST['serial'];
+		$serialNumber=str_replace("S", "", $serialNumber);
+		if ($order == "open") {
+			$params = array($serialNumber);
+			$sqlStatement_info = "SELECT SN, PN, Qty, UoM, Status FROM Smk_Inv WHERE SN= ?";
+			$sqlQuery_info = sqlsrv_query($conn,$sqlStatement_info,$params);			
+			if ($sqlQuery_info===false) {
+				echo json_encode(array("response"=>"badResponse","data"=>'bad'));
+			}
+			else{
+				while ($data = sqlsrv_fetch_array($sqlQuery_info,SQLSRV_FETCH_ASSOC)) {
+					$PN = $data['PN'];
+					$Qty = $data['Qty'];
+					$UoM = $data['UoM'];
+					$Status = $data['Status'];
+				}
+				$params = array($PN,'O');
+				$sqlStatement_Opened = "SELECT COUNT(*) as Abiertos FROM Smk_Inv WHERE PN = ? AND Status = ?";
+				$sqlQuery_Opened = sqlsrv_query($conn,$sqlStatement_Opened,$params);
+				while ($contador = sqlsrv_fetch_array($sqlQuery_Opened, SQLSRV_FETCH_ASSOC)) {
+					$seriesAbiertas = $contador['Abiertos'];
+				}
+				if ($seriesAbiertas>0) {
+					echo json_encode(array("response"=>"alreadyOpen","data"=>true));
+				}
+				else{
+					if ($Status!='A') {
+						echo json_encode(array("response"=>"boxStatus","data"=>$Status));
+					}
+					else{
+						$sqlStatement_insert = "INSERT INTO ChkP_SNLO(SN,stdPack,leftOver,AuditStatus) VALUES ('$serialNumber','$Qty','$Qty','NEW')";
+						$sqlQuery_insert = sqlsrv_query($conn,$sqlStatement_insert);
+						
+						$sqlStatement_update = "UPDATE Smk_Inv SET Status = 'O' WHERE SN = '$serialNumber'";
+						$sqlQuery_update = sqlsrv_query($conn,$sqlStatement_update);
+					
+						$sqlStatement_SAP = "INSERT INTO Smk_SAP (SN,PN,UoM,Qty,ISloc,FSloc,Module,InpDate,Station) VALUES ('$serialNumber','$PN','$UoM','$Qty','0001','0007','SMK SCANNER',GETDATE(),'A')";
+						$sqlQuery_SAP = sqlsrv_query($conn,$sqlStatement_SAP);
+						$fecha = date('Y-m-d H:i:s');
+						$sqlStatement_insertSmkDet = "INSERT INTO Smk_InvDet VALUES ('$serialNumber','OPEN','$fecha','$badge','$PN')";
+						$sqlQuery_SmkDet = sqlsrv_query($conn,$sqlStatement_insertSmkDet);
+
+						echo json_encode(array("response"=>"success"));
+					}
+				}
+			}
+			
+		}
+		elseif ($order == "empty") {
+			
+			$params = array($serialNumber);
+			$sqlStatement_info = "SELECT SN, PN, Qty, UoM, Status FROM Smk_Inv WHERE SN= ?";
+			$sqlQuery_info = sqlsrv_query($conn,$sqlStatement_info,$params);			
+			if ($sqlQuery_info===false) {
+				echo json_encode(array("response"=>"badResponse","data"=>'bad'));
+			}
+			else{
+				while ($data = sqlsrv_fetch_array($sqlQuery_info,SQLSRV_FETCH_ASSOC)) {
+					$PN = $data['PN'];
+					$Qty = $data['Qty'];
+					$UoM = $data['UoM'];
+					$Status = $data['Status'];
+				}
+
+				$sqlStatement_updateSNLO = "UPDATE ChkP_SNLO SET leftOver = '0', AuditStatus='EMP' WHERE SN = '$serialNumber'";		
+				$sqlQuery_insert = sqlsrv_query($conn,$sqlStatement_updateSNLO);
+
+				$sqlStatement_update = "UPDATE Smk_Inv SET Status = 'E', Qty = '0' WHERE SN = '$serialNumber'";
+				$sqlQuery_update = sqlsrv_query($conn,$sqlStatement_update);
+				
+				$fecha = date('Y-m-d H:i:s');
+				$sqlStatement_insertSmkDet = "INSERT INTO Smk_InvDet VALUES ('$serialNumber','EMPTY','$fecha','$badge','$PN')";
+				$sqlQuery_SmkDet = sqlsrv_query($conn,$sqlStatement_insertSmkDet);
+
+				if ($Status == "O") {
+					$sqlStatement_SAP = "INSERT INTO Smk_SAP (SN,PN,UoM,Qty,ISloc,FSloc,Module,InpDate,Station) VALUES ('$serialNumber','$PN','$UoM','$Qty','0007','0002','SMK SCANNER',GETDATE(),'A')";
+					$sqlQuery_SAP = sqlsrv_query($conn,$sqlStatement_SAP);
+				}
+				elseif ($Status == "A") {
+					$sqlStatement_SAP = "INSERT INTO Smk_SAP (SN,PN,UoM,Qty,ISloc,FSloc,Module,InpDate,Station) VALUES ('$serialNumber','$PN','$UoM','$Qty','0001','0002','SMK SCANNER',GETDATE(),'A')";
+					$sqlQuery_SAP = sqlsrv_query($conn,$sqlStatement_SAP);
+				}
+				else{
+					$sqlStatement_SAP = "";
+				}
+				
+				
+				
+
+				echo json_encode(array("response"=>"success"));
+			}
+			
+		}
+		elseif ($order == "revive") {
+			$params = array($serialNumber);
+			$sqlStatement_info = "SELECT SN, PN, Qty, UoM, Status FROM Rcv_SNH WHERE SN= ?";
+			$sqlQuery_info = sqlsrv_query($conn,$sqlStatement_info,$params);			
+			if ($sqlQuery_info===false) {
+				echo json_encode(array("response"=>"badResponse","data"=>'bad'));
+			}
+			else{
+				while ($data = sqlsrv_fetch_array($sqlQuery_info,SQLSRV_FETCH_ASSOC)) {
+					$PN = $data['PN'];
+					$Qty = $data['Qty'];
+					$UoM = $data['UoM'];
+					$Status = $data['Status'];
+				}
+				$sqlStatement_updateSNLO = "DELETE FROM ChkP_SNLO WHERE SN = '$serialNumber'";		
+				$sqlQuery_insert = sqlsrv_query($conn,$sqlStatement_updateSNLO);
+
+				$sqlStatement_update = "UPDATE Smk_Inv SET Status = 'A', Qty = '$Qty' WHERE SN = '$serialNumber'";
+				$sqlQuery_update = sqlsrv_query($conn,$sqlStatement_update);
+				
+				$sqlStatement_delSAP = "DELETE FROM Smk_SAP WHERE SN = '$serialNumber'";		
+				$sqlQuery_delSap = sqlsrv_query($conn,$sqlStatement_delSAP);
+
+				$sqlStatement_SAP = "INSERT INTO Smk_SAP (SN,PN,UoM,Qty,ISloc,FSloc,Module,InpDate,Station) VALUES ('$serialNumber','$PN','$UoM','$Qty','0002','0001','SMK SCANNER',GETDATE(),'A')";
+				$sqlQuery_SAP = sqlsrv_query($conn,$sqlStatement_SAP);
+				
+				$fecha = date('Y-m-d H:i:s');
+				$sqlStatement_insertSmkDet = "INSERT INTO Smk_InvDet VALUES ('$serialNumber','REVIVE','$fecha','$badge','$PN')";
+				$sqlQuery_SmkDet = sqlsrv_query($conn,$sqlStatement_insertSmkDet);
+
+				echo json_encode(array("response"=>"success"));
+			}
+		}
+		elseif ($order == "change") {
+			$newQty = $_REQUEST['newQty'];
+
+			$params = array($serialNumber);
+			$sqlStatement_info = "SELECT SN, PN, Qty, UoM, Status FROM Smk_Inv WHERE SN= ?";
+			$sqlQuery_info = sqlsrv_query($conn,$sqlStatement_info,$params);			
+			if ($sqlQuery_info===false) {
+				echo json_encode(array("response"=>"badResponse","data"=>'bad'));
+			}
+			else{
+				while ($data = sqlsrv_fetch_array($sqlQuery_info,SQLSRV_FETCH_ASSOC)) {
+					$PN = $data['PN'];
+					$Qty = $data['Qty'];
+					$UoM = $data['UoM'];
+					$Status = $data['Status'];
+				}
+				
+
+				$sqlStatement_update = "UPDATE Smk_Inv SET Qty = '$newQty' WHERE SN = '$serialNumber'";
+				$sqlQuery_update = sqlsrv_query($conn,$sqlStatement_update);
+				
+				$fecha = date('Y-m-d H:i:s');
+				$sqlStatement_insertSmkDet = "INSERT INTO Smk_InvDet VALUES ('$serialNumber','CHANGE','$fecha','$badge','$PN')";
+				$sqlQuery_SmkDet = sqlsrv_query($conn,$sqlStatement_insertSmkDet);
+
+				if ($Status == "O") {
+					$sqlStatement_updateSNLO = "UPDATE  ChkP_SNLO SET leftOver = '$newQty' WHERE SN = '$serialNumber'";		
+					$sqlQuery_insert = sqlsrv_query($conn,$sqlStatement_updateSNLO);
+				}
+				elseif ($Status == "A") {
+					$sqlStatement_updateSNLO="";
+				}
+				else{
+					$sqlStatement_updateSNLO="";
+				}
+				
+
+				echo json_encode(array("response"=>"success"));
+			}
+		}
+	}
 	
 
 ?>

@@ -2,24 +2,39 @@ $(document).ready(function(){
 	getAdjustTable();
 	getAvailableAdjustTable();
 	getDifferentAdjustTable();
-	
+
+	$("#badge").keypress(function(e) {
+		if (e.key === 'Enter' || e.keyCode === 13) {
+			new PNotify({
+		        title: 'Exito',
+		        text: 'dsdsdsds',
+		        type: 'warning',
+		        nonblock: {
+			        nonblock: true
+			    },
+		        styling: 'bootstrap3'
+		    });
+		}
+	});
 	timeout=setInterval(startAdjust, 60000);
 
-	$("#autoAdjustButton").on('click', function(event) {
+
+	$("#adjustMaterial").on('click', function(event) {
 		event.preventDefault();
-		startAdjust();
+		$("#adjustModal").modal('show');
 	});
 	
 });
-function clearAutoAdjust(val) {
-	if (val!=true) {
+function clearAutoAdjust() {
 
-	}
     clearTimeout(timeout);
     new PNotify({
 		        title: 'Exito',
 		        text: 'Se han detenido los ajustes automaticos',
 		        type: 'warning',
+		        nonblock: {
+			        nonblock: true
+			    },
 		        styling: 'bootstrap3'
 		    });
 }
@@ -36,6 +51,9 @@ function startAdjust(){
 		        title: 'Exito',
 		        text: 'Se han realizado los descuentos disponibles',
 		        type: 'success',
+		        nonblock: {
+			        nonblock: true
+			    },
 		        styling: 'bootstrap3'
 		    });
 		    getAdjustTable();
@@ -48,6 +66,9 @@ function startAdjust(){
 		        title: 'Error',
 		        text: 'Ha ocurrido un error en la consulta',
 		        type: 'error',
+		        nonblock: {
+			        nonblock: true
+			    },
 		        styling: 'bootstrap3'
 		    });
 		}
@@ -57,6 +78,9 @@ function startAdjust(){
 		        title: 'Error',
 		        text: 'Ha ocurrido un error en la consulta',
 		        type: 'error',
+		        nonblock: {
+			        nonblock: true
+			    },
 		        styling: 'bootstrap3'
 		    });
 	})
@@ -80,7 +104,7 @@ function getDifferentAdjustTable(){
 		    });*/
 		
 				var tabla = $('#table_diferencia').DataTable({
-                    dom: 'frtlip',
+                    dom: 'rtlp',
                     destroy: true,
                     order:[[4, 'desc']],
                     responsive: true,
@@ -127,12 +151,7 @@ function getAdjustTable(){
 		var Data = JSON.parse(info);
 		//console.log(Data)
 		if (Data['response']=='success') {
-			new PNotify({
-		        title: 'Rutas actualizadas',
-		        text: 'Se ha actualizado el estatus de las rutas',
-		        type: 'success',
-		        styling: 'bootstrap3'
-		    });
+			
 		   // console.log(Data['data'][0]['ScanDate'].date)
 
 		    var tabla = $('#table_ajuste').DataTable({

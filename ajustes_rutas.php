@@ -59,8 +59,14 @@
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>Material sin enlazar / Faltante de descuento parcial</h2>
-                    <button class="btn btn-success pull-right" id="autoAdjustButton"><i class="fa fa-refresh"> </i> Iniciar ajustes automaticos</button>
-                    <button class="btn btn-primary pull-right" id="stopAdjust"><i class="fa fa-bomb"></i> Detener ajustes automaticos</button>
+                    <div class="pull-right" >
+                      <button class="btn btn-warning" id="adjustMaterial"><i class="fa fa-exchange"> </i> Ajustar material</button>
+                      <button class="btn btn-success" id="autoAdjustButton"><i class="fa fa-refresh"> </i> Iniciar ajustes automaticos</button>
+                      <button class="btn btn-primary" onclick="clearAutoAdjust()"><i class="fa fa-bomb"> </i> Detener autoajustes</button>
+                   
+
+                    </div>
+                   
                     
 
                     <!--*************ADD CONTENT HERE*****************-->
@@ -102,14 +108,13 @@
                       </table>
                     </div>
                   
-                     
-                   
+                    
                   </div>
                   
                 </div>
               </div>
             </div>
-            <div class="row">
+            <div class="row" hidden>
               <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel">
                   <div class="x_title">
@@ -125,7 +130,7 @@
                     
                      
                   
-                       <table id="table_disponible" style="width:100%;" class="table table-striped table-bordered">
+                       <table id="table_disponible" hidden style="width:100%;" class="table table-striped table-bordered">
                           <thead>
                             <tr>
                               <th>Numero de parte</th>
@@ -182,7 +187,46 @@
                       </table>
               
                   </div>
-                  
+                  <div class="modal fade bs-example-modal-sm" id="adjustModal" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-sm">
+                      <div class="modal-content">
+
+                        <div class="modal-header">
+                          <h4 class="modal-title" id="myModalLabel2">Acciones</h4>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          
+                          <div class="form-group">
+                            
+                              
+                             
+                                <label for="badge">Numero de empleado <span style="color: red;">*</span></label>
+                                <input type="text"  id="badge" class="form-control" required>
+                                <label for="action">Accion <span style="color: red;"></span></label>
+                                <select id="action" class="form-control">
+                                  <option value="open">Abrir caja</option>
+                                  <option value="empty">Vaciar caja</option>
+                                  <option value="revive">Revivir caja</option>
+                                </select>
+                                <label for="serialNumber">Numero de serie <span style="color: red;"></span></label>
+                                <input type="text" name="serialNumber" id="serialNumber" class="form-control">
+                                
+                                <br>
+                                <br>
+                                <label><span style="color: red;">*</span> Campos obligatorios</label>
+
+                              </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

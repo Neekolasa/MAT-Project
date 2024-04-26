@@ -20,6 +20,7 @@
                         <li><a href="calculo_componente.php" class="pc hideRutas">Calculo tolva</a></li>
                         <li><a href="vacios.php">Control de vacios</a></li>
                         <li><a href="tolvas.php">Tolvas por ruta</a></li>
+                        <li><a href="partial.php">Descuento parcial</a></li>
                         <li><a href="ajustes_rutas.php">Ajuste de material</a></li>
                         
                       </ul>

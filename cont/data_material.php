@@ -39,17 +39,19 @@
 			
 		}
 		else if (strlen($data_material)<8) {
+			$data_material=str_replace('S', '', $data_material);
 
 		$sqlStatement = "
 			SELECT PFEP_Map.PN, 
-			       PFEP_MasterV2.Descrip as SN, 
-			       R + S + L + P AS Loc, 
+			       COALESCE(PFEP_MasterV2.Descrip,'NA') as SN, 
+			       COALESCE(R + S + L + P,'NA') AS Loc, 
 			       'NA' AS Status, 
 			       'NA' AS UltimoCambio
 			FROM PFEP_Map 
 			LEFT JOIN PFEP_MasterV2 ON PFEP_Map.PN = PFEP_MasterV2.PN 
 			WHERE PFEP_Map.PN LIKE '%$data_material%' 
 			ORDER BY R, S, L, P;";
+
 		}
 		else{
 				$sqlStatement = "
@@ -80,6 +82,7 @@
 				    UltimoCambio DESC;
 
 				";
+
 		}
 		
 		$sqlQuery = sqlsrv_query($conn,$sqlStatement);
@@ -88,7 +91,7 @@
 			if (strlen($data_material)<8)
 			{
 			array_push($datos,array('PN' => $data['PN'],
-									'SN' => $data['SN'],
+									'SN' => utf8_decode($data['SN']),
 									'Loc' => $data['Loc'],
 									'Status' => getStatus($data['Status']),
 									'UltimoCambio' => $data['UltimoCambio'],
@@ -97,7 +100,7 @@
 			}
 			else{
 			array_push($datos,array('PN' => $data['PN'],
-									'SN' => $data['SN'],
+									'SN' => utf8_decode($data['SN']),
 									'Loc' => $data['Loc'],
 									'Status' => getStatus($data['Status']),
 									'UltimoCambio' => $data['UltimoCambio'],

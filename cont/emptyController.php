@@ -27,8 +27,10 @@
 		            Smk_Inv ON Smk_Inv.SN = Smk_InvDet.SN
 		        JOIN 
 		            Sy_Users ON Smk_InvDet.Badge = Sy_Users.Badge 
+		        JOIN PFEP_MasterV2 ON Smk_InvDet.PN = PFEP_MasterV2.PN
 		        WHERE 
 		            Action = 'EMPTY'
+		            AND PFEP_MasterV2.Mtype = 'COMPONENT'
 		            AND CONVERT(date, Smk_InvDet.ActionDate) >= '".$fechaActual." 15:37'
 		            AND CONVERT(date, Smk_InvDet.ActionDate) <= '".$fechaSiguiente." 00:15'
 		        GROUP BY 
@@ -55,9 +57,11 @@
 		        FULL JOIN 
 		            Smk_Inv ON Smk_Inv.SN = Smk_InvDet.SN
 		        JOIN 
-		            Sy_Users ON Smk_InvDet.Badge = Sy_Users.Badge 
+		            Sy_Users ON Smk_InvDet.Badge = Sy_Users.Badge
+		            JOIN PFEP_MasterV2 ON Smk_InvDet.PN = PFEP_MasterV2.PN 
 		        WHERE 
 		            Action = 'EMPTY'
+		            AND PFEP_MasterV2.Mtype = 'COMPONENT'
 		            AND CONVERT(date, Smk_InvDet.ActionDate) = '".$fechaActual."'
 		            AND CONVERT(time, Smk_InvDet.ActionDate) BETWEEN '06:00' AND '15:36'
 		        GROUP BY 
