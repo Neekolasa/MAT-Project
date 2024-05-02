@@ -229,7 +229,7 @@
 						$status = 'OK';
 					}
 					else{
-						echo 'dsdsds';
+						//echo 'dsdsds';
 						$status = getStatus($dataCheck['scanHour'],$time['TiempoSalidaDesayuno']);
 					}
 					

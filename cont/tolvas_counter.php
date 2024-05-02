@@ -110,7 +110,8 @@
 	    $datos = array();
 	    while ($data = sqlsrv_fetch_array($sqlQuery, SQLSRV_FETCH_ASSOC)) {
 	        array_push($datos, array(
-	            "Ruta" => $data['Route'],
+	            "Ruta" => routeName($data['Route']),
+	            "FullRuta"=>$data['Route'],
 	            "Entrada" => $data['Entrada']->format('H:i'), // Formato de fecha y hora
 	            "Salida" => $data['Salida']->format('H:i'), // Formato de fecha y hora
 	            "Vuelta" => $data['Vueltas']+0,
@@ -216,6 +217,12 @@
 		$turno = $_REQUEST['turno'];
 
 		// Obtener los valores enviados por el formulario
+		$Ruta4_Name = $_REQUEST['Ruta4_Name'];
+		$Ruta4_PL = $_REQUEST['Ruta4_PL'];
+
+		$Ruta5_Name = $_REQUEST['Ruta5_Name'];
+		$Ruta5_PL = $_REQUEST['Ruta5_PL'];
+
 		$Ruta11_Name = $_REQUEST['Ruta11_Name'];
 		$Ruta11_PL = $_REQUEST['Ruta11_PL'];
 
@@ -257,6 +264,8 @@
 
 		// Consultas SQL para actualizar cada campo
 		$sqlStatements = array(
+			"RUTA4" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta4_Name', ProductionLine='$Ruta4_PL' WHERE Route='RUTA4' AND Turno='$turno'",
+			"RUTA5" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta5_Name', ProductionLine='$Ruta5_PL' WHERE Route='RUTA5' AND Turno='$turno'",
 		    "RUTA11" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta11_Name', ProductionLine='$Ruta11_PL' WHERE Route='RUTA11' AND Turno='$turno'",
 		    "RUTA12" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta12_Name', ProductionLine='$Ruta12_PL' WHERE Route='RUTA12' AND Turno='$turno'",
 		    "RUTA13" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta13_Name', ProductionLine='$Ruta13_PL' WHERE Route='RUTA13' AND Turno='$turno'",
@@ -340,5 +349,40 @@
 
     	echo json_encode($data);
     }
-    
+    function routeName($name) {
+    switch ($name) {
+    	case 'RUTA4':
+            return 'R04';
+        case 'RUTA5':
+            return 'R05';
+        case 'RUTA11':
+            return 'R11';
+        case 'RUTA12':
+            return 'R12';
+        case 'RUTA13':
+            return 'R13';
+        case 'RUTA14':
+            return 'R14';
+        case 'RUTA15':
+            return 'R15';
+        case 'RUTA16':
+            return 'R16';
+        case 'RUTA17':
+            return 'R17';
+        case 'RUTA18':
+            return 'R18';
+        case 'RUTA19':
+            return 'R19';
+        case 'RUTA20':
+            return 'R20';
+        case 'RUTA21':
+            return 'R21';
+        case 'RUTA22':
+            return 'R22';
+        case 'RUTA23':
+            return 'R23';
+        default:
+            return $name; // Si no coincide con ningún caso, devuelve el nombre original
+    }
+}
 ?>

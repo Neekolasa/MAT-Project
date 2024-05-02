@@ -61,7 +61,7 @@
                     <h2>Material sin enlazar / Faltante de descuento parcial</h2>
                     <div class="pull-right" >
                       <button class="btn btn-warning" id="adjustMaterial"><i class="fa fa-exchange"> </i> Ajustar material</button>
-                      <button class="btn btn-success" id="autoAdjustButton"><i class="fa fa-refresh"> </i> Iniciar ajustes automaticos</button>
+                      <button class="btn btn-success" onclick="startAdjust()"><i class="fa fa-refresh"> </i> Iniciar ajustes automaticos</button>
                       <button class="btn btn-primary" onclick="clearAutoAdjust()"><i class="fa fa-bomb"> </i> Detener autoajustes</button>
                    
 
@@ -196,32 +196,39 @@
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
                           </button>
                         </div>
+
                         <div class="modal-body">
-                          
-                          <div class="form-group">
                             
+                          <div class="form-group">
+                            <button class="btn btn-danger pull-left col-md-12" id="salir" hidden ><i class="fa fa-power-off"></i> </button>
                               
-                             
-                                <label for="badge">Numero de empleado <span style="color: red;">*</span></label>
-                                <input type="text"  id="badge" class="form-control" required>
+                                <div class="col-md-12">
+                                  <label for="badge">Numero de empleado <span style="color: red;">*</span></label>
+                                
+                                  <input type="text"  id="badge" class="form-control col-md-9" required> <button class="btn btn-success col-md-2" hidden id="enter" ><i class="fa fa-sign-in"></i> </button>
+
+                                </div>
+                                
                                 <label for="action">Accion <span style="color: red;"></span></label>
                                 <select id="action" class="form-control">
-                                  <option value="open">Abrir caja</option>
-                                  <option value="empty">Vaciar caja</option>
-                                  <option value="revive">Revivir caja</option>
+                                  <option value="Open">Abrir caja</option>
+                                  <option value="Empty">Vaciar caja</option>
+                                  <!--<option value="Revive">Revivir caja</option>-->
                                 </select>
+                               
                                 <label for="serialNumber">Numero de serie <span style="color: red;"></span></label>
                                 <input type="text" name="serialNumber" id="serialNumber" class="form-control">
-                                
+                                  
                                 <br>
                                 <br>
                                 <label><span style="color: red;">*</span> Campos obligatorios</label>
-
+                                <br>
+                                 <span  id="lastAction"></span>
                               </div>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary">Save changes</button>
+                          <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                         
                         </div>
 
                       </div>

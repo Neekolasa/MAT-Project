@@ -3,18 +3,249 @@ $(document).ready(function(){
 	getAvailableAdjustTable();
 	getDifferentAdjustTable();
 
-	$("#badge").keypress(function(e) {
+	
+	$("#serialNumber").on('keyup', function(e) {
 		if (e.key === 'Enter' || e.keyCode === 13) {
-			new PNotify({
-		        title: 'Exito',
-		        text: 'dsdsdsds',
+			if ($("#badge").val()!="") {
+				if ($("#serialNumber").val()!="") {
+					var serialNumber = $("#serialNumber").val().replaceAll("S","").replaceAll("s","");
+					var action = $("#action").val();
+					var badge = $("#badge").val();
+					$("#lastAction").html( "<b>Ultima accion: </b> <b style='color:red'> "+action+" "+serialNumber+"</b>");
+					
+
+					$.ajax({
+						url: 'cont/ajusteController.php',
+						type: 'POST',
+						data: {request: 'setUpdate',
+                                  order: action.toLowerCase(),
+                                  serial: serialNumber,
+                                  badge:badge
+					}
+					})
+					.done(function(info) {
+						var Data = JSON.parse(info);
+						if (Data['response']=='success') {
+							if (action == 'Open') {
+								new PNotify({
+								    title: 'Exito',
+								    text: 'Se ha abierto la serie '+serialNumber,
+								    type: 'success',
+								    nonblock: {
+								        nonblock: true
+								    },
+								    styling: 'bootstrap3'
+								});
+							}
+							else if (action == 'Empty') {
+								new PNotify({
+								    title: 'Exito',
+								    text: 'Se ha vaciado la serie '+serialNumber,
+								    type: 'success',
+								    nonblock: {
+								        nonblock: true
+								    },
+								    styling: 'bootstrap3'
+								});
+							}
+							else if (action == 'Revive') {
+								new PNotify({
+								    title: 'Exito',
+								    text: 'Se ha revivido la serie '+serialNumber,
+								    type: 'success',
+								    nonblock: {
+								        nonblock: true
+								    },
+								    styling: 'bootstrap3'
+								});
+							}
+							
+						}
+						else{
+							new PNotify({
+							    title: 'Error de respuesta',
+							    text: Data['response'],
+							    type: 'error',
+							    nonblock: {
+							        nonblock: true
+							    },
+							    styling: 'bootstrap3'
+							});
+						}
+					})
+					.fail(function() {
+						console.log("error");
+					});
+					
+
+					$("#serialNumber").val('');
+					
+				}
+				else{
+					new PNotify({
+						    title: 'Error',
+						    text: 'Debe ingresar una serie valida',
+						    type: 'error',
+						    nonblock: {
+						        nonblock: true
+						    },
+						    styling: 'bootstrap3'
+						});
+				}
+				
+			}
+			else{
+				new PNotify({
+						    title: 'Error',
+						    text: 'Debe iniciar sesion',
+						    type: 'error',
+						    nonblock: {
+						        nonblock: true
+						    },
+						    styling: 'bootstrap3'
+						});
+			}
+			
+		}
+
+	});
+	$("#enter").on('click', function() {
+			if ($("#badge")!="") {
+				$.ajax({
+			    	url: 'cont/partial_discount_controller_user.php',
+			    	type: 'GET',
+			    	data: {request: 'setBadge',
+					badge: $("#badge").val()},
+			    })
+			    .done(function(data) {
+			    	var info = JSON.parse(data);
+			    	if (info['response']=='success') {
+						new PNotify({
+						    title: 'Exito',
+						    text: 'Usuario valido',
+						    type: 'success',
+						    nonblock: {
+						        nonblock: true
+						    },
+						    styling: 'bootstrap3'
+						});
+						$("#salir").removeAttr('hidden');
+						$("#badge").attr('disabled', '');
+						$("#enter").attr('hidden', '');
+						$("#serialNumber").focus();
+						
+						
+					}
+					else{
+						new PNotify({
+						    title: 'Error',
+						    text: 'Ingrese un usuario valido',
+						    type: 'error',
+						    nonblock: {
+						        nonblock: true
+						    },
+						    styling: 'bootstrap3'
+						});
+
+					}
+			    })
+			    .fail(function() {
+			    	console.log("error");
+			    })
+			    
+			    sessionStorage.setItem('badge',$("#badge").val());
+			}
+			else{
+				new PNotify({
+		        title: 'Error',
+		        text: 'Debe ingresar un numero de empleado valido',
 		        type: 'warning',
 		        nonblock: {
 			        nonblock: true
 			    },
 		        styling: 'bootstrap3'
 		    });
+			}
+		/* Act on the event */
+	});
+
+	$("#badge").on('keyup', function(e) {
+
+		if (e.key === 'Enter' || e.keyCode === 13) {
+			if ($("#badge")!="") {
+				$.ajax({
+			    	url: 'cont/partial_discount_controller_user.php',
+			    	type: 'GET',
+			    	data: {request: 'setBadge',
+					badge: $("#badge").val()},
+			    })
+			    .done(function(data) {
+			    	var info = JSON.parse(data);
+			    	if (info['response']=='success') {
+						new PNotify({
+						    title: 'Exito',
+						    text: 'Usuario valido',
+						    type: 'success',
+						    nonblock: {
+						        nonblock: true
+						    },
+						    styling: 'bootstrap3'
+						});
+						$("#salir").removeAttr('hidden');
+						$("#badge").attr('disabled', '');
+						$("#enter").attr('hidden', '');
+						$("#serialNumber").focus();
+						
+					}
+					else{
+						new PNotify({
+						    title: 'Error',
+						    text: 'Ingrese un usuario valido',
+						    type: 'error',
+						    nonblock: {
+						        nonblock: true
+						    },
+						    styling: 'bootstrap3'
+						});
+
+					}
+			    })
+			    .fail(function() {
+			    	console.log("error");
+			    })
+			    
+			    sessionStorage.setItem('badge',$("#badge").val());
+			}
+			else{
+				new PNotify({
+		        title: 'Error',
+		        text: 'Debe ingresar un numero de empleado valido',
+		        type: 'warning',
+		        nonblock: {
+			        nonblock: true
+			    },
+		        styling: 'bootstrap3'
+		    });
+			}
+		    
+
 		}
+	});
+	$("#salir").on('click', function(event) {
+		event.preventDefault();
+		new PNotify({
+		        title: 'Exito',
+		        text: 'Sesion cerrada',
+		        type: 'success',
+		        nonblock: {
+			        nonblock: true
+			    },
+		        styling: 'bootstrap3'
+		    });
+		$("#adjustModal").modal('hide');
+		$("#badge").val("");
+		$("#enter").removeAttr('hidden');
+		sessionStorage.removeItem('badge');
 	});
 	timeout=setInterval(startAdjust, 60000);
 
@@ -22,6 +253,17 @@ $(document).ready(function(){
 	$("#adjustMaterial").on('click', function(event) {
 		event.preventDefault();
 		$("#adjustModal").modal('show');
+		var badge = sessionStorage.getItem('badge');
+		if (badge && badge.length > 0) {
+		    $("#badge").val(badge);
+		    $("#badge").attr('disabled', '');
+		    $("#salir").removeAttr('hidden');
+		   
+		} else {
+		    $("#badge").removeAttr('disabled');
+		    $("#salir").attr('hidden','');
+		    $("#enter").removeAttr('hidden');
+		}
 	});
 	
 });

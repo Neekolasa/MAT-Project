@@ -178,6 +178,12 @@ $(document).ready(function(){
     $("#saveRoutes").on('click', function(event) {
         event.preventDefault();
             var turno = $("#turno").val();
+            var Ruta4_Name = $("#RUTA4_Name").val();
+            var Ruta4_PL = $("#RUTA4_PL").val()
+
+            var Ruta5_Name = $("#RUTA5_Name").val();
+            var Ruta5_PL = $("#RUTA5_PL").val()
+
             var Ruta11_Name = $("#RUTA11_Name").val();
             var Ruta11_PL = $("#RUTA11_PL").val()
 
@@ -220,6 +226,13 @@ $(document).ready(function(){
             var datos = {
                 request           : 'setRoutesOwners',
                 turno               : turno,
+
+                Ruta4_Name  : Ruta4_Name,
+                Ruta4_PL       : Ruta4_PL,
+
+                Ruta5_Name  : Ruta5_Name,
+                Ruta5_PL       : Ruta5_PL,
+
                 Ruta11_Name  : Ruta11_Name,
                 Ruta11_PL       : Ruta11_PL,
 
@@ -324,7 +337,10 @@ function getRouteOwners(turno){
                     turno: turno},
     })
     .done(function(info) {
+        console.log(info);
         var datos = JSON.parse(info);
+        
+
         $("#RUTA11_Name").val(datos[0]['Name']);
         $("#RUTA11_PL").val(datos[0]['ProductionLine'])
 
@@ -363,6 +379,12 @@ function getRouteOwners(turno){
 
         $("#RUTA23_Name").val(datos[12]['Name']);
         $("#RUTA23_PL").val(datos[12]['ProductionLine']);
+
+        $("#RUTA4_Name").val(datos[13]['Name']);
+        $("#RUTA4_PL").val(datos[13]['ProductionLine'])
+
+        $("#RUTA5_Name").val(datos[14]['Name']);
+        $("#RUTA5_PL").val(datos[14]['ProductionLine'])
             
     })
     .fail(function() {
@@ -438,7 +460,7 @@ function getTable(datos){
             { className: "text-center", targets: "_all" } // Esto centrará todo el texto en las celdas
         ],
         columns: [
-            {data: "Ruta"},
+            {data: "FullRuta"},
             { data: "Entrada" },
             { data: "Salida" },
             { data: "Vuelta" },
@@ -455,7 +477,7 @@ function getTable(datos){
 function drawChart(data) {
     var options = {
         title: "Tolvas por Ruta y Vuelta",
-        height: 1500,
+        height: 900,
         //width:1600,
         annotations: {
             textStyle: {
@@ -540,7 +562,7 @@ function drawChart(data) {
             rutas[ruta] = {};
         }
 
-        rutas[ruta]['Ruta'] = ruta +' - '+ruteOwner;
+        rutas[ruta]['Ruta'] = ruta +' - '+ruteOwner;// + ' '+item.Salida;
         //rutas[ruta]['Horario'] = horario;
         rutas[ruta]['Vuelta ' + vuelta] = tolvas;
     });

@@ -189,7 +189,7 @@
 			$sqlStatement_info = "SELECT SN, PN, Qty, UoM, Status FROM Smk_Inv WHERE SN= ?";
 			$sqlQuery_info = sqlsrv_query($conn,$sqlStatement_info,$params);			
 			if ($sqlQuery_info===false) {
-				echo json_encode(array("response"=>"badResponse","data"=>'bad'));
+				echo json_encode(array("response"=>"Bad Response","data"=>'bad'));
 			}
 			else{
 				while ($data = sqlsrv_fetch_array($sqlQuery_info,SQLSRV_FETCH_ASSOC)) {
@@ -205,11 +205,11 @@
 					$seriesAbiertas = $contador['Abiertos'];
 				}
 				if ($seriesAbiertas>0) {
-					echo json_encode(array("response"=>"alreadyOpen","data"=>true));
+					echo json_encode(array("response"=>"Ya hay cajas abiertas","data"=>true));
 				}
 				else{
 					if ($Status!='A') {
-						echo json_encode(array("response"=>"boxStatus","data"=>$Status));
+						echo json_encode(array("response"=>"Caja vacia","data"=>$Status));
 					}
 					else{
 						$sqlStatement_insert = "INSERT INTO ChkP_SNLO(SN,stdPack,leftOver,AuditStatus) VALUES ('$serialNumber','$Qty','$Qty','NEW')";
@@ -236,7 +236,7 @@
 			$sqlStatement_info = "SELECT SN, PN, Qty, UoM, Status FROM Smk_Inv WHERE SN= ?";
 			$sqlQuery_info = sqlsrv_query($conn,$sqlStatement_info,$params);			
 			if ($sqlQuery_info===false) {
-				echo json_encode(array("response"=>"badResponse","data"=>'bad'));
+				echo json_encode(array("response"=>"Bad Response","data"=>'bad'));
 			}
 			else{
 				while ($data = sqlsrv_fetch_array($sqlQuery_info,SQLSRV_FETCH_ASSOC)) {
@@ -280,7 +280,7 @@
 			$sqlStatement_info = "SELECT SN, PN, Qty, UoM, Status FROM Rcv_SNH WHERE SN= ?";
 			$sqlQuery_info = sqlsrv_query($conn,$sqlStatement_info,$params);			
 			if ($sqlQuery_info===false) {
-				echo json_encode(array("response"=>"badResponse","data"=>'bad'));
+				echo json_encode(array("response"=>"Bad Response","data"=>'bad'));
 			}
 			else{
 				while ($data = sqlsrv_fetch_array($sqlQuery_info,SQLSRV_FETCH_ASSOC)) {

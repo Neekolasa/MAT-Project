@@ -124,6 +124,16 @@
                                       
 
                                     </select>
+                                    <label for="num_material">Ruta 4 <span style="color: red;">*</span></label>
+                                    <input type="text" id="RUTA4_Name" class="form-control" placeholder="Dueno de ruta">
+                                    <br>
+                                    <input type="text" id="RUTA4_PL" class="form-control" placeholder="Linea de produccion">
+                                    <br>
+                                    <label for="num_material">Ruta 5 <span style="color: red;">*</span></label>
+                                    <input type="text" id="RUTA5_Name" class="form-control" placeholder="Dueno de ruta">
+                                    <br>
+                                    <input type="text" id="RUTA5_PL" class="form-control" placeholder="Linea de produccion">
+                                    <br>
                                     <label for="num_material">Ruta 11 <span style="color: red;">*</span></label>
                                     <input type="text" id="RUTA11_Name" class="form-control" placeholder="Dueno de ruta">
                                     <br>
