@@ -424,7 +424,8 @@ function getAdjustTable(){
                       { data: "TotalSinDescuento" },
                       { data: "UoM" },
                       { data: "SAPProcess" },
-                      { data: "ScanDate" }
+                      { data: "ScanDate" },
+                      { data: "Action"}
                      
                     ]
                 });
@@ -441,6 +442,33 @@ function getAdjustTable(){
 		console.log("error");
 	})
 	
+}
+
+function removeManual(partNumber){
+	$.ajax({
+		url: 'cont/ajusteController.php',
+		type: 'POST',
+		data: { request : 'manualSerial',
+				   partNumber : partNumber
+		},
+	})
+	.done(function() {
+		new PNotify({
+		        title: 'Numero ajustado',
+		        text: 'Se ha ajustado el numero seleccionado',
+		        type: 'success',
+		        styling: 'bootstrap3'
+		    })
+		getAdjustTable();
+	})
+	.fail(function() {
+		console.log("error");
+	})
+	.always(function() {
+		console.log("complete");
+	});
+	
+	console.log(partNumber)
 }
 
 function getAvailableAdjustTable(){

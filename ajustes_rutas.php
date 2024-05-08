@@ -95,6 +95,7 @@
                               <th>UoM</th>
                               <th>SAPProcess</th>
                               <th>Fecha</th>
+                              <th>Acciones</th>
                             
                                         
                                             

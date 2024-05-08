@@ -33,7 +33,8 @@
 					"UoM"=>$info['UoM'],
 					"Locacion"=>$info['Locacion'],
 					"SAPProcess"=>$info['SAPProcess'],
-					"ScanDate"=>$info['ScanDate']->format('Y-m-d')
+					"ScanDate"=>$info['ScanDate']->format('Y-m-d'),
+					"Action" => "<button class='btn btn-primary' onclick='removeManual(\"" . $info['PN'] . "\")'><i class='fa fa-trash'></i> Asociar a ultima serie vacia</button>"
 
 				));
 			}
@@ -348,6 +349,26 @@
 				echo json_encode(array("response"=>"success"));
 			}
 		}
+		
+	}
+	elseif ($request == 'manualSerial'){
+		$partNumber = $_REQUEST['partNumber'];
+		$sqlStatement_lastEmpty = "
+			SELECT SN, MAX(ActionDate) AS LastEmpty
+				FROM Smk_InvDet
+				WHERE PN = '$partNumber'
+				AND Action = 'EMPTY'
+				AND CAST(ActionDate AS DATE) = CAST(GETDATE() AS DATE) -- Filtrar por la fecha actual
+			GROUP BY SN;
+			";
+		$sqlQuery_lastEmpty = sqlsrv_query($conn, $sqlStatement_lastEmpty);
+		while ($data = sqlsrv_fetch_array($sqlQuery_lastEmpty,SQLSRV_FETCH_ASSOC)) {
+			$serialNumber = $data['SN'];
+		}
+
+		$sqlStatementUpdate = "UPDATE ChkComp_MainMov SET SN = '$serialNumber', Status = 'OKK' WHERE SN = 'NOSN' AND PN = '$partNumber'";
+		//echo "$sqlStatementUpdate";
+		$sqlQueryUpdate = sqlsrv_query($conn,$sqlStatementUpdate);
 	}
 	
 
