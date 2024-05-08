@@ -227,6 +227,9 @@
                                 <optgroup label="Rear de Ridgeline">
                                   <option value="CB027">CB027</option>
                                 </optgroup>
+                                <optgroup label="Dash Stellantis">
+                                  <option value="DZ187">DZ187</option>
+                                </optgroup>
                                
                               </select>
                              
