@@ -16,7 +16,7 @@
 		$sqlStatement="
 		SELECT ChkComp_MainMov.PN, ContType, SUM(Qty) AS TotalSinDescuento, UoM, R+S+L+P as Locacion, SAPProcess, CONVERT(date, ScanDate) AS ScanDate
 			FROM ChkComp_MainMov JOIN PFEP_Map ON ChkComp_MainMov.PN = PFEP_Map.PN
-			WHERE SN LIKE '%NO%' AND CONVERT(date, ScanDate) >= CONVERT(date, GETDATE())
+			WHERE SN LIKE '%NO%' --AND CONVERT(date, ScanDate) >= CONVERT(date, GETDATE())
 			GROUP BY ChkComp_MainMov.PN,R, S, L, P, SAPProcess, ContType, UoM, CONVERT(date, ScanDate)
 			ORDER BY TotalSinDescuento DESC";
 		$sql_query = sqlsrv_query($conn, $sqlStatement);
@@ -34,7 +34,7 @@
 					"Locacion"=>$info['Locacion'],
 					"SAPProcess"=>$info['SAPProcess'],
 					"ScanDate"=>$info['ScanDate']->format('Y-m-d'),
-					"Action" => "<button class='btn btn-primary' onclick='removeManual(\"" . $info['PN'] . "\")'><i class='fa fa-trash'></i> Asociar a ultima serie vacia</button>"
+					"Action" => "<button class='btn btn-primary' onclick='removeManual(\"" . $info['PN'] . "\")'><i class='fa fa-trash'></i> Omitir</button>"
 
 				));
 			}
@@ -80,7 +80,7 @@
 			WHERE Smk_Inv.Status = 'O'
 			AND ChkComp_MainMov.SN = 'NOSN'
 			AND (leftOver - ChkComp_MainMov.Qty)>=0
-			AND CONVERT(DATE, ChkComp_MainMov.ScanDate) = CONVERT(DATE, GETDATE())
+			--AND CONVERT(DATE, ChkComp_MainMov.ScanDate) = CONVERT(DATE, GETDATE())
 		";
 		$array="";
 		$response = array();
@@ -125,7 +125,7 @@
 			WHERE Smk_Inv.Status = 'O'
 			AND ChkComp_MainMov.SN = 'NOSN'
 			AND (leftOver - ChkComp_MainMov.Qty)<0
-			AND CONVERT(DATE, ChkComp_MainMov.ScanDate) = CONVERT(DATE, GETDATE())
+			--AND CONVERT(DATE, ChkComp_MainMov.ScanDate) = CONVERT(DATE, GETDATE())
 
 		";
 		$sqlQuery = sqlsrv_query($conn,$sqlStatement);
@@ -158,7 +158,7 @@
 			WHERE Smk_Inv.Status = 'O'
 			AND ChkComp_MainMov.SN = 'NOSN'
 			AND (leftOver - ChkComp_MainMov.Qty)>0
-			AND CONVERT(DATE, ChkComp_MainMov.ScanDate) = CONVERT(DATE, GETDATE())
+			--AND CONVERT(DATE, ChkComp_MainMov.ScanDate) = CONVERT(DATE, GETDATE())
 		";
 		$sql_query = sqlsrv_query($conn, $sqlStatement);
 		if ($sql_query === false) {
@@ -269,9 +269,6 @@
 					$sqlStatement_SAP = "";
 				}
 				
-				
-				
-
 				echo json_encode(array("response"=>"success"));
 			}
 			
@@ -369,6 +366,7 @@
 		$sqlStatementUpdate = "UPDATE ChkComp_MainMov SET SN = '$serialNumber', Status = 'OKK' WHERE SN = 'NOSN' AND PN = '$partNumber'";
 		//echo "$sqlStatementUpdate";
 		$sqlQueryUpdate = sqlsrv_query($conn,$sqlStatementUpdate);
+		echo json_encode(array("response"=>"success"));
 	}
 	
 

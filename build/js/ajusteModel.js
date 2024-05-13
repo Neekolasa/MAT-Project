@@ -445,30 +445,119 @@ function getAdjustTable(){
 }
 
 function removeManual(partNumber){
-	$.ajax({
-		url: 'cont/ajusteController.php',
-		type: 'POST',
-		data: { request : 'manualSerial',
-				   partNumber : partNumber
-		},
-	})
-	.done(function() {
-		new PNotify({
-		        title: 'Numero ajustado',
-		        text: 'Se ha ajustado el numero seleccionado',
-		        type: 'success',
-		        styling: 'bootstrap3'
-		    })
-		getAdjustTable();
-	})
-	.fail(function() {
-		console.log("error");
-	})
-	.always(function() {
-		console.log("complete");
-	});
+	$("#omitirModal").modal('show');
+
+	var lastInputTime = 0;
+    var typingDelay = 50;
+    scan = false;
+    
+    $("#empNumScanned").on('input',function(e){
+        var currentTime = new Date().getTime();
+        if (currentTime - lastInputTime < typingDelay) {
+            scan = true;
+
+        } else {
+            scan = false;
+
+        }
+        lastInputTime = currentTime;
+
+
+    });
+
+	$("#empNumScanned").keypress(function(event) {
+      // Verificar si la tecla presionada es "Enter"
+      if (event.which === 13) {
+        $("#saveMaterial").click();
+      }
+    });
+    
+    $("#empNumScanned").on("contextmenu",function(){
+        return false;
+    });
+    $('#empNumScanned').on("cut copy paste",function(e) {
+        e.preventDefault();
+    });
+
+    $("#saveMaterial").on('click', function(event) {
+        event.preventDefault();
+        
+        if (!scan) {
+            new PNotify({
+                title: 'Error',
+                text: 'Debe escanear el numero de empleado',
+                type: 'error',
+                styling: 'bootstrap3'
+            });
+        }
+        else{
+            //console.log("Escaneado")
+            var empNum = $("#empNumScanned").val();
+            if (empNum == "C854474270" || empNum == "C854473664" || empNum == "C860440150") {
+                //console.log("Usuario valido");
+
+             	
+				$.ajax({
+					url: 'cont/ajusteController.php',
+					type: 'POST',
+					data: { request : 'manualSerial',
+							   partNumber : partNumber
+					},
+				})
+				.done(function(info) {
+					var Data = JSON.parse(info);
+					if (Data['response']=='success') {
+						new PNotify({
+					        title: 'Numero ajustado',
+					        text: 'Se ha ajustado el numero seleccionado '+partNumber,
+					        type: 'success',
+					        styling: 'bootstrap3'
+					    })
+						getAdjustTable();
+						$("#omitirModal").val("");
+						$("#omitirModal").modal('hide');
+					}
+					else{
+						new PNotify({
+	                        title: 'Error',
+	                        text: 'Ha ocurrido un error desconocido',
+	                        type: 'error',
+	                        styling: 'bootstrap3'
+	                    });
+					}
+					//window.location.reload();
+				})
+				.fail(function() {
+					
+				})
+
+            }
+            else  {
+                if ($("#empNumScanned").val()=="") {
+                    new PNotify({
+                        title: 'Error',
+                        text: 'Ingrese el numero de empleado',
+                        type: 'error',
+                        styling: 'bootstrap3'
+                    });
+                }
+               else{
+                    new PNotify({
+                        title: 'Error',
+                        text: 'Usuario no valido',
+                        type: 'error',
+                        styling: 'bootstrap3'
+                    });
+               }
+            }
+            
+        }
+        /*var name = $("#userConfirm").val();
+        */
+        
+
+    });
 	
-	console.log(partNumber)
 }
 
 function getAvailableAdjustTable(){

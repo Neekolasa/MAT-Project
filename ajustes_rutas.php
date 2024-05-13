@@ -77,6 +77,35 @@
                   <div class="x_content">
               
                       <div class="container">
+                        <div class="modal fade bs-example-modal-sm" id="omitirModal" tabindex="-1" role="dialog" aria-hidden="true">
+                          <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+
+                              <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel2">Omitir material</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                                </button>
+                              </div>
+
+                              <div class="modal-body">
+                                  
+                                <div class="form-group">
+                                    <label for="num_material">Escaneo gaffete de supervisor </label>
+                                    <input type="password" id="empNumScanned" class="form-control">
+                                    
+
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" id="saveMaterial">Guardar</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                               
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+
                         <div class="botones-container text-center">
                           <button class="btn btn-primary text-light boton-margen boton-responsivo" onclick="$('#table_ajuste').DataTable().button('.buttons-copy').trigger('click')">Copiar al portapapeles</button>
                           <button class="btn btn-primary text-light boton-margen boton-responsivo" onclick="$('#table_ajuste').DataTable().button('.buttons-excel').trigger('click')">Generar excel</button>

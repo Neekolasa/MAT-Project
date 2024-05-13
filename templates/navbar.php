@@ -7,6 +7,8 @@
                       <span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
                         <li><a href="index.php" class="pc hideSupermercado_opt">Supermercado</a></li>
+                        <li><a href="auditoria.php" class="hideAuditoria">Auditoria </a></li>
+                        <li><a href="conversiones.php" class="pc hideConversiones">Conversiones</a></li>
                         <li hidden><a href="barriles.php" hidden class="pc hideBarriles_opt">Barriles</a></li>
                       </ul>
                     
@@ -27,24 +29,14 @@
                     
                     
                   </li>
-                  <li>
-                    <a href="auditoria.php" class="hideAuditoria"><i class="fa fa-book"></i> Auditoria 
-                      <span class="fa fa-chevron"></span>
-                    </a>
-                    
-                  </li>
+                 
                   <li>
                     <a href="escaner.php" class="hideEscaner"><i class="fa fa-wifi"></i> Escaner 
                       <span class="fa fa-chevron"></span>
                     </a>
                     
                   </li>
-                  <li>
-                    <a href="conversiones.php" class="pc hideConversiones"><i class="fa fa-calculator"></i> Conversiones 
-                      <span class="fa fa-chevron"></span>
-                    </a>
-                    
-                  </li>
+                
 
                   <li>
                     <a href="checadas.php" class="pc hideChecadas"><i class="fa fa-check"></i> Checadas 

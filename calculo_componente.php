@@ -73,17 +73,25 @@
 	                    <br>
 	                    <input type="text" class="form-control" id="requerimiento" name="" placeholder="Requerimiento diario">
 	                    <br>
-	                    <input type="text" class="form-control" id="requerimiento_hora" name="" placeholder="Requerimiento por hora">
+                      <input type="text" class="form-control" id="D" name="" placeholder="Diametro CM">
+                      <br>
+                      <input type="text" class="form-control" id="H" name="" placeholder="Altura">
+                      <br>
+	                    <input type="text" class="form-control" id="requerimiento_hora" name="" readonly placeholder="Requerimiento por hora">
 	                    <br>
-	                    <input type="text" class="form-control" id="requerimiento_tres" name="" placeholder="Requerimiento por tres horas">
+	                    <input type="text" class="form-control" id="requerimiento_tres" name="" readonly placeholder="Requerimiento por tres horas">
 	                    <br>
-	                    <input type="text" class="form-control" id="tolva" name="" placeholder="Tolva">
+	                    <input type="text" class="form-control" id="tolva" name="" readonly placeholder="Tolva">
 	                    <br>
 	                    <button class="btn btn-primary" id="btn_confirm">Calcular</button>
-	                 </div>-->
-                     <span id="8S"></span><br>
-                     <span id="4S"></span><br>
+	                 </div>
+                     <span id="MT"></span><br>
+                     <span id="JT"></span><br>
+                    
+                     
                      <span id="2S"></span><br>
+                     <span id="4S"></span><br>
+                      <span id="8S"></span><br>-->
                      <div style="text-align: center;">
                       <button class="btn btn-primary" id="downloadTemplate"><i class="fa fa-download" ></i> Descargar plantilla</button>
                      	<form action="#" id="excel" accept=".xlsx" class="">
