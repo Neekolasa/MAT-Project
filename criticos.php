@@ -114,7 +114,7 @@
                             <th>Mtype</th>
                             <th>Locacion</th>
                             <th>Estatus</th>
-                            <th>Fecha</th>
+                            <th>Fecha Llegada</th>
                                       
                                           
                           </tr>
