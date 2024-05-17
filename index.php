@@ -249,7 +249,7 @@
         <!-- /page content -->
 
         <!-- footer content -->
-        <footer>
+        <footer style="margin-left: 0px;">
             <div class="pull-right">
                 APTIV - Materials Admin Tool 
             </div>
