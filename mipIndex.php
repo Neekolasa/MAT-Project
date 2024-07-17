@@ -52,7 +52,7 @@
 
                         <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 " id="queueMovers_container" style="cursor: pointer;">
                           <div class="tile-stats">
-                            <div class="icon"><i class="fa fa-refresh" style="color: #40c1a6;"></i>
+                            <div class="icon"><i class="fa fa-refresh fa-spin" style="color: #40c1a6;"></i>
                             </div>
                             <div class="count" id="processingMovers"></div>
 
@@ -459,7 +459,7 @@
                                 <div class="ln_solid"></div>
                                   <div class="form-group">
                                     <div class="col-md-9 col-sm-9  offset-md-3">
-                                      <button  class="btn btn-primary" id="resetForm"><i class="fa fa-refresh"></i> Reiniciar formulario</button>
+                                      <button  class="btn btn-primary" id="resetForm"><i class="fa fa-refresh  fa-spin"></i> Reiniciar formulario</button>
                                       <button  class="btn btn-success" id="sendMover"><i class="fa fa-pencil"></i> Crear mover</button>
                                     </div>
                                   </div>
