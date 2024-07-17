@@ -5,14 +5,16 @@
 	"default": {
 
 		"host": "10.215.156.203",
-		"username": "",  // or null for anonymous login
+		//"username": "APTIV\qiue11",  // or null for anonymous login
+		"username": "",
+		//"password": "AAEJ990706_aptiv",
 		"password": "",
 		"path": "/rutas",
 
 		"upload_on_save": true, // set *false* if you do not want to upload on save!
 
 		"port": 21,
-		// "tls": false,
+		// "tls": false, 
 		// "timeout": 30, // [seconds]
 
 		// "passive": true,

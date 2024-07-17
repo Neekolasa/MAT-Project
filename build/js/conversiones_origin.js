@@ -33,10 +33,10 @@ $(document).ready(function(){
 			.done(function(data) {
 
 				Datos = JSON.parse(data);
-				
+				console.log(Datos)
 
 				if (Datos.length==0) {
-					$("#productos").html('<option>'+Datos['NP']+'</option>');
+					$("#productos").html('<option>'+Datos[0]['NP']+'</option>');
 					$("#descripcion").html('-');
 					$("#apw").html('-');
 					$("#peso_tara").html('-');
@@ -45,8 +45,8 @@ $(document).ready(function(){
 
 				}
 				else{
-					$("#descripcion").html(Datos['DESCRIPTION']);
-					$("#apw").html(Datos['APW']);
+					$("#descripcion").html(Datos[0]['DESCRIPTION']);
+					$("#apw").html(Datos[0]['APW']);
 					$("#peso_tara").html('11.6');
 					$("#metro").html('-');
 					$("#feet").html('-');
@@ -149,7 +149,7 @@ $(document).ready(function(){
 				Datos = JSON.parse(data);
 
 				if (Datos.length==0) {
-					$("#productos_two").html('<option>'+Datos['NP']+'</option>');
+					$("#productos_two").html('<option>'+Datos[0]['NP']+'</option>');
 					$("#descripcion_two").html('-');
 					$("#apw_two").html('-');
 					
@@ -158,8 +158,8 @@ $(document).ready(function(){
 					$("#feet_two").html('-');
 				}
 				else{
-					$("#descripcion_two").html(Datos['DESCRIPTION']);
-					$("#apw_two").html(Datos['APW']);
+					$("#descripcion_two").html(Datos[0]['DESCRIPTION']);
+					$("#apw_two").html(Datos[0]['APW']);
 					
 					$("#peso_tara_two").html('11.6');
 					$("#material_peso_two").html('-');

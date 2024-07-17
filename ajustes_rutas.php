@@ -243,7 +243,7 @@
                                 <select id="action" class="form-control">
                                   <option value="Open">Abrir caja</option>
                                   <option value="Empty">Vaciar caja</option>
-                                  <!--<option value="Revive">Revivir caja</option>-->
+                                  <option value="Revive">Revivir caja</option>
                                 </select>
                                
                                 <label for="serialNumber">Numero de serie <span style="color: red;"></span></label>

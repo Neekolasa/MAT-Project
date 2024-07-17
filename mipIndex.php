@@ -399,7 +399,13 @@
                                       <div class="form-group row ">
                                         <label class="control-label col-md-3 col-sm-3 ">Unidad de medida <span style="color: red; font-size: 17px;">*</span></label>
                                         <div class="col-md-3 col-sm-3 ">
-                                          <input type="text" class="form-control uom" readonly name='uom[]' id="uom" placeholder="Unidad de medida">
+                                          <!--<input type="text" class="form-control uom" readonly name='uom[]' id="" placeholder="Unidad de medida">-->
+                                          <select id="uom" class="form-control">
+                                            <option value="PC">PC</option>
+                                            <option value="M">M</option>
+                                            <option value="FT">FT</option>
+                                            <option value="KG">KG</option>
+                                          </select>
                                         </div>
                                       </div>
 

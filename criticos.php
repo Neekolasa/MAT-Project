@@ -7,7 +7,7 @@
   <body class="nav-md-12">
     <div class="container body">
       <div class="main_container">
-      
+      <style>@font-face {font-family: '3of9Barcode'; src: url('3of9Barcode.TTF') format('truetype');} .barcode {font-family: '3of9Barcode', Arial, sans-serif; font-size: 36px;} body { margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; }</style>
 
 
         <!-- page content -->

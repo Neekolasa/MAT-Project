@@ -381,7 +381,7 @@ $(document).ready(function () {
             moverUom = Data['data'][0]['UoM'];
             $("#description").val(moverDescription);
             $("#uom").val(moverUom);
-
+            $("#uom").removeAttr('disabled');
             $("#qty").attr('readonly', false);
             $("#sap_document").attr('readonly', false);
             $("#mov_type").attr('readonly', false);

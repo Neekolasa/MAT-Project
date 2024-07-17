@@ -752,8 +752,8 @@ elseif ($request == 'processMasiveData')
 	    }
 	    else{
 	    	$descrip = preg_replace('/[^a-zA-Z0-9 ]/', '', $data['Descrip']);
-		    if ($data['UoM'] == 'FT') {
-		        $uom = 'M';
+		    if ($data['UoM'] == "FT") {
+		        $uom = "M";
 		    } else {
 		        $uom = $data['UoM']; 
 		    }
@@ -806,8 +806,13 @@ elseif ($request == 'processExcelMasiveData')
 	    }
 	    else{
 	    	$descrip = preg_replace('/[^a-zA-Z0-9 ]/', '', $data['Descrip']);
-		   
-		    $uom = $data['UoM'];
+		   if ($data['UoM']=='FT') {
+		   		$uom = "M";
+		   }
+		   else{
+		   		$uom = $data['UoM'];
+		   }
+		    
 		    
 
 		    $componente = $key['Componente'];
