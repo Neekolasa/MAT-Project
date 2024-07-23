@@ -708,7 +708,7 @@ function detailsMoverItem(UniqueID,userLogged){
 		//console.log(Data);
 
 		var tabla = $('#tableMoverItems').DataTable({
-                    dom: 'frtlp',
+                    dom: 'frtlip',
                     destroy: true,
                     responsive: true,
                     buttons: [
