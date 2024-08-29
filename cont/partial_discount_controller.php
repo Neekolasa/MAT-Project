@@ -112,11 +112,13 @@ include '../../connection.php';
 
 		$sql_statement="UPDATE Smk_Inv SET Qty = '$new_qty' WHERE SN = '$serialNumber'";
 		$sql_statement2= "INSERT INTO Smk_InvDet VALUES ('$serialNumber','CHANGE','$fecha','$badge','$partNumber')";
+		$sql_statement3="UPDATE ChkP_SNLO SET leftOver = '$new_qty' WHERE SN = '$serialNumber'";
 
 		//echo "$sql_statement\n";
 		//echo "$sql_statement2";
 		$sql_query = sqlsrv_query($conn,$sql_statement);
 		$sql_query2 = sqlsrv_query($conn,$sql_statement2);
+		$sql_query3 = sqlsrv_query($conn,$sql_statement3);
 
 		if ($sql_query == true AND $sql_query2 == true) {
 			echo json_encode(array('response' => 'success'));

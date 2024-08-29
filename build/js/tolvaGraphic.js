@@ -178,11 +178,23 @@ $(document).ready(function(){
     $("#saveRoutes").on('click', function(event) {
         event.preventDefault();
             var turno = $("#turno").val();
+            var Ruta1_Name = $("#RUTA1_Name").val();
+            var Ruta1_PL = $("#RUTA1_PL").val()
+
+            var Ruta2_Name = $("#RUTA2_Name").val();
+            var Ruta2_PL = $("#RUTA2_PL").val()
+
+            var Ruta3_Name = $("#RUTA3_Name").val();
+            var Ruta3_PL = $("#RUTA3_PL").val()
+
             var Ruta4_Name = $("#RUTA4_Name").val();
             var Ruta4_PL = $("#RUTA4_PL").val()
 
             var Ruta5_Name = $("#RUTA5_Name").val();
             var Ruta5_PL = $("#RUTA5_PL").val()
+
+            var Ruta10_Name = $("#RUTA10_Name").val();
+            var Ruta10_PL = $("#RUTA10_PL").val()
 
             var Ruta11_Name = $("#RUTA11_Name").val();
             var Ruta11_PL = $("#RUTA11_PL").val()
@@ -226,12 +238,23 @@ $(document).ready(function(){
             var datos = {
                 request           : 'setRoutesOwners',
                 turno               : turno,
+                Ruta1_Name  : Ruta1_Name,
+                Ruta1_PL       : Ruta1_PL,
+
+                Ruta2_Name  : Ruta2_Name,
+                Ruta2_PL       : Ruta2_PL,
+
+                Ruta3_Name  : Ruta3_Name,
+                Ruta3_PL       : Ruta3_PL,
 
                 Ruta4_Name  : Ruta4_Name,
                 Ruta4_PL       : Ruta4_PL,
 
                 Ruta5_Name  : Ruta5_Name,
                 Ruta5_PL       : Ruta5_PL,
+
+                Ruta10_Name  : Ruta10_Name,
+                Ruta10_PL       : Ruta10_PL,
 
                 Ruta11_Name  : Ruta11_Name,
                 Ruta11_PL       : Ruta11_PL,
@@ -337,54 +360,67 @@ function getRouteOwners(turno){
                     turno: turno},
     })
     .done(function(info) {
-        console.log(info);
+        //console.log(info)
         var datos = JSON.parse(info);
+        console.log(datos);
+        $("#RUTA1_Name").val(datos[0]['Name']);
+        $("#RUTA1_PL").val(datos[0]['ProductionLine'])
+
+        $("#RUTA2_Name").val(datos[11]['Name']);
+        $("#RUTA2_PL").val(datos[11]['ProductionLine'])
+
+        $("#RUTA3_Name").val(datos[16]['Name']);
+        $("#RUTA3_PL").val(datos[16]['ProductionLine'])
+
+        $("#RUTA4_Name").val(datos[17]['Name']);
+        $("#RUTA4_PL").val(datos[17]['ProductionLine'])
+
+        $("#RUTA5_Name").val(datos[18]['Name']);
+        $("#RUTA5_PL").val(datos[18]['ProductionLine'])
+
+        $("#RUTA10_Name").val(datos[1]['Name']);
+        $("#RUTA10_PL").val(datos[1]['ProductionLine'])
+
+        $("#RUTA11_Name").val(datos[2]['Name']);
+        $("#RUTA11_PL").val(datos[2]['ProductionLine'])
+
+        $("#RUTA12_Name").val(datos[3]['Name']);
+        $("#RUTA12_PL").val(datos[3]['ProductionLine'])
+
+        $("#RUTA13_Name").val(datos[4]['Name']);
+        $("#RUTA13_PL").val(datos[4]['ProductionLine'])
+
+        $("#RUTA14_Name").val(datos[5]['Name']);
+        $("#RUTA14_PL").val(datos[5]['ProductionLine'])
+
+        $("#RUTA15_Name").val(datos[6]['Name']);
+        $("#RUTA15_PL").val(datos[6]['ProductionLine'])
+
+        $("#RUTA16_Name").val(datos[7]['Name']);
+        $("#RUTA16_PL").val(datos[7]['ProductionLine'])
+
+        $("#RUTA17_Name").val(datos[8]['Name']);
+        $("#RUTA17_PL").val(datos[8]['ProductionLine'])
+
+        $("#RUTA18_Name").val(datos[9]['Name']);
+        $("#RUTA18_PL").val(datos[9]['ProductionLine'])
+
+        $("#RUTA19_Name").val(datos[10]['Name']);
+        $("#RUTA19_PL").val(datos[10]['ProductionLine'])
+
+        $("#RUTA20_Name").val(datos[12]['Name']);
+        $("#RUTA20_PL").val(datos[12]['ProductionLine'])
+
+        $("#RUTA21_Name").val(datos[13]['Name']);
+        $("#RUTA21_PL").val(datos[13]['ProductionLine'])
+
+        $("#RUTA22_Name").val(datos[14]['Name']);
+        $("#RUTA22_PL").val(datos[14]['ProductionLine'])
+
+        $("#RUTA23_Name").val(datos[15]['Name']);
+        $("#RUTA23_PL").val(datos[15]['ProductionLine']);
+
         
-
-        $("#RUTA11_Name").val(datos[0]['Name']);
-        $("#RUTA11_PL").val(datos[0]['ProductionLine'])
-
-        $("#RUTA12_Name").val(datos[1]['Name']);
-        $("#RUTA12_PL").val(datos[1]['ProductionLine'])
-
-        $("#RUTA13_Name").val(datos[2]['Name']);
-        $("#RUTA13_PL").val(datos[2]['ProductionLine'])
-
-        $("#RUTA14_Name").val(datos[3]['Name']);
-        $("#RUTA14_PL").val(datos[3]['ProductionLine'])
-
-        $("#RUTA15_Name").val(datos[4]['Name']);
-        $("#RUTA15_PL").val(datos[4]['ProductionLine'])
-
-        $("#RUTA16_Name").val(datos[5]['Name']);
-        $("#RUTA16_PL").val(datos[5]['ProductionLine'])
-
-        $("#RUTA17_Name").val(datos[6]['Name']);
-        $("#RUTA17_PL").val(datos[6]['ProductionLine'])
-
-        $("#RUTA18_Name").val(datos[7]['Name']);
-        $("#RUTA18_PL").val(datos[7]['ProductionLine'])
-
-        $("#RUTA19_Name").val(datos[8]['Name']);
-        $("#RUTA19_PL").val(datos[8]['ProductionLine'])
-
-        $("#RUTA20_Name").val(datos[9]['Name']);
-        $("#RUTA20_PL").val(datos[9]['ProductionLine'])
-
-        $("#RUTA21_Name").val(datos[10]['Name']);
-        $("#RUTA21_PL").val(datos[10]['ProductionLine'])
-
-        $("#RUTA22_Name").val(datos[11]['Name']);
-        $("#RUTA22_PL").val(datos[11]['ProductionLine'])
-
-        $("#RUTA23_Name").val(datos[12]['Name']);
-        $("#RUTA23_PL").val(datos[12]['ProductionLine']);
-
-        $("#RUTA4_Name").val(datos[13]['Name']);
-        $("#RUTA4_PL").val(datos[13]['ProductionLine'])
-
-        $("#RUTA5_Name").val(datos[14]['Name']);
-        $("#RUTA5_PL").val(datos[14]['ProductionLine'])
             
     })
     .fail(function() {

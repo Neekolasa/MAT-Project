@@ -157,7 +157,7 @@ $(document).ready(function () {
             $("#comentarios_adicionales").val(comentariosAdicionales);
 
             var tablaValores = [];
-            for (var i = 9; i <= 67; i++) {
+            for (var i = 9; i <= 100; i++) {
                 var fila = {};
                 fila['Componente'] = sheet['A' + i] && sheet['A' + i].v.toString() !== undefined ? sheet['A' + i].v.toString() : '';
                 fila['Descripcion'] = sheet['B' + i] && sheet['B' + i].v.toString() !== undefined ? sheet['B' + i].v.toString() : '';
@@ -169,7 +169,7 @@ $(document).ready(function () {
                 if (fila['Componente'] || fila['Descripcion'] || fila['Cantidad'] || fila['UoM'] || fila['TSA'] || fila['Item']) {
                     tablaValores.push(fila);
                 }
-            }
+            }  
 
 
             var jsonData = {

@@ -217,11 +217,23 @@
 		$turno = $_REQUEST['turno'];
 
 		// Obtener los valores enviados por el formulario
+		$Ruta1_Name = $_REQUEST['Ruta1_Name'];
+		$Ruta1_PL = $_REQUEST['Ruta1_PL'];
+
+		$Ruta2_Name = $_REQUEST['Ruta2_Name'];
+		$Ruta2_PL = $_REQUEST['Ruta2_PL'];
+
+		$Ruta3_Name = $_REQUEST['Ruta3_Name'];
+		$Ruta3_PL = $_REQUEST['Ruta3_PL'];
+
 		$Ruta4_Name = $_REQUEST['Ruta4_Name'];
 		$Ruta4_PL = $_REQUEST['Ruta4_PL'];
 
 		$Ruta5_Name = $_REQUEST['Ruta5_Name'];
 		$Ruta5_PL = $_REQUEST['Ruta5_PL'];
+
+		$Ruta10_Name = $_REQUEST['Ruta10_Name'];
+		$Ruta10_PL = $_REQUEST['Ruta10_PL'];
 
 		$Ruta11_Name = $_REQUEST['Ruta11_Name'];
 		$Ruta11_PL = $_REQUEST['Ruta11_PL'];
@@ -264,8 +276,12 @@
 
 		// Consultas SQL para actualizar cada campo
 		$sqlStatements = array(
+			"RUTA1" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta1_Name', ProductionLine='$Ruta1_PL' WHERE Route='RUTA1' AND Turno='$turno'",
+			"RUTA2" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta2_Name', ProductionLine='$Ruta2_PL' WHERE Route='RUTA2' AND Turno='$turno'",
+			"RUTA3" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta3_Name', ProductionLine='$Ruta3_PL' WHERE Route='RUTA3' AND Turno='$turno'",
 			"RUTA4" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta4_Name', ProductionLine='$Ruta4_PL' WHERE Route='RUTA4' AND Turno='$turno'",
 			"RUTA5" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta5_Name', ProductionLine='$Ruta5_PL' WHERE Route='RUTA5' AND Turno='$turno'",
+			"RUTA10" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta10_Name', ProductionLine='$Ruta10_PL' WHERE Route='RUTA10' AND Turno='$turno'",
 		    "RUTA11" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta11_Name', ProductionLine='$Ruta11_PL' WHERE Route='RUTA11' AND Turno='$turno'",
 		    "RUTA12" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta12_Name', ProductionLine='$Ruta12_PL' WHERE Route='RUTA12' AND Turno='$turno'",
 		    "RUTA13" => "UPDATE ChkComp_RouteOwner SET Name='$Ruta13_Name', ProductionLine='$Ruta13_PL' WHERE Route='RUTA13' AND Turno='$turno'",
@@ -351,10 +367,18 @@
     }
     function routeName($name) {
     switch ($name) {
+    	CASE 'RUTA1':
+    		return 'R01';
+    	CASE 'RUTA2':
+    		return 'R02';
+    	CASE 'RUTA3':
+    		return 'R03';
     	case 'RUTA4':
             return 'R04';
         case 'RUTA5':
             return 'R05';
+        case 'RUTA10':
+            return 'R10';
         case 'RUTA11':
             return 'R11';
         case 'RUTA12':

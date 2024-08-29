@@ -10,6 +10,7 @@
                         <li><a href="auditoria.php" class="hideAuditoria">Auditoria </a></li>
                         <li><a href="conversiones.php" class="pc hideConversiones">Conversiones</a></li>
                         <li><a href="pedidos.php">Pedidos de barriles</a></li>
+                        <li><a href="devolverTerminal.php">Devolver terminales</a></li>
                         <li hidden><a href="barriles.php" hidden class="pc hideBarriles_opt">Barriles</a></li>
                       </ul>
                     

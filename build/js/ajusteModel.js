@@ -493,7 +493,7 @@ function removeManual(partNumber){
         else{
             //console.log("Escaneado")
             var empNum = $("#empNumScanned").val();
-            if (empNum == "C854474270" || empNum == "C854473664" || empNum == "C860440150") {
+            if (empNum == "C854474270" || empNum == "C854473664" || empNum == "C860440150" || empNum == "C854471250" || empNum == "C880124238") {
                 //console.log("Usuario valido");
 
              	

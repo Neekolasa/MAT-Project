@@ -116,7 +116,7 @@
 		echo json_encode(array("response" => "success", "data" => $data));
 	}
 	elseif ($request=='getPedidoCompleteList'){
-		$sqlStatement = "SELECT ID,PN,Serial,Location,Descripcion,PedidoHora,PedidoSurtido, DATEDIFF(MINUTE,PedidoHora,PedidoSurtido)-10 as TiempoAccion, FechaPedido, EstatusPedido,COALESCE(Name,'NA') as Name FROM ChkBTS_Pedidos LEFT JOIN Sy_Users ON fk_badge = Badge WHERE ChkBTS_Pedidos.EstatusPedido LIKE '%COMPLETADO%' ORDER BY FechaPedido DESC";
+		$sqlStatement = "SELECT  TOP(100) ID,PN,Serial,Location,Descripcion,PedidoHora,PedidoSurtido, DATEDIFF(MINUTE,PedidoHora,PedidoSurtido)-10 as TiempoAccion, FechaPedido, EstatusPedido,COALESCE(Name,'NA') as Name FROM ChkBTS_Pedidos LEFT JOIN Sy_Users ON fk_badge = Badge WHERE ChkBTS_Pedidos.EstatusPedido LIKE '%COMPLETADO%' ORDER BY FechaPedido DESC";
 		$sqlQuery = sqlsrv_query($conn,$sqlStatement);
 
 		$data = array();

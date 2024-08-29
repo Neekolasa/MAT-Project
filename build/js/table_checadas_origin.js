@@ -18,7 +18,7 @@ function getTablaChecadas(){
 			  	dom: 'frtlip',
 			    destroy: true,
 			    responsive: true,
-			    order:[[7, 'DESC']],
+			    order:[7, 'desc'],
 			    buttons: [
 			        {extend :'copy', text: 'Copiar al portapapeles',className:"btn btn-primary boton-margen",
 			        attr:  {
