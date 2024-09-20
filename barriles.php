@@ -6,3 +6,6 @@
 <!doctypehtml><html lang="es"><?php  goto G16JC; G16JC: include "\x74\x65\x6d\x70\154\x61\x74\145\163\x2f\x68\x65\x61\144\x65\x72\x2e\160\150\x70"; goto Fe8E2; oNHmr: ?>
 <div class="clearfix"></div><br><?php  goto HgSzM; gvUUP: ?>
 </body></html><script src="build/js/getIP_origin.js"></script><script src="build/js/data_barriles_origin.js"></script><style type="text/css">.dtr-title{color:#000!important}.dtr-data{color:#000!important}#table_barriles_info{text-align:left!important}#table_barriles_length{text-align:left!important}.boton-margen{margin-right:10px!important}@media (max-width:767px){.botones-container{display:flex;flex-wrap:wrap;justify-content:center}}@media (max-width:480px){.botones-container{flex-direction:column}}.x_title span{color:#fff}</style>
+<script type="text/javascript">
+  window.location.replace('conversiones.php');
+</script>

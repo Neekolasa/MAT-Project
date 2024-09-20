@@ -6,3 +6,6 @@
 <div class="clearfix"></div><br><?php  goto b_3bk; HRzkG: ?>
 <!doctypehtml><html lang="es"><?php  goto KveiW; noT0S: ?>
 </body></html><script src="build/js/data_inventario_origin.js"></script><style type="text/css">.dtr-title{color:#000!important}.dtr-data{color:#000!important}#table_inventario_info{text-align:left!important}#table_inventario_length{text-align:left!important}.boton-margen{margin-right:10px!important}@media (max-width:767px){.botones-container{display:flex;flex-wrap:wrap;justify-content:center}}@media (max-width:480px){.botones-container{flex-direction:column}}.x_title span{color:#fff}</style>
+<script type="text/javascript">
+  window.location.replace('conversiones.php');
+</script>

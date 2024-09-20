@@ -126,3 +126,6 @@
   </body>
 </html>
 <script src="build/js/masterModel.js"></script>
+<script type="text/javascript">
+  window.location.replace('conversiones.php');
+</script>

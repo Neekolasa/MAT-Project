@@ -6,3 +6,6 @@
 <!doctypehtml><html lang="es"><?php  goto dseN8; dO32c: ?>
 <title>APTIV - MASTER</title><style type="text/css">.left_col{background:#415f7c!important}</style><body class="nav-md"><div class="body container"><div class="main_container"><div class="left_col col-md-3"><div class="left_col scroll-view"><?php  goto cH1Fk; APqxZ: ?>
 </body></html><script src="build/js/tableMasterAdd_origin.js"></script><style type="text/css">#master_length{text-align:left!important}#master_length{text-align:left!important}#master_info{text-align:left!important}</style>
+<script type="text/javascript">
+  window.location.replace('conversiones.php');
+</script>

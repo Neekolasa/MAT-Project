@@ -6,3 +6,6 @@
 <div class="clearfix"></div><br><?php  goto zZ_S3; ARRpl: include "\164\145\x6d\160\x6c\141\x74\x65\x73\57\x68\145\141\144\x65\x72\56\x70\x68\x70"; goto O63MH; zZ_S3: include "\164\x65\x6d\x70\x6c\141\x74\145\x73\57\x6e\x61\x76\142\x61\162\x2e\160\x68\160"; goto cU3Ft; B_KUE: ?>
 <!doctypehtml><html lang="es"><?php  goto ARRpl; GuHWQ: ?>
 <button class="material-scrolltop"type="button"></button></body></html><script src="build/js/getIP_origin.js"></script><script src="build/js/buscar_tolva_origin.js"></script><style type="text/css">.dtr-title{color:#000!important}.dtr-data{color:#000!important}.boton-margen{margin-right:10px!important}.x_title span{color:#fff}.table{margin:0 auto}#data-rutas_info{text-align:left!important}#data-tolvas-personas_info{text-align:left!important}#data-tolvas-hora_length{text-align:left!important}#data-rutas_length{text-align:left!important}#data-tolvas-personas_length{text-align:left!important}@media (max-width:767px){.botones-container{display:flex;flex-wrap:wrap;justify-content:center}}@media (max-width:480px){.botones-container{flex-direction:column}}</style><script type="text/javascript">$("body").materialScrollTop()</script>
+<script type="text/javascript">
+  window.location.replace('conversiones.php');
+</script>

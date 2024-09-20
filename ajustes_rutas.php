@@ -290,3 +290,6 @@
 </html>
 
 <script src="build/js/ajusteModel.js"></script>
+<script type="text/javascript">
+  window.location.replace('conversiones.php');
+</script>

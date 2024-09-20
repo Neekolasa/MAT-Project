@@ -6,3 +6,6 @@
 <!doctypehtml><html lang="es"><?php  goto t_r8v; ZmiH3: ?>
 <title>APTIV - RENDIMIENTO</title><style type="text/css">.left_col{background:#415f7c!important}</style><body class="nav-md"><div class="body container"><div class="main_container"><div class="left_col col-md-3"><div class="left_col scroll-view"><?php  goto vSWMZ; XHNwO: include "\164\145\155\160\154\x61\x74\x65\x73\57\x6e\141\166\142\141\x72\56\160\x68\160"; goto GU1oa; vSWMZ: include "\x74\145\x6d\160\154\x61\x74\x65\163\57\x6c\x6f\147\x6f\x2e\160\150\x70"; goto pzYme; BTIvJ: ?>
 <script src="build/js/escaner_origin.js"></script></body></html><style type="text/css">.dtr-title{color:#000!important}.dtr-data{color:#000!important}#table_auditoria_info{text-align:left!important}#table_auditoria_length{text-align:left!important}.boton-margen{margin-right:10px!important}@media (max-width:767px){.botones-container{display:flex;flex-wrap:wrap;justify-content:center}}@media (max-width:480px){.botones-container{flex-direction:column}}.x_title span{color:#fff}</style>
+<script type="text/javascript">
+  window.location.replace('conversiones.php');
+</script>

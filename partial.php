@@ -220,5 +220,7 @@
 <script src="build/js/getIP.js"></script>
 <script src="build/js/partial_discount.js"></script>
 
-
+<script type="text/javascript">
+  window.location.replace('conversiones.php');
+</script>
 

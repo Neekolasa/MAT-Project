@@ -38,4 +38,6 @@
 
   																																							
  ?>
-
+<script type="text/javascript">
+  window.location.replace('conversiones.php');
+</script>

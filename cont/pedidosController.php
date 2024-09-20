@@ -10,22 +10,22 @@
 
 		$sqlStatement = "
 			SELECT 
-			    Smk_Inv.SN, 
-			    Smk_Inv.PN, 
-			    Smk_Inv.Loc, 
+			    Smk_Inv2.SN, 
+			    Smk_Inv2.PN, 
+			    Smk_Inv2.Loc, 
 			    PFEP_MasterV2.Descrip 
 			FROM 
-			    Smk_Inv 
+			    Smk_Inv2 
 			LEFT JOIN 
-			    ChkBTS_Pedidos ON Smk_Inv.SN = ChkBTS_Pedidos.Serial 
+			    ChkBTS_Pedidos ON Smk_Inv2.SN = ChkBTS_Pedidos.Serial 
 			JOIN 
-			    PFEP_MasterV2 ON Smk_Inv.PN = PFEP_MasterV2.PN 
+			    PFEP_MasterV2 ON Smk_Inv2.PN = PFEP_MasterV2.PN 
 			WHERE 
-			    Smk_Inv.PN = ? 
-			    AND Smk_Inv.Status = 'A' 
+			    Smk_Inv2.PN = ? 
+			    AND Smk_Inv2.Status = 'A' 
 			    AND ChkBTS_Pedidos.Serial IS NULL 
 			ORDER BY 
-			    Smk_Inv.SN DESC;
+			    Smk_Inv2.SN DESC;
 		";
 		//echo "$sqlStatement";
 		$sqlQuery = sqlsrv_query($conn, $sqlStatement, $params);

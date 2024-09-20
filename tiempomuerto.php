@@ -327,3 +327,6 @@
 
 <script src="build/js/tiempomuerto.js"></script>
 <script src="build/js/tiempoMuertoGraphics.js"></script>
+<script type="text/javascript">
+  window.location.replace('conversiones.php');
+</script>

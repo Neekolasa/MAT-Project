@@ -45,7 +45,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Devolver terminal</h3>
+                <h3>Escaneo de inventario</h3>
               </div>
 
       
@@ -57,7 +57,7 @@
               <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Vuelta de terminal a almacen</h2>
+                    <h2>Escanear series SPMK</h2>
                     
 
                     <!--*************ADD CONTENT HERE*****************-->
@@ -65,16 +65,20 @@
 
                     <div class="clearfix"></div>
                   </div>
-                  <div class="x_content col-md-12" align="center" style="align-content: center;">
-                     <div class="col-md-3">
-                    </div>
-                    <div class="col-md-6" style="align-content: center; text-align: center;">
-                      <input class="form-control" type="text" name="sn" id="snTerminal" placeholder="Numero de serie">
-                      <br>
-                      <input class="form-control" type="text" name="loc" id="locTerminal" placeholder="Locacion">
-                      <br>
-                      <button class="btn btn-success" id="saveButton">Guardar Terminal</button>
-                    </div>
+                  <div class="x_content">
+                     <div class="col-md-12">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4" style="align-content: center;" align="center">
+                          <input class="form-control" type="text" name="scannedLoc" id="scannedLocation" placeholder="Locacion">
+                          <br>
+                          <input class="form-control" type="text" name="scannedMat" id="scannedMaterial" placeholder="Serie del numero de parte">
+                          <br>
+                          <button class="btn btn-success" id="btnInsert">Insertar serie</button>
+                        </div>
+                        
+                       <div class="col-md-4"></div>
+                     </div>
+                    
                   </div>
                 </div>
               </div>
@@ -101,7 +105,4 @@
   </body>
 </html>
 
-<script src="build/js/terminalBacksModel.js"></script>
-<script type="text/javascript">
-  window.location.replace('conversiones.php');
-</script>
+<script src="build/js/spmkScanModel.js"></script>

@@ -2,7 +2,7 @@
 	include '../../connection.php';
 	include 'encriptar.php';
 
-	$array_excludes = array('80124238','80019367','80030096');
+	$array_excludes = array('80124238','80019367','80030096','80119699');
 
 	/*$dataCheck['fk_badge']=='80124238' || $dataCheck['fk_badge']=='80019367' || $dataCheck['fk_badge']=='54512947' /*Pablo|| $dataCheck['fk_badge']=='54498748' || $dataCheck['fk_badge'] == '80050501*/
 	

@@ -317,4 +317,9 @@ color: black !important;
 
   <script type="text/javascript">
         $('body').materialScrollTop();
+
     </script>
+
+<script type="text/javascript">
+  window.location.replace('conversiones.php');
+</script>

@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
+<title>Inventario Activo BTS - APTIV</title>
   <?php 
     include 'templates/header.php';
   ?>
+    <!-- Switchery -->
+  <link href="vendors/switchery/dist/switchery.min.css" rel="stylesheet">
   <style type="text/css">
   .left_col {
     background: #415f7c !important;
@@ -40,6 +43,7 @@
                 margin-top: 20px;
               }
             </style>
+
             <!-- menu profile quick info -->
             
             <!-- /menu profile quick info -->
@@ -67,7 +71,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Plain Page</h3>
+                <h3>Inventario de barril y terminal</h3>
               </div>
 
       
@@ -79,7 +83,7 @@
               <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Plain Page</h2>
+                    <h2>Barril y terminal pasados por checkpoint</h2>
                     
 
                     <!--*************ADD CONTENT HERE*****************-->
@@ -88,22 +92,30 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    <button class="btn btn-success" onclick="getData()">Obtener informacion</button>
+                      <div style="text-align: center;">
+                       
+                      <div class="botones-container">
+                            <button class="btn btn-primary text-light boton-margen boton-responsivo" onclick="$('#tableBarriles').DataTable().button('.buttons-copy').trigger('click')">Copiar al portapapeles</button>
+                            <button class="btn btn-primary text-light boton-margen boton-responsivo" onclick="$('#tableBarriles').DataTable().button('.buttons-excel').trigger('click')">Generar excel</button>
+                            <button class="btn btn-primary text-light boton-margen boton-responsivo" onclick="$('#tableBarriles').DataTable().button('.buttons-pdf').trigger('click')">Generar PDF</button>
                     
-                    <div class="botones-container text-center">
-                          <button class="btn btn-primary text-light boton-margen boton-responsivo" onclick="$('#tableAjusteCKT').DataTable().button('.buttons-copy').trigger('click')">Copiar al portapapeles</button>
-                          <button class="btn btn-primary text-light boton-margen boton-responsivo" onclick="$('#tableAjusteCKT').DataTable().button('.buttons-excel').trigger('click')">Generar excel</button>
-                          <button class="btn btn-primary text-light boton-margen boton-responsivo" onclick="$('#tableAjusteCKT').DataTable().button('.buttons-pdf').trigger('click')">Generar PDF</button>
-                          <button class="btn btn-primary text-light boton-margen boton-responsivo" onclick="$('#tableAjusteCKT').DataTable().button('.buttons-print').trigger('click')">Imprimir documento</button>
+                            <button class="btn btn-primary text-light boton-margen boton-responsivo" onclick="$('#tableBarriles').DataTable().button('.buttons-print').trigger('click')">Imprimir documento</button>
 
-                           
+                            <!--<button class="btn btn-warning text-light boton-margen boton-responsivo" onclick="/*clean()*/">Limpiar obsoletos</button>-->
+                               <label>
+                              <button class="btn btn-secondary" id="vacioCheck">Mostrar vacios</button>
+                          </label>
                         </div>
-
-                      <table id="tableAjusteCKT"  style="width:100%;" class="table table-striped table-bordered">
+                      <table id="tableBarriles"  style="width:100%;" class="table table-striped table-bordered">
                           <thead>
                             <tr>
                               <th>Numero de parte</th>
-                              <th>Cantidad</th>
+                              <th>Serie</th>
+                              <th>Cantidad restante</th>
+                              <th>Estatus</th>
+                              <th>UoM</th>
+                              <th>Ultima actualizacion</th>
+                              <th>Mtype</th>
                            
                             
                                         
@@ -116,6 +128,7 @@
                                           
                           </tbody>
                       </table>
+                    </div>
                       <div id="spinner"></div>
                       <div id="loadingMessage">Cargando...</div>
                   </div>
@@ -143,8 +156,42 @@
     <?php include 'templates/footerLibs.php' ?>  
   </body>
 </html>
+<style type="text/css">
+  dtr-title{
+color: black !important;
+    
+  }
+  .dtr-data{
+    color: black !important;
 
-<script src="build/js/adjustCKT_model.js"></script>
-<script type="text/javascript">
-  window.location.replace('conversiones.php');
-</script>
+  }
+  #tableBarriles_info{
+    text-align:left !important;
+  }
+  #tableBarriles_length{
+     text-align:left !important;
+  }
+
+
+     .boton-margen {
+        margin-right: 10px !important; /* Puedes ajustar el valor del margen según tus preferencias */
+    }
+
+     @media (max-width: 767px) {
+        .botones-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .botones-container {
+            flex-direction: column;
+        }
+    }
+  .x_title span
+  {color: white;}
+</style>
+<script src="build/js/inventarioBarriles_model.js"></script>
+  <script src="vendors/switchery/dist/switchery.min.js"></script>

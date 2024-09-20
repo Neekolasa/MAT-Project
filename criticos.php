@@ -185,3 +185,4 @@
     text-shadow: 0 0 5px #ff5722; /* Agregar sombra */
 }
 </style>
+

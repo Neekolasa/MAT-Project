@@ -40,7 +40,7 @@
 		// Consulta para actualizar el estado
 		$sqlStatement = "UPDATE ChkBTS_SNMaster SET Status = 'SMKT' WHERE SN = '$SerialNumber'";
 		$location = str_replace("'", "''", $location);
-		$sqlStatement2 = "INSERT INTO ChkBTS_SNDet VALUES ('$SerialNumber', 'IN', '$location', GETDATE(), '0.000', '{$dataQty[0]['Qty']}', '0', NULL, NULL, NULL, 'A', 'False')";
+		$sqlStatement2 = "INSERT INTO ChkBTS_SNDet VALUES ('$SerialNumber', 'IN', '$location', GETDATE(), '0.000', '{$dataQty[0]['Qty']}', '0', NULL, NULL, NULL, 'A', 'False',NULL,NULL)";
 
 		// Ejecutar ambas consultas en un bloque de control único
 		if (sqlsrv_query($conn, $sqlStatement) && sqlsrv_query($conn, $sqlStatement2)) {
@@ -50,7 +50,7 @@
 		} else {
 		    // Si alguna de las consultas falla
 		    echo json_encode(array('response' => 'error', 'message' => 'Error al ejecutar las consultas.'));
-		    echo $sqlStatement2;
+		    //echo $sqlStatement2;
 		}
 	}
 

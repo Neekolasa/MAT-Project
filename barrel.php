@@ -70,3 +70,4 @@ foreach ($output as $printer) {
     }
 }
 echo "</select>\n";
+
