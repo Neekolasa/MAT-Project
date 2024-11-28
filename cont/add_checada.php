@@ -84,7 +84,7 @@
 		date_default_timezone_set('America/Mexico_City');
 		$unaHoraMenos = strtotime('-1 hour');
 		$dataCheck = array(	'scanDate' => date('Y-m-d'),
-							'scanHour' => date('H:i:s',strtotime('-1 hour')),
+							'scanHour' => date('H:i:s'/*,strtotime('-1 hour')*/),
 							'fk_badge' => strtoupper($_GET['num_empleado']));
 		/*$dataCheck = array(	'scanDate' => date('Y-m-d'),
 							'scanHour' => date('H:i:s',$unaHoraMenos),

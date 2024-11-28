@@ -45,7 +45,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Inventario</h3>
+                <h3>Plain Page</h3>
               </div>
 
       
@@ -57,7 +57,7 @@
               <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Validar Masters</h2>
+                    <h2>Plain Page</h2>
                     
 
                     <!--*************ADD CONTENT HERE*****************-->
@@ -66,40 +66,24 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    <div style="text-align: center;">
-                          <div class="col-md-12" >
-                            <div class="col-sm-3"></div>
-                            <div class="col-sm-6">
-                               <input id="num_master" type='text' class="form-control" placeholder="Serie master" style="text-align: center;" />
-                            </div>
-                           
-                             <div class="col-sm-12">
-                              <br>
-                              <button id="search_button" class="btn btn-success">Buscar</button>
-                              <!--<button id="play" class="btn btn-primary">Play</button>-->
-                            </div>   
-                          </div>
+                     <div class="col-md-12">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4" style="align-content: center;" align="center">
+                          <input class="form-control" type="text" name="scannedMaterial" id="scannedMaterial" placeholder="Numero de parte">
                           <br>
-                          <span id="totalSeries" style="color:black;font-size: 20px;"></span>
+                          <span>Numero de parte</span>
+                          <input class="form-control" type="text" name="getMaterial" readonly id="getMaterial" placeholder="Material">
+                          <span>Locacion antigua</span>
+                          <input class="form-control" type="text" name="oldLocation" readonly id="oldLocation" placeholder="Locacion antigua">
+                          <span>Locacion nueva</span>
+                          <input class="form-control" type="text" name="oldLocation" readonly id="newLocation" placeholder="Locacion nueva">
                           <br>
+                          <button class="btn btn-success" id="btnSearch">Buscar locacion</button>
                         </div>
-                          <table id="dataMaster" class="table table-striped table-bordered" style="width:100%; margin-bottom: 10%;">
-                        <thead>
-                          <tr>
-                            <th>Serie enlazada</th>
-                            <th>Serie Master</th>
-                            <th>Numero de parte</th>
-                            <th>Cantidad</th>
-                          </tr>
-                        </thead>
-
-                            
-
-                        <tbody>
-                          
-                        </tbody>
-                      </table>
-                  
+                        
+                       <div class="col-md-4"></div>
+                     </div>
+                    
                   </div>
                 </div>
               </div>
@@ -125,4 +109,5 @@
     <?php include 'templates/footerLibs.php' ?>  
   </body>
 </html>
-<script src="build/js/masterModel.js"></script>
+
+<script src="build/js/locationModel.js"></script>

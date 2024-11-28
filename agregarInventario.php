@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+`<!DOCTYPE html>
 <html lang="es">
   <?php 
     include 'templates/header.php';
@@ -45,7 +45,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Inventario</h3>
+                <h3>Plain Page</h3>
               </div>
 
       
@@ -57,7 +57,7 @@
               <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Validar Masters</h2>
+                    <h2>Plain Page</h2>
                     
 
                     <!--*************ADD CONTENT HERE*****************-->
@@ -66,40 +66,11 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    <div style="text-align: center;">
-                          <div class="col-md-12" >
-                            <div class="col-sm-3"></div>
-                            <div class="col-sm-6">
-                               <input id="num_master" type='text' class="form-control" placeholder="Serie master" style="text-align: center;" />
-                            </div>
-                           
-                             <div class="col-sm-12">
-                              <br>
-                              <button id="search_button" class="btn btn-success">Buscar</button>
-                              <!--<button id="play" class="btn btn-primary">Play</button>-->
-                            </div>   
-                          </div>
-                          <br>
-                          <span id="totalSeries" style="color:black;font-size: 20px;"></span>
-                          <br>
-                        </div>
-                          <table id="dataMaster" class="table table-striped table-bordered" style="width:100%; margin-bottom: 10%;">
-                        <thead>
-                          <tr>
-                            <th>Serie enlazada</th>
-                            <th>Serie Master</th>
-                            <th>Numero de parte</th>
-                            <th>Cantidad</th>
-                          </tr>
-                        </thead>
-
-                            
-
-                        <tbody>
-                          
-                        </tbody>
-                      </table>
-                  
+                     <input type="text" placeholder="Numero de serie" id="num_serial">
+                     <input type="text" placeholder="Numero de parte" id="part_number">
+                     <input type="text" placeholder="Cantidad" id="qty">
+                     <input type="text"  placeholder="Unidad de medida" id="uom">
+                     <button hidden id="btn_ssendInventory">Agregar inventario</button>
                   </div>
                 </div>
               </div>
@@ -125,4 +96,4 @@
     <?php include 'templates/footerLibs.php' ?>  
   </body>
 </html>
-<script src="build/js/masterModel.js"></script>
+<script src="build/js/addInventoryModel.js"></script>
