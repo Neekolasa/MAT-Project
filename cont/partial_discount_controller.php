@@ -73,7 +73,7 @@ include '../../connection.php';
 
 		        // Inserción en Smk_Inv
 		        $sql_insert_smk_inv = "
-		            INSERT INTO Smk_Inv (SN, PN, Qty, Badge, Status, UoM, Location, CreatedOn)
+		            INSERT INTO Smk_Inv
 		            VALUES ('$snNumber', '$pnNumber', $qtyNumber, '08080808', 'A', '$uomNumber', 'A', GETDATE())";
 		        $insert_result = sqlsrv_query($conn, $sql_insert_smk_inv);
 
@@ -208,14 +208,41 @@ include '../../connection.php';
 	elseif ($_GET['queue'] == "empty") {
 			$serialNumber = $_GET['serialNumber'];
 			$badge = $_GET['badge'];
-			$params = array($serialNumber);
+			
 
-			$sqlStatement_info = "SELECT SN, PN, Qty, UoM, Status FROM Smk_Inv WHERE SN= ?";
-			$sqlQuery_info = sqlsrv_query($conn,$sqlStatement_info,$params);			
-			if ($sqlQuery_info===false) {
-				echo json_encode(array("response"=>"Bad Response","data"=>'bad'));
+			$sqlStatement_info = "SELECT SN, PN, Qty, UoM, Status FROM Smk_Inv WHERE SN= '$serialNumber'";
+			$sqlQuery_info = sqlsrv_query($conn,$sqlStatement_info);
+			if (!sqlsrv_has_rows($sqlQuery_info)){
+				$sql_rcv_snh = "SELECT SN, PN, Qty, UoM FROM Rcv_SNH WHERE SN = '$serialNumber'";
+		        $result_rcv_snh = sqlsrv_query($conn, $sql_rcv_snh);
+
+		        if ($result_rcv_snh === false || !sqlsrv_has_rows($result_rcv_snh)) {
+		            echo json_encode(array("response"=>"Bad Response","data"=>'bad'));
+		            exit;
+		        }
+
+		        $rcvSNHRow = sqlsrv_fetch_array($result_rcv_snh, SQLSRV_FETCH_ASSOC);
+		        $snNumber = $rcvSNHRow['SN'];
+		        $pnNumber = $rcvSNHRow['PN'];
+		        $qtyNumber = $rcvSNHRow['Qty'];
+		        $uomNumber = $rcvSNHRow['UoM'];
+
+		        // Inserción en Smk_Inv
+		        $sql_insert_smk_inv = "
+		            INSERT INTO Smk_Inv
+		            VALUES ('$snNumber', '$pnNumber', $qtyNumber, '08080808', 'A', '$uomNumber', 'A', GETDATE())";
+		        $insert_result = sqlsrv_query($conn, $sql_insert_smk_inv);
+
+		        if ($insert_result === false) {
+		            echo json_encode(array("response"=>"Bad Ressponse","data"=>'bad'));
+		            
+		            exit;
+		        }
 			}
 			else{
+
+				$sqlStatement_info = "SELECT SN, PN, Qty, UoM, Status FROM Smk_Inv WHERE SN= '$serialNumber'";
+				$sqlQuery_info = sqlsrv_query($conn,$sqlStatement_info);			
 				while ($data = sqlsrv_fetch_array($sqlQuery_info,SQLSRV_FETCH_ASSOC)) {
 					$PN = $data['PN'];
 					$Qty = $data['Qty'];

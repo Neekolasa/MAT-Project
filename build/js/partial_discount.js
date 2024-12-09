@@ -449,6 +449,7 @@ $(document).ready(function(){
 				$("#material_snQty").val("").focus();
 			}
 			else{
+				console.log(Data['response'])
 				new PNotify({
 					title: 'Error',
 					text: 'Ha ocurrido un error',
