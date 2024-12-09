@@ -1,7 +1,7 @@
 $(document).ready(function(){
-	getAdjustTable();
-	getAvailableAdjustTable();
-	getDifferentAdjustTable();
+	//getAdjustTable();
+	//getAvailableAdjustTable();
+	//getDifferentAdjustTable();
 
 	
 	$("#serialNumber").on('keyup', function(e) {

@@ -2,13 +2,45 @@
 	include '../../connection.php';
 	$request = $_REQUEST['request'];
 	if($request == "empty"){
-		 $sqlStatement = "SELECT PN, SN, RestQty, Status, UoM, LastUpdate, Mtype 
-                     FROM ChkBTS_SNMaster 
-                     WHERE Status LIKE '%EMPTY%' 
-                     AND LastUpdate >= DATEADD(DAY, -15, GETDATE())";
+		 $sqlStatement = "SELECT 
+	    PN, 
+	    SN, 
+	    RestQty, 
+	    Status, 
+	    UoM, 
+	    RIGHT('0000' + CAST(YEAR(LastUpdate) AS VARCHAR(4)), 4) + '-' +
+	    RIGHT('00' + CAST(MONTH(LastUpdate) AS VARCHAR(2)), 2) + '-' +
+	    RIGHT('00' + CAST(DAY(LastUpdate) AS VARCHAR(2)), 2) + ' ' +
+	    RIGHT('00' + CAST((CASE WHEN DATEPART(HOUR, LastUpdate) % 12 = 0 THEN 12 ELSE DATEPART(HOUR, LastUpdate) % 12 END) AS VARCHAR(2)), 2) + ':' +
+	    RIGHT('00' + CAST(DATEPART(MINUTE, LastUpdate) AS VARCHAR(2)), 2) + ' ' +
+	    (CASE WHEN DATEPART(HOUR, LastUpdate) >= 12 THEN 'PM' ELSE 'AM' END) AS LastUpdate,
+	    Mtype
+	FROM 
+	    ChkBTS_SNMaster 
+	WHERE 
+	    Status LIKE '%EMPTY%' 
+	    AND LastUpdate >= DATEADD(DAY, -15, GETDATE())";
 	 }
 	else{
-		   $sqlStatement = "SELECT PN, SN, RestQty, Status, UoM, LastUpdate, Mtype FROM ChkBTS_SNMaster WHERE Status NOT LIKE '%EMPTY%'"; 
+		   $sqlStatement = "
+		SELECT 
+		    PN, 
+		    SN, 
+		    RestQty, 
+		    Status, 
+		    UoM, 
+		    RIGHT('0000' + CAST(YEAR(LastUpdate) AS VARCHAR(4)), 4) + '-' +
+		    RIGHT('00' + CAST(MONTH(LastUpdate) AS VARCHAR(2)), 2) + '-' +
+		    RIGHT('00' + CAST(DAY(LastUpdate) AS VARCHAR(2)), 2) + ' ' +
+		    RIGHT('00' + CAST((CASE WHEN DATEPART(HOUR, LastUpdate) % 12 = 0 THEN 12 ELSE DATEPART(HOUR, LastUpdate) % 12 END) AS VARCHAR(2)), 2) + ':' +
+		    RIGHT('00' + CAST(DATEPART(MINUTE, LastUpdate) AS VARCHAR(2)), 2) + ' ' +
+		    (CASE WHEN DATEPART(HOUR, LastUpdate) >= 12 THEN 'PM' ELSE 'AM' END) AS LastUpdate,
+		    Mtype
+		FROM 
+		    ChkBTS_SNMaster 
+		WHERE 
+		    Status NOT LIKE '%EMPTY%'
+		"; 
 	
 	}
 	$sqlQuery = sqlsrv_query($conn, $sqlStatement);

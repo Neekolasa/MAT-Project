@@ -15,77 +15,135 @@ include '../../connection.php';
 	}
 	elseif($_GET['queue']=='setDiscount'){
 		$badge = $_GET['badge'];
-		$discount = $_GET['discount'];
-		$cantidad_descontada = $_GET['cantidad_descontada'];
+		//$discount = $_GET['discount'];
+		$cantidad_descontada = 1;
+		$idKanban = $_GET['cantidad_descontada'];
 		$material_sn = $_GET['material_sn'];
-		$material_pn = $_GET['material_pn'];
+		//$material_pn = $_GET['material_pn'];
 		date_default_timezone_set('America/Monterrey');
 		$fecha = date('Y-m-d H:i:s');
-		if ($cantidad_descontada<=0) {
-			
-			$sql_statement="UPDATE Smk_Inv SET Qty = '0' WHERE SN = '$material_sn'";
-			$sql_statement2="UPDATE Smk_Inv SET Status = 'E' WHERE SN ='$material_sn'";
 
-			$sql_statement3= "INSERT INTO Smk_InvDet VALUES ('$material_sn','PARTIAL','$fecha','$badge','$material_pn')";
-			$sql_statement4= "INSERT INTO Smk_InvDet VALUES ('$material_sn','EMPTY','$fecha','$badge','$material_pn')";
-			
-			$sql_query1 = sqlsrv_query($conn,$sql_statement);
-			$sql_query2 = sqlsrv_query($conn,$sql_statement2);
-			$sql_query3 = sqlsrv_query($conn,$sql_statement3);
-			$sql_query4 = sqlsrv_query($conn,$sql_statement4);
-			if ($sql_query1 == true AND $sql_query2 == true AND $sql_query3== true AND $sql_query4==true) {
-				echo json_encode(array('response' => 'success'));
-			}
-			else{
-				echo json_encode(array('response' => 'fail'));
-			}
-		}
-		else{
-			$sql_statementCheckIsOpen="
-				SELECT Status FROM Smk_Inv WHERE SN = '$material_sn';
+		try {
+		    // Consulta 1: Obtener datos de DRC_Det
+		    $sql_drc_det = "SELECT ID, PN, ContType FROM DRC_Det WHERE Id = '$idKanban'";
+		    $result_drc_det = sqlsrv_query($conn, $sql_drc_det);
 
-			";
-			
-			$sql_statement="UPDATE Smk_Inv SET Qty = '$cantidad_descontada' WHERE SN = '$material_sn'";
-			$sqlSNLO = "UPDATE ChkP_SNLO SET leftOver = '$cantidad_descontada' WHERE SN = '$material_sn'";
+		    if ($result_drc_det === false || !sqlsrv_has_rows($result_drc_det)) {
+		        echo json_encode(array('response' => 'NoKanban'));
+		        exit;
+		    }
 
-			$sql_statement3= "INSERT INTO Smk_InvDet VALUES ('$material_sn','PARTIAL','$fecha','$badge','$material_pn')";
-			$sqlStatement_SAP = "
-				INSERT INTO Smk_SAP
-				           (SN,PN,UoM,Qty,ISloc,FSloc,Module,InpDate,Station)
-				     VALUES
-				           ('$material_sn',
-							'$material_pn',
-							'PC',
-							'$discount',
-							'0007',
-							'0002',
-							'SMK SCANNER',
-							GETDATE(),
-							'A')
-			";
+		    $drcDetRow = sqlsrv_fetch_array($result_drc_det, SQLSRV_FETCH_ASSOC);
+		    $pn_drcDet = $drcDetRow['PN'];
+		    $contType_drcDet = $drcDetRow['ContType'];
 
-			$sql_queryCheckIsOpen = sqlsrv_query($conn,$sql_statementCheckIsOpen);
-			while ($data = sqlsrv_fetch_array($sql_queryCheckIsOpen,SQLSRV_FETCH_ASSOC)) {
-				$status = $data['Status'];
-			}
-			if ($status == "O") {
-				$sql_query1 = sqlsrv_query($conn,$sql_statement);
-				$sql_querySap = sqlsrv_query($conn,$sqlStatement_SAP);
-				$sql_query3 = sqlsrv_query($conn,$sql_statement3);
-				$sqlQuerySnlo = sqlsrv_query($conn,$sqlSNLO);
-				if ($sql_query1 == true AND $sql_query3== true) {
-					echo json_encode(array('response' => 'success'));
+		    // Consulta 2: Obtener datos de Smk_Inv
+		    $sql_smk_inv = "SELECT PN, SN, Qty, UoM FROM Smk_Inv WHERE SN = '$material_sn'";
+		    $result_smk_inv = sqlsrv_query($conn, $sql_smk_inv);
+
+		    if ($result_smk_inv && sqlsrv_has_rows($result_smk_inv)) {
+		        $smkInvRow = sqlsrv_fetch_array($result_smk_inv, SQLSRV_FETCH_ASSOC);
+		        $pn_smkInv = $smkInvRow['PN'];
+		        $sn_smkInv = $smkInvRow['SN'];
+		        $qty_smkInv = $smkInvRow['Qty'];
+		        $uom_smkInv = $smkInvRow['UoM'];
+
+		        // Consulta 3: Obtener datos de DRC_ContQty
+		        $key = $pn_drcDet . ' ' . $contType_drcDet;
+		        $sql_drc_cont_qty = "SELECT PN, ContType, Qty FROM DRC_ContQty WHERE PN + ' ' + ContType = '$key'";
+		        $result_drc_cont_qty = sqlsrv_query($conn, $sql_drc_cont_qty);
+		        $discount = ($result_drc_cont_qty && sqlsrv_has_rows($result_drc_cont_qty))
+		            ? sqlsrv_fetch_array($result_drc_cont_qty, SQLSRV_FETCH_ASSOC)['Qty']
+		            : 0;
+		    } else {
+		        // Consulta 4: Obtener datos de Rcv_SNH
+		        $sql_rcv_snh = "SELECT SN, PN, Qty, UoM FROM Rcv_SNH WHERE SN = '$material_sn'";
+		        $result_rcv_snh = sqlsrv_query($conn, $sql_rcv_snh);
+
+		        if ($result_rcv_snh === false || !sqlsrv_has_rows($result_rcv_snh)) {
+		            echo json_encode(array('response' => 'NoSerie'));
+		            exit;
+		        }
+
+		        $rcvSNHRow = sqlsrv_fetch_array($result_rcv_snh, SQLSRV_FETCH_ASSOC);
+		        $snNumber = $rcvSNHRow['SN'];
+		        $pnNumber = $rcvSNHRow['PN'];
+		        $qtyNumber = $rcvSNHRow['Qty'];
+		        $uomNumber = $rcvSNHRow['UoM'];
+
+		        // Inserción en Smk_Inv
+		        $sql_insert_smk_inv = "
+		            INSERT INTO Smk_Inv (SN, PN, Qty, Badge, Status, UoM, Location, CreatedOn)
+		            VALUES ('$snNumber', '$pnNumber', $qtyNumber, '08080808', 'A', '$uomNumber', 'A', GETDATE())";
+		        $insert_result = sqlsrv_query($conn, $sql_insert_smk_inv);
+
+		        if ($insert_result === false) {
+		            echo json_encode(array('response' => 'NoReserva'));
+		            exit;
+		        }
+
+		        // Consulta 3: Obtener datos de DRC_ContQty
+		        $key = $pn_drcDet . ' ' . $contType_drcDet;
+		        $sql_drc_cont_qty = "SELECT PN, ContType, Qty FROM DRC_ContQty WHERE PN + ' ' + ContType = '$key'";
+		        $result_drc_cont_qty = sqlsrv_query($conn, $sql_drc_cont_qty);
+		        $discount = ($result_drc_cont_qty && sqlsrv_has_rows($result_drc_cont_qty))
+		            ? sqlsrv_fetch_array($result_drc_cont_qty, SQLSRV_FETCH_ASSOC)['Qty']
+		            : 0;
+		    }
+
+		    // Colocar valores finales
+		    $material_pn = $pn_drcDet;
+			    $sql_statementCheckIsOpen="
+					SELECT Status,UoM,Qty FROM Smk_Inv WHERE SN = '$sn_smkInv';
+
+				";
+				$sql_queryCheckIsOpen = sqlsrv_query($conn,$sql_statementCheckIsOpen);
+				while ($data = sqlsrv_fetch_array($sql_queryCheckIsOpen,SQLSRV_FETCH_ASSOC)) {
+					$status = $data['Status'];
+					$uom = $data['UoM'];
+					$qty = $data['Qty'];
+				}
+				$rest = $qty - $discount;
+				$sql_statement="UPDATE Smk_Inv SET Qty = '$rest', Status ='O' WHERE SN = '$sn_smkInv'";
+				//$sqlSNLO = "UPDATE ChkP_SNLO SET leftOver = '$rest' WHERE SN = '$sn_smkInv'";
+
+				$sql_statement3= "INSERT INTO Smk_InvDet VALUES ('$sn_smkInv','PARTIAL','$fecha','$badge','$material_pn')";
+				$sqlStatement_SAP = "
+					INSERT INTO xSmk_PickWIP
+					           (SN, UoM, Qty, Movement, FSloc, CreatedOn, CreatedBy)
+					     VALUES
+					           ('$sn_smkInv',
+								'$uom',
+								'$discount',
+								'PARTIAL',
+								'0002',
+								GETDATE(),
+								'$badge')
+				";
+
+				
+				if ($status == "O" || $status=="A") {
+					$sql_query1 = sqlsrv_query($conn,$sql_statement);
+					$sql_querySap = sqlsrv_query($conn,$sqlStatement_SAP);
+					$sql_query3 = sqlsrv_query($conn,$sql_statement3);
+					//$sqlQuerySnlo = sqlsrv_query($conn,$sqlSNLO);
+					if ($sql_query1 == true AND $sql_query3== true) {
+						echo json_encode(array('response' => 'success'));
+					}
+					else{
+						
+					}
 				}
 				else{
-					
+					echo json_encode(array('response' => 'closed'));
 				}
-			}
-			else{
-				echo json_encode(array('response' => 'closed'));
-			}
 
+				
 			
+		   exit;
+		} catch (Exception $e) {
+		    echo json_encode(array('response' => 'Error', 'message' => $e->getMessage()));
+		    exit;
 		}
 
 	}
@@ -128,6 +186,122 @@ include '../../connection.php';
 		}
 
 	}
+	elseif ($_GET['queue']=='getKanban') {
+		$idKanban = $_GET['idKanban'];
 
+		// Realiza la consulta
+		$sqlStatement = "SELECT * FROM DRC_Det WHERE Id = ?";
+		$params = array($idKanban);
+		$sql_query = sqlsrv_query($conn, $sqlStatement, $params);
+
+		// Verifica si hay resultados
+		if ($sql_query) {
+		    if (sqlsrv_has_rows($sql_query)) {
+		        echo json_encode(array("response" => "success"));
+		    } else {
+		        echo json_encode(array("response" => "fail"));
+		    }
+		} else {
+		    echo json_encode(array("response" => "fail"));
+		}
+	}
+	elseif ($_GET['queue'] == "empty") {
+			$serialNumber = $_GET['serialNumber'];
+			$badge = $_GET['badge'];
+			$params = array($serialNumber);
+
+			$sqlStatement_info = "SELECT SN, PN, Qty, UoM, Status FROM Smk_Inv WHERE SN= ?";
+			$sqlQuery_info = sqlsrv_query($conn,$sqlStatement_info,$params);			
+			if ($sqlQuery_info===false) {
+				echo json_encode(array("response"=>"Bad Response","data"=>'bad'));
+			}
+			else{
+				while ($data = sqlsrv_fetch_array($sqlQuery_info,SQLSRV_FETCH_ASSOC)) {
+					$PN = $data['PN'];
+					$Qty = $data['Qty'];
+					$UoM = $data['UoM'];
+					$Status = $data['Status'];
+				}
+
+				//$sqlStatement_updateSNLO = "UPDATE ChkP_SNLO SET leftOver = '0', AuditStatus='EMP' WHERE SN = '$serialNumber'";		
+				//$sqlQuery_insert = sqlsrv_query($conn,$sqlStatement_updateSNLO);
+
+				$sqlStatement_update = "UPDATE Smk_Inv SET Status = 'E', Qty = '0' WHERE SN = '$serialNumber'";
+				$sqlQuery_update = sqlsrv_query($conn,$sqlStatement_update);
+				
+				$fecha = date('Y-m-d H:i:s');
+				$sqlStatement_insertSmkDet = "INSERT INTO Smk_InvDet VALUES ('$serialNumber','EMPTY','$fecha','$badge','$PN')";
+				$sqlQuery_SmkDet = sqlsrv_query($conn,$sqlStatement_insertSmkDet);
+
+				if ($Status == "O") {
+					if (strlen($serialNumber) >= 15) {
+					    $serialNumber = 'S' . $serialNumber;
+					    $sqlStatement_SAP = "
+					    INSERT INTO xSmk_PickWIP
+					               (SN, UoM, Qty, Movement, FSloc, CreatedOn, CreatedBy)
+					         VALUES
+					               ('$serialNumber',
+					                '$UoM',
+					                '$Qty',
+					                'EMPTY',
+					                '0002',
+					                GETDATE(),
+					                '$badge')
+					    ";
+					} else {
+					    $sqlStatement_SAP = "
+					    INSERT INTO xSmk_PickWIP
+					               (SN, UoM, Qty, Movement, FSloc, CreatedOn, CreatedBy)
+					         VALUES
+					               ('$serialNumber',
+					                '$UoM',
+					                '$Qty',
+					                'EMPTY',
+					                '0002',
+					                GETDATE(),
+					                '$badge')
+					    ";
+					}
+					$sqlQuery_SAP = sqlsrv_query($conn,$sqlStatement_SAP);
+				}
+				elseif ($Status == "A") {
+					if (strlen($serialNumber) >= 15) {
+					    $serialNumber = 'S' . $serialNumber;
+					    $sqlStatement_SAP = "
+					    INSERT INTO xSmk_PickWIP
+					               (SN, UoM, Qty, Movement, FSloc, CreatedOn, CreatedBy)
+					         VALUES
+					               ('$serialNumber',
+					                '$UoM',
+					                '$Qty',
+					                'EMPTY',
+					                '0002',
+					                GETDATE(),
+					                '$badge')
+					    ";
+					} else {
+					    $sqlStatement_SAP = "
+					    INSERT INTO xSmk_PickWIP
+					               (SN, UoM, Qty, Movement, FSloc, CreatedOn, CreatedBy)
+					         VALUES
+					               ('$serialNumber',
+					                '$UoM',
+					                '$Qty',
+					                'EMPTY',
+					                '0002',
+					                GETDATE(),
+					                '$badge')
+					    ";
+					}
+					
+					$sqlQuery_SAP = sqlsrv_query($conn,$sqlStatement_SAP);
+				}
+				else{
+					$sqlStatement_SAP = "";
+				}
+				
+				echo json_encode(array("response"=>"success"));
+			}
+	}
 	
 ?>

@@ -113,7 +113,7 @@ $(document).ready(function(){
         // Do something
     }
 });
-	$('#material_sn').on('keyup',function(e){
+/*	$('#material_sn').on('keyup',function(e){
 		if (e.key === 'Enter' || e.keyCode === 13) {
 			var material_sn = $('#material_sn').val().replace('S', '');
 			$.ajax({
@@ -252,6 +252,154 @@ $(document).ready(function(){
 		}
 		
 	});
+*/
+
+	$('#material_sn').on('keyup', function(e) {
+		if (e.key === 'Enter' || e.keyCode === 13) {
+			var idKanban = $('#material_discount').val();
+			var material_sn = $('#material_sn').val();
+			material_sn = material_sn.replace("3S","");
+			material_sn = material_sn.replace("A","");
+			material_sn = material_sn.replace("S","");
+			$.ajax({
+				url: 'cont/partial_discount_controller.php',
+				data: {cantidad_descontada: idKanban,
+                          material_sn: material_sn,
+                          badge: $("#user_logged").val(),
+                          queue: "setDiscount"
+			},
+			})
+			.done(function(info) {
+				var Data = JSON.parse(info);
+				if (Data['response']=="NoKanban") {
+					new PNotify({
+	                    title: 'Error',
+	                    text: 'Kanban no existe',
+	                    type: 'error',
+	                    nonblock: {
+	                        nonblock: true
+	                    },
+	                    styling: 'bootstrap3'
+	                });
+	                $('#material_discount').val("");
+	                $('#material_sn').val("");
+	                $('#material_discount').focus();
+				}
+				else if (Data['response']=="NoSerie") {
+					new PNotify({
+	                    title: 'Error',
+	                    text: 'Serie Invalida',
+	                    type: 'error',
+	                    nonblock: {
+	                        nonblock: true
+	                    },
+	                    styling: 'bootstrap3'
+	                });
+	                $('#material_discount').val("");
+	                $('#material_sn').val("");
+	                $('#material_discount').focus();
+				}
+				else if (Data['response']=="NoReserva") {
+					new PNotify({
+	                    title: 'Error',
+	                    text: 'Serie no en reserva',
+	                    type: 'error',
+	                    nonblock: {
+	                        nonblock: true
+	                    },
+	                    styling: 'bootstrap3'
+	                });
+	                $('#material_discount').val("");
+	                $('#material_sn').val("");
+	                $('#material_discount').focus();
+				}
+				else if (Data['response']=='success') {
+					new PNotify({
+	                    title: 'Exito',
+	                    text: 'Serie enlazada',
+	                    type: 'success',
+	                    nonblock: {
+	                        nonblock: true
+	                    },
+	                    styling: 'bootstrap3'
+	                });
+				}
+				
+			})
+			.fail(function() {
+				new PNotify({
+	                    title: 'Error',
+	                    text: 'Ha ocurrido un error interno',
+	                    type: 'error',
+	                    nonblock: {
+	                        nonblock: true
+	                    },
+	                    styling: 'bootstrap3'
+	                });
+					$('#material_discount').val("");
+	                $('#material_sn').val("");
+	                $('#material_discount').focus();
+			})
+			.always(function() {
+				$('#material_discount').val("");
+	            $('#material_sn').val("");
+	            $('#material_discount').focus();
+			});
+			
+			
+		}
+	});
+	$('#material_discount').on('keyup', function (e) {
+	    if (e.key === 'Enter' || e.keyCode === 13) {
+	        var idKanban = $('#material_discount').val();
+	        idKanban = idKanban.replace(/\D/g, ''); // Elimina caracteres no numéricos
+	        idKanban = parseInt(idKanban, 10); // Convierte a número y elimina los ceros a la izquierda
+	        
+	        $.ajax({
+	            url: 'cont/partial_discount_controller.php',
+	            type: 'GET',
+	            data: {
+	                queue: 'getKanban',
+	                idKanban: idKanban
+	            },
+	        })
+	        .done(function (info) {
+	            var Data = JSON.parse(info);
+	            if (Data['response'] === 'success') {
+	                // Remueve el atributo "disabled" y establece el foco en material_sn
+	                $('#material_discount').val(idKanban)
+	                $('#material_sn').prop('disabled', false).focus();
+	            } else {
+	                new PNotify({
+	                    title: 'Error',
+	                    text: 'Kanban no existe',
+	                    type: 'error',
+	                    nonblock: {
+	                        nonblock: true
+	                    },
+	                    styling: 'bootstrap3'
+	                });
+	                $('#material_discount').val("")
+	                $('#material_sn').prop('disabled', true);
+	            }
+	        })
+	        .fail(function () {
+	            new PNotify({
+	                title: 'Error',
+	                text: 'Error interno',
+	                type: 'error',
+	                nonblock: {
+	                    nonblock: true
+	                },
+	                styling: 'bootstrap3'
+	            });
+	            $('#material_discount').val("")
+	            $('#material_sn').prop('disabled', true);
+	        });
+	    }
+	});
+
+
 
 	$('#qtyUpdateButton').on('click',function(){
 		$('#modalUpdate').modal('show');
@@ -263,12 +411,76 @@ $(document).ready(function(){
         }, 500);
     });
 
-	$("#new_qty").on('keyup', function (e) {
+	$("#material_snQty").on('keyup', function (e) {
 	    if (e.key === 'Enter' || e.keyCode === 13) {
-	        $('#updateQtySubmit').trigger('click');
+	        $('#emptySubmit').trigger('click');
 	    }
 	})
     
+
+
+	$("#emptySubmit").on('click', function(e) {
+		e.preventDefault();
+		var material_sn = $("#material_snQty").val();
+		material_sn = material_sn.replace("3S","");
+		material_sn = material_sn.replace("A","");
+		material_sn = material_sn.replace("S","");
+		var badge = $("#user_logged").val();
+		$.ajax({
+			url: 'cont/partial_discount_controller.php',
+			data: {
+				queue: 'empty',
+				serialNumber: material_sn,
+				badge: badge
+		},
+		})
+		.done(function(info) {
+			var Data = JSON.parse(info);
+			if (Data['response']=='success') {
+				new PNotify({
+					title: 'Exito',
+					text: 'Material vacio',
+					type: 'success',
+					nonblock: {
+				                                      nonblock: true
+				                                  },
+					styling: 'bootstrap3'
+				});
+				$("#material_snQty").val("").focus();
+			}
+			else{
+				new PNotify({
+					title: 'Error',
+					text: 'Ha ocurrido un error',
+					type: 'error',
+					nonblock: {
+				                                      nonblock: true
+				                                  },
+					styling: 'bootstrap3'
+				});
+				$("#material_snQty").val("").focus();
+			}
+
+			
+		})
+		.fail(function() {
+			new PNotify({
+					title: 'Error',
+					text: 'Ha ocurrido un error',
+					type: 'error',
+					nonblock: {
+				                                      nonblock: true
+				                                  },
+					styling: 'bootstrap3'
+				});
+			$("#material_snQty").val("").focus();
+		})
+		.always(function() {
+			$("#material_snQty").val("").focus();
+		});
+		
+	});
+
 	$("#updateQtySubmit").on('click',function(e){
 		e.preventDefault();
 
@@ -334,8 +546,12 @@ $(document).ready(function(){
 
 	});
 
+
 	$("#material_snQty").on('change',function(){
-		var snNumber = $("#material_snQty").val().replace("S","");
+		var snNumber = $("#material_snQty").val();
+		snNumber = snNumber.replace("3S","");
+		snNumber = snNumber.replace("A","");
+		snNumber = snNumber.replace("S","");
 		$.ajax({
 			url: 'cont/partial_discount_controller.php',
 			type: 'GET',
