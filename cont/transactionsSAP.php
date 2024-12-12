@@ -2,7 +2,36 @@
 	include '../../connection.php';
 	$request = $_REQUEST['request'];
 	if ($request == "getInfo") {
-		$sqlStatement = "SELECT xSmk_PickWIP.Id, Rcv_SNH.PN, Rcv_SNH.SN, xSmk_PickWIP.UoM, xSmk_PickWIP.Qty, xSmk_PickWIP.SAPDate as UltimoIntento, xSmk_PickWIP.Movement, xSmk_PickWIP.SapComment, xSmk_PickWIP.CreatedOn as FechaMovimiento, Sy_Users.Name + ' ' + Sy_Users.LastName as CreatedBy FROM xSmk_PickWIP JOIN Rcv_SNH ON xSmk_PickWIP.SN = Rcv_SNH.SN JOIN Sy_Users ON xSmk_PickWIP.CreatedBy = Sy_Users.Badge WHERE SAPStatus = 'FAIL' ORDER BY SAPDate DESC";
+		$sqlStatement = "
+		SELECT 
+		    xSmk_PickWIP.Id, 
+		    Rcv_SNH.PN, 
+		    Rcv_SNH.SN, 
+		    xSmk_PickWIP.UoM, 
+		    xSmk_PickWIP.Qty, 
+		    xSmk_PickWIP.SAPDate as UltimoIntento, 
+		    xSmk_PickWIP.Movement, 
+		    xSmk_PickWIP.SapComment, 
+		    xSmk_PickWIP.CreatedOn as FechaMovimiento, 
+		    Sy_Users.Name + ' ' + Sy_Users.LastName as CreatedBy
+		FROM 
+		    xSmk_PickWIP 
+		JOIN 
+		    Rcv_SNH ON 
+		    Rcv_SNH.SN = 
+		    CASE 
+		        WHEN LEFT(xSmk_PickWIP.SN, 1) = 'S' 
+		        THEN SUBSTRING(xSmk_PickWIP.SN, 2, LEN(xSmk_PickWIP.SN))
+		        ELSE xSmk_PickWIP.SN
+		    END
+		JOIN 
+		    Sy_Users ON xSmk_PickWIP.CreatedBy = Sy_Users.Badge
+		WHERE 
+		    SAPStatus = 'FAIL' 
+		    AND SapComment NOT LIKE '%Deleted%' 
+		ORDER BY 
+		    SAPDate DESC;
+		";
 		$sqlQuery = sqlsrv_query($conn, $sqlStatement);
 
 	    $info = array();

@@ -271,6 +271,7 @@ $(document).ready(function(){
 			})
 			.done(function(info) {
 				var Data = JSON.parse(info);
+
 				if (Data['response']=="NoKanban") {
 					new PNotify({
 	                    title: 'Error',
@@ -318,6 +319,28 @@ $(document).ready(function(){
 	                    title: 'Exito',
 	                    text: 'Serie enlazada',
 	                    type: 'success',
+	                    nonblock: {
+	                        nonblock: true
+	                    },
+	                    styling: 'bootstrap3'
+	                });
+				}
+				else if (Data['response']=='closed') {
+					new PNotify({
+	                    title: 'Error',
+	                    text: 'Serie ya vacia',
+	                    type: 'warning',
+	                    nonblock: {
+	                        nonblock: true
+	                    },
+	                    styling: 'bootstrap3'
+	                });
+				}
+				else if (Data['response']=='alreadyEmpty') {
+					new PNotify({
+	                    title: 'Error',
+	                    text: 'Serie ya vacia',
+	                    type: 'warning',
 	                    nonblock: {
 	                        nonblock: true
 	                    },
@@ -449,11 +472,11 @@ $(document).ready(function(){
 				$("#material_snQty").val("").focus();
 			}
 			else{
-				console.log(Data['response'])
+				
 				new PNotify({
 					title: 'Error',
-					text: 'Ha ocurrido un error',
-					type: 'error',
+					text: 'Serie ya vacia',
+					type: 'warning',
 					nonblock: {
 				                                      nonblock: true
 				                                  },

@@ -108,18 +108,35 @@ include '../../connection.php';
 				//$sqlSNLO = "UPDATE ChkP_SNLO SET leftOver = '$rest' WHERE SN = '$sn_smkInv'";
 
 				$sql_statement3= "INSERT INTO Smk_InvDet VALUES ('$sn_smkInv','PARTIAL','$fecha','$badge','$material_pn')";
-				$sqlStatement_SAP = "
-					INSERT INTO xSmk_PickWIP
-					           (SN, UoM, Qty, Movement, FSloc, CreatedOn, CreatedBy)
-					     VALUES
-					           ('$sn_smkInv',
-								'$uom',
-								'$discount',
-								'PARTIAL',
-								'0002',
-								GETDATE(),
-								'$badge')
-				";
+				if (strlen($sn_smkInv) > 14) {
+					    $sn_smkInv = 'S' . $sn_smkInv;
+					    $sqlStatement_SAP = "
+							INSERT INTO xSmk_PickWIP
+							           (SN, UoM, Qty, Movement, FSloc, CreatedOn, CreatedBy)
+							     VALUES
+							           ('$sn_smkInv',
+										'$uom',
+										'$discount',
+										'PARTIAL',
+										'0002',
+										GETDATE(),
+										'$badge')
+						";
+					} else {
+					    $sqlStatement_SAP = "
+							INSERT INTO xSmk_PickWIP
+							           (SN, UoM, Qty, Movement, FSloc, CreatedOn, CreatedBy)
+							     VALUES
+							           ('$sn_smkInv',
+										'$uom',
+										'$discount',
+										'PARTIAL',
+										'0002',
+										GETDATE(),
+										'$badge')
+						";
+					}
+				
 
 				
 				if ($status == "O" || $status=="A") {
@@ -249,7 +266,10 @@ include '../../connection.php';
 					$UoM = $data['UoM'];
 					$Status = $data['Status'];
 				}
-
+				if ($Status == "E") {
+					echo json_encode(array("response"=>"alreadyEmpty"));
+					exit;
+				}
 				//$sqlStatement_updateSNLO = "UPDATE ChkP_SNLO SET leftOver = '0', AuditStatus='EMP' WHERE SN = '$serialNumber'";		
 				//$sqlQuery_insert = sqlsrv_query($conn,$sqlStatement_updateSNLO);
 
@@ -261,7 +281,7 @@ include '../../connection.php';
 				$sqlQuery_SmkDet = sqlsrv_query($conn,$sqlStatement_insertSmkDet);
 
 				if ($Status == "O") {
-					if (strlen($serialNumber) >= 15) {
+					if (strlen($serialNumber) > 14) {
 					    $serialNumber = 'S' . $serialNumber;
 					    $sqlStatement_SAP = "
 					    INSERT INTO xSmk_PickWIP
@@ -292,7 +312,7 @@ include '../../connection.php';
 					$sqlQuery_SAP = sqlsrv_query($conn,$sqlStatement_SAP);
 				}
 				elseif ($Status == "A") {
-					if (strlen($serialNumber) >= 15) {
+					if (strlen($serialNumber) > 14) {
 					    $serialNumber = 'S' . $serialNumber;
 					    $sqlStatement_SAP = "
 					    INSERT INTO xSmk_PickWIP
@@ -324,7 +344,36 @@ include '../../connection.php';
 					$sqlQuery_SAP = sqlsrv_query($conn,$sqlStatement_SAP);
 				}
 				else{
-					$sqlStatement_SAP = "";
+					if (strlen($serialNumber) > 14) {
+					    $serialNumber = 'S' . $serialNumber;
+					    $sqlStatement_SAP = "
+					    INSERT INTO xSmk_PickWIP
+					               (SN, UoM, Qty, Movement, FSloc, CreatedOn, CreatedBy)
+					         VALUES
+					               ('$serialNumber',
+					                '$UoM',
+					                '$Qty',
+					                'EMPTY',
+					                '0002',
+					                GETDATE(),
+					                '$badge')
+					    ";
+					} else {
+					    $sqlStatement_SAP = "
+					    INSERT INTO xSmk_PickWIP
+					               (SN, UoM, Qty, Movement, FSloc, CreatedOn, CreatedBy)
+					         VALUES
+					               ('$serialNumber',
+					                '$UoM',
+					                '$Qty',
+					                'EMPTY',
+					                '0002',
+					                GETDATE(),
+					                '$badge')
+					    ";
+					}
+					
+					$sqlQuery_SAP = sqlsrv_query($conn,$sqlStatement_SAP);
 				}
 				
 				echo json_encode(array("response"=>"success"));
