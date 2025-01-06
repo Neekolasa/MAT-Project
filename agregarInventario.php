@@ -1,4 +1,4 @@
-`<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
   <?php 
     include 'templates/header.php';
@@ -8,6 +8,7 @@
     background: #415f7c !important;
 }
 </style>
+<title>Agregar inventario</title>
   <body class="nav-md">
     <div class="container body">
       <div class="main_container">
@@ -45,7 +46,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Plain Page</h3>
+                <h3>Agregar serie a inventario</h3>
               </div>
 
       
@@ -57,7 +58,7 @@
               <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Plain Page</h2>
+                    <h2>Agregar material a base de datos</h2>
                     
 
                     <!--*************ADD CONTENT HERE*****************-->
@@ -65,12 +66,48 @@
 
                     <div class="clearfix"></div>
                   </div>
-                  <div class="x_content">
-                     <input type="text" placeholder="Numero de serie" id="num_serial">
-                     <input type="text" placeholder="Numero de parte" id="part_number">
-                     <input type="text" placeholder="Cantidad" id="qty">
-                     <input type="text"  placeholder="Unidad de medida" id="uom">
-                     <button hidden id="btn_ssendInventory">Agregar inventario</button>
+                   <div class="x_content">
+                    <div class="col-md-12">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4" style="align-content: center;" align="center">
+                          <span>Numero de serie</span>
+                          <input class="form-control" type="text" name="num_serial" id="num_serial" placeholder="Numero de serie">
+                          <span>Numero de serie</span>
+                          <input class="form-control" type="text" name="lmSerial" readonly id="lmSerial" placeholder="Numero de serie">
+                          <span>Numero de parte</span>
+                          <input class="form-control" type="text" name="part_number" readonly id="part_number" placeholder="Numero de parte">
+                          <span>Cantidad</span>
+                          <input class="form-control" type="text" name="qty" readonly id="qty" placeholder="Cantidad">
+                          <span>Unidad de medida</span>
+                          <input class="form-control" type="text" name="uom" readonly id="uom" placeholder="Unidad de medida">
+                          <br>
+                          <button class="btn btn-success" id="btn_sendInventory">Agregar Inventario</button>
+                          <button class="btn btn-secondary" id="btn_sendManual">Agregar Manual</button>
+                        </div>
+                        
+                       <div class="col-md-4"></div>
+                     </div>
+                     <div class="modal fade bs-example-modal-sm" id="modalIdentity" tabindex="-1" role="dialog" aria-hidden="true">
+                      <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel2">Ingrese contrasena</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <span>Contrasena</span>
+                            <input class="form-control" type="password" name="password" id="password" placeholder="Contrasena">
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-primary" id="loginPassword">Ingresar</button>
+                          </div>
+
+                        </div>
+                      </div>
+                  </div>
                   </div>
                 </div>
               </div>

@@ -28,7 +28,7 @@
 		    Sy_Users ON xSmk_PickWIP.CreatedBy = Sy_Users.Badge
 		WHERE 
 		    SAPStatus = 'FAIL' 
-		    AND SapComment NOT LIKE '%Deleted%' 
+		    AND (SapComment NOT LIKE '%Deleted%' AND SapComment NOT LIKE '%CreatedTran%' AND SapComment NOT LIKE '%Found%') 
 		ORDER BY 
 		    SAPDate DESC;
 		";

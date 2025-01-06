@@ -94,7 +94,7 @@ include '../../connection.php';
 		    // Colocar valores finales
 		    $material_pn = $pn_drcDet;
 			    $sql_statementCheckIsOpen="
-					SELECT Status,UoM,Qty FROM Smk_Inv WHERE SN = '$sn_smkInv';
+					SELECT Smk_Inv.Status,Smk_Inv.UoM,Smk_Inv.Qty,PFEP_MasterV2.SAPProcess FROM Smk_Inv JOIN PFEP_MasterV2 ON Smk_Inv.PN = PFEP_MasterV2.PN WHERE Smk_Inv.SN = '$sn_smkInv';
 
 				";
 				$sql_queryCheckIsOpen = sqlsrv_query($conn,$sql_statementCheckIsOpen);
@@ -102,40 +102,75 @@ include '../../connection.php';
 					$status = $data['Status'];
 					$uom = $data['UoM'];
 					$qty = $data['Qty'];
+					$SAPProcess = $data['SAPProcess'];
 				}
 				$rest = $qty - $discount;
-				$sql_statement="UPDATE Smk_Inv SET Qty = '$rest', Status ='O' WHERE SN = '$sn_smkInv'";
-				//$sqlSNLO = "UPDATE ChkP_SNLO SET leftOver = '$rest' WHERE SN = '$sn_smkInv'";
-
-				$sql_statement3= "INSERT INTO Smk_InvDet VALUES ('$sn_smkInv','PARTIAL','$fecha','$badge','$material_pn')";
-				if (strlen($sn_smkInv) > 14) {
-					    $sn_smkInv = 'S' . $sn_smkInv;
-					    $sqlStatement_SAP = "
-							INSERT INTO xSmk_PickWIP
-							           (SN, UoM, Qty, Movement, FSloc, CreatedOn, CreatedBy)
-							     VALUES
-							           ('$sn_smkInv',
-										'$uom',
-										'$discount',
-										'PARTIAL',
-										'0002',
-										GETDATE(),
-										'$badge')
-						";
-					} else {
-					    $sqlStatement_SAP = "
-							INSERT INTO xSmk_PickWIP
-							           (SN, UoM, Qty, Movement, FSloc, CreatedOn, CreatedBy)
-							     VALUES
-							           ('$sn_smkInv',
-										'$uom',
-										'$discount',
-										'PARTIAL',
-										'0002',
-										GETDATE(),
-										'$badge')
-						";
-					}
+				if ($SAPProcess == "DIRECT") {
+					$sql_statement="UPDATE Smk_Inv SET Qty = '0', Status ='E' WHERE SN = '$sn_smkInv'";
+					$sql_statement3= "INSERT INTO Smk_InvDet VALUES ('$sn_smkInv','PARTIAL','$fecha','$badge','$material_pn')";
+					if (strlen($sn_smkInv) > 14) {
+						    $sn_smkInv = 'S' . $sn_smkInv;
+						    $sqlStatement_SAP = "
+								INSERT INTO xSmk_PickWIP
+								           (SN, UoM, Qty, Movement, FSloc, CreatedOn, CreatedBy)
+								     VALUES
+								           ('$sn_smkInv',
+											'$uom',
+											'0',
+											'EMPTY',
+											'0002',
+											GETDATE(),
+											'$badge')
+							";
+						} else {
+						    $sqlStatement_SAP = "
+								INSERT INTO xSmk_PickWIP
+								           (SN, UoM, Qty, Movement, FSloc, CreatedOn, CreatedBy)
+								     VALUES
+								           ('$sn_smkInv',
+											'$uom',
+											'0',
+											'EMPTY',
+											'0002',
+											GETDATE(),
+											'$badge')
+							";
+						}
+				}
+				else{
+					$sql_statement="UPDATE Smk_Inv SET Qty = '$rest', Status ='O' WHERE SN = '$sn_smkInv'";
+					$sql_statement3= "INSERT INTO Smk_InvDet VALUES ('$sn_smkInv','PARTIAL','$fecha','$badge','$material_pn')";
+					if (strlen($sn_smkInv) > 14) {
+						    $sn_smkInv = 'S' . $sn_smkInv;
+						    $sqlStatement_SAP = "
+								INSERT INTO xSmk_PickWIP
+								           (SN, UoM, Qty, Movement, FSloc, CreatedOn, CreatedBy)
+								     VALUES
+								           ('$sn_smkInv',
+											'$uom',
+											'$discount',
+											'PARTIAL',
+											'0002',
+											GETDATE(),
+											'$badge')
+							";
+						} else {
+						    $sqlStatement_SAP = "
+								INSERT INTO xSmk_PickWIP
+								           (SN, UoM, Qty, Movement, FSloc, CreatedOn, CreatedBy)
+								     VALUES
+								           ('$sn_smkInv',
+											'$uom',
+											'$discount',
+											'PARTIAL',
+											'0002',
+											GETDATE(),
+											'$badge')
+							";
+						}
+				}
+				
+				
 				
 
 				

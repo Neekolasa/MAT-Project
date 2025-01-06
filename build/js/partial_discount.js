@@ -328,7 +328,7 @@ $(document).ready(function(){
 				else if (Data['response']=='closed') {
 					new PNotify({
 	                    title: 'Error',
-	                    text: 'Serie ya vacia',
+	                    text: 'Serie no en reserva',
 	                    type: 'warning',
 	                    nonblock: {
 	                        nonblock: true
