@@ -139,12 +139,6 @@
                              
                                 <label for="material_snQty">Numero de serie <span style="color: red;">*</span></label>
                                 <input type="text"  id="material_snQty" class="form-control" required>
-                                <label for="actual_qty">Cantidad actual <span style="color: red;"></span></label>
-                                <input type="text"  disabled min="0" name="actual_qty" id="actual_qty" class="form-control">
-                                <label for="partNumber">Numero de parte <span style="color: red;"></span></label>
-                                <input type="text" disabled min="0" name="partNumber" id="partNumber" class="form-control">
-                                <label for="new_qty" hidden>Nueva cantidad <span style="color: red;" hidden>*</span></label>
-                                <input type="number" hidden min="0" name="new_qty" id="new_qty" class="form-control" required>
                                 <br>
                                 <br>
                                 <label><span style="color: red;">*</span> Campos obligatorios</label>
@@ -217,7 +211,6 @@
   </body>
 </html>
 
-<script src="build/js/getIP.js"></script>
 <script src="build/js/partial_discount.js"></script>
 
 <script type="text/javascript">

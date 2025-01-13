@@ -13,6 +13,7 @@
                         <li><a href="agregarInventario.php">Agregar inventario</a></li>
                         <li><a href="locaciones.php">Buscar locacion</a></li>
                         <li><a href="transactions.php">Transacciones SAP</a></li>
+                        <li><a href="picklist.php">Picklist BTS</a></li>
                   
                         <li hidden><a href="pedidos.php">Pedidos de barriles</a></li>
                         <li hidden><a href="devolverTerminal.php">Devolver terminales</a></li>

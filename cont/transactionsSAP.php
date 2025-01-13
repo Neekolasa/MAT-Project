@@ -6,7 +6,7 @@
 		SELECT 
 		    xSmk_PickWIP.Id, 
 		    Rcv_SNH.PN, 
-		    Rcv_SNH.SN, 
+		    xSmk_PickWIP.SN, 
 		    xSmk_PickWIP.UoM, 
 		    xSmk_PickWIP.Qty, 
 		    xSmk_PickWIP.SAPDate as UltimoIntento, 
@@ -16,7 +16,7 @@
 		    Sy_Users.Name + ' ' + Sy_Users.LastName as CreatedBy
 		FROM 
 		    xSmk_PickWIP 
-		JOIN 
+		LEFT JOIN 
 		    Rcv_SNH ON 
 		    Rcv_SNH.SN = 
 		    CASE 

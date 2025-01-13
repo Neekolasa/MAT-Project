@@ -113,146 +113,7 @@ $(document).ready(function(){
         // Do something
     }
 });
-/*	$('#material_sn').on('keyup',function(e){
-		if (e.key === 'Enter' || e.keyCode === 13) {
-			var material_sn = $('#material_sn').val().replace('S', '');
-			$.ajax({
-				url: 'cont/partial_discount_controller.php',
-				type: 'GET',
-				data: {queue: 'getMaterialPN',
-						material_sn: material_sn},
-			})
-			.done(function(info) {
-				
-				try {
-					var Data = JSON.parse(info);
-					var qty = Math.round(Data[0].Qty);
-					var PN = Data[0].PN;
-					var discount = $('#material_discount').val();
-					console.log(discount);
-					console.log(qty);
-					if(discount>qty){
-						new PNotify({
-							    title: 'Error',
-							    text: 'No puede descontar mas de la cantidad de la serie',
-							    type: 'error',
-							    nonblock: {
-			        				nonblock: true
-			    				},
-							    styling: 'bootstrap3'
-							});
 
-					}
-					else{
-						$('#qty_actual').val(qty.toString());
-						
-						Swal.fire({
-						  title: "Atencion",
-						  text: "Descontara "+Math.round(discount)+" pz del numero "+PN,
-						  icon: "warning",
-						  showCancelButton: true,
-						  confirmButtonColor: "#3085d6",
-						  cancelButtonColor: "#d33",
-						  confirmButtonText: "Continuar"
-						}).then((result) => {
-						  if (result.isConfirmed) {
-						    var qty_totally = qty - discount;
-						    var badge = $('#user_logged').val();
-						    $.ajax({
-						    	url: 'cont/partial_discount_controller.php',
-						    	type: 'GET',
-						    	data: {	queue:'setDiscount',
-						    			cantidad_descontada: qty_totally,
-						    			badge : badge,
-						    			material_sn:material_sn,
-						    			material_pn:PN,
-						    			discount: discount
-						    		},
-						    })
-						    .done(function(info) {
-						    	var Data = JSON.parse(info);
-						    	if (Data['response']=='success') {
-						    		var text = 'Se han descontado '+discount.toString()+'pz de la serie '+material_sn.toString();
-						
-									new PNotify({
-										    title: 'Exito',
-										    text: text,
-										    type: 'success',
-										    nonblock: {
-			                                      nonblock: true
-			                                  },
-										    styling: 'bootstrap3'
-										});
-									console.log(Data['response']);
-									$('#material_sn').val('');
-									$('#material_pn').val('');
-						    	}
-						    	else if (Data['response']=='closed') {
-						    		new PNotify({
-									    title: 'Error',
-									    text: 'No puede descontar de cajas cerradas o vacias',
-									    type: 'error',
-									    nonblock: {
-			                                      nonblock: true
-			                                  },
-									    styling: 'bootstrap3'
-									});
-						    	}
-						    	else{
-						    		new PNotify({
-									    title: 'Error',
-									    text: 'Intente de nuevo',
-									    type: 'error',
-									    nonblock: {
-			                                      nonblock: true
-			                                  },
-									    styling: 'bootstrap3'
-									});
-						    	}
-						    	
-						    	
-							})
-						    .fail(function() {
-						    	new PNotify({
-									    title: 'Error',
-									    text: 'Intente de nuevo',
-									    type: 'error',
-									    styling: 'bootstrap3'
-									});
-						    });
-						    
-						   	
-						    
-						  }
-						});
-						
-						
-					}
-					
-					$('#material_pn').val(Data[0].PN);
-				} catch(e) {
-					// statements
-					new PNotify({
-						    title: 'Error',
-						    text: 'Error al escanear la serie',
-						    type: 'error',
-						    nonblock: {
-			                                      nonblock: true
-			                                  },
-						    styling: 'bootstrap3'
-						});
-				}
-				
-				
-
-
-				
-
-			});
-		}
-		
-	});
-*/
 
 	$('#material_sn').on('keyup', function(e) {
 		if (e.key === 'Enter' || e.keyCode === 13) {
@@ -261,6 +122,10 @@ $(document).ready(function(){
 			material_sn = material_sn.replace("3S","");
 			material_sn = material_sn.replace("A","");
 			material_sn = material_sn.replace("S","");
+			if (material_sn.length !== 15) {
+		        material_sn = material_sn.replace(/^0/, '');
+		    }
+
 			$.ajax({
 				url: 'cont/partial_discount_controller.php',
 				data: {cantidad_descontada: idKanban,
@@ -270,6 +135,7 @@ $(document).ready(function(){
 			},
 			})
 			.done(function(info) {
+				//console.log(info)
 				var Data = JSON.parse(info);
 
 				if (Data['response']=="NoKanban") {
@@ -289,8 +155,8 @@ $(document).ready(function(){
 				else if (Data['response']=="NoSerie") {
 					new PNotify({
 	                    title: 'Error',
-	                    text: 'Serie Invalida',
-	                    type: 'error',
+	                    text: 'Serie o tolva no existe',
+	                    type: 'warning',
 	                    nonblock: {
 	                        nonblock: true
 	                    },
@@ -304,7 +170,7 @@ $(document).ready(function(){
 					new PNotify({
 	                    title: 'Error',
 	                    text: 'Serie no en reserva',
-	                    type: 'error',
+	                    type: 'warning',
 	                    nonblock: {
 	                        nonblock: true
 	                    },
@@ -328,7 +194,7 @@ $(document).ready(function(){
 				else if (Data['response']=='closed') {
 					new PNotify({
 	                    title: 'Error',
-	                    text: 'Serie no en reserva',
+	                    text: 'Serie no en reserva '+material_sn,
 	                    type: 'warning',
 	                    nonblock: {
 	                        nonblock: true
@@ -448,6 +314,10 @@ $(document).ready(function(){
 		material_sn = material_sn.replace("3S","");
 		material_sn = material_sn.replace("A","");
 		material_sn = material_sn.replace("S","");
+		if (material_sn.length !== 15) {
+		        material_sn = material_sn.replace(/^0/, '');
+		    }
+
 		var badge = $("#user_logged").val();
 		$.ajax({
 			url: 'cont/partial_discount_controller.php',
@@ -470,6 +340,28 @@ $(document).ready(function(){
 					styling: 'bootstrap3'
 				});
 				$("#material_snQty").val("").focus();
+			}
+			else if (Data['response']=='closed') {
+					new PNotify({
+	                    title: 'Error',
+	                    text: 'Serie no en reserva',
+	                    type: 'warning',
+	                    nonblock: {
+	                        nonblock: true
+	                    },
+	                    styling: 'bootstrap3'
+	                });
+				}
+			else if (Data['response']=='Bad Response') {
+				new PNotify({
+	                    title: 'Error',
+	                    text: 'Error al insertar en spmk',
+	                    type: 'error',
+	                    nonblock: {
+	                        nonblock: true
+	                    },
+	                    styling: 'bootstrap3'
+	                });
 			}
 			else{
 				
@@ -528,7 +420,6 @@ $(document).ready(function(){
 			var dato = {
 				
 			}
-			console.log(dato)
 			$.ajax({
 				url: 'cont/partial_discount_controller.php',
 				type: 'GET',
@@ -571,7 +462,7 @@ $(document).ready(function(){
 	});
 
 
-	$("#material_snQty").on('change',function(){
+	/*$("#material_snQty").on('change',function(){
 		var snNumber = $("#material_snQty").val();
 		snNumber = snNumber.replace("3S","");
 		snNumber = snNumber.replace("A","");
@@ -592,7 +483,7 @@ $(document).ready(function(){
 		
 		
 		
-	});
+	});*/
 
 
 });
