@@ -122,9 +122,11 @@ $(document).ready(function(){
 			material_sn = material_sn.replace("3S","");
 			material_sn = material_sn.replace("A","");
 			material_sn = material_sn.replace("S","");
+			material_sn = material_sn.replace(/[^a-zA-Z0-9]/g, '');
 			if (material_sn.length !== 15) {
 		        material_sn = material_sn.replace(/^0/, '');
 		    }
+
 
 			$.ajax({
 				url: 'cont/partial_discount_controller.php',
@@ -314,6 +316,7 @@ $(document).ready(function(){
 		material_sn = material_sn.replace("3S","");
 		material_sn = material_sn.replace("A","");
 		material_sn = material_sn.replace("S","");
+		material_sn = material_sn.replace(/[^a-zA-Z0-9]/g, '');
 		if (material_sn.length !== 15) {
 		        material_sn = material_sn.replace(/^0/, '');
 		    }

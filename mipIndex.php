@@ -297,6 +297,8 @@
 
                               </div>
                             </div>
+
+
                   </div>
                           <div class="col-md-6" style="margin: 0 auto;" >
                           
@@ -470,10 +472,14 @@
                         </div>
                       </div>
 
+
                   </div>
+
+                     
                 </div>
               </div>
             </div>
+              <div id="moverGraphic"></div>
           </div>
         </div>
         <!-- /page content -->
@@ -499,5 +505,9 @@
 <script src="build/js/mipForm.js"></script>
 <script src="build/js/mipMoversModel.js"></script>
 <script src="build/js/datatables-custom.js"></script>
+<script src="build/js/moverGraphic.js"></script>
+
+
+
 
 

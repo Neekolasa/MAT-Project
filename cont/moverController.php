@@ -903,6 +903,31 @@ elseif ($request == 'deleteTempMoverNumbers'){
 		    }
 	echo json_encode($response);
 }
+elseif ($request == 'getGraphicData') {
+	$sql_statement = "
+	SELECT TOP 30
+	    CONVERT(DATE, CreatedDate) AS Fecha, 
+	    COUNT(*) AS Registros
+	FROM 
+	    MoverData
+	GROUP BY 
+	    CONVERT(DATE, CreatedDate)
+	ORDER BY 
+	    Fecha DESC;
+	    ";
+	$sql_query = sqlsrv_query($conn,$sql_statement);
+	$datos = array();
+	    while ($data = sqlsrv_fetch_array($sql_query, SQLSRV_FETCH_ASSOC)) {
+	        array_push($datos, array(
+	            "Fecha" => $data['Fecha']->format('Y-m-d'),
+	            "Registros"=>$data['Registros']
+	          
+	        ));
+	    }
+
+	    echo json_encode($datos);
+
+}
 
 function limpiarString($cadena) {
 

@@ -73,7 +73,7 @@
                   
 
                   <li>
-                    <a href="mipindex.php"><i class="fa fa-truck"></i> MIP (Movers)
+                    <a href="miplogin.php"><i class="fa fa-truck"></i> MIP (Movers)
                       <span class="fa fa-chevron"></span>
                     </a>
                     
